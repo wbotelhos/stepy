@@ -1,0 +1,358 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="Pragma" content="no-cache"/>
+		<meta http-equiv="Expires" content="-1"/>
+		<title>jQuery Stepy - A Wizard Plugin</title>
+		
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/jquery.stepy.min.js"></script>
+		<link type="text/css" rel="stylesheet" href="css/jquery.stepy.css"/>
+
+		<!-- Optionaly -->
+		<script type="text/javascript" src="js/jquery.validate.min.js"></script>
+
+		<style type="text/css">
+			a#coffee-link, div#coffee-container {
+				border-radius: 4px;
+				-khtml-border-radius: 4px;
+				-moz-border-radius: 4px;
+				-opera-border-radius: 4px;
+				-webkit-border-radius: 4px;
+			}
+
+			div#link a {
+				color: #EA9C00;
+				font: bold 10px verdana;
+				letter-spacing: .9px;
+				text-decoration: none;
+			}
+			
+			div#link a:hover {
+				color: #DC5;
+				font: bold 10px verdana;
+				letter-spacing: .9px;
+				text-decoration: underline;
+			}
+
+			a#coffee-link {
+				background: url('img/coffee.png') 6px 2px no-repeat;
+				border: 1px solid #D9C640;
+				color: #FFF;
+				display: block;
+				font: bold 10px verdana;
+				letter-spacing: .9px;
+				padding: 4px 5px 4px 26px;
+				text-decoration: none;
+			}
+
+			a#coffee-link:hover {
+				text-decoration: underline;
+			}
+
+			div#coffee-container {
+				background-color: #DC5;
+				float: right;
+				margin-right: 15px;
+			}
+
+			div.description {
+				font: 10px verdana;
+				color: #555;
+				letter-spacing: .1px;
+				margin-bottom: 10px;
+				text-indent: 7px;
+				text-align: left;
+				width: 99%;
+			}
+
+			div#link {
+				font: 10px verdana;
+				color: #AB9927;
+				text-indent: 7px;
+			}
+
+			div.notice {
+				font: 9px verdana;
+				color: #777;
+				letter-spacing: .1px;
+				margin-bottom: 3px;
+				text-indent: 7px;
+				text-align: left;
+				width: 99%;
+			}
+
+			div.session {
+				font: bold 13px verdana;
+				border-bottom: 1px solid #EFEFEF;
+				color: #444;
+				letter-spacing: .7px;
+				margin-bottom: 10px;
+				margin-top: 24px;
+				text-align: left;
+				width: 99%;
+			}
+
+			div.source {
+				background: #F8F8FF;
+				border: 1px solid #EFEFEF;
+				border-left: 3px solid #CCC;
+				color: #444;
+				font: 12px monospace;
+				letter-spacing: .1px;
+				margin-bottom: 7px;
+				margin-top: 5px;
+				padding: 7px;
+				width: 99%;
+			}
+
+			div.text {
+				font: 10px verdana;
+				color: #555;
+				letter-spacing: .1px;
+				margin-bottom: 20px;
+				margin-top: 5px;
+				text-align: left;
+				text-indent: 7px;
+				width: 99%;
+			}
+
+			div.title {
+				font: bold 17px verdana;
+				color: #269;
+				letter-spacing: .7px;
+				margin-bottom: 20px;
+				margin-top: 5px;
+				text-align: left;
+				width: 99%;
+			}
+			
+			span.comment-html, span.comment-script {
+				font: 12px monospace;
+				letter-spacing: .1px;
+				margin-bottom: 7px;
+				margin-top: 5px;
+			}
+
+			span.comment-html {
+				color: #5e85de;
+			}
+
+			span.comment-script {
+				color: #578F73;
+			}
+
+			span#version {
+				color: #777;
+				font: 10px verdana;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="title">jQuery Stepy - A Wizard Plugin <span id="version">(current version: 0.1)</span></div>
+
+		<div id="link">
+			| <a href="http://github.com/downloads/wbotelhos/raty/jquery.stepy-0.1.zip" target="_blank">Download</a> |
+			<a href="http://github.com/wbotelhos/stepy" target="_blank">Github</a> |
+			<a href="http://wbotelhos.com/stepy/changelog.txt" target="_blank">Change Log</a> |
+			<a href="http://wbotelhos.com/stepy/README.txt" target="_blank">Readme</a> |
+			<a href="http://wbotelhos.com/stepy/LICENSE.txt" target="_blank">Licence</a> |
+		</div>
+		
+		<div id="coffee-container">
+			<a id="coffee-link" href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=wbotelhos@gmail.com" target="_blank">buy me a coffee</a>
+		</div><br/>
+
+		<div class="text">jQuery <b>Stepy</b> is a plugin based on FormToWizard that generates a customizable wizard.</div>
+
+		<div class="session">With default options:</div>
+		
+		<form id="default">
+			<fieldset title="Step 1">
+				<legend>description one</legend>
+				<label>User:</label> <input type="text" value="wbotelhos" size="40" disabled="disabled"/> <!-- Disabled fields are not focused.  -->
+				<label>E-mail:</label> <input type="text" size="40"/>
+				<label>Password:</label> <input type="password" size="40"/>
+			</fieldset>
+
+			<fieldset title="Step 2">
+				<legend>description two</legend>
+				<label>Nick Name:</label> <input type="text"size="30"/>
+				<label>Bio:</label> <textarea rows="5" cols="60"></textarea>
+			</fieldset>
+			
+			<input type="submit" class="finish" value="Finish!"/>
+		</form><br/>
+
+		<div class="source">
+			$('#default').stepy();
+		</div>
+
+		<div class="session">With custom labels buttons, validation and titles click:</div>		
+
+		<form id="custom">
+			<fieldset title="Thread 1">
+				<legend>my description one</legend>
+				<label>User:</label> <input type="text" value="wbotelhos" size="40" disabled="disabled"/>
+				<label>E-mail:</label> <input type="text" name="email" size="40"/>
+				<label>Password:</label> <input type="password" name="password" size="40"/>
+			</fieldset>
+
+			<fieldset title="Thread 2">
+				<legend>my description two</legend>
+				<label>Nick Name:</label> <input type="text" name="nick" size="30"/>
+				<label>Bio:</label> <textarea name="bio" rows="5" cols="60"></textarea>
+			</fieldset>
+			
+			<fieldset title="Thread 3">
+				<legend>my description three</legend>
+				<input type="hidden"/> <!-- Hidden fields are not focused.  -->
+				<label>Birthday:</label>
+				<select name="day">
+					<option></option>
+					<option>23</option>
+				</select>
+				<select>
+					<option>10</option>
+				</select>
+				<select>
+					<option>1984</option>
+				</select>
+				<label>Gender:</label>
+				<input type="radio" name="gender"/> Male
+				<input type="radio" name="gender"/> Female
+				<label>Site:</label> <input type="text" name="site" size="40"/>
+			</fieldset>
+
+			<input type="submit" class="finish" value="Finish!"/>
+		</form><br/><br/>
+
+		<div class="source">
+			$('#custom').stepy({<br/>
+				&nbsp;&nbsp;backLabel:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Backward',<br/>
+				&nbsp;&nbsp;nextLabel:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Forward',<br/>
+				&nbsp;&nbsp;validate:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true<br/>
+			});
+		</div>
+
+		<div class="session">With just step without form:</div>		
+
+		<div id="step">
+			<fieldset title="Image 1">
+				<legend>image description one</legend><br/>
+				<center><img src="img/step-1.png" alt=""/></center>
+			</fieldset>
+
+			<fieldset title="Image 2">
+				<legend>image description two</legend><br/>
+				<center><img src="img/step-2.png" alt=""/></center>
+			</fieldset>
+			
+			<fieldset title="Image 3">
+				<legend>image description three</legend><br/>
+				<center><img src="img/step-3.png" alt=""/></center>
+			</fieldset>
+
+		</div><br/><br/>
+
+		<div class="source">
+			$('div#step').stepy({<br/>
+			&nbsp;&nbsp;includeFinish: false<br/>
+			});
+		</div>
+
+		<div class="session">HTML structure:</div>
+		<div class="source">
+			&lt;form id="custom"&gt;<br/>
+			&nbsp;&nbsp;&lt;fieldset title="Title"&gt;<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;&lt;legend&gt;description&lt;/legend&gt;<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment-html">&lt;!-- input fields --&gt;</span><br/>
+			&nbsp;&nbsp;&lt;/fieldset&gt;<br/><br/>
+
+			&nbsp;&nbsp;&lt;fieldset title="Title"&gt;<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;&lt;legend&gt;description&lt;/legend&gt;<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment-html">&lt;!-- input fields --&gt;</span><br/>
+			&nbsp;&nbsp;&lt;/fieldset&gt;<br/><br/>
+
+			&nbsp;&nbsp;<span class="comment-script">// and so on..</span><br/><br/>
+
+			&nbsp;&nbsp;&lt;input type="submit" class="finish"/&gt;<br/>
+			&lt;/form&gt;
+		</div>
+
+		<div class="notice">* The fieldset's title is the main title of the step and the legend is the description of it.</div>
+
+		<div class="session">Default options:</div>
+		
+		<div class="source">
+			backLabel:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&lt; Back',<br/>
+			<div class="notice">Change the back button label.</div>
+			includeFinish:&nbsp;&nbsp;true,<br/>
+			<div class="notice">Include the button with class called '.finish' into the last step.</div>
+			nextLabel:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Next &gt;'
+			<div class="notice">Change the next button label.</div>
+			titleClick:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true,<br/>
+			<div class="notice">Active the back and next action in the titles.</div>
+		 	validate:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false<br/>
+			<div class="notice">Active the jQuery Validation for each step. Depends of jquery.validation.js. A div with class 'error-step' is created automatically.</div>
+		</div>
+
+		<div class="session">Public functions: *</div>
+
+		<div class="source">$.fn.stepy.step(2, 'default');</div>
+		<div class="description">Go to step 2 with ID called 'default' later. If validation is enabled this feature should come after the call of validate.</div>
+		
+		<div class="notice">* All the functions that do not pass the parameter containerId will be applied to the last container used by the plugin.</div>
+
+		<script type="text/javascript">
+			$(function() {
+
+				$('#default').stepy();
+
+				$('#custom').stepy({
+					backLabel:	'Backward',
+					nextLabel:	'Forward',
+					validate:	true
+				});
+
+				$('div#step').stepy({
+					includeFinish: false
+				});
+
+				// <!-- Optionaly -->
+				$('#custom').validate({
+					errorPlacement: function(error, element) {
+						$('#custom div.error-step').append(error);
+					},
+					rules: {
+						'email':	'email',
+						'bio':		'required',
+						'password':	'required',
+						'day':		'required',
+						'gender':	'required'
+					},
+					messages: {
+						'email':	{email: 'Invalid e-mail!'},
+						'bio':		{required: 'Bio field is required!'},
+						'password':	{required: 'Password field is requerid!'},
+						'day':		{required: 'Day field is requerid!'},
+						'gender':	{required: 'Gender field is requerid!'}
+					}
+				});
+
+			});
+
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-17006803-4']);
+			_gaq.push(['_trackPageview']);
+			
+			(function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+		</script>
+	</body>
+</html>

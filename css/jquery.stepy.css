@@ -1,0 +1,111 @@
+@CHARSET "UTF-8";
+
+a.button-back, a.button-next, input.button-finish {
+	background-color: #AAA;
+	font: 10px verdana;
+	padding: 5px 10px;
+	color: #FFF;
+}
+
+a.button-back, a.button-next, input.button-finish, fieldset.step {
+	border-radius: 4px;
+	-khtml-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-opera-border-radius: 4px;
+	-webkit-border-radius: 4px;	
+}
+
+a.button-back:hover, a.button-next:hover, input.button-finish:hover {
+	background-color: #6699CC;
+}
+
+a.button-back {
+	float: left;
+	text-decoration: none;
+}
+
+a.button-next {
+	float: right;
+	text-decoration: none;
+}
+
+fieldset.step {
+	border: 1px solid #DDD;
+	clear: left;
+	font: 10px verdana;
+	width: 500px;
+}
+
+
+fieldset.step legend {
+	font: bold 14px verdana;
+	color: #4080BF;
+	padding: 0 2px 3px 2px;
+}
+
+fieldset.step input, fieldset.step textarea, fieldset.step select {
+	border: 1px solid #AAA;
+	font: 10px verdana;
+	margin-left: 7px;
+}
+
+fieldset.step label {
+	color: #444;
+	display: block;
+	font: bold 10px verdana;
+	margin-top: 10px;
+	margin: 10px 0 3px 7px;
+}
+
+
+input.button-finish {
+	border-style: none;
+	cursor: pointer;
+	float: right;
+	text-decoration: none;
+}
+
+
+ul.titles {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+ul.titles li {
+	color: #DDD;
+	cursor: pointer;
+	font: bold 18px verdana;
+	float: left;
+	padding: 10px;
+}
+
+ul.titles li.current-step {
+	color: #369;
+	cursor: auto;
+}
+
+ul.titles li span {
+	font: 11px verdana;
+	display: block;
+}
+
+
+/*** Optionaly (jQuery Validate) ***/
+
+label.error {
+	background: url('../img/alert.png') no-repeat;
+	color: #DE5130;
+	display: block;
+	float: left;
+	font: 10px verdana;
+	height: 16px;
+	margin: 5px 3px 0 10px;
+	padding-left: 21px;
+	padding-top: 2px;
+}
+
+input.error, select.error, textarea.error {
+	background-color: #FAF4F4;
+}

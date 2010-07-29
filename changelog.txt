@@ -1,0 +1,26 @@
+/**
+ * jQuery Stepy - A Wizard Plugin - http://wbotelhos.com/stepy
+ * --------------------------------------------------------------------------
+ *
+ * 07.06.2010
+ *   Features:
+ *      - Added a backLabel and nextLabel parameter to specify the labels of the corresponding buttons;
+ *      - Added click on the title and description to go to the corresponding step;
+ *      - Added a public function 'step' that is possible choose which step to go;
+ *      - Added auto-focus in the first field of each step when it is the current;
+ *      - Added the parameter includeFinish to format and embed the button with class named ".finish" to the last step;
+ *      - Added function that automatically takes the title of the fieldset and become it as title of each step;
+ *      - Now is possible to use more than one wizard on the same page;
+ *      - Created default options;
+ *   Changes:
+ *      - Changed the function bind to newest live;
+ *      - The links with # were changed to javascript:void(0) to prevent the page go up;
+ *      - Changed to HTML code the special characters;
+ *      - Removed the container tha was wrapped the fieldsets and added the actions directly on it;
+ *      - Removed unused arguments form binds functions;
+ *      - Changed the selectors for the same current element $(this);
+ *      - Changed the extends to a defaults developers plugins;
+ *      - Keys were placed on single line blocks to avoid error on IE;
+ *      - Changed the styles name with a hifen style; 
+ *
+ */
