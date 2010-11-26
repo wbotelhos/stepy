@@ -14,36 +14,41 @@
  * @license     http://www.opensource.org/licenses/mit-license.php MIT 
  * @package     jQuery Plugins
  * 
- * 
- * Usage (default values):
+ * Default values:
  * --------------------------------------------------------------------------
- *  $('#default').stepy({
- *      backLabel:        '&lt; Back',  // Change the back button label.
- *      includeFinish:    true,         // Include the button with class called '.finish' into the last step.
- *      nextLabel:        'Next &gt;',  // Change the next button label.
- *      titleClick:       true,         // Active the back and next action in the titles.
- *      validate:         false         // Active the jQuery Validation. Depends of jquery.validation.js.
- *  });
+ * backLabel:      '< Back'     // Change the back button label.
+ * block:          false        // Block the next step if the current is invalid.
+ * errorImage:     false        // If an error occurs, a image is showed in the title of the corresponding step.
+ * finish:         true         // Include the button with class called '.finish' into the last step.
+ * nextLabel:      'Next >'     // Change the next button label.
+ * titleClick:     true         // Active the back and next action in the titles.
+ * validate:       false        // Active the jQuery Validation for each step.
  *  
- *  <form id="default">
- *      <fieldset title="Step 1">
- *          <legend>description one</legend>
- *          <!-- input fields -->
- *      </fieldset>
+ * Default values:
+ * --------------------------------------------------------------------------
+ * $('#form').stepy();
  *
- *      <fieldset title="Step 2">
- *          <legend>description one</legend>
- *          <!-- input fields -->
- *      </fieldset>
+ * <form id="default">
+ *     <fieldset title="Step 1">
+ *         <legend>description one</legend>
+ *         <!-- input fields -->
+ *     </fieldset>
  *
- *      // and so on..
+ *     <fieldset title="Step 2">
+ *         <legend>description two</legend>
+ *         <!-- input fields -->
+ *     </fieldset>
  *
- *      <input type="submit" class="finish" value="Finish!"/>
+ *     <input type="submit" class="finish"/>
  *  </form>
  *
  * Public functions:
  * --------------------------------------------------------------------------
  *
- *  $.fn.stepy.step(2, 'default');  // Go to step 2 with ID called 'default' later.
+ * $.fn.stepy.step(2);              // Change the last form to step 2 later.
+ *
+ * You can pass a ID to be the target of the action
+ *
+ * $.fn.stepy.step(2, '#form');     // Change the '#form' to the second step later. Validation is not supported yet.
  *
  */

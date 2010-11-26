@@ -1,13 +1,17 @@
 @CHARSET "UTF-8";
 
-a.button-back, a.button-next, input.button-finish {
+a.button-back, a.button-next, input.finish {
 	background-color: #AAA;
+	color: #FFF;
 	font: 10px verdana;
 	padding: 5px 10px;
-	color: #FFF;
 }
 
-a.button-back, a.button-next, input.button-finish, fieldset.step {
+input.finish {
+	padding: 3px 9px;
+}
+
+a.button-back, a.button-next, input.finish, fieldset.step {
 	border-radius: 4px;
 	-khtml-border-radius: 4px;
 	-moz-border-radius: 4px;
@@ -15,7 +19,7 @@ a.button-back, a.button-next, input.button-finish, fieldset.step {
 	-webkit-border-radius: 4px;	
 }
 
-a.button-back:hover, a.button-next:hover, input.button-finish:hover {
+a.button-back:hover, a.button-next:hover, input.finish:hover {
 	background-color: #6699CC;
 }
 
@@ -38,8 +42,8 @@ fieldset.step {
 
 
 fieldset.step legend {
-	font: bold 14px verdana;
 	color: #4080BF;
+	font: bold 14px verdana;
 	padding: 0 2px 3px 2px;
 }
 
@@ -58,22 +62,25 @@ fieldset.step label {
 }
 
 
-input.button-finish {
+input.finish {
 	border-style: none;
 	cursor: pointer;
 	float: right;
 	text-decoration: none;
 }
 
+li.error-image {
+	background: url('../img/error.png') no-repeat right top;
+}
 
-ul.titles {
+ul.stepy-titles {
 	list-style: none;
 	margin: 0;
 	padding: 0;
 	width: 100%;
 }
 
-ul.titles li {
+ul.stepy-titles li {
 	color: #DDD;
 	cursor: pointer;
 	font: bold 18px verdana;
@@ -81,12 +88,12 @@ ul.titles li {
 	padding: 10px;
 }
 
-ul.titles li.current-step {
+ul.stepy-titles li.current-step {
 	color: #369;
 	cursor: auto;
 }
 
-ul.titles li span {
+ul.stepy-titles li span {
 	font: 11px verdana;
 	display: block;
 }

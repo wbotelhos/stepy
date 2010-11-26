@@ -3,18 +3,24 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta http-equiv="Pragma" content="no-cache"/>
-		<meta http-equiv="Expires" content="-1"/>
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Expires" content="-1">
+
 		<title>jQuery Stepy - A Wizard Plugin</title>
-		
+
 		<script type="text/javascript" src="js/jquery.js"></script>
 		<script type="text/javascript" src="js/jquery.stepy.min.js"></script>
+
 		<link type="text/css" rel="stylesheet" href="css/jquery.stepy.css"/>
 
 		<!-- Optionaly -->
 		<script type="text/javascript" src="js/jquery.validate.min.js"></script>
 
 		<style type="text/css">
+			body {
+				font: 10px verdana;
+			}
+
 			a#coffee-link, div#coffee-container {
 				border-radius: 4px;
 				-khtml-border-radius: 4px;
@@ -32,7 +38,7 @@
 			
 			div#link a:hover {
 				color: #DC5;
-				font: bold 10px verdana;
+				font-weight: bold;
 				letter-spacing: .9px;
 				text-decoration: underline;
 			}
@@ -42,7 +48,7 @@
 				border: 1px solid #D9C640;
 				color: #FFF;
 				display: block;
-				font: bold 10px verdana;
+				font-weight: bold;
 				letter-spacing: .9px;
 				padding: 4px 5px 4px 26px;
 				text-decoration: none;
@@ -59,7 +65,6 @@
 			}
 
 			div.description {
-				font: 10px verdana;
 				color: #555;
 				letter-spacing: .1px;
 				margin-bottom: 10px;
@@ -69,7 +74,6 @@
 			}
 
 			div#link {
-				font: 10px verdana;
 				color: #AB9927;
 				text-indent: 7px;
 			}
@@ -109,7 +113,6 @@
 			}
 
 			div.text {
-				font: 10px verdana;
 				color: #555;
 				letter-spacing: .1px;
 				margin-bottom: 20px;
@@ -151,24 +154,24 @@
 		</style>
 	</head>
 	<body>
-		<div class="title">jQuery Stepy - A Wizard Plugin <span id="version">(current version: 0.1)</span></div>
+		<div class="title">jQuery Stepy - A Wizard Plugin <span id="version">(current version: 0.2.0)</span></div>
 
 		<div id="link">
-			| <a href="http://github.com/downloads/wbotelhos/raty/jquery.stepy-0.1.zip" target="_blank">Download</a> |
+			| <a href="http://github.com/downloads/wbotelhos/stepy/jquery.stepy-0.2.0.zip" target="_blank">Download</a> |
 			<a href="http://github.com/wbotelhos/stepy" target="_blank">Github</a> |
 			<a href="http://wbotelhos.com/stepy/changelog.txt" target="_blank">Change Log</a> |
 			<a href="http://wbotelhos.com/stepy/README.txt" target="_blank">Readme</a> |
 			<a href="http://wbotelhos.com/stepy/LICENSE.txt" target="_blank">Licence</a> |
 		</div>
-		
+
 		<div id="coffee-container">
-			<a id="coffee-link" href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=wbotelhos@gmail.com" target="_blank">buy me a coffee</a>
+			<a id="coffee-link" href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=X8HEP2878NDEG&amp;item_name=jQuery%20Stepy" target="_blank">buy me a coffee</a>
 		</div><br/>
 
-		<div class="text">jQuery <b>Stepy</b> is a plugin based on FormToWizard that generates a customizable wizard.</div>
+		<div class="text">jQuery <strong>Stepy</strong> is a plugin based on FormToWizard that generates a customizable wizard.</div>
 
-		<div class="session">With default options:</div>
-		
+		<div id="default-demo" class="session">With default options:</div>
+
 		<form id="default">
 			<fieldset title="Step 1">
 				<legend>description one</legend>
@@ -182,7 +185,7 @@
 				<label>Nick Name:</label> <input type="text"size="30"/>
 				<label>Bio:</label> <textarea rows="5" cols="60"></textarea>
 			</fieldset>
-			
+
 			<input type="submit" class="finish" value="Finish!"/>
 		</form><br/>
 
@@ -190,7 +193,7 @@
 			$('#default').stepy();
 		</div>
 
-		<div class="session">With custom labels buttons, validation and titles click:</div>		
+		<div id="custom-demo" class="session">A custom form in a validation style:</div>		
 
 		<form id="custom">
 			<fieldset title="Thread 1">
@@ -205,7 +208,7 @@
 				<label>Nick Name:</label> <input type="text" name="nick" size="30"/>
 				<label>Bio:</label> <textarea name="bio" rows="5" cols="60"></textarea>
 			</fieldset>
-			
+
 			<fieldset title="Thread 3">
 				<legend>my description three</legend>
 				<input type="hidden"/> <!-- Hidden fields are not focused.  -->
@@ -229,37 +232,42 @@
 			<input type="submit" class="finish" value="Finish!"/>
 		</form><br/><br/>
 
+		<span class="comment-script">
+			 - When the attribute 'validate' is true, you must include the jquery.validate.js.
+		</span><br/><br/>
+
 		<div class="source">
 			$('#custom').stepy({<br/>
 				&nbsp;&nbsp;backLabel:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Backward',<br/>
+				&nbsp;&nbsp;block:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true,<br/>
+				&nbsp;&nbsp;errorImage:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true,<br/>
 				&nbsp;&nbsp;nextLabel:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Forward',<br/>
 				&nbsp;&nbsp;validate:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true<br/>
 			});
 		</div>
 
-		<div class="session">With just step without form:</div>		
+		<div id="step-demo" class="session">With just step without form:</div>		
 
 		<div id="step">
 			<fieldset title="Image 1">
 				<legend>image description one</legend><br/>
-				<center><img src="img/step-1.png" alt=""/></center>
+				<center><img src="img/image-1.png" alt=""/></center>
 			</fieldset>
 
 			<fieldset title="Image 2">
 				<legend>image description two</legend><br/>
-				<center><img src="img/step-2.png" alt=""/></center>
+				<center><img src="img/image-2.png" alt=""/></center>
 			</fieldset>
-			
+
 			<fieldset title="Image 3">
 				<legend>image description three</legend><br/>
-				<center><img src="img/step-3.png" alt=""/></center>
+				<center><img src="img/image-3.png" alt=""/></center>
 			</fieldset>
-
-		</div><br/><br/>
+		</div><br/>
 
 		<div class="source">
-			$('div#step').stepy({<br/>
-			&nbsp;&nbsp;includeFinish: false<br/>
+			$('#step').stepy({<br/>
+			&nbsp;&nbsp;finish: false<br/>
 			});
 		</div>
 
@@ -276,35 +284,49 @@
 			&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment-html">&lt;!-- input fields --&gt;</span><br/>
 			&nbsp;&nbsp;&lt;/fieldset&gt;<br/><br/>
 
-			&nbsp;&nbsp;<span class="comment-script">// and so on..</span><br/><br/>
-
 			&nbsp;&nbsp;&lt;input type="submit" class="finish"/&gt;<br/>
 			&lt;/form&gt;
 		</div>
 
-		<div class="notice">* The fieldset's title is the main title of the step and the legend is the description of it.</div>
+		<div class="notice">The fieldset's title is the main title of the step and the legend is the description of it.</div>
 
 		<div class="session">Default options:</div>
-		
+
 		<div class="source">
 			backLabel:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&lt; Back',<br/>
 			<div class="notice">Change the back button label.</div>
-			includeFinish:&nbsp;&nbsp;true,<br/>
+
+			block:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false,<br/>
+			<div class="notice">* Block the next step if the current is invalid.</div>
+
+			errorImage:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false,<br/>
+			<div class="notice">* If an error occurs, a image is showed in the title of the corresponding step.</div>
+
+			finish:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true,<br/>
 			<div class="notice">Include the button with class called '.finish' into the last step.</div>
+
 			nextLabel:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Next &gt;'
 			<div class="notice">Change the next button label.</div>
+
 			titleClick:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true,<br/>
 			<div class="notice">Active the back and next action in the titles.</div>
+
 		 	validate:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false<br/>
-			<div class="notice">Active the jQuery Validation for each step. Depends of jquery.validation.js. A div with class 'error-step' is created automatically.</div>
+			<div class="notice">* Active the jQuery Validation for each step.</div>
 		</div>
 
-		<div class="session">Public functions: *</div>
+		<div class="notice">*  Depends of jquery.validation.js.</div><br/>
 
-		<div class="source">$.fn.stepy.step(2, 'default');</div>
-		<div class="description">Go to step 2 with ID called 'default' later. If validation is enabled this feature should come after the call of validate.</div>
-		
-		<div class="notice">* All the functions that do not pass the parameter containerId will be applied to the last container used by the plugin.</div>
+		<span class="comment-script">
+			- All public functions have a optional second parameter to specify which container will be executed;<br/>
+			- You can pass a ID to be the target of the action.<br/>
+			- If the ID is not specified, then the last element Stepy will be takes.
+		</span>
+
+		<div class="session">Public functions:</div>
+
+		<div class="source">$.fn.stepy.step(2, '#default');</div>
+		<div class="notice">Change the last form to step 2 later. Validation is not supported yet.</div>
 
 		<script type="text/javascript">
 			$(function() {
@@ -313,18 +335,21 @@
 
 				$('#custom').stepy({
 					backLabel:	'Backward',
+					block:		true,
+					errorImage:	true,
 					nextLabel:	'Forward',
+					titleClick:	true,
 					validate:	true
 				});
 
 				$('div#step').stepy({
-					includeFinish: false
+					finish: false
 				});
 
 				// <!-- Optionaly -->
 				$('#custom').validate({
 					errorPlacement: function(error, element) {
-						$('#custom div.error-step').append(error);
+						$('#custom div.stepy-error').append(error);
 					},
 					rules: {
 						'email':	'email',
@@ -343,16 +368,6 @@
 				});
 
 			});
-
-			var _gaq = _gaq || [];
-			_gaq.push(['_setAccount', 'UA-17006803-4']);
-			_gaq.push(['_trackPageview']);
-			
-			(function() {
-				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-			})();
 		</script>
 	</body>
 </html>

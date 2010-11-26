@@ -6,7 +6,7 @@
  * 
  * Licensed under The MIT License
  * 
- * @version			0.2
+ * @version			0.2.0
  * @since			07.03.2010
  * @author			Washington Botelho dos Santos
  * @documentation	http://wbotelhos.com/raty
@@ -65,7 +65,6 @@
         	$global.append('<div class="stepy-error"></div>');
         }
 
-
         steps.each(function(i) { // fieldset
         	step = $(this);
 
@@ -94,18 +93,22 @@
 
         $titles.children('li:first').addClass('current-step');
 
-        var finish = $global.children('.finish');
+        var finish = $global.children('.finish'),
+        	$this	= $global,
+        	opt		= options;
 
         if (options.finish) {
 	        if (finish.length) {
-        		finish.hide().appendTo($global.find('p:last'));
+        		finish
+        		.hide()
+        		.click(function() {
+        			validate($this, size - 1, opt);
+        		})
+        		.appendTo($global.find('p:last'));
 	        } else if ($global.is('form')) {
 	        	debug('You should create a button with a class named "finish" when the attribute \'finish\' is true.');
 	        }
         }
-
-        var $this	= $global,
-        	opt		= options;
 
         if (options.titleClick) {
         	$titles.children().click(function() {
@@ -114,18 +117,7 @@
         			maxStep = clicked;
 
 				if (clicked > current) {									// Validate only clickeds steps ahead.
-					var isValid = true;
-
-					if (opt.validate) {
-						for (var i = 0; i < clicked; i++) {
-							isValid = validate($this, i) && isValid;		// Accumulates validations.
-
-							if (!isValid) {									// In the first invalid step the function stops.
-								maxStep = i;								// The first invalid step.
-								break;
-							}
-						}
-					}
+					maxStep = getMaxStep($this, opt, clicked);
 				}
 
 				if (clicked != current) {									// Avoid change to the same step.
@@ -163,15 +155,33 @@
         		html:		options.nextLabel
         	})
         	.click(function() {
-            	if (!opt.validate || validate($this, i)) {
-	                selectStep($this, i + 1);
+        		var maxStep	= getMaxStep($this, opt, i + 1);
 
-	                if (i + 2 == size) {
-	                	finish.show();
-	                }
-            	}
+				selectStep($this, maxStep);
+
+		        if (opt.finish && maxStep + 1 == size) {
+                	finish.show();
+                }
             })
             .appendTo($('p#' + id + '-buttons-' + i));
+        };
+
+        function getMaxStep(context, opt, clicked) {
+        	var maxStep = clicked,
+        		isValid = true;
+
+        	if (opt.validate) {
+	        	for (var i = 0; i < clicked; i++) {
+					isValid = validate($this, i, opt) && isValid;	// Accumulates validations.
+	
+					if (opt.block && !isValid) {					// In the first invalid step the function stops or not.
+						maxStep = i;								// The first invalid step.
+						break;
+					}
+				}
+        	}
+
+        	return maxStep;
         };
 
 		return $global;
@@ -179,6 +189,8 @@
 	
 	$.fn.stepy.defaults = {
 		backLabel:		'&lt; Back',
+		block:			false,
+		errorImage:		false,
 		finish:			true,
 		nextLabel:		'Next &gt;',
 		titleClick:		false,
@@ -200,18 +212,6 @@
 		var context = $global;
 
 		if (id) {
-			if (id.indexOf('.') == 0) {
-				var idEach;
-
-				return $(id).each(function() {
-					idEach = '#' + $(this).attr('id');
-
-					if (name == 'step') {
-						$.fn.raty.step(value, idEach);
-					}
-				});
-			}
-
 			context	= $(id);
 
 			if (!context.length) {
@@ -261,16 +261,15 @@
         }
 	};
 
-    function validate(context, index) {
+    function validate(context, index, options) {
     	if (!context.is('form')) {
     		return true;
     	}
 
     	var id		= context.attr('id'),
     		isValid	= true,
-    		step	= context.children('fieldset').eq(index);
-
-    	context.children('.stepy-error').empty();
+    		step	= context.children('fieldset').eq(index),
+    		titles	= context.prev('ul.stepy-titles').children();
 
     	step.find(':input').each(function() {
     		isValid = isValid && context.validate().element($(this));
@@ -280,7 +279,19 @@
     		}
 
     		if (!isValid) {
+    			if (options.block) {
+    				selectStep(context, index);
+    			}
+
+    			if (options.errorImage) {
+    				titles.eq(index).addClass('error-image');
+    			}
+
     			context.validate().focusInvalid();
+    		} else {
+    			if (options.errorImage) {
+    				titles.eq(index).removeClass('error-image');
+    			}
     		}
     	});
 

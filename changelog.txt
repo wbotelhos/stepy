@@ -2,7 +2,13 @@
  * jQuery Stepy - A Wizard Plugin - http://wbotelhos.com/stepy
  * --------------------------------------------------------------------------
  *
- * 07.06.2010
+ * 0.2.0
+ *   - Added the 'block' attribute that blocks the next step if the current is invalid;
+ *   - Added the 'errorImage' attribute that show a imagem in the title of the corresponding step if an error occur.;
+ *   - Now you can pass a optionally ID to be the target of the public function's actions;
+ *   - All the code was refactored and improved.
+ *
+ * 0.1
  *   Features:
  *      - Added a backLabel and nextLabel parameter to specify the labels of the corresponding buttons;
  *      - Added click on the title and description to go to the corresponding step;
