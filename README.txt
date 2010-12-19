@@ -6,14 +6,15 @@
  * 
  * Licensed under The MIT License
  *
- * @version     0.1
+ * @version     0.2.0
  * @since       07.03.2010
  * @author      Washington Botelho dos Santos
  * @link        http://wbotelhos.com/stepy
  * @twitter     http://twitter.com/wbotelhos
  * @license     http://www.opensource.org/licenses/mit-license.php MIT 
  * @package     jQuery Plugins
- * 
+ *
+ *
  * Default values:
  * --------------------------------------------------------------------------
  * backLabel:      '< Back'     // Change the back button label.
@@ -23,9 +24,11 @@
  * nextLabel:      'Next >'     // Change the next button label.
  * titleClick:     true         // Active the back and next action in the titles.
  * validate:       false        // Active the jQuery Validation for each step.
- *  
- * Default values:
+ *
+ *
+ * Usage with default values:
  * --------------------------------------------------------------------------
+ *
  * $('#form').stepy();
  *
  * <form id="default">
@@ -41,6 +44,7 @@
  *
  *     <input type="submit" class="finish"/>
  *  </form>
+ *
  *
  * Public functions:
  * --------------------------------------------------------------------------
