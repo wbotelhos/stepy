@@ -3,8 +3,6 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta http-equiv="Pragma" content="no-cache">
-		<meta http-equiv="Expires" content="-1">
 
 		<title>jQuery Stepy - A Wizard Plugin</title>
 
@@ -242,6 +240,7 @@
 				&nbsp;&nbsp;block:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true,<br/>
 				&nbsp;&nbsp;errorImage:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true,<br/>
 				&nbsp;&nbsp;nextLabel:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Forward',<br/>
+				&nbsp;&nbsp;titleClick:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true,<br/>
 				&nbsp;&nbsp;validate:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true<br/>
 			});
 		</div>
@@ -266,7 +265,7 @@
 		</div><br/>
 
 		<div class="source">
-			$('#step').stepy({<br/>
+			$('div#step').stepy({<br/>
 			&nbsp;&nbsp;finish: false<br/>
 			});
 		</div>
