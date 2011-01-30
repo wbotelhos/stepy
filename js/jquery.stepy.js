@@ -6,7 +6,7 @@
  * 
  * Licensed under The MIT License
  * 
- * @version			0.2.0
+ * @version			0.2.1
  * @since			07.03.2010
  * @author			Washington Botelho dos Santos
  * @documentation	http://wbotelhos.com/raty
@@ -57,36 +57,35 @@
 			size		= steps.size(),
 			description	= '',
 			title		= '',
-			step;
-
-        var $titles = $('<ul class="stepy-titles"></ul>').insertBefore($global);
+			step,
+			$titles = $('<ul class="stepy-titles"></ul>').insertBefore($global);
 
         if (options.validate && $global.is('form')) {
         	$global.append('<div class="stepy-error"></div>');
         }
 
-        steps.each(function(i) { // fieldset
+        steps.each(function(index) { // fieldset
         	step = $(this);
 
         	step
-        	.attr('id', id + '-step-' + i)
+        	.attr('id', id + '-step-' + index)
         	.addClass('step')
-        	.append('<p id="' + id + '-buttons-' + i + '"></p>');
+        	.append('<p id="' + id + '-buttons-' + index + '"></p>');
 
         	title = (step.attr('title') != '') ? step.attr('title') : '--';
 
         	description = step.children('legend:first').html();
 
-        	$titles.append('<li id="' + id + '-title-' + i + '">' + title  + '<span>' + description + '</span></li>');
+        	$titles.append('<li id="' + id + '-title-' + index + '">' + title  + '<span>' + description + '</span></li>');
 
-        	if (i == 0) {
-        		createNextButton(i);
+        	if (index == 0) {
+        		createNextButton(index);
         	} else {
-        		createBackButton(i);
+        		createBackButton(index);
         		step.hide();
 
-        		if (i != size - 1) {
-	        		createNextButton(i);
+        		if (index != size - 1) {
+	        		createNextButton(index);
 	        	}
         	}
         });
@@ -97,7 +96,7 @@
         	$this	= $global,
         	opt		= options;
 
-        if (options.finish) {
+		if (options.finish) {
 	        if (finish.length) {
         		finish
         		.hide()
@@ -117,7 +116,15 @@
         			maxStep = clicked;
 
 				if (clicked > current) {									// Validate only clickeds steps ahead.
+					if (isStopCallback(opt.onNext, clicked)) {
+						return;
+					}
+
 					maxStep = getMaxStep($this, opt, clicked);
+				} else if (clicked < current) {
+					if (isStopCallback(opt.onBack, clicked)) {
+						return;
+					}
 				}
 
 				if (clicked != current) {									// Avoid change to the same step.
@@ -132,38 +139,52 @@
     		$titles.children().css('cursor', 'default');
     	}
 
-        function createBackButton(i) {
+        function isStopCallback(callback, clicked) {
+        	var isValid = callback.apply($this, [clicked + 1]);
+
+        	if (isValid || isValid === undefined) { 
+				return false;
+			}
+        	
+        	return true;
+        };
+
+        function createBackButton(index) {
         	$('<a/>', {
-        		id:			id + '-back-' + i,
+        		id:			id + '-back-' + index,
         		href:		'javascript:void(0);',
         		'class':	'button-back',
         		html:		options.backLabel
         	})
         	.click(function() {
-                selectStep($this, i - 1);
-                finish.hide();
+        		if (!isStopCallback(opt.onBack, index - 1)) {
+	                selectStep($this, index - 1);
+	                finish.hide();
+        		}
             })
-        	.appendTo($('p#' + id + '-buttons-' + i));
+        	.appendTo($('p#' + id + '-buttons-' + index));
 
         };
 
-        function createNextButton(i) {
+        function createNextButton(index) {
         	$('<a/>', {
-        		id:			id + '-next-' + i,
+        		id:			id + '-next-' + index,
         		href:		'javascript:void(0);',
         		'class':	'button-next',
         		html:		options.nextLabel
         	})
         	.click(function() {
-        		var maxStep	= getMaxStep($this, opt, i + 1);
-
-				selectStep($this, maxStep);
-
-		        if (opt.finish && maxStep + 1 == size) {
-                	finish.show();
-                }
+        		if (!isStopCallback(opt.onNext, index + 1)) {
+	        		var maxStep	= getMaxStep($this, opt, index + 1);
+	
+					selectStep($this, maxStep);
+	
+			        if (opt.finish && maxStep + 1 == size) {
+	                	finish.show();
+	                }
+        		}
             })
-            .appendTo($('p#' + id + '-buttons-' + i));
+            .appendTo($('p#' + id + '-buttons-' + index));
         };
 
         function getMaxStep(context, opt, clicked) {
@@ -192,6 +213,8 @@
 		block:			false,
 		errorImage:		false,
 		finish:			true,
+		onBack:			function(index) { return true; },
+		onNext:			function(index) { return true; },
 		nextLabel:		'Next &gt;',
 		titleClick:		false,
 		validate:		false
