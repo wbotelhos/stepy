@@ -2,6 +2,10 @@
  * jQuery Stepy - A Wizard Plugin - http://wbotelhos.com/stepy
  * --------------------------------------------------------------------------
  *
+ * 0.2.1
+ *   - Added the 'onBack' attribute that enables action before the backward transition;
+ *   - Added the 'onNext' attribute that enables action before the forward transition;
+ *
  * 0.2.0
  *   - Added the 'block' attribute that blocks the next step if the current is invalid;
  *   - Added the 'errorImage' attribute that show a imagem in the title of the corresponding step if an error occur;
