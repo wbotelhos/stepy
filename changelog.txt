@@ -2,7 +2,7 @@
  * jQuery Stepy - A Wizard Plugin - http://wbotelhos.com/stepy
  * --------------------------------------------------------------------------
  *
- * 0.2.1
+ * 0.3.0
  *   - Added the 'onBack' attribute that enables action before the backward transition;
  *   - Added the 'onNext' attribute that enables action before the forward transition;
  *
