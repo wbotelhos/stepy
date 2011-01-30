@@ -150,12 +150,25 @@
 				font: 10px verdana;
 			}
 		</style>
+
+		<script type="text/javascript">
+			// This code does NOT belong the plugin. See the example code at the bottom of this page.
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-194992347-4']);
+			_gaq.push(['_trackPageview']);
+
+			(function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+		</script>
 	</head>
 	<body>
-		<div class="title">jQuery Stepy - A Wizard Plugin <span id="version">(current version: 0.2.0)</span></div>
+		<div class="title">jQuery Stepy - A Wizard Plugin <span id="version">(current version: 0.2.1)</span></div>
 
 		<div id="link">
-			| <a href="http://github.com/downloads/wbotelhos/stepy/jquery.stepy-0.2.0.zip" target="_blank">Download</a> |
+			| <a href="http://github.com/downloads/wbotelhos/stepy/jquery.stepy-0.2.1.zip" target="_blank">Download</a> |
 			<a href="http://github.com/wbotelhos/stepy" target="_blank">Github</a> |
 			<a href="http://wbotelhos.com/stepy/changelog.txt" target="_blank">Change Log</a> |
 			<a href="http://wbotelhos.com/stepy/README.txt" target="_blank">Readme</a> |
@@ -270,6 +283,59 @@
 			});
 		</div>
 
+		<div id="callback-demo" class="session">With transitions callback:</div>		
+
+		<form id="callback">
+			<fieldset title="Step 1">
+				<legend>description one</legend>
+				<label>Name:</label> <input type="text" size="40"/>
+				<label>E-mail:</label> <input type="text" size="40"/>
+			</fieldset>
+
+			<fieldset title="Step 2">
+				<legend>description two</legend>
+				<label>User:</label> <input type="text"size="40"/>
+				<label>Password:</label> <input type="password" size="40"/>
+			</fieldset>
+
+			<fieldset title="Step 3">
+				<legend>description one</legend>
+				<label>Nick Name:</label> <input type="text" size="40"/>
+				<label>Age:</label> <input type="text" size="40"/>
+			</fieldset>
+
+			<fieldset title="Step 4">
+				<legend>description two</legend>
+				<label>Bio:</label> <input type="text"size="40"/>
+				<label>Detail:</label> <input type="password" size="40"/>
+			</fieldset>
+
+			<input type="submit" class="finish" value="Finish!"/>
+		</form><br/>
+
+		<div class="source">
+			$('#callback').stepy({<br/>
+			&nbsp;&nbsp;onBack: function(index) {<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;alert('Going to step ' + index + '...');<br/>
+			&nbsp;&nbsp;},<br/>
+			&nbsp;&nbsp;onNext: function(index) {<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;if (!isValid()) {<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert('Invalid value!');<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return false;<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;}<br/><br/>
+
+			&nbsp;&nbsp;&nbsp;&nbsp;alert('Going to step ' + index + '...');<br/>
+			&nbsp;&nbsp;},<br/>
+			&nbsp;&nbsp;titleClick: true<br/>
+			});
+		</div><br/>
+
+		<span class="comment-script">
+			 - You can do validations during the callback;<br/>
+			 - Return "false" to prevent the transition;<br/>
+			 - Return "true" or nothing to continue the transition.
+		</span><br/>
+
 		<div class="session">HTML structure:</div>
 		<div class="source">
 			&lt;form id="custom"&gt;<br/>
@@ -292,22 +358,28 @@
 		<div class="session">Default options:</div>
 
 		<div class="source">
-			backLabel:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&lt; Back',<br/>
+			backLabel:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&lt; Back'<br/>
 			<div class="notice">Change the back button label.</div>
 
-			block:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false,<br/>
+			block:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false<br/>
 			<div class="notice">* Block the next step if the current is invalid.</div>
 
-			errorImage:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false,<br/>
+			errorImage:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false<br/>
 			<div class="notice">* If an error occurs, a image is showed in the title of the corresponding step.</div>
 
-			finish:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true,<br/>
+			finish:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true<br/>
 			<div class="notice">Include the button with class called '.finish' into the last step.</div>
 
 			nextLabel:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Next &gt;'
 			<div class="notice">Change the next button label.</div>
 
-			titleClick:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true,<br/>
+			onBack:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function(index) { return true; }<br/>
+			<div class="notice">Callback during the backward action.</div>
+
+			onNext:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function(index) { return true; }<br/>
+			<div class="notice">Callback during the forward action.</div>
+
+			titleClick:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true<br/>
 			<div class="notice">Active the back and next action in the titles.</div>
 
 		 	validate:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false<br/>
@@ -342,7 +414,13 @@
 				});
 
 				$('div#step').stepy({
-					finish: false
+					finish: false,
+					onBack:		function(index) {
+						console.log('back: ' + index);
+					},
+					onNext:		function(index) {
+						console.log('next: ' + index);
+					}
 				});
 
 				// <!-- Optionaly -->
@@ -364,6 +442,23 @@
 						'day':		{required: 'Day field is requerid!'},
 						'gender':	{required: 'Gender field is requerid!'}
 					}
+				});
+
+				$('#callback').stepy({
+					onBack: function(index) {
+						alert('Going to step ' + index + '...');
+					},
+					onNext: function(index) {
+						var random = Math.floor(Math.random() * 11);
+
+						if (random <= 5) {
+							alert('Invalid value!');
+							return false;
+						}
+
+						alert('Going to step ' + index + '...');
+					},
+					titleClick: true
 				});
 
 			});
