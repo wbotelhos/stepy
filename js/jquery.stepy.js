@@ -70,7 +70,7 @@
         	step
         	.attr('id', id + '-step-' + index)
         	.addClass('step')
-        	.append('<p id="' + id + '-buttons-' + index + '"></p>');
+        	.append('<p id="' + id + '-buttons-' + index + '" class="' + id + '-buttons"></p>');
 
         	title = (step.attr('title') != '') ? step.attr('title') : '--';
 
