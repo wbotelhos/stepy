@@ -231,14 +231,14 @@
 		}
 	};
 
-	function getContext(value, id, name) {
+	function getContext(value, idOrClass, name) {
 		var context = $global;
 
 		if (id) {
-			context	= $(id);
+			context	= $(idOrClass);
 
 			if (!context.length) {
-				debug('"' + id + '" is a invalid ID for the public funtion $.fn.stepy.' + name + '().');
+				debug('"' + idOrClass + '" is a invalid identifier for the public funtion $.fn.raty.' + name + '().');
 				return;
 			}
 		}
