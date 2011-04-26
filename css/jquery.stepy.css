@@ -99,6 +99,13 @@ ul.stepy-titles li span {
 }
 
 
+/*** Example of dynamic class name ***/
+
+p.default-buttons {
+	margin-top: 30px;
+}
+
+
 /*** Optionaly (jQuery Validate) ***/
 
 label.error {
