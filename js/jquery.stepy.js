@@ -141,6 +141,23 @@
     		$titles.children().css('cursor', 'default');
     	}
 
+        steps.delegate('input[type="text"]', 'keypress', function(evt) {
+        	var key = (evt.keyCode ? evt.keyCode : evt.which);
+
+        	if (key == 13) {
+        		evt.preventDefault();
+
+        		var buttons = $(this).parent().children('p.' + id + '-buttons'),
+        			next	= buttons.children('a.button-next');
+
+        		if (next.length) {
+        			next.click();
+        		} else {
+        			buttons.children('input.finish').click();
+        		}
+        	}
+        });
+
         function isStopCallback(callback, clicked) {
         	var isValid = callback.apply($this, [clicked + 1]);
 
