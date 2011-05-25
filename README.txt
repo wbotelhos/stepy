@@ -6,7 +6,7 @@
  * 
  * Licensed under The MIT License
  *
- * @version     0.3.0
+ * @version     0.3.2
  * @since       07.03.2010
  * @author      Washington Botelho dos Santos
  * @link        http://wbotelhos.com/stepy
@@ -50,11 +50,8 @@
  *
  * Public functions:
  * --------------------------------------------------------------------------
+ * You must pass a ID or a class to be the target of the action:
  *
- * $.fn.stepy.step(2);              // Change the last form to step 2 later.
- *
- * You can pass a ID to be the target of the action
- *
- * $.fn.stepy.step(2, '#form');     // Change the '#form' to the second step later. Validation is not supported yet.
+ * $.fn.stepy.step(2, '#stepy');       // Change the form to step 2.
  *
  */
