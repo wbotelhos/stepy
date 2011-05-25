@@ -111,8 +111,8 @@
 
         if (opt.titleClick) {
         	$titles.children().click(function() {
-        		var clicked = parseInt($(this).attr('id').match(/\d/)),
-        			current = parseInt($titles.children('.current-step').attr('id').match(/\d/)),
+        		var clicked = parseInt($(this).attr('id').split('-')[2]),
+        			current = parseInt($titles.children('.current-step').attr('id').split('-')[2]),
         			maxStep = clicked;
 
 				if (clicked > current) {									// Validate only clickeds steps ahead.
