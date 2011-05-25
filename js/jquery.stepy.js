@@ -39,10 +39,9 @@
 ;(function($) {
 
 	$.fn.stepy = function(settings) {
-		options = $.extend({}, $.fn.stepy.defaults, settings);
 
 		if (this.length == 0) {
-			debug('Invalid selector!');
+			debug('Selector invalid or missing!');
 			return;
 		} else if (this.length > 1) {
 			return this.each(function() {
@@ -50,18 +49,18 @@
 			});
 		}
 
-		$global = $(this);
-
-		var id			= $global.attr('id'),
-			steps		= $global.children('fieldset'),
+		var opt			= $.extend({}, $.fn.stepy.defaults, settings),
+			$this		= $(this),
+			id			= this.attr('id'),
+			steps		= $this.children('fieldset'),
 			size		= steps.size(),
 			description	= '',
 			title		= '',
 			step,
-			$titles = $('<ul class="stepy-titles"></ul>').insertBefore($global);
+			$titles		= $('<ul class="stepy-titles"></ul>').insertBefore($this);
 
-        if (options.validate && $global.is('form')) {
-        	$global.append('<div class="stepy-error"></div>');
+        if (opt.validate && $this.is('form')) {
+        	$this.append('<div class="stepy-error"/>');
         }
 
         steps.each(function(index) { // fieldset
@@ -70,7 +69,7 @@
         	step
         	.attr('id', id + '-step-' + index)
         	.addClass('step')
-        	.append('<p id="' + id + '-buttons-' + index + '" class="' + id + '-buttons"></p>');
+        	.append('<p id="' + id + '-buttons-' + index + '" class="' + id + '-buttons"/>');
 
         	title = (step.attr('title') != '') ? step.attr('title') : '--';
 
@@ -84,7 +83,7 @@
         		createBackButton(index);
         		step.hide();
 
-        		if (index != size - 1) {
+        		if (index < size - 1) {
 	        		createNextButton(index);
 	        	}
         	}
@@ -92,24 +91,20 @@
 
         $titles.children('li:first').addClass('current-step');
 
-        var finish = $global.children('.finish'),
-        	$this	= $global,
-        	opt		= options;
+        var finish = $this.children('.finish');
 
-		if (options.finish) {
+		if (opt.finish) {
 	        if (finish.length) {
-        		finish
-        		.hide()
-        		.click(function() {
+        		finish.hide().click(function() {
         			validate($this, size - 1, opt);
         		})
-        		.appendTo($global.find('p:last'));
-	        } else if ($global.is('form')) {
-	        	debug('You should create a button with a class named "finish" when the attribute \'finish\' is true.');
+        		.appendTo($this.find('p:last'));
+	        } else if ($this.is('form')) {
+	        	debug('Button with class "finish" missing!');
 	        }
         }
 
-        if (options.titleClick) {
+        if (opt.titleClick) {
         	$titles.children().click(function() {
         		var clicked = parseInt($(this).attr('id').match(/\d/)),
         			current = parseInt($titles.children('.current-step').attr('id').match(/\d/)),
@@ -142,11 +137,7 @@
         function isStopCallback(callback, clicked) {
         	var isValid = callback.apply($this, [clicked + 1]);
 
-        	if (isValid || isValid === undefined) { 
-				return false;
-			}
-        	
-        	return true;
+        	return !(isValid || isValid === undefined);
         };
 
         function createBackButton(index) {
@@ -154,16 +145,17 @@
         		id:			id + '-back-' + index,
         		href:		'javascript:void(0);',
         		'class':	'button-back',
-        		html:		options.backLabel
-        	})
-        	.click(function() {
+        		html:		opt.backLabel
+        	}).click(function() {
         		if (!isStopCallback(opt.onBack, index - 1)) {
 	                selectStep($this, index - 1);
-	                finish.hide();
+
+	                if (index + 1 == size) {
+	                	finish.hide();
+	                }
         		}
             })
-        	.appendTo($('p#' + id + '-buttons-' + index));
-
+            .appendTo($('p#' + id + '-buttons-' + index));
         };
 
         function createNextButton(index) {
@@ -171,12 +163,11 @@
         		id:			id + '-next-' + index,
         		href:		'javascript:void(0);',
         		'class':	'button-next',
-        		html:		options.nextLabel
-        	})
-        	.click(function() {
+        		html:		opt.nextLabel
+        	}).click(function() {
         		if (!isStopCallback(opt.onNext, index + 1)) {
 	        		var maxStep	= getMaxStep($this, opt, index + 1);
-	
+
 					selectStep($this, maxStep);
 	
 			        if (opt.finish && maxStep + 1 == size) {
@@ -194,7 +185,7 @@
         	if (opt.validate) {
 	        	for (var i = 0; i < clicked; i++) {
 					isValid = validate($this, i, opt) && isValid;	// Accumulates validations.
-	
+
 					if (opt.block && !isValid) {					// In the first invalid step the function stops or not.
 						maxStep = i;								// The first invalid step.
 						break;
@@ -205,19 +196,7 @@
         	return maxStep;
         };
 
-		return $global;
-	};
-	
-	$.fn.stepy.defaults = {
-		backLabel:		'&lt; Back',
-		block:			false,
-		errorImage:		false,
-		finish:			true,
-		onBack:			function(index) { return true; },
-		onNext:			function(index) { return true; },
-		nextLabel:		'Next &gt;',
-		titleClick:		false,
-		validate:		false
+		return $this;
 	};
 
 	$.fn.stepy.step = function(index, id) {
@@ -225,14 +204,8 @@
 		$.fn.stepy;
 	};
 
-	function debug(message) {
-		if (console && console.log) {
-			console.log(message);
-		}
-	};
-
 	function getContext(value, idOrClass, name) {
-		var context = $global;
+		var context = undefined;
 
 		if (id) {
 			context	= $(idOrClass);
@@ -284,7 +257,7 @@
         }
 	};
 
-    function validate(context, index, options) {
+    function validate(context, index, opt) {
     	if (!context.is('form')) {
     		return true;
     	}
@@ -302,17 +275,17 @@
     		}
 
     		if (!isValid) {
-    			if (options.block) {
+    			if (opt.block) {
     				selectStep(context, index);
     			}
 
-    			if (options.errorImage) {
+    			if (opt.errorImage) {
     				titles.eq(index).addClass('error-image');
     			}
 
     			context.validate().focusInvalid();
     		} else {
-    			if (options.errorImage) {
+    			if (opt.errorImage) {
     				titles.eq(index).removeClass('error-image');
     			}
     		}
@@ -320,5 +293,23 @@
 
     	return isValid;
     };
-    
+
+    function debug(message) {
+		if (window.console && window.console.log) {
+			window.console.log(message);
+		}
+	};
+
+	$.fn.stepy.defaults = {
+		backLabel:		'&lt; Back',
+		block:			false,
+		errorImage:		false,
+		finish:			true,
+		onBack:			function(index) { return true; },
+		onNext:			function(index) { return true; },
+		nextLabel:		'Next &gt;',
+		titleClick:		false,
+		validate:		false
+	};
+
 })(jQuery);
