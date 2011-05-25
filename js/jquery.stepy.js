@@ -83,7 +83,9 @@
         	$titles.append('<li id="' + id + '-title-' + index + '">' + title  + '<span>' + description + '</span></li>');
 
         	if (index == 0) {
-        		createNextButton(index);
+        		if (size > 1) {
+        			createNextButton(index);
+        		}
         	} else {
         		createBackButton(index);
         		step.hide();
