@@ -259,7 +259,11 @@
     			isValid = true;
     		}
 
-    		if (!isValid) {
+    		if (isValid) {
+    			if (opt.errorImage) {
+    				titles.eq(index).removeClass('error-image');
+    			}
+    		} else {
     			if (opt.block) {
     				selectStep(context, index);
     			}
@@ -269,10 +273,6 @@
     			}
 
     			context.validate().focusInvalid();
-    		} else {
-    			if (opt.errorImage) {
-    				titles.eq(index).removeClass('error-image');
-    			}
     		}
     	});
 
