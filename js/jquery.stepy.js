@@ -59,6 +59,11 @@
 			step,
 			$titles		= $('<ul class="stepy-titles"></ul>').insertBefore($this);
 
+		if (id === undefined) {
+			id = 'stepy-' + $this.index();
+			$this.attr('id', id); 
+		}
+
         if (opt.validate && $this.is('form')) {
         	$this.append('<div class="stepy-error"/>');
         }
@@ -121,7 +126,7 @@
 						return;
 					}
 				}
-
+				
 				if (clicked != current) {									// Avoid change to the same step.
 					selectStep($this, maxStep);
 	
@@ -199,26 +204,6 @@
 		return $this;
 	};
 
-	$.fn.stepy.step = function(index, id) {
-		selectStep(getContext(index, id, 'step'), index - 1);
-		$.fn.stepy;
-	};
-
-	function getContext(value, idOrClass, name) {
-		var context = undefined;
-
-		if (id) {
-			context	= $(idOrClass);
-
-			if (!context.length) {
-				debug('"' + idOrClass + '" is a invalid identifier for the public funtion $.fn.raty.' + name + '().');
-				return;
-			}
-		}
-
-		return context;
-	};
-
 	function selectStep(context, index) {
 		var id		= context.attr('id'),
 			size	= context.children('fieldset').size(),
@@ -293,6 +278,50 @@
 
     	return isValid;
     };
+
+    $.fn.stepy.step = function(index, idOrClass) {
+    	var context = getContext(index, idOrClass, 'step');
+
+		if (idOrClass.indexOf('.') >= 0) {
+			return;
+		}
+
+		selectStep(context, index - 1);
+
+		$.fn.stepy;
+	};
+
+    function getContext(value, idOrClass, name) {
+		var context = undefined;
+
+		if (idOrClass == undefined) {
+			debug('Specify an ID or class to be the target of the action.');
+			return;
+		}
+
+		if (idOrClass) {
+			if (idOrClass.indexOf('.') >= 0) {
+				var idEach;
+
+				return $(idOrClass).each(function() {
+					idEach = '#' + $(this).attr('id');
+
+					if (name == 'step') {
+						$.fn.stepy.step(value, idEach);
+					}
+				});
+			}
+
+			context = $(idOrClass);
+
+			if (!context.length) {
+				debug('"' + idOrClass + '" is a invalid identifier for the public funtion $.fn.stepy.' + name + '().');
+				return;
+			}
+		}
+
+		return context;
+	};
 
     function debug(message) {
 		if (window.console && window.console.log) {
