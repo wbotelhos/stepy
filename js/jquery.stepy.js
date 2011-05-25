@@ -57,7 +57,7 @@
 			description	= '',
 			title		= '',
 			step,
-			$titles		= $('<ul class="stepy-titles"></ul>').insertBefore($this);
+			$titles		= $('<ul/>', { id: id + '-titles', 'class': 'stepy-titles' }).insertBefore($this);
 
 		if (id === undefined) {
 			id = 'stepy-' + $this.index();
