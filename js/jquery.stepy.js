@@ -16,9 +16,9 @@
  * 
  * Usage with default values:
  * ---------------------------------------------------------------------------------
- * $('#default').stepy();
- *  
- *	<form id="default">
+ * $('#stepy').stepy();
+ *
+ *	<form id="stepy">
  *		<fieldset title="Step 1">
  *			<legend>description one</legend>
  *			<!-- input fields -->
