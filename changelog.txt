@@ -2,8 +2,15 @@
  * jQuery Stepy - A Wizard Plugin - http://wbotelhos.com/stepy
  * --------------------------------------------------------------------------
  *
- * 0.x.x
- *   - Add a class to buttons container to simplify styling.
+ * 0.4.0
+ *   - Now the enter key goes to next step and just validate the currrent one; (reported by hennaTheGreat);
+ *   - Public functions now supports actions by class (reported by hennaTheGreat);
+ *   - Public functions without specify ID or class is no longer supported;
+ *   - Now when you to press the enter key into any text field, the form will go to next step;
+ *   - Fixed: when the stepy has only one step the next button is not applied;
+ *   - Fixed the title click when the number is higher than 10 (reported by neha1312);
+ *   - Added ID to the set of titles to be possible to move the titles;
+ *   - Added class to buttons container to simplify styling (fixed by andreyfedoseev).
  *
  * 0.3.0
  *   - Added the 'onBack' attribute that enables action before the backward transition;
