@@ -141,19 +141,26 @@
     		$titles.children().css('cursor', 'default');
     	}
 
-        steps.delegate('input[type="text"]', 'keypress', function(evt) {
+        steps.delegate('input[type="text"], input[type="password"]', 'keypress', function(evt) {
         	var key = (evt.keyCode ? evt.keyCode : evt.which);
 
         	if (key == 13) {
         		evt.preventDefault();
 
-        		var buttons = $(this).parent().children('p.' + id + '-buttons'),
-        			next	= buttons.children('a.button-next');
+        		var buttons = $(this).parent().children('p.' + id + '-buttons');
 
-        		if (next.length) {
-        			next.click();
-        		} else {
-        			buttons.children('input.finish').click();
+        		if (buttons.length) {
+        			var next = buttons.children('a.button-next');
+
+        			if (next.length) {
+        				next.click();
+        			} else {
+	        			var finish = buttons.children('input.finish');
+
+	        			if (finish.length) {
+	        				finish.click();
+	        			}
+        			}
         		}
         	}
         });
