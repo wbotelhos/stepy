@@ -279,7 +279,7 @@
     		titles	= context.prev('ul.stepy-titles').children();
 
     	step.find(':input').each(function() {
-    		isValid = isValid && context.validate().element($(this));
+    		isValid &= context.validate().element($(this));
 
     		if (isValid === undefined) {
     			isValid = true;
