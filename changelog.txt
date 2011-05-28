@@ -2,8 +2,11 @@
  * jQuery Stepy - A Wizard Plugin - http://wbotelhos.com/stepy
  * --------------------------------------------------------------------------
  *
+ * 0.4.1
+ *   - Fixed: the validation highlighted only the first field (fixed by legigor).
+ *
  * 0.4.0
- *   - Now the enter key goes to next step and just validate the currrent one; (reported by hennaTheGreat);
+ *   - Now the enter key goes to next step and just validate the currrent one (reported by hennaTheGreat);
  *   - Public functions now supports actions by class (reported by hennaTheGreat);
  *   - Public functions without specify ID or class is no longer supported;
  *   - Now when you to press the enter key into any text field, the form will go to next step;
