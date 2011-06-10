@@ -58,6 +58,7 @@
 			description		= '',
 			title			= '',
 			$legend			= null,
+			hasLegend		= true,
 			step;
 
 		if (opt.titleTarget) {
@@ -93,9 +94,18 @@
         		$legend.hide();
         	}
 
-        	description = $legend.html();
+        	description = '';
 
-        	$titlesWrapper.append('<li id="' + id + '-title-' + index + '">' + title  + '<span>' + description + '</span></li>');
+        	if (opt.description) {
+        		if ($legend.length) {
+        			description = '<span>' + $legend.html() + '</span>';
+        		} else {
+        			debug('The legend element of the step ' + (index + 1) + ' is required to set the description!');
+        			hasLegend = false;
+        		}
+        	}
+
+        	$titlesWrapper.append('<li id="' + id + '-title-' + index + '">' + title  + description + '</li>');
 
         	if (index == 0) {
         		if (size > 1) {
@@ -366,6 +376,7 @@
 	$.fn.stepy.defaults = {
 		backLabel:		'&lt; Back',
 		block:			false,
+		description:	true,
 		errorImage:		false,
 		finish:			true,
 		legend:			true,
