@@ -49,15 +49,21 @@
 			});
 		}
 
-		var opt			= $.extend({}, $.fn.stepy.defaults, settings),
-			$this		= $(this),
-			id			= this.attr('id'),
-			steps		= $this.children('fieldset'),
-			size		= steps.size(),
-			description	= '',
-			title		= '',
-			step,
-			$titles		= $('<ul/>', { id: id + '-titles', 'class': 'stepy-titles' }).insertBefore($this);
+		var opt				= $.extend({}, $.fn.stepy.defaults, settings),
+			$this			= $(this),
+			id				= this.attr('id'),
+			$steps			= $this.children('fieldset'),
+			size			= $steps.size(),
+			$titlesWrapper	= $('<ul/>', { id: id + '-titles', 'class': 'stepy-titles' }),
+			description		= '',
+			title			= '',
+			step;
+
+		if (opt.titleTarget) {
+			$(opt.titleTarget).html($titlesWrapper);
+		} else {
+			$titlesWrapper.insertBefore($this);
+		}
 
 		if (id === undefined) {
 			id = 'stepy-' + $this.index();
@@ -68,7 +74,7 @@
         	$this.append('<div class="stepy-error"/>');
         }
 
-        steps.each(function(index) { // fieldset
+        $steps.each(function(index) { // fieldset
         	step = $(this);
 
         	step
@@ -78,9 +84,9 @@
 
         	title = (step.attr('title') != '') ? step.attr('title') : '--';
 
-        	description = step.children('legend:first').html();
+        	description = step.children('legend:first').html(); // TODO: if description.
 
-        	$titles.append('<li id="' + id + '-title-' + index + '">' + title  + '<span>' + description + '</span></li>');
+        	$titlesWrapper.append('<li id="' + id + '-title-' + index + '">' + title  + '<span>' + description + '</span></li>');
 
         	if (index == 0) {
         		if (size > 1) {
@@ -96,9 +102,10 @@
         	}
         });
 
-        $titles.children('li:first').addClass('current-step');
+        var $titles	= $titlesWrapper.children(),
+        	finish	= $this.children('.finish');
 
-        var finish = $this.children('.finish');
+        $titles.first().addClass('current-step');
 
 		if (opt.finish) {
 	        if (finish.length) {
@@ -112,9 +119,9 @@
         }
 
         if (opt.titleClick) {
-        	$titles.children().click(function() {
+        	$titles.click(function() {
         		var clicked = parseInt($(this).attr('id').split('-')[2]),
-        			current = parseInt($titles.children('.current-step').attr('id').split('-')[2]),
+        			current = parseInt($titlesWrapper.children('.current-step').attr('id').split('-')[2]),
         			maxStep = clicked;
 
 				if (clicked > current) {									// Validate only clickeds steps ahead.
@@ -138,10 +145,10 @@
 				}
         	});
     	} else {
-    		$titles.children().css('cursor', 'default');
+    		$titles.css('cursor', 'default');
     	}
 
-        steps.delegate('input[type="text"], input[type="password"]', 'keypress', function(evt) {
+        $steps.delegate('input[type="text"], input[type="password"]', 'keypress', function(evt) {
         	var key = (evt.keyCode ? evt.keyCode : evt.which);
 
         	if (key == 13) {
@@ -232,39 +239,31 @@
 
 	function selectStep(context, index) {
 		var id		= context.attr('id'),
-			size	= context.children('fieldset').size(),
+			$steps	= context.children('fieldset'),
+			size	= $steps.size(),
+			$titles	= $('ul#' + id + '-titles').children(),
 			step;
 
 		if (index > size - 1) {
 			index = size - 1;
 		}
 
-		context
-			.children('fieldset').hide()
-		.end()
-			.children('fieldset')
-				.eq(index).show();
+		$steps.hide().eq(index).show();
 
-		context
-			.prev()
-				.children().removeClass('current-step')
-			.end()
-			.children()
-				.eq(index).addClass('current-step');
+		$titles.removeClass('current-step').eq(index).addClass('current-step');
 
         if (context.is('form')) {
-        	context
-        		.children('fieldset')
-	        		.eq(index)
-		        		.find(':input:visible')
-			        		.each(function() {
-			        			step = $(this);
-			
-					        	if (!step.attr('disabled')) {
-					    			step.focus();
-					    			return false;
-					        	}
-			        		});
+        	$steps
+        		.eq(index)
+	        		.find(':input:visible')
+		        		.each(function() {
+		        			step = $(this);
+
+				        	if (!step.attr('disabled')) { // TODO: is
+				    			step.focus();
+				    			return false;
+				        	}
+		        		});
         }
 	};
 
@@ -276,7 +275,7 @@
     	var id		= context.attr('id'),
     		isValid	= true,
     		step	= context.children('fieldset').eq(index),
-    		titles	= context.prev('ul.stepy-titles').children();
+    		titles	= $('ul#' + id + '-titles').children();
 
     	step.find(':input').each(function() {
     		isValid &= context.validate().element($(this));
@@ -364,6 +363,7 @@
 		onNext:			function(index) { return true; },
 		nextLabel:		'Next &gt;',
 		titleClick:		false,
+		titleTarget:	'',
 		validate:		false
 	};
 
