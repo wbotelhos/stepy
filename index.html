@@ -15,7 +15,7 @@
 		<!-- Optionaly -->
 		<script type="text/javascript" src="js/jquery.validate.min.js"></script>
 
-		<script type="text/javascript" src="js/jquery.stepy.min.js"></script>
+		<script type="text/javascript" src="js/jquery.stepy.js"></script>
 
 		<style type="text/css">
 			body { background: url('img/background.gif'); font: normal 11px verdana; }
@@ -35,9 +35,6 @@
 			div.description { color: #555; letter-spacing: .1px; margin-bottom: 10px; text-indent: 7px; text-align: left; }
 
 			div.left { float: left; }
-
-			div.raty-target { background-color: #F0F0F0; border-radius: 3px; float: left; height: 15px; margin-left: 5px; padding-bottom: 2px; padding-left: 8px; padding-right: 8px; text-align: center; width: 50px; }
-			div.raty-target-number { float: left; margin-right: 5px; margin-top: 2px; }
 
 			div#link { color: #AB9927; font: bold 14px 'Lucida Grande', 'Helvetica', 'Times New Roman', serif; text-shadow: 1px 1px 1px #FFF; text-transform: uppercase; }
 
@@ -59,6 +56,14 @@
 			span.comment-script { color: #578F73; }
 
 			span#version { color: #777; font: 10px verdana; }
+
+			/* Custom CSS for #target example */
+			form#target fieldset img { margin-top: 10px; }
+
+			div#title-target { height: 25px;  margin-left: 215px; margin-top: 2px; }
+			div#title-target ul.stepy-titles li { font-size: 12px; padding: 4px; }
+			div#title-target ul.stepy-titles li:hover { color: #5BA900; }
+			div#title-target ul.stepy-titles li.current-step { color: #369; }
 		</style>
 
 		<script type="text/javascript">
@@ -94,7 +99,7 @@
 		</div>
 
 		<div id="content">
-			<div id="default-demo" class="session">With default options:</div>
+			<div id="default-demo" class="session-first">With default options:</div>
 	
 			<form id="default">
 				<fieldset title="Step 1">
@@ -111,14 +116,14 @@
 				</fieldset>
 	
 				<input type="submit" class="finish" value="Finish!"/>
-			</form><br/>
-	
+			</form>
+
 			<div class="source">
 				$('#default').stepy();
 			</div>
-	
+
 			<div id="custom-demo" class="session">A custom form in a validation style:</div>		
-	
+
 			<form id="custom">
 				<fieldset title="Thread 1">
 					<legend>my description one</legend>
@@ -154,12 +159,12 @@
 				</fieldset>
 	
 				<input type="submit" class="finish" value="Finish!"/>
-			</form><br/><br/>
-	
+			</form><br/>
+
 			<span class="comment-script">
 				 - When the attribute 'validate' is true, you must include the jquery.validate.js.
-			</span><br/><br/>
-	
+			</span><br/>
+
 			<div class="source">
 				$('#custom').stepy({<br/>
 					&nbsp;&nbsp;backLabel:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Backward',<br/>
@@ -188,14 +193,14 @@
 					<legend>image description three</legend><br/>
 					<center><img src="img/image-3.png" alt=""/></center>
 				</fieldset>
-			</div><br/>
+			</div>
 	
 			<div class="source">
 				$('div#step').stepy({<br/>
 				&nbsp;&nbsp;finish: false<br/>
 				});
 			</div>
-	
+
 			<div id="callback-demo" class="session">With transitions callback:</div>		
 	
 			<form id="callback">
@@ -224,7 +229,7 @@
 				</fieldset>
 	
 				<input type="submit" class="finish" value="Finish!"/>
-			</form><br/>
+			</form>
 	
 			<div class="source">
 				$('#callback').stepy({<br/>
@@ -248,10 +253,50 @@
 				 - Return "false" to prevent the transition;<br/>
 				 - Return "true" or nothing to continue the transition.
 			</span><br/>
+
+			<div id="target-demo" class="session">With target for the titles and custom legend and description:</div>		
+
+			<form id="target">
+				<fieldset title="1">
+					<center><img src="img/image-3.png" alt=""/></center>
+				</fieldset>
+
+				<fieldset title="2">
+					<legend>--</legend>
+					<center><img src="img/image-1.png" alt=""/></center>
+				</fieldset>
+
+				<fieldset title="3">
+					<legend>--</legend>
+					<center><img src="img/image-2.png" alt=""/></center>
+				</fieldset>
+
+				<input type="submit" class="finish" value="Finish!"/>
+			</form>
+
+			<div id="title-target"></div>
+
+			<div class="source">
+				&lt;div id="title-target"&gt;&lt;/div&gt;<br/><br/>
+
+				$('#target').stepy({<br/>
+				&nbsp;&nbsp;description:&nbsp;&nbsp;false,<br/>
+				&nbsp;&nbsp;finish:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false,<br/>
+				&nbsp;&nbsp;legend:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false,<br/>
+				&nbsp;&nbsp;titleClick:&nbsp;&nbsp;&nbsp;true,<br/>
+				&nbsp;&nbsp;titleTarget:&nbsp;&nbsp;'#title-target'<br/>
+				});<br/>
+			</div><br/>
 	
+			<span class="comment-script">
+				 - You can choose any specific target;<br/>
+				 - Even if the fieldset has legend, it will not appear if legend attribute is false;<br/>
+				 - The description depends of the legend element. Even with legend attribute setted to false.
+			</span><br/>
+
 			<div class="session">HTML structure:</div>
 			<div class="source">
-				&lt;form id="custom"&gt;<br/>
+				&lt;form id="form"&gt;<br/>
 				&nbsp;&nbsp;&lt;fieldset title="Title"&gt;<br/>
 				&nbsp;&nbsp;&nbsp;&nbsp;&lt;legend&gt;description&lt;/legend&gt;<br/>
 				&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment-html">&lt;!-- input fields --&gt;</span><br/>
@@ -277,6 +322,9 @@
 				block:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false<br/>
 				<div class="notice">* Block the next step if the current is invalid.</div>
 	
+				description:&nbsp;&nbsp;&nbsp;&nbsp;false<br/>
+				<div class="notice">Choose if the descriptions of the titles will be showed.</div>
+	
 				errorImage:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false<br/>
 				<div class="notice">* If an error occurs, a image is showed in the title of the corresponding step.</div>
 	
@@ -286,6 +334,9 @@
 				nextLabel:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Next &gt;'
 				<div class="notice">Change the next button label.</div>
 	
+				legend:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false<br/>
+				<div class="notice">Choose if the legends of the steps will be showed.</div>
+	
 				onBack:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function(index) { return true; }<br/>
 				<div class="notice">Callback before the backward action.</div>
 	
@@ -294,6 +345,9 @@
 	
 				titleClick:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true<br/>
 				<div class="notice">Active the back and next action in the titles.</div>
+	
+				titleTarget:&nbsp;&nbsp;&nbsp;&nbsp;''<br/>
+				<div class="notice">Choose the place where titles will be placed.</div>
 	
 			 	validate:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false<br/>
 				<div class="notice">* Active the jQuery Validation for each step.</div>
@@ -369,6 +423,14 @@
 						alert('Going to step ' + index + '...');
 					},
 					titleClick: true
+				});
+
+				$('#target').stepy({
+					description:	false,
+					finish:			false,
+					legend:			false,
+					titleClick:		true,
+					titleTarget:	'#title-target'
 				});
 
 			});
