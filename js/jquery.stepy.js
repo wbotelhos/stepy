@@ -139,9 +139,10 @@
 
         if (opt.titleClick) {
         	$titles.click(function() {
-        		var clicked = parseInt($(this).attr('id').split('-')[2]),
-        			current = parseInt($titlesWrapper.children('.current-step').attr('id').split('-')[2]),
-        			maxStep = clicked;
+        		var	currentArray	= $titlesWrapper.children('.current-step').attr('id').split('-'),
+	        		current			= parseInt(currentArray[currentArray.length - 1]),
+	        		clicked			= $(this).index(),
+        			maxStep			= clicked;
 
 				if (clicked > current) {									// Validate only clickeds steps ahead.
 					if (isStopCallback(opt.onNext, clicked)) {
@@ -154,10 +155,10 @@
 						return;
 					}
 				}
-				
+
 				if (clicked != current) {									// Avoid change to the same step.
 					selectStep($this, maxStep);
-	
+
 			        if (opt.finish && maxStep + 1 == size) {
 	                	finish.show();
 	                }
