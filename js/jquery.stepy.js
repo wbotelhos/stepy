@@ -70,6 +70,8 @@
 			$this.attr('id', id); 
 		}
 
+		$this.data('options', opt);
+
         if (opt.validate && $this.is('form')) {
         	$this.append('<div class="stepy-error"/>');
         }
