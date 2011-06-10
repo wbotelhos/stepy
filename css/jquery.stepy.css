@@ -1,125 +1,30 @@
 @CHARSET "UTF-8";
 
-a.button-back, a.button-next, input.finish {
-	background-color: #AAA;
-	color: #FFF;
-	font: 10px verdana;
-	padding: 5px 10px;
-}
+a.button-back, a.button-next, input.finish, fieldset.step { border-radius: 4px; -khtml-border-radius: 4px; -moz-border-radius: 4px; -opera-border-radius: 4px; -webkit-border-radius: 4px; }
 
-input.finish {
-	padding: 3px 9px;
-}
+input.finish { padding: 3px 9px; }
 
-a.button-back, a.button-next, input.finish, fieldset.step {
-	border-radius: 4px;
-	-khtml-border-radius: 4px;
-	-moz-border-radius: 4px;
-	-opera-border-radius: 4px;
-	-webkit-border-radius: 4px;	
-}
+a.button-back { float: left; text-decoration: none; }
+a.button-next { float: right; text-decoration: none; }
+a.button-back, a.button-next, input.finish { background-color: #AAA; color: #FFF; font: 10px verdana; padding: 5px 10px; }
+a.button-back:hover, a.button-next:hover, input.finish:hover { background-color: #6699CC; }
 
-a.button-back:hover, a.button-next:hover, input.finish:hover {
-	background-color: #6699CC;
-}
+fieldset.step { border: 1px solid #DDD; clear: left; font: 10px verdana; width: 500px; }
+fieldset.step label { color: #444; display: block; font: bold 10px verdana; margin-top: 10px; margin: 10px 0 3px 7px; }
+fieldset.step legend { color: #4080BF; font: bold 14px verdana; padding: 0 2px 3px 2px; }
+fieldset.step input, fieldset.step textarea, fieldset.step select { border: 1px solid #AAA; font: 10px verdana; margin-left: 7px; }
 
-a.button-back {
-	float: left;
-	text-decoration: none;
-}
+input.finish { border-style: none; cursor: pointer; float: right; text-decoration: none; }
 
-a.button-next {
-	float: right;
-	text-decoration: none;
-}
+li.error-image { background: url('../img/error.png') no-repeat right top; }
 
-fieldset.step {
-	border: 1px solid #DDD;
-	clear: left;
-	font: 10px verdana;
-	width: 500px;
-}
-
-
-fieldset.step legend {
-	color: #4080BF;
-	font: bold 14px verdana;
-	padding: 0 2px 3px 2px;
-}
-
-fieldset.step input, fieldset.step textarea, fieldset.step select {
-	border: 1px solid #AAA;
-	font: 10px verdana;
-	margin-left: 7px;
-}
-
-fieldset.step label {
-	color: #444;
-	display: block;
-	font: bold 10px verdana;
-	margin-top: 10px;
-	margin: 10px 0 3px 7px;
-}
-
-
-input.finish {
-	border-style: none;
-	cursor: pointer;
-	float: right;
-	text-decoration: none;
-}
-
-li.error-image {
-	background: url('../img/error.png') no-repeat right top;
-}
-
-ul.stepy-titles {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	width: 100%;
-}
-
-ul.stepy-titles li {
-	color: #DDD;
-	cursor: pointer;
-	font: bold 18px verdana;
-	float: left;
-	padding: 10px;
-}
-
-ul.stepy-titles li.current-step {
-	color: #369;
-	cursor: auto;
-}
-
-ul.stepy-titles li span {
-	font: 11px verdana;
-	display: block;
-}
-
-
-/*** Example of dynamic class name ***/
-
-p.default-buttons {
-	margin-top: 30px;
-}
-
+ul.stepy-titles { list-style: none; margin: 0; padding: 0; width: 100%; }
+ul.stepy-titles li { color: #DDD; cursor: pointer; font: bold 18px verdana; float: left; padding: 10px; }
+ul.stepy-titles li.current-step { color: #369; cursor: auto; }
+ul.stepy-titles li span { font: 11px verdana; display: block; }
 
 /*** Optionaly (jQuery Validate) ***/
 
-label.error {
-	background: url('../img/alert.png') no-repeat;
-	color: #DE5130;
-	display: block;
-	float: left;
-	font: 10px verdana;
-	height: 16px;
-	margin: 5px 3px 0 10px;
-	padding-left: 21px;
-	padding-top: 2px;
-}
+label.error { background: url('../img/alert.png') no-repeat; color: #DE5130; display: block; float: left; font: 10px verdana; height: 16px; margin: 5px 3px 0 10px; padding-left: 21px; padding-top: 2px; }
 
-input.error, select.error, textarea.error {
-	background-color: #FAF4F4;
-}
+input.error, select.error, textarea.error { background-color: #FAF4F4; }
