@@ -6,7 +6,7 @@
  * 
  * Licensed under The MIT License
  * 
- * @version			0.4.1
+ * @version			0.5.0
  * @since			07.03.2010
  * @author			Washington Botelho dos Santos
  * @documentation	http://wbotelhos.com/raty
@@ -57,6 +57,7 @@
 			$titlesWrapper	= $('<ul/>', { id: id + '-titles', 'class': 'stepy-titles' }),
 			description		= '',
 			title			= '',
+			$legend			= null,
 			step;
 
 		if (opt.titleTarget) {
@@ -86,7 +87,13 @@
 
         	title = (step.attr('title') != '') ? step.attr('title') : '--';
 
-        	description = step.children('legend:first').html(); // TODO: if description.
+        	$legend = step.children('legend');
+
+        	if (!opt.legend) {
+        		$legend.hide();
+        	}
+
+        	description = $legend.html();
 
         	$titlesWrapper.append('<li id="' + id + '-title-' + index + '">' + title  + '<span>' + description + '</span></li>');
 
@@ -361,6 +368,7 @@
 		block:			false,
 		errorImage:		false,
 		finish:			true,
+		legend:			true,
 		onBack:			function(index) { return true; },
 		onNext:			function(index) { return true; },
 		nextLabel:		'Next &gt;',
