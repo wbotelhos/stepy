@@ -267,42 +267,42 @@
         }
 	};
 
-    function validate(context, index, opt) {
-    	if (!context.is('form')) {
-    		return true;
-    	}
+	function validate(context, index, opt) {
+		if (!context.is('form')) {
+			return true;
+		}
 
-    	var id		= context.attr('id'),
-    		isValid	= true,
-    		step	= context.children('fieldset').eq(index),
-    		titles	= $('ul#' + id + '-titles').children();
+		var id		= context.attr('id'),
+			isValid	= true,
+			$step	= context.children('fieldset').eq(index),
+			$title	= $('ul#' + id + '-titles').children().eq(index);
 
-    	step.find(':input').each(function() {
-    		isValid &= context.validate().element($(this));
+		$step.find(':input').each(function() {
+			isValid &= context.validate().element($(this));
 
-    		if (isValid === undefined) {
-    			isValid = true;
-    		}
+			if (isValid === undefined) {
+				isValid = true;
+			}
 
-    		if (isValid) {
-    			if (opt.errorImage) {
-    				titles.eq(index).removeClass('error-image');
-    			}
-    		} else {
-    			if (opt.block) {
-    				selectStep(context, index);
-    			}
+			if (isValid) {
+				if (opt.errorImage) {
+					$title.removeClass('error-image');
+				}
+			} else {
+				if (opt.block) {
+					selectStep(context, index);
+				}
 
-    			if (opt.errorImage) {
-    				titles.eq(index).addClass('error-image');
-    			}
+				if (opt.errorImage) {
+					$title.addClass('error-image');
+				}
 
-    			context.validate().focusInvalid();
-    		}
-    	});
+				context.validate().focusInvalid();
+			}
+		});
 
-    	return isValid;
-    };
+		return isValid;
+	};
 
     $.fn.stepy.step = function(index, idOrClass) {
     	var context = getContext(index, idOrClass, 'step');
