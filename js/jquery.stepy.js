@@ -128,10 +128,13 @@
 
 		if (opt.finish) {
 	        if (finish.length) {
-        		finish.hide().click(function() {
-        			validate($this, size - 1, opt);
-        		})
-        		.appendTo($this.find('p:last'));
+	        	if (opt.validate) {
+	        		finish.click(function() {
+	        			validate($this, size - 1, opt);
+	        		});
+        		}
+
+        		finish.hide().appendTo($this.find('p:last'));
 	        } else if ($this.is('form')) {
 	        	debug('Button with class "finish" missing!');
 	        }
