@@ -100,7 +100,7 @@
         		if ($legend.length) {
         			description = '<span>' + $legend.html() + '</span>';
         		} else {
-        			debug('The legend element of the step ' + (index + 1) + ' is required to set the description!');
+        			debug(id + ': the legend element of the step ' + (index + 1) + ' is required to set the description!');
         			hasLegend = false;
         		}
         	}
@@ -136,7 +136,7 @@
 
         		finish.hide().appendTo($this.find('p:last'));
 	        } else {
-	        	debug('Element with class name "finish" missing!');
+	        	debug(id + ': element with class name "finish" missing!');
 	        }
         }
 
