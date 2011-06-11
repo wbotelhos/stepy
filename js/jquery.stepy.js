@@ -126,7 +126,7 @@
 
         $titles.first().addClass('current-step');
 
-		if (opt.finish) {
+		if (opt.finishButton) {
 	        if (finish.length) {
 	        	if (opt.validate) {
 	        		finish.click(function() {
@@ -148,13 +148,13 @@
         			maxStep			= clicked;
 
 				if (clicked > current) {									// Validate only clickeds steps ahead.
-					if (isStopCallback(opt.onNext, clicked)) {
+					if (opt.next && isStopCallback(opt.next, clicked)) {
 						return;
 					}
 
 					maxStep = getMaxStep($this, opt, clicked);
 				} else if (clicked < current) {
-					if (isStopCallback(opt.onBack, clicked)) {
+					if (opt.back && isStopCallback(opt.back, clicked)) {
 						return;
 					}
 				}
@@ -162,7 +162,7 @@
 				if (clicked != current) {									// Avoid change to the same step.
 					selectStep($this, maxStep);
 
-			        if (opt.finish && maxStep + 1 == size) {
+			        if (opt.finishButton && maxStep + 1 == size) {
 	                	finish.show();
 	                }
 				}
@@ -208,7 +208,7 @@
         		'class':	'button-back',
         		html:		opt.backLabel
         	}).click(function() {
-        		if (!isStopCallback(opt.onBack, index - 1)) {
+        		if (!opt.back || !isStopCallback(opt.back, index - 1)) {
 	                selectStep($this, index - 1);
 
 	                if (index + 1 == size) {
@@ -226,12 +226,12 @@
         		'class':	'button-next',
         		html:		opt.nextLabel
         	}).click(function() {
-        		if (!isStopCallback(opt.onNext, index + 1)) {
+        		if (!opt.next || !isStopCallback(opt.next, index + 1)) {
 	        		var maxStep	= getMaxStep($this, opt, index + 1);
 
 					selectStep($this, maxStep);
 	
-			        if (opt.finish && maxStep + 1 == size) {
+			        if (opt.finishButton && maxStep + 1 == size) {
 	                	finish.show();
 	                }
         		}
@@ -378,14 +378,14 @@
 	};
 
 	$.fn.stepy.defaults = {
+		back:			null,
 		backLabel:		'&lt; Back',
 		block:			false,
 		description:	true,
 		errorImage:		false,
-		finish:			true,
+		finishButton:	true,
 		legend:			true,
-		onBack:			function(index) { return true; },
-		onNext:			function(index) { return true; },
+		next:			null,
 		nextLabel:		'Next &gt;',
 		titleClick:		false,
 		titleTarget:	'',
