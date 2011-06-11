@@ -2,8 +2,6 @@
 
 a.button-back, a.button-next, input.finish, fieldset.step { border-radius: 4px; -khtml-border-radius: 4px; -moz-border-radius: 4px; -opera-border-radius: 4px; -webkit-border-radius: 4px; }
 
-input.finish { padding: 3px 9px; }
-
 a.button-back { float: left; text-decoration: none; }
 a.button-next { float: right; text-decoration: none; }
 a.button-back, a.button-next, input.finish { background-color: #AAA; color: #FFF; font: 10px verdana; padding: 5px 10px; }
@@ -14,7 +12,7 @@ fieldset.step label { color: #444; display: block; font: bold 10px verdana; marg
 fieldset.step legend { color: #4080BF; font: bold 14px verdana; padding: 0 2px 3px 2px; }
 fieldset.step input, fieldset.step textarea, fieldset.step select { border: 1px solid #AAA; font: 10px verdana; margin-left: 7px; }
 
-input.finish { border-style: none; cursor: pointer; float: right; text-decoration: none; }
+input.finish { border-style: none; cursor: pointer; float: right; padding: 3px 9px; text-decoration: none; }
 
 li.error-image { background: url('../img/error.png') no-repeat right top; }
 
