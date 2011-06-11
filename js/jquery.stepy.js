@@ -135,8 +135,8 @@
         		}
 
         		finish.hide().appendTo($this.find('p:last'));
-	        } else if ($this.is('form')) {
-	        	debug('Button with class "finish" missing!');
+	        } else {
+	        	debug('Element with class name "finish" missing!');
 	        }
         }
 
