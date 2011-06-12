@@ -6,7 +6,7 @@
  * 
  * Licensed under The MIT License
  *
- * @version     0.4.1
+ * @version     0.5.0
  * @since       07.03.2010
  * @author      Washington Botelho dos Santos
  * @link        http://wbotelhos.com/stepy
@@ -17,15 +17,16 @@
  *
  * Default values:
  * --------------------------------------------------------------------------
+ * back:           null                 // Callback before the backward action.
  * backLabel:      '< Back'             // Change the back button label.
  * block:          false                // Block the next step if the current is invalid.
  * description:    false                // Choose if the descriptions of the titles will be showed.
  * errorImage:     false                // If an error occurs, a image is showed in the title of the corresponding step.
- * finish:         true                 // Include the button with class called '.finish' into the last step.
+ * finish:         null                 // Callback before the finish action.
+ * finishButton:   true                 // Include the button with class called '.finish' into the last step.
  * legend:         false                // Choose if the legends of the steps will be showed.
  * nextLabel:      'Next >'             // Change the next button label.
- * onBack:         'function(index) { return true; }'  // Callback before the backward action.
- * onNext:         'function(index) { return true; }'  // Callback before the forward action.
+ * next:           null                 // Callback before the forward action.
  * titleClick:     true                 // Active the back and next action in the titles.
  * titleTarget:    ''                   // Choose the place where titles will be placed.
  * validate:       false                // Active the jQuery Validation for each step.
