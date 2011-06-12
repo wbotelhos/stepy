@@ -1,18 +1,21 @@
 @CHARSET "UTF-8";
 
-a.button-back, a.button-next, input.finish, fieldset.step { border-radius: 4px; -khtml-border-radius: 4px; -moz-border-radius: 4px; -opera-border-radius: 4px; -webkit-border-radius: 4px; }
+a.button-back { float: left; }
+a.button-next, .finish { float: right; }
 
-a.button-back { float: left; text-decoration: none; }
-a.button-next { float: right; text-decoration: none; }
-a.button-back, a.button-next, input.finish { background-color: #AAA; color: #FFF; font: 10px verdana; padding: 5px 10px; }
-a.button-back:hover, a.button-next:hover, input.finish:hover { background-color: #6699CC; }
+input.finish { border-style: none; cursor: pointer; padding: 3px 9px; }
+
+a.button-back, a.button-next, .finish {
+	background-color: #AAA; color: #FFF; padding: 5px 10px; text-decoration: none;
+	border-radius: 4px; -khtml-border-radius: 4px; -moz-border-radius: 4px; -opera-border-radius: 4px; -webkit-border-radius: 4px;
+}
+
+a.button-back:hover, a.button-next:hover, .finish:hover { background-color: #6699CC; }
 
 fieldset.step { border: 1px solid #DDD; clear: left; font: 10px verdana; width: 500px; }
-fieldset.step label { color: #444; display: block; font: bold 10px verdana; margin-top: 10px; margin: 10px 0 3px 7px; }
+fieldset.step label { color: #444; display: block; font: bold 10px verdana; margin: 10px 0 3px 7px; }
 fieldset.step legend { color: #4080BF; font: bold 14px verdana; padding: 0 2px 3px 2px; }
 fieldset.step input, fieldset.step textarea, fieldset.step select { border: 1px solid #AAA; font: 10px verdana; margin-left: 7px; }
-
-input.finish { border-style: none; cursor: pointer; float: right; padding: 3px 9px; text-decoration: none; }
 
 li.error-image { background: url('../img/error.png') no-repeat right top; }
 
