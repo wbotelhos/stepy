@@ -155,7 +155,11 @@
     				}
         		});
 
-        		finish.hide().appendTo($this.find('p:last'));
+        		if (size > 1) {
+        			finish.hide();
+                }
+
+        		finish.appendTo($this.find('p:last'));
 	        } else {
 	        	debug(id + ': element with class name "finish" missing!');
 	        }
