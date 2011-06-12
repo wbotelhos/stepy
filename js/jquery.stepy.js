@@ -59,6 +59,8 @@
 			title			= '',
 			$legend			= null,
 			hasLegend		= true,
+			isForm			= $this.is('form'),
+			onSubmit		= '',
 			step;
 
 		if (opt.titleTarget) {
@@ -74,11 +76,11 @@
 
 		$this.data('options', opt);
 
-        if (opt.validate && $this.is('form')) {
+        if (opt.validate) {
         	$this.append('<div class="stepy-error"/>');
         }
 
-        $steps.each(function(index) { // fieldset
+        $steps.each(function(index) {
         	step = $(this);
 
         	step
@@ -128,11 +130,30 @@
 
 		if (opt.finishButton) {
 	        if (finish.length) {
-	        	if (opt.validate) {
-	        		finish.click(function() {
-	        			validate($this, size - 1, opt);
-	        		});
-        		}
+	        	if (opt.finish && isForm) {
+	        		onSubmit = $this.attr('onsubmit');
+	        		$this.attr('onsubmit', 'return false;');
+	        	}
+
+        		finish.click(function(evt) {
+        			var isSubmit = finish.attr('type') == 'submit';
+
+    				if (opt.finish && isStopCallback(opt.finish, size - 1)) {
+   						evt.preventDefault();
+    				} else {
+    					if (isForm) {
+    						if (onSubmit) {
+    							$this.attr('onsubmit', onSubmit);
+    						} else {
+    							$this.removeAttr('onsubmit');
+    						}
+
+    						if (!isSubmit && (!opt.validate || validate($this, size - 1, opt))) {
+    							$this.submit();
+    						}
+    					}
+    				}
+        		});
 
         		finish.hide().appendTo($this.find('p:last'));
 	        } else {
@@ -383,6 +404,7 @@
 		block:			false,
 		description:	true,
 		errorImage:		false,
+		finish:			null,
 		finishButton:	true,
 		legend:			true,
 		next:			null,
