@@ -10,7 +10,7 @@ a.button-back, a.button-next, .finish {
 	border-radius: 4px; -khtml-border-radius: 4px; -moz-border-radius: 4px; -opera-border-radius: 4px; -webkit-border-radius: 4px;
 }
 
-a.button-back:hover, a.button-next:hover, .finish:hover { background-color: #6699CC; }
+a.button-back:hover, a.button-next:hover, .finish:hover { background-color: #69C; }
 
 fieldset.step { border: 1px solid #DDD; clear: left; font: 10px verdana; width: 500px; }
 fieldset.step label { color: #444; display: block; font: bold 10px verdana; margin: 10px 0 3px 7px; }
