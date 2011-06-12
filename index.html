@@ -162,11 +162,7 @@
 				</fieldset>
 	
 				<input type="submit" class="finish" value="Finish!"/>
-			</form><br/><br/>
-
-			<span class="comment-script">
-				 - When the attribute 'validate' is true, you must include the jquery.validate.js.
-			</span><br/>
+			</form><br/>
 
 			<div class="source">
 				$('#custom').stepy({<br/>
@@ -177,10 +173,14 @@
 					&nbsp;&nbsp;titleClick:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true,<br/>
 					&nbsp;&nbsp;validate:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true<br/>
 				});
-			</div>
-	
+			</div><br/>
+
+			<span class="comment-script">
+				 - When the attribute 'validate' is true, you must include the jquery.validate.js.
+			</span><br/>
+
 			<div id="step-demo" class="session">With just step without form:</div>		
-	
+
 			<div id="step">
 				<fieldset title="Image 1">
 					<legend>image description one</legend><br/>
@@ -200,7 +200,7 @@
 	
 			<div class="source">
 				$('div#step').stepy({<br/>
-				&nbsp;&nbsp;finish: false<br/>
+				&nbsp;&nbsp;finishButton: false<br/>
 				});
 			</div>
 
@@ -236,16 +236,19 @@
 	
 			<div class="source">
 				$('#callback').stepy({<br/>
-				&nbsp;&nbsp;onBack: function(index) {<br/>
+				&nbsp;&nbsp;back: function(index) {<br/>
 				&nbsp;&nbsp;&nbsp;&nbsp;alert('Going to step ' + index + '...');<br/>
 				&nbsp;&nbsp;},<br/>
-				&nbsp;&nbsp;onNext: function(index) {<br/>
+				&nbsp;&nbsp;next: function(index) {<br/>
 				&nbsp;&nbsp;&nbsp;&nbsp;if (!isValid()) {<br/>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert('Invalid value!');<br/>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return false;<br/>
 				&nbsp;&nbsp;&nbsp;&nbsp;}<br/><br/>
 	
 				&nbsp;&nbsp;&nbsp;&nbsp;alert('Going to step ' + index + '...');<br/>
+				&nbsp;&nbsp;},<br/>
+				&nbsp;&nbsp;finish: function(index) {<br/>
+				&nbsp;&nbsp;&nbsp;&nbsp;alert('Finishing on step ' + index + '...');<br/>
 				&nbsp;&nbsp;},<br/>
 				&nbsp;&nbsp;titleClick: true<br/>
 				});
@@ -254,7 +257,8 @@
 			<span class="comment-script">
 				 - You can do validations during the callback;<br/>
 				 - Return "false" to prevent the transition;<br/>
-				 - Return "true" or nothing to continue the transition.
+				 - Return "true" or nothing to continue the transition;<br/>
+				 - If the Stepy is a form and the finish element is not a submit type, then .submit() will be invoked.
 			</span><br/>
 
 			<div id="target-demo" class="session">With target for the titles and custom legend and description:</div>		
@@ -274,7 +278,7 @@
 					<center><img src="img/image-2.png" alt=""/></center>
 				</fieldset>
 
-				<input type="submit" class="finish" value="Finish!"/>
+				<a href="javascript:void(0);" class="finish">Finish!</a>
 			</form>
 
 			<div id="title-target"></div>
@@ -284,7 +288,6 @@
 
 				$('#target').stepy({<br/>
 				&nbsp;&nbsp;description:&nbsp;&nbsp;false,<br/>
-				&nbsp;&nbsp;finish:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false,<br/>
 				&nbsp;&nbsp;legend:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false,<br/>
 				&nbsp;&nbsp;titleClick:&nbsp;&nbsp;&nbsp;true,<br/>
 				&nbsp;&nbsp;titleTarget:&nbsp;&nbsp;'#title-target'<br/>
@@ -294,7 +297,8 @@
 			<span class="comment-script">
 				 - You can choose any specific target;<br/>
 				 - Even if the fieldset has legend, it will not appear if legend attribute is false;<br/>
-				 - The description depends of the legend element. Even with legend attribute setted to false.
+				 - The description depends of the legend element. Even with legend attribute setted to false;<br/>
+				 - The finish button can be any element you want, since it has the class name 'finish'.
 			</span><br/>
 
 			<div class="session">HTML structure:</div>
@@ -319,39 +323,42 @@
 			<div class="session">Default options:</div>
 	
 			<div class="source">
+				back:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;null<br/>
+				<div class="notice">Callback before the backward action.</div>
+
 				backLabel:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&lt; Back'<br/>
 				<div class="notice">Change the back button label.</div>
-	
+
 				block:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false<br/>
 				<div class="notice">* Block the next step if the current is invalid.</div>
-	
+
 				description:&nbsp;&nbsp;&nbsp;&nbsp;false<br/>
 				<div class="notice">Choose if the descriptions of the titles will be showed.</div>
-	
+
 				errorImage:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false<br/>
 				<div class="notice">* If an error occurs, a image is showed in the title of the corresponding step.</div>
-	
-				finish:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true<br/>
-				<div class="notice">Include the button with class called '.finish' into the last step.</div>
-	
+
+				finish:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;null<br/>
+				<div class="notice">Callback before the finish action.</div>
+
+				finishButton:&nbsp;&nbsp;&nbsp;true<br/>
+				<div class="notice">Include the element with class name '.finish' into the last step.</div>
+
 				nextLabel:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Next &gt;'
 				<div class="notice">Change the next button label.</div>
-	
+
 				legend:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false<br/>
 				<div class="notice">Choose if the legends of the steps will be showed.</div>
-	
-				onBack:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function(index) { return true; }<br/>
-				<div class="notice">Callback before the backward action.</div>
-	
-				onNext:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function(index) { return true; }<br/>
+
+				next:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;null<br/>
 				<div class="notice">Callback before the forward action.</div>
-	
+
 				titleClick:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true<br/>
 				<div class="notice">Active the back and next action in the titles.</div>
-	
+
 				titleTarget:&nbsp;&nbsp;&nbsp;&nbsp;''<br/>
 				<div class="notice">Choose the place where titles will be placed.</div>
-	
+
 			 	validate:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false<br/>
 				<div class="notice">* Active the jQuery Validation for each step.</div>
 			</div>
@@ -387,7 +394,7 @@
 				});
 
 				$('div#step').stepy({
-					finish: false
+					finishButton: false
 				});
 
 				// <!-- Optionaly -->
@@ -412,25 +419,25 @@
 				});
 
 				$('#callback').stepy({
-					onBack: function(index) {
+					back: function(index) {
 						alert('Going to step ' + index + '...');
-					},
-					onNext: function(index) {
+					}, next: function(index) {
 						var random = Math.floor(Math.random() * 11);
 
-						if (random <= 5) {
+						if (random < 5) {
 							alert('Invalid value!');
 							return false;
 						}
 
 						alert('Going to step ' + index + '...');
+					}, finish: function(index) {
+						alert('Finishing on step ' + index + '...');
 					},
 					titleClick: true
 				});
 
 				$('#target').stepy({
 					description:	false,
-					finish:			false,
 					legend:			false,
 					titleClick:		true,
 					titleTarget:	'#title-target'
