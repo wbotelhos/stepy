@@ -2,6 +2,22 @@
  * jQuery Stepy - A Wizard Plugin - http://wbotelhos.com/stepy
  * --------------------------------------------------------------------------
  *
+ * 0.5.0
+ *   - Added the 'titleTarget' attribute to choose the place where titles will be placed;
+ *   - Added the 'legend' attribute to choose if the legends of the steps will be showed;
+ *   - Added the 'description' attribute to choose if the descriptions of the titles will be showed;
+ *   - Added the 'finish' callback attribute that enables action before finish the steps;
+ *   - Fixed the possible bug when the ID has more than one word or has number;
+ *   - Fixed the possible bug when the ID has more than one word or has number;
+ *   - Fixed: avoided the validation of the lastest step when the validation is not enabled;
+ *   - Fixed: when there is only one step, the finish button does not appear;
+ *   - The 'onBack' attribute was named just to 'back';
+ *   - The 'onNext' attribute was named just to 'next';
+ *   - The 'finish' attribute was named to 'finishButton';
+ *   - The 'back' and 'next' callback no longer has a default function;
+ *   - The finish button is now required for any kind of step if that option is enabled;
+ *   - Keeped the options as data called 'options' in the wrapper element to future usages.
+ *
  * 0.4.1
  *   - Fixed: the validation highlighted only the first field (fixed by legigor).
  *
