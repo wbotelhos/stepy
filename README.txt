@@ -14,6 +14,10 @@
  * @license     http://www.opensource.org/licenses/mit-license.php MIT 
  * @package     jQuery Plugins
  *
+ * Thanks to:
+ * --------------------------------------------------------------------------
+ * legigor
+ * andreyfedoseev
  *
  * Default values:
  * --------------------------------------------------------------------------

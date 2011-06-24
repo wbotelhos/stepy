@@ -10,7 +10,7 @@
  *   - Fixed the possible bug when the ID has more than one word or has number;
  *   - Fixed the possible bug when the ID has more than one word or has number;
  *   - Fixed: avoided the validation of the lastest step when the validation is not enabled;
- *   - Fixed: when there is only one step, the finish button does not appear;
+ *   - Fixed: when there is only one step, the finish button does not appear (reported by DevPHP);
  *   - The 'onBack' attribute was named just to 'back';
  *   - The 'onNext' attribute was named just to 'next';
  *   - The 'finish' attribute was named to 'finishButton';
