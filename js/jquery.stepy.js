@@ -6,7 +6,7 @@
  * 
  * Licensed under The MIT License
  * 
- * @version			0.5.0
+ * @version			0.5.1
  * @since			07.03.2010
  * @author			Washington Botelho dos Santos
  * @documentation	http://wbotelhos.com/raty
@@ -172,7 +172,7 @@
 	        		clicked			= $(this).index(),
         			maxStep			= clicked;
 
-				if (clicked > current) {									// Validate only clickeds steps ahead.
+				if (clicked > current) {
 					if (opt.next && isStopCallback(opt.next, clicked)) {
 						return;
 					}
@@ -184,8 +184,10 @@
 					}
 				}
 
-				if (clicked != current) {									// Avoid change to the same step.
-					selectStep($this, maxStep);
+				var isBlocked = (maxStep <= clicked);
+
+				if (clicked != current) {
+					selectStep($this, maxStep, isBlocked);
 
 			        if (opt.finishButton && maxStep + 1 == size) {
 	                	finish.show();
@@ -234,7 +236,7 @@
         		html:		opt.backLabel
         	}).click(function() {
         		if (!opt.back || !isStopCallback(opt.back, index - 1)) {
-	                selectStep($this, index - 1);
+	                selectStep($this, index - 1, false);
 
 	                if (index + 1 == size) {
 	                	finish.hide();
@@ -252,9 +254,10 @@
         		html:		opt.nextLabel
         	}).click(function() {
         		if (!opt.next || !isStopCallback(opt.next, index + 1)) {
-	        		var maxStep	= getMaxStep($this, opt, index + 1);
+	        		var maxStep		= getMaxStep($this, opt, index + 1),
+	        			isBlocked	= (maxStep <= index);
 
-					selectStep($this, maxStep);
+					selectStep($this, maxStep, isBlocked);
 	
 			        if (opt.finishButton && maxStep + 1 == size) {
 	                	finish.show();
@@ -264,7 +267,7 @@
             .appendTo($('p#' + id + '-buttons-' + index));
         };
 
-        function getMaxStep(context, opt, clicked) {
+        function getMaxStep(context, opt, clicked) { // TODO: give support of validation from public function. .data().
         	var maxStep = clicked,
         		isValid = true;
 
@@ -272,8 +275,8 @@
 	        	for (var i = 0; i < clicked; i++) {
 					isValid = validate($this, i, opt) && isValid;	// Accumulates validations.
 
-					if (opt.block && !isValid) {					// In the first invalid step the function stops or not.
-						maxStep = i;								// The first invalid step.
+					if (opt.block && !isValid) {
+						maxStep = i;
 						break;
 					}
 				}
@@ -285,7 +288,7 @@
 		return $this;
 	};
 
-	function selectStep(context, index) {
+	function selectStep(context, index, isBlocked) {
 		var id		= context.attr('id'),
 			$steps	= context.children('fieldset'),
 			size	= $steps.size(),
@@ -301,7 +304,11 @@
 		$titles.removeClass('current-step').eq(index).addClass('current-step');
 
         if (context.is('form')) {
-        	$steps.eq(index).find(':input:visible:enabled:first').focus();
+        	var firstField = $steps.eq(index).find(':input:visible:enabled:first');
+
+        	if (!isBlocked) {
+        		firstField.focus();
+        	}
         }
 	};
 
@@ -315,7 +322,7 @@
 			$step	= context.children('fieldset').eq(index),
 			$title	= $('ul#' + id + '-titles').children().eq(index);
 
-		$step.find(':input').each(function() {
+		$($step.find(':input').get().reverse()).each(function() {
 			isValid &= context.validate().element($(this));
 
 			if (isValid === undefined) {
@@ -328,7 +335,7 @@
 				}
 			} else {
 				if (opt.block) {
-					selectStep(context, index);
+					selectStep(context, index, true);
 				}
 
 				if (opt.errorImage) {
@@ -349,7 +356,7 @@
 			return;
 		}
 
-		selectStep(context, index - 1);
+		selectStep(context, index - 1, false);
 
 		$.fn.stepy;
 	};
