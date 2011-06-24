@@ -2,6 +2,10 @@
  * jQuery Stepy - A Wizard Plugin - http://wbotelhos.com/stepy
  * --------------------------------------------------------------------------
  *
+ * 0.5.1
+ *   - Fixed the focus of the first error field (reported by luckyong);
+ *   - Avoided highlight only the first field when has multiple invalids fields on the form.
+ *
  * 0.5.0
  *   - Added the 'titleTarget' attribute to choose the place where titles will be placed;
  *   - Added the 'legend' attribute to choose if the legends of the steps will be showed;
