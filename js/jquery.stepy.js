@@ -301,17 +301,7 @@
 		$titles.removeClass('current-step').eq(index).addClass('current-step');
 
         if (context.is('form')) {
-        	$steps
-        		.eq(index)
-	        		.find(':input:visible')
-		        		.each(function() {
-		        			step = $(this);
-
-				        	if (!step.attr('disabled')) { // TODO: is
-				    			step.focus();
-				    			return false;
-				        	}
-		        		});
+        	$steps.eq(index).find(':input:visible:enabled:first').focus();
         }
 	};
 
