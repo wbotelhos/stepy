@@ -273,7 +273,7 @@
 
         	if (opt.validate) {
 	        	for (var i = 0; i < clicked; i++) {
-					isValid = validate($this, i, opt) && isValid;	// Accumulates validations.
+					isValid &= validate($this, i, opt);
 
 					if (opt.block && !isValid) {
 						maxStep = i;
