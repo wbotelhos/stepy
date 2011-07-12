@@ -20,6 +20,7 @@ The jQuery Stepy is Licensed under The MIT License
 ## Thanks to:
 
 [legigor](http://twitter.com/#!/legigor)
+
 [andreyfedoseev](http://twitter.com/#!/andreyfedoseev)
 
 ## Default values:
