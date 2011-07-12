@@ -9,13 +9,13 @@ The jQuery Stepy is Licensed under The MIT License
 
 ## Version
 
-@version     0.5.1
-@since       07.03.2010
-@author      Washington Botelho dos Santos
-@link        http://wbotelhos.com/stepy
-@twitter     http://twitter.com/wbotelhos
-@license     http://www.opensource.org/licenses/mit-license.php MIT 
-@package     jQuery Plugins
+    @version     0.5.1
+    @since       07.03.2010
+    @author      Washington Botelho dos Santos
+    @link        http://wbotelhos.com/stepy
+    @twitter     http://twitter.com/wbotelhos
+    @license     http://www.opensource.org/licenses/mit-license.php MIT 
+    @package     jQuery Plugins
 
 ## Thanks to:
 
