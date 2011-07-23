@@ -1,4 +1,4 @@
-/**
+/*!
  * jQuery Stepy - A Wizard Plugin - http://wbotelhos.com/stepy
  * ---------------------------------------------------------------------------------
  *
@@ -16,9 +16,9 @@
  * 
  * Usage with default values:
  * ---------------------------------------------------------------------------------
- * $('#stepy').stepy();
+ * $('#form').stepy();
  *
- *	<form id="stepy">
+ *	<form id="form">
  *		<fieldset title="Step 1">
  *			<legend>description one</legend>
  *			<!-- input fields -->
@@ -28,8 +28,6 @@
  *			<legend>description one</legend>
  *			<!-- input fields -->
  *		</fieldset>
- *
- *		// and so on..
  *
  *		<input type="submit" class="finish" value="Finish!"/>
  *	</form>
@@ -58,7 +56,6 @@
 			description		= '',
 			title			= '',
 			$legend			= null,
-			hasLegend		= true,
 			isForm			= $this.is('form'),
 			onSubmit		= '',
 			step;
@@ -103,7 +100,6 @@
         			description = '<span>' + $legend.html() + '</span>';
         		} else {
         			debug(id + ': the legend element of the step ' + (index + 1) + ' is required to set the description!');
-        			hasLegend = false;
         		}
         	}
 
@@ -292,8 +288,7 @@
 		var id		= context.attr('id'),
 			$steps	= context.children('fieldset'),
 			size	= $steps.size(),
-			$titles	= $('ul#' + id + '-titles').children(),
-			step;
+			$titles	= $('ul#' + id + '-titles').children();
 
 		if (index > size - 1) {
 			index = size - 1;
