@@ -1,4 +1,4 @@
-/*!
+/**
  * jQuery Stepy - A Wizard Plugin - http://wbotelhos.com/stepy
  * ---------------------------------------------------------------------------------
  *
@@ -16,9 +16,9 @@
  * 
  * Usage with default values:
  * ---------------------------------------------------------------------------------
- * $('#form').stepy();
+ * $('#stepy').stepy();
  *
- *	<form id="form">
+ *	<form id="stepy">
  *		<fieldset title="Step 1">
  *			<legend>description one</legend>
  *			<!-- input fields -->
@@ -28,6 +28,8 @@
  *			<legend>description one</legend>
  *			<!-- input fields -->
  *		</fieldset>
+ *
+ *		// and so on..
  *
  *		<input type="submit" class="finish" value="Finish!"/>
  *	</form>
@@ -56,6 +58,7 @@
 			description		= '',
 			title			= '',
 			$legend			= null,
+			hasLegend		= true,
 			isForm			= $this.is('form'),
 			onSubmit		= '',
 			step;
@@ -100,6 +103,7 @@
         			description = '<span>' + $legend.html() + '</span>';
         		} else {
         			debug(id + ': the legend element of the step ' + (index + 1) + ' is required to set the description!');
+        			hasLegend = false;
         		}
         	}
 
@@ -183,7 +187,7 @@
 				var isBlocked = (maxStep <= clicked);
 
 				if (clicked != current) {
-					selectStep($this, maxStep, isBlocked);
+					selectStep($this, maxStep, isBlocked, opt);
 
 			        if (opt.finishButton && maxStep + 1 == size) {
 	                	finish.show();
@@ -232,7 +236,7 @@
         		html:		opt.backLabel
         	}).click(function() {
         		if (!opt.back || !isStopCallback(opt.back, index - 1)) {
-	                selectStep($this, index - 1, false);
+	                selectStep($this, index - 1, false, opt);
 
 	                if (index + 1 == size) {
 	                	finish.hide();
@@ -253,7 +257,7 @@
 	        		var maxStep		= getMaxStep($this, opt, index + 1),
 	        			isBlocked	= (maxStep <= index);
 
-					selectStep($this, maxStep, isBlocked);
+					selectStep($this, maxStep, isBlocked, opt);
 	
 			        if (opt.finishButton && maxStep + 1 == size) {
 	                	finish.show();
@@ -284,11 +288,12 @@
 		return $this;
 	};
 
-	function selectStep(context, index, isBlocked) {
+	function selectStep(context, index, isBlocked, opt) {
 		var id		= context.attr('id'),
 			$steps	= context.children('fieldset'),
 			size	= $steps.size(),
-			$titles	= $('ul#' + id + '-titles').children();
+			$titles	= $('ul#' + id + '-titles').children(),
+			step;
 
 		if (index > size - 1) {
 			index = size - 1;
@@ -305,6 +310,10 @@
         		firstField.focus();
         	}
         }
+
+		if (opt.select) {
+			opt.select.call(this, index +1);
+		}
 	};
 
 	function validate(context, index, opt) {
@@ -330,7 +339,7 @@
 				}
 			} else {
 				if (opt.block) {
-					selectStep(context, index, true);
+					selectStep(context, index, true, opt);
 				}
 
 				if (opt.errorImage) {
@@ -351,7 +360,7 @@
 			return;
 		}
 
-		selectStep(context, index - 1, false);
+		selectStep(context, index - 1, false, {});
 
 		$.fn.stepy;
 	};
@@ -407,7 +416,8 @@
 		nextLabel:		'Next &gt;',
 		titleClick:		false,
 		titleTarget:	'',
-		validate:		false
+		validate:		false,
+		select: 		null
 	};
 
 })(jQuery);
