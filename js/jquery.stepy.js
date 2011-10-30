@@ -1,4 +1,4 @@
-/**
+/*!
  * jQuery Stepy - A Wizard Plugin - http://wbotelhos.com/stepy
  * ---------------------------------------------------------------------------------
  *
@@ -6,12 +6,12 @@
  * 
  * Licensed under The MIT License
  * 
- * @version			0.5.1
- * @since			07.03.2010
+ * @version			1.0.0
+ * @since			2010.07.03
  * @author			Washington Botelho dos Santos
- * @documentation	http://wbotelhos.com/raty
- * @twitter			http://twitter.com/wbotelhos
- * @license			http://opensource.org/licenses/mit-license.php MIT
+ * @documentation	wbotelhos.com/raty
+ * @twitter			twitter.com/wbotelhos
+ * @license			opensource.org/licenses/mit-license.php MIT
  * @package			jQuery Plugins
  * 
  * Usage with default values:
@@ -28,8 +28,6 @@
  *			<legend>description one</legend>
  *			<!-- input fields -->
  *		</fieldset>
- *
- *		// and so on..
  *
  *		<input type="submit" class="finish" value="Finish!"/>
  *	</form>
