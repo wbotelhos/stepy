@@ -83,7 +83,7 @@
         	.addClass('step')
         	.append('<p id="' + id + '-buttons-' + index + '" class="' + id + '-buttons"/>');
 
-        	title = (step.attr('title') != '') ? step.attr('title') : '--';
+        	title = (step.attr('title') != '') ? '<div>' + step.attr('title') + '</div>': '--';
 
         	$legend = step.children('legend');
 
