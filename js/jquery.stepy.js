@@ -318,11 +318,13 @@
 			$title	= $('ul#' + id + '-titles').children().eq(index);
 
 		$($step.find(':input').get().reverse()).each(function() {
-			isValid &= context.validate().element($(this));
+			var fieldIsValid = context.validate().element($(this));
 
-			if (isValid === undefined) {
-				isValid = true;
+			if (fieldIsValid === undefined) {
+				fieldIsValid = true;
 			}
+
+			isValid &= fieldIsValid;
 
 			if (isValid) {
 				if (opt.errorImage) {
