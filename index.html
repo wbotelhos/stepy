@@ -432,16 +432,14 @@
 				$('#custom').validate({
 					errorPlacement: function(error, element) {
 						$('#custom div.stepy-error').append(error);
-					},
-					rules: {
+					}, rules: {
 						'user':		{ maxlength: 1 },
 						'email':	'email',
 						'bio':		'required',
 						'password':	'required',
 						'day':		'required',
 						'gender':	'required'
-					},
-					messages: {
+					}, messages: {
 						'user':		{ maxlength: 'User field should be less than 1!' },
 						'email':	{ email: 'Invalid e-mail!' },
 						'bio':		{ required: 'Bio field is required!' },
