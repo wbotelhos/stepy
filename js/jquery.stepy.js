@@ -317,7 +317,7 @@
 			$step	= context.children('fieldset').eq(index),
 			$title	= $('ul#' + id + '-titles').children().eq(index);
 
-		$($step.find(':input').get().reverse()).each(function() {
+		$($step.find(':input:enabled').get().reverse()).each(function() {
 			var fieldIsValid = context.validate().element($(this));
 
 			if (fieldIsValid === undefined) {
