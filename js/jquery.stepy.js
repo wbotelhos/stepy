@@ -48,7 +48,7 @@
 		}
 
 		var opt				= $.extend({}, $.fn.stepy.defaults, settings),
-			$this			= $(this),
+			$this			= $(this).data('options', opt),
 			id				= this.attr('id'),
 			$steps			= $this.children('fieldset'),
 			size			= $steps.size(),
@@ -70,8 +70,6 @@
 			id = 'stepy-' + $this.index();
 			$this.attr('id', id); 
 		}
-
-		$this.data('options', opt);
 
         if (opt.validate) {
         	$this.append('<div class="stepy-error"/>');
