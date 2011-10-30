@@ -56,7 +56,6 @@
 			description		= '',
 			title			= '',
 			$legend			= null,
-			hasLegend		= true,
 			isForm			= $this.is('form'),
 			onSubmit		= '',
 			step;
@@ -101,7 +100,6 @@
         			description = '<span>' + $legend.html() + '</span>';
         		} else {
         			debug(id + ': the legend element of the step ' + (index + 1) + ' is required to set the description!');
-        			hasLegend = false;
         		}
         	}
 
