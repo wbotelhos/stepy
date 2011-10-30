@@ -8,12 +8,17 @@ The jQuery Gridy is licensed under [The MIT License](http://www.opensource.org/l
 
 ## Version
 
-    @version		0.5.1
-	@since			07.03.2010
-	@author			Washington Botelho dos Santos
-	@documentation	wbotelhos.com/stepy
-	@twitter		twitter.com/wbotelhos
-	@package		jQuery Plugins
+    @version		 1.0.0
+	@since			 2010.07.03
+	@author			 Washington Botelho dos Santos
+	@documentation	 wbotelhos.com/stepy
+	@twitter		 twitter.com/wbotelhos
+	@package		 jQuery Plugins
+
+## Required Files
+
++ jquery.stepy.min.js
++ jquery.stepy.css
 
 ## Default values
 
@@ -33,9 +38,9 @@ The jQuery Gridy is licensed under [The MIT License](http://www.opensource.org/l
 
 ## Usage with default values
 
-    $('#form').stepy();
+    $('#stepy').stepy();
 
-	<form id="form">
+	<form id="stepy">
 		<fieldset title="Step 1">
 			<legend>description one</legend>
 			<!-- input fields -->
@@ -51,11 +56,16 @@ The jQuery Gridy is licensed under [The MIT License](http://www.opensource.org/l
 
 ## Public functions
 
-You must pass a ID or a class to be the target of the action:
+    $('#stepy').stepy('step', 2);
+    Change the form to the second step.
 
-    $.fn.stepy.step(2, '#stepy');   // Change the form to step 2.
+## Contributors:
 
-## Thanks to:
-
++ Almir Mendes
 + Andrey Fedoseev
 + Igor Tamashchuk
++ Rafael Machado
+
+## Buy me a coffee
+
+You can do it by [PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=X8HEP2878NDEG&item_name=jQuery%20Stepy). Thanks! (:

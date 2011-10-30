@@ -2,6 +2,10 @@
  * jQuery Stepy - A Wizard Plugin - http://wbotelhos.com/stepy
  * --------------------------------------------------------------------------
  *
+ * 1.0.0
+ * - Fixed validation to disabled fields do not validate;
+ * - Fixed validations when jQuery Validation returns undefined and blocks.
+ *
  * 0.5.1
  *   - Fixed the focus of the first error field (reported by luckyong);
  *   - Avoided highlight only the first field when has multiple invalids fields on the form.
