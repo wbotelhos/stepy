@@ -279,6 +279,8 @@
         	return maxStep;
         };
 
+        $steps.first().find(':input:visible:enabled').first().select().focus();
+
 		return $this;
 	};
 
