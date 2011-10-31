@@ -1,4 +1,4 @@
-describe('Using default', function() {
+describe('Using one element', function() {
 
 	beforeEach(function() {
 		$('body').append(
@@ -170,6 +170,17 @@ describe('Using default', function() {
 		expect($thirdBack).toHaveHtml('&lt; Back');
 	});
 
+	it('should not include the finish button', function() {
+		// given
+		var $form = $('#stepy');
+
+		// when
+		$form.stepy({ finishButton: false });
+
+		// then
+		expect($form.children().eq(2)).not.toContain('input.finish');
+	});
+
 	it('should have titleClick disabled', function() {
 		// given
 		var $form	= $('#stepy').stepy(),
@@ -263,7 +274,6 @@ describe('Using default', function() {
 	    expect($third).toBeHidden();
 	});
 
-
 	it('should call back callback', function() {
 		// given
 		var $form	= $('#stepy').stepy({ back: function() { this.addClass('my-class'); } }),
@@ -302,6 +312,31 @@ describe('Using default', function() {
 		expect($first).toBeHidden();
 	    expect($second).not.toBeHidden();
 	    expect($third).toBeHidden();
+	});
+
+	it('should call finish callback', function() {
+		// given
+		var $form	= $('#stepy').stepy({ finish: function() { this.addClass('my-class'); } }),
+			$steps	= $form.children(), 
+			$first	= $steps.eq(0),
+			$second	= $steps.eq(1),
+			$third	= $steps.eq(2);
+
+		$steps.eq(1).find('a.button-next').click();
+
+		$form.submit(function(evt) {
+			evt.preventDefault();
+		});
+
+		// when
+		$steps.eq(2).find('input.finish').click();
+
+		// then
+		expect($form).toHaveClass('my-class');
+
+		expect($first).toBeHidden();
+	    expect($second).toBeHidden();
+	    expect($third).not.toBeHidden();
 	});
 
 	it('should have custom label on navigation buttons', function() {
@@ -444,4 +479,172 @@ describe('Using default', function() {
 		expect($third).toBeHidden();
 	});
 
-}); // USING DEFAULT
+	it('should not display description', function() {
+		// given
+		var $form = $('#stepy');
+
+		// when
+		$form.stepy({ description: false });
+
+		var $menus	= $('#stepy-titles').children('li'),
+			$first	= $menus.eq(0),
+			$second	= $menus.eq(1),
+			$third 	= $menus.eq(2);
+
+		// then
+		expect($first).not.toContain('span');
+		expect($second).not.toContain('span');
+		expect($third).not.toContain('span');
+	});
+
+	it('should not display legend', function() {
+		// given
+		var $form	= $('#stepy'),
+			$steps	= $form.children(), 
+			$first	= $steps.eq(0),
+			$second	= $steps.eq(1),
+			$third	= $steps.eq(2);
+
+		// when
+		$form.stepy({ legend: false });
+
+		// then
+		expect($first.children('legend')).toBeHidden();
+		expect($second.children('legend')).toBeHidden();
+		expect($third.children('legend')).toBeHidden();
+	});
+
+	it('should have titleClick enabled', function() {
+		// given
+		var $form	= $('#stepy').stepy({ titleClick: true }),
+			$steps	= $form.children(), 
+			$first	= $steps.eq(0),
+			$second	= $steps.eq(1),
+			$third	= $steps.eq(2);
+
+		// when
+		$('#stepy-titles').children('li').eq(2).click();
+
+		// then
+		expect($first).toBeHidden();
+	    expect($second).toBeHidden();
+	    expect($third).not.toBeHidden();
+	});
+
+	it('should block step when exists invalid fields using titleClick', function() {
+		// given
+		var $form	= $('#stepy').stepy({ block: true, titleClick: true, validate: true }),
+			$steps	= $form.children(), 
+			$first	= $steps.eq(0),
+			$second	= $steps.eq(1),
+			$third	= $steps.eq(2);
+
+		$form.validate({
+			errorPlacement: function(error, element) {
+				$('#stepy div.stepy-error').append(error);
+			}, rules: {
+				'password':	'required'
+			}, messages: {
+				'password':	{ required: 'Password field is requerid!' }
+			}
+		});
+
+		// when
+		$('#stepy-titles').children('li').eq(2).click();
+
+		// then
+		expect($form.children('.stepy-error')).toContain('label.error');
+		expect($first).not.toBeHidden();
+		expect($second).toBeHidden();
+		expect($third).toBeHidden();
+	});
+
+	it('should block step with errorImage when exists invalid fields using titleClick', function() {
+		// given
+		var $form	= $('#stepy').stepy({ block: true, errorImage: true, titleClick: true, validate: true }),
+			$steps	= $form.children(), 
+			$first	= $steps.eq(0),
+			$second	= $steps.eq(1),
+			$third	= $steps.eq(2),
+			$titles = $('#stepy-titles');
+
+		$form.validate({
+			errorPlacement: function(error, element) {
+				$('#stepy div.stepy-error').append(error);
+			}, rules: {
+				'password':	'required'
+			}, messages: {
+				'password':	{ required: 'Password field is requerid!' }
+			}
+		});
+
+		// when
+		$titles.children('li').eq(2).click();
+
+		// then
+		expect($titles.children('li').eq(0)).toHaveClass('error-image');
+		expect($form.children('.stepy-error')).toContain('label.error');
+		expect($first).not.toBeHidden();
+		expect($second).toBeHidden();
+		expect($third).toBeHidden();
+	});
+
+	it('should move titles to target', function() {
+		// given
+		var $target = $('<div id="target"></div>').appendTo('body');
+
+		// when
+		$('#stepy').stepy({ titleTarget: '#target' });
+
+		var $menus	= $target.children('#stepy-titles').children('li'),
+			$first	= $menus.eq(0),
+			$second	= $menus.eq(1),
+			$third 	= $menus.eq(2);
+
+		// then
+		expect($first.children('div')).toHaveHtml('Step 1');
+		expect($second.children('div')).toHaveHtml('Step 2');
+		expect($third.children('div')).toHaveHtml('Step 3');
+
+		$target.remove();
+	});
+
+	it('should have titleClick enabled', function() {
+		// given
+		var $form	= $('#stepy').stepy({ titleClick: true }),
+			$steps	= $form.children(), 
+			$first	= $steps.eq(0),
+			$second	= $steps.eq(1),
+			$third	= $steps.eq(2);
+
+		// when
+		$('#stepy-titles').children('li').eq(2).click();
+
+		// then
+		expect($first).toBeHidden();
+	    expect($second).toBeHidden();
+	    expect($third).not.toBeHidden();
+	});
+	
+	it('should move titles to target and works titleClick', function() {
+		// given
+		var $target = $('<div id="target"></div>').appendTo('body');
+
+		// when
+		var $form = $('#stepy').stepy({ titleClick: true, titleTarget: '#target' }),
+			$steps	= $form.children(), 
+			$first	= $steps.eq(0),
+			$second	= $steps.eq(1),
+			$third	= $steps.eq(2);
+
+		$target.children('#stepy-titles').children('li').eq(2).click();
+
+		// then
+		expect($first).toBeHidden();
+	    expect($second).toBeHidden();
+	    expect($third).not.toBeHidden();
+
+		$target.remove();
+	});
+
+});
