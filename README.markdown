@@ -4,7 +4,7 @@ jQuery Stepy is a plugin based on FormToWizard that generates a customizable wiz
 
 ## License
 
-The jQuery Gridy is licensed under [The MIT License](http://www.opensource.org/licenses/mit-license.php)
+The jQuery Stepy is licensed under [The MIT License](http://www.opensource.org/licenses/mit-license.php)
 
 ## Version
 
