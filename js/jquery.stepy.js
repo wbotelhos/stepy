@@ -55,7 +55,7 @@
 			$titlesWrapper	= $('<ul/>', { id: id + '-titles', 'class': 'stepy-titles' }),
 			description		= '',
 			title			= '',
-			$legend			= null,
+			$legend			= undefined,
 			isForm			= $this.is('form'),
 			onSubmit		= '',
 			step;
@@ -402,20 +402,20 @@
 	};
 
 	$.fn.stepy.defaults = {
-		back:			null,
+		back:			undefined,
 		backLabel:		'&lt; Back',
 		block:			false,
 		description:	true,
 		errorImage:		false,
-		finish:			null,
+		finish:			undefined,
 		finishButton:	true,
 		legend:			true,
-		next:			null,
+		next:			undefined,
 		nextLabel:		'Next &gt;',
 		titleClick:		false,
-		titleTarget:	'',
+		titleTarget:	undefined,
 		validate:		false,
-		select: 		null
+		select: 		undefined
 	};
 
 })(jQuery);
