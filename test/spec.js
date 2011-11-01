@@ -631,7 +631,7 @@ describe('Using one element', function() {
 		var $target = $('<div id="target"></div>').appendTo('body');
 
 		// when
-		var $form = $('#stepy').stepy({ titleClick: true, titleTarget: '#target' }),
+		var $form 	= $('#stepy').stepy({ titleClick: true, titleTarget: '#target' }),
 			$steps	= $form.children(), 
 			$first	= $steps.eq(0),
 			$second	= $steps.eq(1),
@@ -645,6 +645,84 @@ describe('Using one element', function() {
 	    expect($third).not.toBeHidden();
 
 		$target.remove();
+	});
+
+	it('should be hidden the finish button', function() {
+		// given
+		var $form	= $('#stepy'),
+			$steps	= $form.children(), 
+			$third	= $steps.eq(2);
+
+		// when
+		$form.stepy();
+
+		// then
+		expect($third.find('input.finish')).toBeHidden();
+	});
+
+	it('should be visible the finish button', function() {
+		// given
+		var $form 	= $('#stepy').stepy(),
+			$steps	= $form.children(), 
+			$second	= $steps.eq(1);
+			$third	= $steps.eq(2);
+
+		// when
+		$second.find('a.button-next').click();
+
+		// then
+		expect($third.find('input.finish')).not.toBeHidden();
+	});
+
+	it('should forward step with enter', function() {
+		// given
+		var $form 		= $('#stepy').stepy(),
+			$steps		= $form.children(), 
+			$first		= $steps.eq(0);
+			$second		= $steps.eq(1);
+			$third		= $steps.eq(2),
+			$password	= $form.find('input[name="password"]').val('password'),
+			evt			= jQuery.Event('keypress');
+
+			evt.which = 13;
+			evt.keyCode = 13;
+
+		// when
+		$password.trigger(evt);
+
+		// then
+		expect($first).toBeHidden();
+	    expect($second).not.toBeHidden();
+	    expect($third).toBeHidden();
+	});
+
+	it('should submit on last step with enter', function() {
+		// given
+		var $form 		= $('#stepy').stepy({ finish: function() { this.addClass('my-class'); } }),
+			$steps		= $form.children(), 
+			$first		= $steps.eq(0);
+			$second		= $steps.eq(1);
+			$third		= $steps.eq(2),
+			$password	= $form.find('input[name="password"]').val('password'),
+			evt			= jQuery.Event('keypress');
+
+			evt.which = 13;
+			evt.keyCode = 13;
+
+			$second.find('a.button-next').click();
+
+			$form.submit(function(evt) {
+				evt.preventDefault();
+			});
+
+		// when
+		$password.trigger(evt);
+
+		// then
+		expect($form).toHaveClass('my-class');
+		expect($first).toBeHidden();
+	    expect($second).toBeHidden();
+	    expect($third).not.toBeHidden();
 	});
 
 });
