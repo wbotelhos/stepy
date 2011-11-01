@@ -34,6 +34,7 @@ The jQuery Stepy is licensed under [The MIT License](http://www.opensource.org/l
     next:           undefined          // Callback before the forward action.
     titleClick:     true               // Active the back and next action in the titles.
     titleTarget:    undefined          // Choose the place where titles will be placed.
+    select:         undefined          // Callback executed when the step is shown.
     validate:       false              // Active the jQuery Validation for each step.
 
 ## Usage with default values

@@ -269,16 +269,16 @@
 				$('#callback').stepy({<br/>
 				&nbsp;&nbsp;back: function(index) {<br/>
 				&nbsp;&nbsp;&nbsp;&nbsp;alert('Going to step ' + index + '...');<br/>
-				&nbsp;&nbsp;},<br/>
-				&nbsp;&nbsp;next: function(index) {<br/>
+				&nbsp;&nbsp;}, next: function(index) {<br/>
 				&nbsp;&nbsp;&nbsp;&nbsp;if (!isValid()) {<br/>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert('Invalid value!');<br/>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert('Invalid random value!');<br/>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return false;<br/>
 				&nbsp;&nbsp;&nbsp;&nbsp;}<br/><br/>
 	
 				&nbsp;&nbsp;&nbsp;&nbsp;alert('Going to step ' + index + '...');<br/>
-				&nbsp;&nbsp;},<br/>
-				&nbsp;&nbsp;finish: function(index) {<br/>
+				&nbsp;&nbsp;}, select: function(index) {<br/>
+				&nbsp;&nbsp;&nbsp;&nbsp;alert('Current step ' + index + '.');<br/>
+				&nbsp;&nbsp;}, finish: function(index) {<br/>
 				&nbsp;&nbsp;&nbsp;&nbsp;alert('Finishing on step ' + index + '...');<br/>
 				&nbsp;&nbsp;},<br/>
 				&nbsp;&nbsp;titleClick: true<br/>
@@ -394,6 +394,9 @@
 				titleTarget:&nbsp;&nbsp;&nbsp;&nbsp;''<br/>
 				<div class="comment">Choose the place where titles will be placed.</div>
 
+				select:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;undefined<br/>
+				<div class="comment">Callback executed when the step is shown.</div>
+
 			 	validate:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false<br/>
 				<div class="comment">* Active the jQuery Validation for each step.</div>
 			</div>
@@ -456,11 +459,13 @@
 						var random = Math.floor(Math.random() * 11);
 
 						if (random < 5) {
-							alert('Invalid value!');
+							alert('Invalid random value!');
 							return false;
 						}
 
 						alert('Going to step ' + index + '...');
+					}, select: function(index) {
+						alert('Current step ' + index + '.');
 					}, finish: function(index) {
 						alert('Finishing on step ' + index + '...');
 					}, titleClick: true
