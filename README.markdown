@@ -10,7 +10,7 @@ The jQuery Stepy is licensed under [The MIT License](http://www.opensource.org/l
 
     @version		 1.0.0
 	@since			 2010.07.03
-	@author			 Washington Botelho dos Santos
+	@author			 Washington Botelho
 	@documentation	 wbotelhos.com/stepy
 	@twitter		 twitter.com/wbotelhos
 	@package		 jQuery Plugins
