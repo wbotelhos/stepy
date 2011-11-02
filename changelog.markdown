@@ -4,8 +4,9 @@
 
 + Now we using the best pratice to build the plugin;
 + Now the plugin is under test with Jasmine and Jasmine jQuery;
-+ Now public function is on context scope instead on $.fn;
-+ Added the 'select' callback to execute action when a step is displayed; (Daniel Hoelbling)
++ Now public functions is on context scope instead on $.fn;
++ Added support to validation to the function .stepy('step', number);
++ Added the 'select' callback to execute action when a step is displayed; (by Daniel Hoelbling)
 + Fixed the several invocation of select step on each validation;
 + Fixed validation to disabled fields do not validate;
 + Fixed validations when jQuery Validation returns undefined and blocks; (by Rafael Machado)
