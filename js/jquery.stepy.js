@@ -291,10 +291,6 @@
 						$title.removeClass('error-image');
 					}
 				} else {
-					if (opt.block) {
-						methods.selectStep.call($this, index, true);
-					}
-	
 					if (opt.errorImage) {
 						$title.addClass('error-image');
 					}

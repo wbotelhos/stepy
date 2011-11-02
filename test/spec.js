@@ -17,6 +17,7 @@ describe('Using one element', function() {
 				'</fieldset>' +
 				'<fieldset title="Step 3">' +
 					'<legend>description 3</legend>' +
+					'<label>Nick:</label> <input type="text" name="nick" />' +
 					'<label>Birthday:</label>' +
 					'<select name="day">' +
 						'<option></option>' +
@@ -111,7 +112,7 @@ describe('Using one element', function() {
 		$form.stepy();
 
 		// then
-		expect($form.children('fieldset').first().find('input:enabled:').first()).toBeFocused();
+		expect($form.children('fieldset').first().find(':input:enabled:visible:first')).toBeFocused();
 	});
 
 	it('should have the navigation buttons', function() {
@@ -134,14 +135,14 @@ describe('Using one element', function() {
 		$second	= $second.children('p.stepy-buttons');
 		$third	= $third.children('p.stepy-buttons');
 
-		expect($first).not.toContain('a.button-back');
-		expect($first).toContain('a.button-next');
+		expect($first).not.toContain('.button-back');
+		expect($first).toContain('.button-next');
 
-		expect($second).toContain('a.button-back');
-		expect($second).toContain('a.button-next');
+		expect($second).toContain('.button-back');
+		expect($second).toContain('.button-next');
 
-		expect($third).toContain('a.button-back');
-		expect($third).not.toContain('a.button-next');
+		expect($third).toContain('.button-back');
+		expect($third).not.toContain('.button-next');
 		expect($third).toContain('input.finish');
 	});
 
@@ -157,10 +158,10 @@ describe('Using one element', function() {
 		$form.stepy();
 
 		// then
-		var $firstNext	= $first.find('a.button-next'),
-			$secondBack	= $second.find('a.button-back'),
-			$secondNext	= $second.find('a.button-next'),
-			$thirdBack	= $third.find('a.button-back');
+		var $firstNext	= $first.find('.button-next'),
+			$secondBack	= $second.find('.button-back'),
+			$secondNext	= $second.find('.button-next'),
+			$thirdBack	= $third.find('.button-back');
 
 		expect($firstNext).toHaveHtml('Next &gt;');
 
@@ -207,7 +208,7 @@ describe('Using one element', function() {
 			$third	= $steps.eq(2);
 
 		// when
-		$steps.first().find('a.button-next').click();
+		$steps.first().find('.button-next').click();
 
 		// then
 		expect($first).toBeHidden();
@@ -224,8 +225,8 @@ describe('Using one element', function() {
 			$third	= $steps.eq(2);
 
 		// when
-		$steps.eq(0).find('a.button-next').click();
-		$steps.eq(1).find('a.button-next').click();
+		$steps.eq(0).find('.button-next').click();
+		$steps.eq(1).find('.button-next').click();
 
 		// then
 		expect($first).toBeHidden();
@@ -241,11 +242,11 @@ describe('Using one element', function() {
 			$second	= $steps.eq(1),
 			$third	= $steps.eq(2);
 
-		$steps.eq(0).find('a.button-next').click();
-		$steps.eq(1).find('a.button-next').click();
+		$steps.eq(0).find('.button-next').click();
+		$steps.eq(1).find('.button-next').click();
 
 		// when
-		$steps.eq(2).find('a.button-back').click();
+		$steps.eq(2).find('.button-back').click();
 
 		// then
 		expect($first).toBeHidden();
@@ -261,12 +262,12 @@ describe('Using one element', function() {
 			$second	= $steps.eq(1),
 			$third	= $steps.eq(2);
 
-		$steps.eq(0).find('a.button-next').click();
-		$steps.eq(1).find('a.button-next').click();
+		$steps.eq(0).find('.button-next').click();
+		$steps.eq(1).find('.button-next').click();
 
 		// when
-		$steps.eq(2).find('a.button-back').click();
-		$steps.eq(1).find('a.button-back').click();
+		$steps.eq(2).find('.button-back').click();
+		$steps.eq(1).find('.button-back').click();
 
 		// then
 		expect($first).not.toBeHidden();
@@ -282,10 +283,10 @@ describe('Using one element', function() {
 			$second	= $steps.eq(1),
 			$third	= $steps.eq(2);
 
-		$steps.eq(0).find('a.button-next').click();
+		$steps.eq(0).find('.button-next').click();
 
 		// when
-		$steps.eq(1).find('a.button-back').click();
+		$steps.eq(1).find('.button-back').click();
 
 		// then
 		expect($form).toHaveClass('my-class');
@@ -304,7 +305,7 @@ describe('Using one element', function() {
 			$third	= $steps.eq(2);
 
 		// when
-		$steps.eq(0).find('a.button-next').click();
+		$steps.eq(0).find('.button-next').click();
 
 		// then
 		expect($form).toHaveClass('my-class');
@@ -322,7 +323,7 @@ describe('Using one element', function() {
 			$second	= $steps.eq(1),
 			$third	= $steps.eq(2);
 
-		$steps.eq(1).find('a.button-next').click();
+		$steps.eq(1).find('.button-next').click();
 
 		$form.submit(function(evt) {
 			evt.preventDefault();
@@ -351,10 +352,10 @@ describe('Using one element', function() {
 		$form.stepy({ backLabel: '&lt;&lt;', nextLabel: '&gt;&gt;' });
 
 		// then
-		var $firstNext	= $first.find('a.button-next'),
-			$secondBack	= $second.find('a.button-back'),
-			$secondNext	= $second.find('a.button-next'),
-			$thirdBack	= $third.find('a.button-back');
+		var $firstNext	= $first.find('.button-next'),
+			$secondBack	= $second.find('.button-back'),
+			$secondNext	= $second.find('.button-next'),
+			$thirdBack	= $third.find('.button-back');
 
 		expect($firstNext).toHaveHtml('>>');
 
@@ -383,7 +384,7 @@ describe('Using one element', function() {
 		});
 
 		// when
-		$first.find('a.button-next').click();
+		$first.find('.button-next').click();
 
 		// then
 		expect($form.children('.stepy-error')).toContain('label.error');
@@ -411,7 +412,7 @@ describe('Using one element', function() {
 		});
 
 		// when
-		$first.find('a.button-next').click();
+		$first.find('.button-next').click();
 
 		// then
 		expect($form.children('.stepy-error')).toContain('label.error');
@@ -441,7 +442,7 @@ describe('Using one element', function() {
 		$form.find('input[name="password"]').val('password');
 
 		// when
-		$first.find('a.button-next').click();
+		$first.find('.button-next').click();
 
 		// then
 		expect($form.children('.stepy-error')).not.toContain('label.error');
@@ -469,7 +470,7 @@ describe('Using one element', function() {
 		});
 
 		// when
-		$first.find('a.button-next').click();
+		$first.find('.button-next').click();
 
 		// then
 		expect($('#stepy-titles').children('li').eq(0)).toHaveClass('error-image');
@@ -664,11 +665,11 @@ describe('Using one element', function() {
 		// given
 		var $form 	= $('#stepy').stepy(),
 			$steps	= $form.children(), 
-			$second	= $steps.eq(1);
+			$second	= $steps.eq(1),
 			$third	= $steps.eq(2);
 
 		// when
-		$second.find('a.button-next').click();
+		$second.find('.button-next').click();
 
 		// then
 		expect($third.find('input.finish')).not.toBeHidden();
@@ -678,8 +679,8 @@ describe('Using one element', function() {
 		// given
 		var $form 		= $('#stepy').stepy(),
 			$steps		= $form.children(), 
-			$first		= $steps.eq(0);
-			$second		= $steps.eq(1);
+			$first		= $steps.eq(0),
+			$second		= $steps.eq(1),
 			$third		= $steps.eq(2),
 			$password	= $form.find('input[name="password"]').val('password'),
 			evt			= jQuery.Event('keypress');
@@ -698,31 +699,213 @@ describe('Using one element', function() {
 
 	it('should submit on last step with enter', function() {
 		// given
-		var $form 		= $('#stepy').stepy({ finish: function() { this.addClass('my-class'); } }),
-			$steps		= $form.children(), 
-			$first		= $steps.eq(0);
-			$second		= $steps.eq(1);
-			$third		= $steps.eq(2),
-			$password	= $form.find('input[name="password"]').val('password'),
-			evt			= jQuery.Event('keypress');
+		var $form 	= $('#stepy').stepy({ finish: function() { this.addClass('my-class'); } }),
+			$steps	= $form.children(), 
+			$first	= $steps.eq(0);
+			$second	= $steps.eq(1);
+			$third	= $steps.eq(2),
+			$nick	= $form.find('input[name="nick"]'),
+			evt		= jQuery.Event('keypress');
 
-			evt.which = 13;
-			evt.keyCode = 13;
+		evt.which = 13;
+		evt.keyCode = 13;
 
-			$second.find('a.button-next').click();
+		$form.submit(function(evt) {
+			evt.preventDefault();
+		});
 
-			$form.submit(function(evt) {
-				evt.preventDefault();
-			});
+		$second.find('.button-next').click();
 
 		// when
-		$password.trigger(evt);
+		$nick.trigger(evt);
 
 		// then
-		expect($form).toHaveClass('my-class');
 		expect($first).toBeHidden();
 	    expect($second).toBeHidden();
 	    expect($third).not.toBeHidden();
+	    expect($form).toHaveClass('my-class');
+	});
+
+	it('should focus the first field on next step', function() {
+		// given
+		var $form	= $('#stepy').stepy(),
+			$steps	= $form.children(), 
+			$first	= $steps.eq(0),
+			$second	= $steps.eq(1);
+
+		// when
+		$first.find('.button-next').click();
+
+		// then
+		expect($second.find(':input:enabled:visible:first')).toBeFocused();
+	});
+
+	it('should focus the first field on back step', function() {
+		// given
+		var $form	= $('#stepy').stepy(),
+			$steps	= $form.children(), 
+			$first	= $steps.eq(0),
+			$second	= $steps.eq(1);
+
+		// when
+		$first.find('.button-next').click();
+		$second.find('.button-back').click();
+
+		// then
+		expect($first.find(':input:enabled:visible:first')).toBeFocused();
+	});
+
+	it('should focus on next step with enter', function() {
+		// given
+		var $form	= $('#stepy').stepy(),
+			$steps	= $form.children(), 
+			$second	= $steps.eq(1);
+			evt		= jQuery.Event('keypress');
+
+		evt.which = 13;
+		evt.keyCode = 13;
+
+		// when
+		$('input[name="email"]').trigger(evt);
+
+		// then
+		expect($second.find(':input:enabled:visible:first')).toBeFocused();
+	});
+
+	it('should return the correct index on next callback with enter', function() {
+		// given
+		var $email	= $('input[name="email"]'),
+			evt		= jQuery.Event('keypress');
+
+		evt.which = 13;
+		evt.keyCode = 13;
+
+		$('#stepy').stepy({ next: function(index) { $email.val(index); } });
+
+		// when
+		$email.trigger(evt);
+
+		// then
+		expect($email).toHaveValue(2);
+	});
+
+	it('should return the correct index on next callback', function() {
+		// given
+		var $email	= $('input[name="email"]'),
+			$form	= $('#stepy').stepy({ next: function(index) { $email.val(index); } }),
+			$steps	= $form.children(), 
+			$first	= $steps.eq(0);
+
+		// when
+		$first.find('.button-next').click();
+
+		// then
+		expect($email).toHaveValue(2);
+	});
+
+	it('should return the correct index on back callback', function() {
+		// given
+		var $email	= $('input[name="email"]'),
+			$form	= $('#stepy').stepy({ back: function(index) { $email.val(index); } }),
+			$steps	= $form.children(),
+			$second	= $steps.eq(1);
+
+		// when
+		$second.find('.button-back').click();
+
+		// then
+		expect($email).toHaveValue(1);
+	});
+
+	it('should return the correct index on next title callback', function() {
+		// given
+		var $email = $('input[name="email"]');
+
+		$('#stepy').stepy({ next: function(index) { $email.val(index); }, titleClick: true });
+
+		// when
+		$('#stepy-titles').children('li').eq(1).click();
+
+		// then
+		expect($email).toHaveValue(2);
+	});
+
+	it('should return the correct index on back title callback', function() {
+		// given
+		var $email	= $('input[name="email"]');
+
+		$('#stepy').stepy({ back: function(index) { $email.val(index); }, titleClick: true });
+
+		var $titles = $('#stepy-titles').children('li');
+		$titles.eq(1).click();
+
+		// when
+		$titles.eq(0).click();
+
+		// then
+		expect($email).toHaveValue(1);
+	});
+
+	it('should return the correct index on next-select title callback', function() {
+		// given
+		var $email = $('input[name="email"]');
+
+		$('#stepy').stepy({ select: function(index) { $email.val(index); }, titleClick: true });
+
+		var $titles = $('#stepy-titles').children('li');
+
+		// when
+		$titles.eq(1).click();
+
+		// then
+		expect($email).toHaveValue(2);
+	});
+
+	it('should return the correct index on back-select callback', function() {
+		// given
+		var $email = $('input[name="email"]');
+
+		$('#stepy').stepy({ select: function(index) { $email.val(index); }, titleClick: true });
+
+		var $titles = $('#stepy-titles').children('li');
+		$titles.eq(1).click();
+
+		// when
+		$titles.eq(0).click();
+
+		// then
+		expect($email).toHaveValue(1);
+	});
+
+	it('should return the correct index on next-select with invalid fields', function() {
+		// given
+		var $email	= $('input[name="email"]'),
+			$form	= $('#stepy').stepy({ block: true, select: function(index) { $email.val(index); }, validate: true }),
+			$steps	= $form.children(), 
+			$first	= $steps.eq(0);
+
+		$form.validate({ rules: { 'email': 'required' }, messages: { 'email': { required: '--' } } });
+
+		// when
+		$first.find('.button-next').click();
+
+		// then
+		expect($email).toHaveValue(1);
+	});
+
+	it('should return the correct index on far next-select title with invalid fields', function() {
+		// given
+		var $email	= $('input[name="email"]').val('1'),
+			$form	= $('#stepy').stepy({ block: true, select: function(index) { $email.val(index); }, validate: true }),
+			$titles = $('#stepy-titles').children('li');
+
+		$form.validate({ rules: { 'email': 'required' }, messages: { 'email': { required: '--' } } });
+
+		// when
+		$titles.eq(2).click();
+
+		// then
+		expect($email).toHaveValue(1);
 	});
 
 });
