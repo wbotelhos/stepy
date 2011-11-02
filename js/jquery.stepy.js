@@ -159,7 +159,7 @@
 			        		current	= parseInt(array[array.length - 1], 10),
 			        		clicked	= $(this).index();
 
-						if (clicked > current) {
+		        		if (clicked > current) {
 							if (opt.next && !methods.execute.call($this, opt.next, clicked)) {
 								return false;
 							}
@@ -229,33 +229,28 @@
         	var isValid = callback.call(this, clicked + 1);
 
         	return isValid || isValid === undefined;
-        }, getMaxStep: function(clicked) { // TODO: give support of validation from public function. .data().
-        	var max	= clicked,
-        		opt	= this.data('options');
+        }, selectStep: function(index) {
+			var $steps = this.children('fieldset');
+
+			if (index > $steps.length - 1) {
+				index = $steps.length - 1;
+			}
+
+			var opt = this.data('options');
+				max	= index;
 
 	    	if (opt.validate) {
 	    		var isValid = true;
 
-	        	for (var index = 0; index < clicked; index++) {
-					isValid &= methods.validate.call(this, index);
+	        	for (var i = 0; i < index; i++) {
+					isValid &= methods.validate.call(this, i);
 
 					if (opt.block && !isValid) {
-						max = index;
+						max = i;
 						break;
 					}
 				}
 	    	}
-
-	    	return max;
-	    }, selectStep: function(index) {
-			var $steps	= this.children('fieldset'),
-				max		= $steps.length - 1;
-
-			if (index > max) {
-				index = max;
-			}
-
-			max = methods.getMaxStep.call(this, index);
 
 			$steps.hide().eq(max).show();
 
@@ -263,10 +258,7 @@
 
 			$titles.removeClass('current-step').eq(max).addClass('current-step');
 
-	        var opt = this.data('options');
-
 	        if (max == index && this.is('form')) {
-	        	console.log($steps.eq(max));
 	        	$steps.eq(max).find(':input:enabled:visible:first').focus();
 	        }
 
