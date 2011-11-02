@@ -147,10 +147,6 @@
 		    				}
 		        		});
 
-//		        		if ($steps.length > 1) {
-//		        			$finish.hide();
-//		                }
-		
 		        		$finish.appendTo($this.find('p:last'));
 			        } else {
 			        	$.error(id + ': element with class name "finish" missing!');
@@ -161,15 +157,12 @@
 		        	$titles.click(function() {
 		        		var	array	= $titles.filter('.current-step').attr('id').split('-'), // TODO: try keep the number in an attribute.
 			        		current	= parseInt(array[array.length - 1], 10),
-			        		clicked	= $(this).index(),
-		        			maxStep	= clicked;
+			        		clicked	= $(this).index();
 
 						if (clicked > current) {
 							if (opt.next && !methods.execute.call($this, opt.next, clicked)) {
 								return false;
 							}
-
-							maxStep = methods.getMaxStep.call($this, clicked);
 						} else if (clicked < current) {
 							if (opt.back && !methods.execute.call($this, opt.back, clicked)) {
 								return false;
@@ -177,13 +170,7 @@
 						}
 
 						if (clicked != current) {
-							var isBlocked = (maxStep <= clicked); // TODO why <= se foi no que cliquei é porque não esta bloqueado, não indice zero??
-
-							methods.selectStep.call($this, maxStep, isBlocked);
-
-					        if (opt.finishButton && maxStep + 1 == $steps.length) {
-			                	$finish.show();
-			                }
+							methods.selectStep.call($this, clicked);
 						}
 		        	});
 		    	} else {
@@ -224,10 +211,6 @@
         	$('<a/>', { id: id + '-back-' + index, href: 'javascript:void(0);', 'class': 'button-back', html: opt.backLabel }).click(function() {
         		if (!opt.back || methods.execute.call($this, opt.back, index - 1)) {
         			methods.selectStep.call($this, index - 1);
-
-//	                if (index + 1 == $steps.length) {
-//	                	$finish.hide();
-//	                }
         		}
             })
             .appendTo($('#' + id + '-buttons-' + index));
@@ -238,14 +221,7 @@
 
         	$('<a/>', { id: id + '-next-' + index, href: 'javascript:void(0);', 'class': 'button-next', html: opt.nextLabel }).click(function() {
         		if (!opt.next || methods.execute.call($this, opt.next, index + 1)) {
-	        		var maxStep = methods.getMaxStep.call($this, index + 1);
-//	        		, isBlocked	= (maxStep <= index);
-
-					methods.selectStep.call($this, maxStep);
-
-//			        if (opt.finishButton && maxStep + 1 == $steps.length) {
-//	                	$finish.show();
-//	                }
+					methods.selectStep.call($this, index + 1);
         		}
             })
             .appendTo($('#' + id + '-buttons-' + index));
@@ -254,8 +230,8 @@
 
         	return isValid || isValid === undefined;
         }, getMaxStep: function(clicked) { // TODO: give support of validation from public function. .data().
-        	var maxStep	= clicked,
-        		opt		= this.data('options');
+        	var max	= clicked,
+        		opt	= this.data('options');
 
 	    	if (opt.validate) {
 	    		var isValid = true;
@@ -264,40 +240,39 @@
 					isValid &= methods.validate.call(this, index);
 
 					if (opt.block && !isValid) {
-						maxStep = index;
+						max = index;
 						break;
 					}
 				}
 	    	}
 
-	    	return maxStep;
+	    	return max;
 	    }, selectStep: function(index) {
 			var $steps	= this.children('fieldset'),
-				maxStep	= $steps.length - 1;
+				max		= $steps.length - 1;
 
-			if (index > maxStep) {
-				index = maxStep;
+			if (index > max) {
+				index = max;
 			}
 
-			$steps.hide().eq(index).show();
+			max = methods.getMaxStep.call(this, index);
+
+			$steps.hide().eq(max).show();
 
 			var $titles	= $('#' + this.attr('id') + '-titles').children();
 
-			$titles.removeClass('current-step').eq(index).addClass('current-step');
+			$titles.removeClass('current-step').eq(max).addClass('current-step');
 
 	        var opt = this.data('options');
 
-			if (opt.select) {
-				opt.select.call(this, index + 1);
-			}
-
-			if (this.is('form')) {
-	        	$steps.filter(':visible').eq(index).find(':input:visible:enabled:first').focus();
-
-//	        	if (!isBlocked) { // TODO: ver se precisa disso mesmo.
-//	        		firstField.focus();
-//	        	}
+	        if (max == index && this.is('form')) {
+	        	console.log($steps.eq(max));
+	        	$steps.eq(max).find(':input:enabled:visible:first').focus();
 	        }
+
+	        if (opt.select) {
+				opt.select.call(this, max + 1);
+			}
 		}, validate: function(index) {
 			if (!this.is('form')) {
 				return true;
@@ -335,6 +310,10 @@
 					$this.validate().focusInvalid();
 				}
 			});
+
+			if (!isValid) {
+				$step.find('.error').select().focus();	
+			}
 
 			return isValid;
 		}, step: function(index) {
