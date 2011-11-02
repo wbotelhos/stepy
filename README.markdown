@@ -57,8 +57,7 @@ The jQuery Stepy is licensed under [The MIT License](http://www.opensource.org/l
 
 ## Public functions
 
-    $('#stepy').stepy('step', 2);
-    Change the form to the second step.
+    $('#stepy').stepy('step', 2);  // Change the form to the second step.
 
 ## Contributors:
 
