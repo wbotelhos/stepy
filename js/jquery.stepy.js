@@ -258,8 +258,16 @@
 
 			$titles.removeClass('current-step').eq(max).addClass('current-step');
 
-	        if (max == index && this.is('form')) {
-	        	$steps.eq(max).find(':input:enabled:visible:first').focus();
+			if (this.is('form')) {
+				var $fields = undefined;
+
+		        if (max == index) {
+		        	$fields = $steps.eq(max).find(':input:enabled:visible');
+		        } else {
+		        	$fields = $steps.eq(max).find('.error').select().focus();
+		        }
+
+		        $fields.first().select().focus();
 	        }
 
 	        if (opt.select) {
@@ -300,10 +308,6 @@
 					$this.validate().focusInvalid();
 				}
 			});
-
-			if (!isValid) {
-				$step.find('.error').select().focus();	
-			}
 
 			return isValid;
 		}
