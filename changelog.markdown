@@ -5,10 +5,12 @@
 + Now we using the best pratice to build the plugin;
 + Now the plugin is under test with Jasmine and Jasmine jQuery;
 + Now public function is on context scope instead on $.fn;
++ Added the 'select' callback to execute action when a step is displayed; (Daniel Hoelbling)
 + Fixed the several invocation of select step on each validation;
 + Fixed validation to disabled fields do not validate;
-+ Fixed validations when jQuery Validation returns undefined and blocks.
- 
++ Fixed validations when jQuery Validation returns undefined and blocks; (by Rafael Machado)
++ Better look of documentations using markdown. (by Almir Mendes)
+
 ### 0.5.1
 
 + Fixed the focus of the first error field (reported by luckyong);
@@ -23,7 +25,7 @@
 + Fixed the possible bug when the ID has more than one word or has number;
 + Fixed the possible bug when the ID has more than one word or has number;
 + Fixed: avoided the validation of the lastest step when the validation is not enabled;
-+ Fixed: when there is only one step, the finish button does not appear (reported by DevPHP);
++ Fixed: when there is only one step, the finish button does not appear; (reported by DevPHP)
 + The 'onBack' attribute was named just to 'back';
 + The 'onNext' attribute was named just to 'next';
 + The 'finish' attribute was named to 'finishButton';
@@ -33,18 +35,18 @@
 
 ### 0.4.1
 
-+ Fixed: the validation highlighted only the first field (fixed by legigor).
++ Fixed: the validation highlighted only the first field. (fixed by legigor)
 
 ### 0.4.0
 
-+ Now the enter key goes to next step and just validate the currrent one (reported by hennaTheGreat);
-+ Public functions now supports actions by class (reported by hennaTheGreat);
++ Now the enter key goes to next step and just validate the currrent one; (reported by hennaTheGreat)
++ Public functions now supports actions by class; (reported by hennaTheGreat)
 + Public functions without specify ID or class is no longer supported;
 + Now when you to press the enter key into any text field, the form will go to next step;
 + Fixed: when the stepy has only one step the next button is not applied;
-+ Fixed the title click when the number is higher than 10 (reported by neha1312);
++ Fixed the title click when the number is higher than 10; (reported by neha1312)
 + Added ID to the set of titles to be possible to move the titles;
-+ Added class to buttons container to simplify styling (fixed by andreyfedoseev).
++ Added class to buttons container to simplify styling. (fixed by andreyfedoseev)
 
 ### 0.3.0
 
