@@ -170,7 +170,7 @@
 						}
 
 						if (clicked != current) {
-							methods.step.call($this, clicked);
+							methods.step.call($this, (clicked) + 1);
 						}
 		        	});
 		    	} else {
@@ -210,10 +210,9 @@
 
         	$('<a/>', { id: id + '-back-' + index, href: 'javascript:void(0);', 'class': 'button-back', html: opt.backLabel }).click(function() {
         		if (!opt.back || methods.execute.call($this, opt.back, index - 1)) {
-        			methods.step.call($this, index - 1);
+        			methods.step.call($this, (index - 1) + 1);
         		}
-            })
-            .appendTo($('#' + id + '-buttons-' + index));
+            }).appendTo($('#' + id + '-buttons-' + index));
         }, createNextButton: function(index) {
 			var $this	= this,
 				id		= this.attr('id'),
@@ -221,15 +220,16 @@
 
         	$('<a/>', { id: id + '-next-' + index, href: 'javascript:void(0);', 'class': 'button-next', html: opt.nextLabel }).click(function() {
         		if (!opt.next || methods.execute.call($this, opt.next, index + 1)) {
-					methods.step.call($this, index + 1);
+					methods.step.call($this, (index + 1) + 1);
         		}
-            })
-            .appendTo($('#' + id + '-buttons-' + index));
+            }).appendTo($('#' + id + '-buttons-' + index));
         }, execute: function(callback, index) {
         	var isValid = callback.call(this, index + 1);
 
         	return isValid || isValid === undefined;
         }, step: function(index) {
+        	index--;
+
 			var $steps = this.children('fieldset');
 
 			if (index > $steps.length - 1) {

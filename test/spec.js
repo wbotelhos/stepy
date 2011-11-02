@@ -908,4 +908,45 @@ describe('Using one element', function() {
 		expect($email).toHaveValue(1);
 	});
 
+	it('should be chainable the function step', function() {
+		// given
+		var $form		= $('#stepy').stepy(),
+			className	= 'my-class';
+
+		// when
+		$form.stepy('step', 2).addClass(className);
+
+		// then
+		expect($form).toHaveClass(className);
+	});
+
+	it('should be chainable the function step', function() {
+		// given
+		var $form		= $('#stepy').stepy(),
+			className	= 'my-class';
+
+		// when
+		$form.stepy('step', 2).addClass(className);
+
+		// then
+		expect($form).toHaveClass(className);
+	});
+
+	it('should go to step 2 using function step', function() {
+		// given
+		var $form	= $('#stepy').stepy(),
+			$steps	= $form.children(), 
+			$first	= $steps.eq(0),
+			$second	= $steps.eq(1),
+			$third	= $steps.eq(2);
+
+		// when
+		$form.stepy('step', 2);
+
+		// then
+	    expect($first).toBeHidden();
+	    expect($second).not.toBeHidden();
+	    expect($third).toBeHidden();
+	});
+
 });
