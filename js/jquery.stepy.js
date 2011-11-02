@@ -170,7 +170,7 @@
 						}
 
 						if (clicked != current) {
-							methods.selectStep.call($this, clicked);
+							methods.step.call($this, clicked);
 						}
 		        	});
 		    	} else {
@@ -210,7 +210,7 @@
 
         	$('<a/>', { id: id + '-back-' + index, href: 'javascript:void(0);', 'class': 'button-back', html: opt.backLabel }).click(function() {
         		if (!opt.back || methods.execute.call($this, opt.back, index - 1)) {
-        			methods.selectStep.call($this, index - 1);
+        			methods.step.call($this, index - 1);
         		}
             })
             .appendTo($('#' + id + '-buttons-' + index));
@@ -221,15 +221,15 @@
 
         	$('<a/>', { id: id + '-next-' + index, href: 'javascript:void(0);', 'class': 'button-next', html: opt.nextLabel }).click(function() {
         		if (!opt.next || methods.execute.call($this, opt.next, index + 1)) {
-					methods.selectStep.call($this, index + 1);
+					methods.step.call($this, index + 1);
         		}
             })
             .appendTo($('#' + id + '-buttons-' + index));
-        }, execute: function(callback, clicked) {
-        	var isValid = callback.call(this, clicked + 1);
+        }, execute: function(callback, index) {
+        	var isValid = callback.call(this, index + 1);
 
         	return isValid || isValid === undefined;
-        }, selectStep: function(index) {
+        }, step: function(index) {
 			var $steps = this.children('fieldset');
 
 			if (index > $steps.length - 1) {
@@ -265,6 +265,8 @@
 	        if (opt.select) {
 				opt.select.call(this, max + 1);
 			}
+
+	        return this;
 		}, validate: function(index) {
 			if (!this.is('form')) {
 				return true;
@@ -304,10 +306,6 @@
 			}
 
 			return isValid;
-		}, step: function(index) {
-			methods.selectStep.call(this, index - 1, false);
-
-			return this;
 		}
 	};
 
