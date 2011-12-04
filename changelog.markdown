@@ -1,5 +1,13 @@
 # jQuery Stepy - A Wizard Plugin - http://wbotelhos.com/stepy
 
+### 1.1.0
+
++ Added 'ignore' option to choose the fields to be ignored on validation:
+	- It must be blank '' to override jQuery Validation 1.9.0 default value and avoid error;
+	- I hope my fix be accepted, then this option may be used freely;
+	- But, you never can use ':hidden' as the do, because Wizards needs to validate hidden steps/fields. (; 
++ Fixed the index number given to Stepy binded by class without id.
+
 ### 1.0.0
 
 + Now we using the best pratice to build the plugin;
