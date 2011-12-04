@@ -42,8 +42,8 @@
 					$this	= $(this).data('options', opt),
 					id		= $this.attr('id');
 
-				if (id === undefined) {
-					id = 'stepy-' + $this.index();
+				if (id === undefined || id == '') {
+					id = 'stepy-' + $('.' + $this.attr('class')).index(this);
 					$this.attr('id', id); 
 				}
 
