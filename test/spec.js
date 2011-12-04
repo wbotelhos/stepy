@@ -6,9 +6,13 @@ describe('Using one element', function() {
 				'<fieldset title="Step 1">' +
 					'<legend>description 1</legend>' +
 					'<label>User:</label>' +
-					'<input type="hidden" />' +
+					'<input type="hidden" name="hidden" />' +
 					'<input type="text" value="wbotelhos" name="user" disabled="disabled" />' +
 					'<label>E-mail:</label> <input type="text" name="email" />' +
+					'<input type="checkbox" name="checked" /> Checked?' +
+					'<label>Newsletter?</label>' +
+					'<input type="radio" name="newsletter" /> Yep' +
+					'<input type="radio" name="newsletter" /> Nop' +
 					'<label>Password:</label> <input type="password" name="password" />' +
 				'</fieldset>' +
 				'<fieldset title="Step 2">' +
@@ -17,15 +21,12 @@ describe('Using one element', function() {
 				'</fieldset>' +
 				'<fieldset title="Step 3">' +
 					'<legend>description 3</legend>' +
-					'<label>Nick:</label> <input type="text" name="nick" />' +
 					'<label>Birthday:</label>' +
 					'<select name="day">' +
 						'<option></option>' +
 						'<option>23</option>' +
 					'</select>' +
-					'<label>Gender:</label>' +
-					'<input id="male" type="radio" name="gender" /> Male' +
-					'<input id="female" type="radio" name="gender" /> Female' +
+					'<label>Site:</label><input type="text" name="site" size="40" />' +
 				'</fieldset>' +
 				'<input type="submit" class="finish" value="Finish!" />' +
 			'</form>'
@@ -39,7 +40,7 @@ describe('Using one element', function() {
 		$body.children('ul').remove();
 	});
 
-	it('should chainable', function() {
+	it ('should chainable', function() {
 		// given
 		var $form		= $('#stepy'),
 			className	= 'my-class';
@@ -51,7 +52,7 @@ describe('Using one element', function() {
 	    expect($form).toHaveClass(className);
 	});
 	
-	it('should create the titles', function() {
+	it ('should create the titles', function() {
 		// given
 		$('#stepy').stepy();
 		
@@ -71,7 +72,7 @@ describe('Using one element', function() {
 		expect($third.children('span')).toHaveHtml('description 3');
 	});
 
-	it('should be at first title', function() {
+	it ('should be at first title', function() {
 		// given
 		$('#stepy').stepy();
 
@@ -87,7 +88,7 @@ describe('Using one element', function() {
 	    expect($third).not.toHaveClass('current-step');
 	});
 
-	it('should be at first step', function() {
+	it ('should be at first step', function() {
 		// given
 		var $form	= $('#stepy'),
 			$steps	= $form.children(), 
@@ -104,7 +105,7 @@ describe('Using one element', function() {
 	    expect($third).toBeHidden();
 	});
 
-	it('should focus the first field', function() {
+	it ('should focus the first field', function() {
 		// given
 		var $form = $('#stepy');
 
@@ -115,7 +116,7 @@ describe('Using one element', function() {
 		expect($form.children('fieldset').first().find(':input:enabled:visible:first')).toBeFocused();
 	});
 
-	it('should have the navigation buttons', function() {
+	it ('should have the navigation buttons', function() {
 		// given
 		var $form	= $('#stepy'),
 			$steps	= $form.children(), 
@@ -146,7 +147,7 @@ describe('Using one element', function() {
 		expect($third).toContain('input.finish');
 	});
 
-	it('should have default label on navigation buttons', function() {
+	it ('should have default label on navigation buttons', function() {
 		// given
 		var $form	= $('#stepy'),
 			$steps	= $form.children(), 
@@ -171,7 +172,7 @@ describe('Using one element', function() {
 		expect($thirdBack).toHaveHtml('&lt; Back');
 	});
 
-	it('should not include the finish button', function() {
+	it ('should not include the finish button', function() {
 		// given
 		var $form = $('#stepy');
 
@@ -182,7 +183,7 @@ describe('Using one element', function() {
 		expect($form.children().eq(2)).not.toContain('input.finish');
 	});
 
-	it('should have titleClick disabled', function() {
+	it ('should have titleClick disabled', function() {
 		// given
 		var $form	= $('#stepy').stepy(),
 			$steps	= $form.children(), 
@@ -199,7 +200,7 @@ describe('Using one element', function() {
 	    expect($third).toBeHidden();
 	});
 
-	it('should forward to second step', function() {
+	it ('should forward to second step', function() {
 		// given
 		var $form	= $('#stepy').stepy(),
 			$steps	= $form.children(), 
@@ -216,7 +217,7 @@ describe('Using one element', function() {
 	    expect($third).toBeHidden();
 	});
 
-	it('should forward to third step', function() {
+	it ('should forward to third step', function() {
 		// given
 		var $form	= $('#stepy').stepy(),
 			$steps	= $form.children(), 
@@ -234,7 +235,7 @@ describe('Using one element', function() {
 	    expect($third).not.toBeHidden();
 	});
 
-	it('should backward to second step', function() {
+	it ('should backward to second step', function() {
 		// given
 		var $form	= $('#stepy').stepy(),
 			$steps	= $form.children(), 
@@ -254,7 +255,7 @@ describe('Using one element', function() {
 	    expect($third).toBeHidden();
 	});
 
-	it('should backward to first step', function() {
+	it ('should backward to first step', function() {
 		// given
 		var $form	= $('#stepy').stepy(),
 			$steps	= $form.children(), 
@@ -275,7 +276,7 @@ describe('Using one element', function() {
 	    expect($third).toBeHidden();
 	});
 
-	it('should call back callback', function() {
+	it ('should call back callback', function() {
 		// given
 		var $form	= $('#stepy').stepy({ back: function() { this.addClass('my-class'); } }),
 			$steps	= $form.children(), 
@@ -296,7 +297,7 @@ describe('Using one element', function() {
 	    expect($third).toBeHidden();
 	});
 
-	it('should call next callback', function() {
+	it ('should call next callback', function() {
 		// given
 		var $form	= $('#stepy').stepy({ next: function() { this.addClass('my-class'); } }),
 			$steps	= $form.children(), 
@@ -315,7 +316,7 @@ describe('Using one element', function() {
 	    expect($third).toBeHidden();
 	});
 
-	it('should call finish callback', function() {
+	it ('should call finish callback', function() {
 		// given
 		var $form	= $('#stepy').stepy({ finish: function() { this.addClass('my-class'); } }),
 			$steps	= $form.children(), 
@@ -325,7 +326,7 @@ describe('Using one element', function() {
 
 		$steps.eq(1).find('.button-next').click();
 
-		$form.submit(function(evt) {
+		$form.submit (function(evt) {
 			evt.preventDefault();
 		});
 
@@ -340,7 +341,7 @@ describe('Using one element', function() {
 	    expect($third).not.toBeHidden();
 	});
 
-	it('should have custom label on navigation buttons', function() {
+	it ('should have custom label on navigation buttons', function() {
 		// given
 		var $form	= $('#stepy'),
 			$steps	= $form.children(), 
@@ -365,7 +366,7 @@ describe('Using one element', function() {
 		expect($thirdBack).toHaveHtml('&lt;&lt;');
 	});
 
-	it('should display error when exists invalid fields', function() {
+	it ('should display error when exists invalid fields', function() {
 		// given
 		var $form	= $('#stepy').stepy({ validate: true }),
 			$steps	= $form.children(), 
@@ -393,7 +394,7 @@ describe('Using one element', function() {
 		expect($third).toBeHidden();
 	});
 
-	it('should block step when exists invalid fields', function() {
+	it ('should block step when exists invalid fields', function() {
 		// given
 		var $form	= $('#stepy').stepy({ block: true, validate: true }),
 			$steps	= $form.children(), 
@@ -421,7 +422,7 @@ describe('Using one element', function() {
 		expect($third).toBeHidden();
 	});
 
-	it('should not block step when not exists invalid fields', function() {
+	it ('should not block step when not exists invalid fields', function() {
 		// given
 		var $form	= $('#stepy').stepy({ block: true, validate: true }),
 			$steps	= $form.children(), 
@@ -451,7 +452,7 @@ describe('Using one element', function() {
 		expect($third).toBeHidden();
 	});
 
-	it('should block step with custom icon error when exists invalid fields', function() {
+	it ('should block step with custom icon error when exists invalid fields', function() {
 		// given
 		var $form	= $('#stepy').stepy({ block: true, errorImage: true, validate: true }),
 			$steps	= $form.children(), 
@@ -480,7 +481,7 @@ describe('Using one element', function() {
 		expect($third).toBeHidden();
 	});
 
-	it('should not display description', function() {
+	it ('should not display description', function() {
 		// given
 		var $form = $('#stepy');
 
@@ -498,7 +499,7 @@ describe('Using one element', function() {
 		expect($third).not.toContain('span');
 	});
 
-	it('should not display legend', function() {
+	it ('should not display legend', function() {
 		// given
 		var $form	= $('#stepy'),
 			$steps	= $form.children(), 
@@ -515,7 +516,7 @@ describe('Using one element', function() {
 		expect($third.children('legend')).toBeHidden();
 	});
 
-	it('should have titleClick enabled', function() {
+	it ('should have titleClick enabled', function() {
 		// given
 		var $form	= $('#stepy').stepy({ titleClick: true }),
 			$steps	= $form.children(), 
@@ -532,7 +533,7 @@ describe('Using one element', function() {
 	    expect($third).not.toBeHidden();
 	});
 
-	it('should block step when exists invalid fields using titleClick', function() {
+	it ('should block step when exists invalid fields using titleClick', function() {
 		// given
 		var $form	= $('#stepy').stepy({ block: true, titleClick: true, validate: true }),
 			$steps	= $form.children(), 
@@ -560,7 +561,7 @@ describe('Using one element', function() {
 		expect($third).toBeHidden();
 	});
 
-	it('should block step with errorImage when exists invalid fields using titleClick', function() {
+	it ('should block step with errorImage when exists invalid fields using titleClick', function() {
 		// given
 		var $form	= $('#stepy').stepy({ block: true, errorImage: true, titleClick: true, validate: true }),
 			$steps	= $form.children(), 
@@ -590,7 +591,7 @@ describe('Using one element', function() {
 		expect($third).toBeHidden();
 	});
 
-	it('should move titles to target', function() {
+	it ('should move titles to target', function() {
 		// given
 		var $target = $('<div id="target"></div>').appendTo('body');
 
@@ -610,7 +611,7 @@ describe('Using one element', function() {
 		$target.remove();
 	});
 
-	it('should have titleClick enabled', function() {
+	it ('should have titleClick enabled', function() {
 		// given
 		var $form	= $('#stepy').stepy({ titleClick: true }),
 			$steps	= $form.children(), 
@@ -627,7 +628,7 @@ describe('Using one element', function() {
 	    expect($third).not.toBeHidden();
 	});
 	
-	it('should move titles to target and works titleClick', function() {
+	it ('should move titles to target and works titleClick', function() {
 		// given
 		var $target = $('<div id="target"></div>').appendTo('body');
 
@@ -648,7 +649,7 @@ describe('Using one element', function() {
 		$target.remove();
 	});
 
-	it('should be hidden the finish button', function() {
+	it ('should be hidden the finish button', function() {
 		// given
 		var $form	= $('#stepy'),
 			$steps	= $form.children(), 
@@ -661,7 +662,7 @@ describe('Using one element', function() {
 		expect($third.find('input.finish')).toBeHidden();
 	});
 
-	it('should be visible the finish button', function() {
+	it ('should be visible the finish button', function() {
 		// given
 		var $form 	= $('#stepy').stepy(),
 			$steps	= $form.children(), 
@@ -675,7 +676,7 @@ describe('Using one element', function() {
 		expect($third.find('input.finish')).not.toBeHidden();
 	});
 
-	it('should forward step with enter', function() {
+	it ('should forward step with enter', function() {
 		// given
 		var $form 		= $('#stepy').stepy(),
 			$steps		= $form.children(), 
@@ -697,27 +698,27 @@ describe('Using one element', function() {
 	    expect($third).toBeHidden();
 	});
 
-	it('should submit on last step with enter', function() {
+	it ('should submit on last step with enter', function() {
 		// given
 		var $form 	= $('#stepy').stepy({ finish: function() { this.addClass('my-class'); } }),
 			$steps	= $form.children(), 
 			$first	= $steps.eq(0);
 			$second	= $steps.eq(1);
 			$third	= $steps.eq(2),
-			$nick	= $form.find('input[name="nick"]'),
+			$site	= $form.find('input[name="site"]'),
 			evt		= jQuery.Event('keypress');
 
 		evt.which = 13;
 		evt.keyCode = 13;
 
-		$form.submit(function(evt) {
+		$form.submit (function(evt) {
 			evt.preventDefault();
 		});
 
 		$second.find('.button-next').click();
 
 		// when
-		$nick.trigger(evt);
+		$site.trigger(evt);
 
 		// then
 		expect($first).toBeHidden();
@@ -726,7 +727,7 @@ describe('Using one element', function() {
 	    expect($form).toHaveClass('my-class');
 	});
 
-	it('should focus the first field on next step', function() {
+	it ('should focus the first field on next step', function() {
 		// given
 		var $form	= $('#stepy').stepy(),
 			$steps	= $form.children(), 
@@ -740,7 +741,7 @@ describe('Using one element', function() {
 		expect($second.find(':input:enabled:visible:first')).toBeFocused();
 	});
 
-	it('should focus the first field on back step', function() {
+	it ('should focus the first field on back step', function() {
 		// given
 		var $form	= $('#stepy').stepy(),
 			$steps	= $form.children(), 
@@ -755,7 +756,7 @@ describe('Using one element', function() {
 		expect($first.find(':input:enabled:visible:first')).toBeFocused();
 	});
 
-	it('should focus on next step with enter', function() {
+	it ('should focus on next step with enter', function() {
 		// given
 		var $form	= $('#stepy').stepy(),
 			$steps	= $form.children(), 
@@ -772,7 +773,7 @@ describe('Using one element', function() {
 		expect($second.find(':input:enabled:visible:first')).toBeFocused();
 	});
 
-	it('should return the correct index on next callback with enter', function() {
+	it ('should return the correct index on next callback with enter', function() {
 		// given
 		var $email	= $('input[name="email"]'),
 			evt		= jQuery.Event('keypress');
@@ -789,7 +790,7 @@ describe('Using one element', function() {
 		expect($email).toHaveValue(2);
 	});
 
-	it('should return the correct index on next callback', function() {
+	it ('should return the correct index on next callback', function() {
 		// given
 		var $email	= $('input[name="email"]'),
 			$form	= $('#stepy').stepy({ next: function(index) { $email.val(index); } }),
@@ -803,7 +804,7 @@ describe('Using one element', function() {
 		expect($email).toHaveValue(2);
 	});
 
-	it('should return the correct index on back callback', function() {
+	it ('should return the correct index on back callback', function() {
 		// given
 		var $email	= $('input[name="email"]'),
 			$form	= $('#stepy').stepy({ back: function(index) { $email.val(index); } }),
@@ -817,7 +818,7 @@ describe('Using one element', function() {
 		expect($email).toHaveValue(1);
 	});
 
-	it('should return the correct index on next title callback', function() {
+	it ('should return the correct index on next title callback', function() {
 		// given
 		var $email = $('input[name="email"]');
 
@@ -830,7 +831,7 @@ describe('Using one element', function() {
 		expect($email).toHaveValue(2);
 	});
 
-	it('should return the correct index on back title callback', function() {
+	it ('should return the correct index on back title callback', function() {
 		// given
 		var $email	= $('input[name="email"]');
 
@@ -846,7 +847,7 @@ describe('Using one element', function() {
 		expect($email).toHaveValue(1);
 	});
 
-	it('should return the correct index on next-select title callback', function() {
+	it ('should return the correct index on next-select title callback', function() {
 		// given
 		var $email = $('input[name="email"]');
 
@@ -861,7 +862,7 @@ describe('Using one element', function() {
 		expect($email).toHaveValue(2);
 	});
 
-	it('should return the correct index on back-select callback', function() {
+	it ('should return the correct index on back-select callback', function() {
 		// given
 		var $email = $('input[name="email"]');
 
@@ -877,7 +878,7 @@ describe('Using one element', function() {
 		expect($email).toHaveValue(1);
 	});
 
-	it('should return the correct index on next-select with invalid fields', function() {
+	it ('should return the correct index on next-select with invalid fields', function() {
 		// given
 		var $email	= $('input[name="email"]'),
 			$form	= $('#stepy').stepy({ block: true, select: function(index) { $email.val(index); }, validate: true }),
@@ -893,7 +894,7 @@ describe('Using one element', function() {
 		expect($email).toHaveValue(1);
 	});
 
-	it('should return the correct index on far next-select title with invalid fields', function() {
+	it ('should return the correct index on far next-select title with invalid fields', function() {
 		// given
 		var $email	= $('input[name="email"]').val('1'),
 			$form	= $('#stepy').stepy({ block: true, select: function(index) { $email.val(index); }, validate: true }),
@@ -908,7 +909,7 @@ describe('Using one element', function() {
 		expect($email).toHaveValue(1);
 	});
 
-	it('should be chainable the function step', function() {
+	it ('should be chainable the function step', function() {
 		// given
 		var $form		= $('#stepy').stepy(),
 			className	= 'my-class';
@@ -920,7 +921,7 @@ describe('Using one element', function() {
 		expect($form).toHaveClass(className);
 	});
 
-	it('should be chainable the function step', function() {
+	it ('should be chainable the function step', function() {
 		// given
 		var $form		= $('#stepy').stepy(),
 			className	= 'my-class';
@@ -932,7 +933,7 @@ describe('Using one element', function() {
 		expect($form).toHaveClass(className);
 	});
 
-	it('should go to step 2 using function step', function() {
+	it ('should go to step 2 using function step', function() {
 		// given
 		var $form	= $('#stepy').stepy(),
 			$steps	= $form.children(), 
@@ -947,6 +948,40 @@ describe('Using one element', function() {
 	    expect($first).toBeHidden();
 	    expect($second).not.toBeHidden();
 	    expect($third).toBeHidden();
+	});
+
+	it ('should valid checkable field even when it is hidden (ignore overrided)', function() {
+		// given
+		var $form	= $('#stepy').stepy({ block: true, validate: true }),
+			$steps	= $form.children(), 
+			$first	= $steps.eq(0),
+			$second	= $steps.eq(1),
+			$third	= $steps.eq(2);
+
+		$form.validate({
+			errorPlacement: function(error, element) {
+				$('#stepy div.stepy-error').append(error);
+			}, rules: {
+				'checked':	'required'
+			}, messages: {
+				'checked':	{ required: 'Checked field is requerid!' }
+			}
+		});
+
+		var $checked = $('input[name="checked"]');
+
+		// when
+		$checked.click();
+		$first.find('.button-next').click();
+
+		$checked.click();
+		$second.find('.button-next').click();
+
+		// then
+		expect($form.children('.stepy-error')).toContain('label.error');
+		expect($first).not.toBeHidden();
+		expect($second).toBeHidden();
+		expect($third).toBeHidden();
 	});
 
 });

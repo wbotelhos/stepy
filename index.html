@@ -15,7 +15,7 @@
 		<!-- Optionaly -->
 		<script type="text/javascript" src="js/jquery.validate.min.js"></script>
 
-		<script type="text/javascript" src="js/jquery.stepy.min.js"></script>
+		<script type="text/javascript" src="js/jquery.stepy.js"></script>
 
 		<style type="text/css">
 			/* This CSS does not belong to the plugin. */
@@ -64,16 +64,16 @@
 			
 			span#version { color: #777; font: 10px verdana; }
 
-			/* Example of dynamic class name */
-			p.default-buttons { margin-top: 30px; }
-
-			/* Custom CSS for #target example */
+			/* Custom */
 			form#target fieldset img { margin-top: 10px; }
 
 			div#title-target { height: 25px;  margin-left: 215px; margin-top: 2px; }
 			div#title-target ul.stepy-titles li { font-size: 12px; padding: 4px; }
 			div#title-target ul.stepy-titles li:hover { color: #BBB; }
 			div#title-target ul.stepy-titles li.current-step { color: #369; }
+
+			/* Example of dynamic class name */
+			p.default-buttons { margin-top: 30px; }
 		</style>
 
 		<script type="text/javascript">
@@ -93,11 +93,11 @@
 		<div id="header">
 			<div id="title">
 				<a href="http://wbotelhos.com/stepy">jQuery Stepy - A Wizard Plugin</a>
-				<span>(current version: 1.0.0)</span>
+				<span>(current version: 1.1.0)</span>
 			</div>
 
 			<div id="menu">
-				<a href="http://github.com/downloads/wbotelhos/stepy/jquery.stepy-1.0.0.zip" target="_blank">Download</a> |
+				<a href="http://github.com/downloads/wbotelhos/stepy/jquery.stepy-1.1.0.zip" target="_blank">Download</a> |
 				<a href="http://github.com/wbotelhos/stepy" target="_blank">Github</a> |
 				<a href="http://wbotelhos.com/stepy/changelog.markdown" target="_blank">Change Log</a> |
 				<a href="http://wbotelhos.com/stepy/README.markdown" target="_blank">Readme</a> |
@@ -145,13 +145,18 @@
 
 					<label>User:</label>
 					<!-- Hidden fields are not focused.  -->
-					<input type="hidden" />
+					<input type="hidden" name="hidden" />
 
 					<!-- Disabled fields are not validated.  -->
 					<input type="text" value="wbotelhos" size="40" name="user" disabled="disabled" />
 
 					<label>E-mail:</label>
 					<input type="text" size="40" name="email" />
+					<input type="checkbox" name="checked" /> Checked?
+
+					<label>Newsletter?</label>
+					<input type="radio" name="newsletter" /> Yep
+					<input type="radio" name="newsletter" /> Nop
 
 					<label>Password:</label>
 					<input type="password" name="password" size="40" />
@@ -183,10 +188,6 @@
 					<select>
 						<option>1984</option>
 					</select>
-
-					<label>Gender:</label>
-					<input id="male" type="radio" name="gender" /> Male
-					<input id="female" type="radio" name="gender" /> Female
 
 					<label>Site:</label>
 					<input type="text" name="site" size="40" />
@@ -392,11 +393,14 @@
 				finishButton:&nbsp;&nbsp;&nbsp;true<br/>
 				<div class="comment">Include the element with class name '.finish' into the last step.</div>
 
-				nextLabel:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Next &gt;'
-				<div class="comment">Change the next button label.</div>
+				ignore:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;''<br/>
+				<div class="comment">Choose the fields to be ignored on validation.</div>
 
 				legend:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false<br/>
 				<div class="comment">Choose if the legends of the steps will be showed.</div>
+
+				nextLabel:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Next &gt;'
+				<div class="comment">Change the next button label.</div>
 
 				next:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;undefined<br/>
 				<div class="comment">Callback before the forward action.</div>
@@ -449,19 +453,21 @@
 					errorPlacement: function(error, element) {
 						$('#custom div.stepy-error').append(error);
 					}, rules: {
-						'user':		{ maxlength: 1 },
-						'email':	'email',
-						'bio':		'required',
-						'password':	'required',
-						'day':		'required',
-						'gender':	'required'
+						'user':			{ maxlength: 1 },
+						'email':		'email',
+						'checked':		'required',
+						'newsletter':	'required',
+						'password':		'required',
+						'bio':			'required',
+						'day':			'required'
 					}, messages: {
-						'user':		{ maxlength: 'User field should be less than 1!' },
-						'email':	{ email: 'Invalid e-mail!' },
-						'bio':		{ required: 'Bio field is required!' },
-						'password':	{ required: 'Password field is requerid!' },
-						'day':		{ required: 'Day field is requerid!' },
-						'gender':	{ required: 'Gender field is requerid!' }
+						'user':			{ maxlength: 'User field should be less than 1!' },
+						'email':		{ email: 	 'Invalid e-mail!' },
+						'checked':		{ required:  'Checked field is required!' },
+						'newsletter':	{ required:  'Newsletter field is required!' },
+						'password':		{ required:  'Password field is requerid!' },
+						'bio':			{ required:  'Bio field is required!' },
+						'day':			{ required:  'Day field is requerid!' },
 					}
 				});
 

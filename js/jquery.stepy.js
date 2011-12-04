@@ -1,24 +1,22 @@
 /*!
  * jQuery Stepy - A Wizard Plugin - http://wbotelhos.com/stepy
- * ---------------------------------------------------------------------------------
+ * ------------------------------------------------------------------------------------
  *
  * jQuery Stepy is a plugin based on FormToWizard that generates a customizable wizard.
  * 
  * Licensed under The MIT License
  * 
- * @version			1.0.0
- * @since			2010.07.03
- * @author			Washington Botelho
- * @documentation	wbotelhos.com/stepy
- * @twitter			twitter.com/wbotelhos
- * @license			opensource.org/licenses/mit-license.php
- * @package			jQuery Plugins
+ * @version        1.0.0
+ * @since          2010.07.03
+ * @author         Washington Botelho
+ * @documentation  wbotelhos.com/stepy
+ * @twitter        twitter.com/wbotelhos
  * 
  * Usage with default values:
- * ---------------------------------------------------------------------------------
- * $('#stepy').stepy();
+ * ------------------------------------------------------------------------------------
+ * $('#step').stepy();
  *
- *	<form id="stepy">
+ *	<form id="step">
  *		<fieldset title="Step 1">
  *			<legend>description one</legend>
  *			<!-- input fields -->
@@ -58,6 +56,8 @@
 				}
 
 		        if (opt.validate) {
+		        	jQuery.validator.setDefaults({ ignore: opt.ignore });
+
 		        	$this.append('<div class="stepy-error"/>');
 		        }
 
@@ -280,15 +280,14 @@
 				return true;
 			}
 
-			var $step	= this.children('fieldset').eq(index),
-				isValid	= true,
-				$title	= $('#' + this.attr('id') + '-titles').children().eq(index),
-				opt		= this.data('options'),
-				$this	= this;
+			var $step		= this.children('fieldset').eq(index),
+				isValid		= true,
+				$title		= $('#' + this.attr('id') + '-titles').children().eq(index),
+				opt			= this.data('options'),
+				$validate	= this.validate();
 
 			$($step.find(':input:enabled').get().reverse()).each(function() {
-
-				var fieldIsValid = $this.validate().element($(this));
+				var fieldIsValid = $validate.element($(this));
 
 				if (fieldIsValid === undefined) {
 					fieldIsValid = true;
@@ -305,7 +304,7 @@
 						$title.addClass('error-image');
 					}
 
-					$this.validate().focusInvalid();
+					$validate.focusInvalid();
 				}
 			});
 
@@ -332,6 +331,7 @@
 		finish:			undefined,
 		finishButton:	true,
 		legend:			true,
+		ignore:			'',
 		next:			undefined,
 		nextLabel:		'Next &gt;',
 		titleClick:		false,

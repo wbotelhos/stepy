@@ -8,12 +8,12 @@ The jQuery Stepy is licensed under [The MIT License](http://www.opensource.org/l
 
 ## Version
 
-    @version		 1.0.0
-	@since			 2010.07.03
-	@author			 Washington Botelho
-	@documentation	 wbotelhos.com/stepy
-	@twitter		 twitter.com/wbotelhos
-	@package		 jQuery Plugins
+	@version        1.1.0
+	@since          2010.07.03
+	@author         Washington Botelho
+	@documentation  wbotelhos.com/stepy
+	@twitter        twitter.com/wbotelhos
+	@package        jQuery Plugins
 
 ## Required Files
 
@@ -29,6 +29,7 @@ The jQuery Stepy is licensed under [The MIT License](http://www.opensource.org/l
     errorImage:     false              // If an error occurs, a image is showed in the title of the corresponding step.
     finish:         undefined          // Callback before the finish action.
     finishButton:   true               // Include the button with class called '.finish' into the last step.
+    ignore:         ''                 // Choose the fields to be ignored on validation.
     legend:         false              // Choose if the legends of the steps will be showed.
     nextLabel:      'Next >'           // Change the next button label.
     next:           undefined          // Callback before the forward action.
@@ -39,9 +40,9 @@ The jQuery Stepy is licensed under [The MIT License](http://www.opensource.org/l
 
 ## Usage with default values
 
-    $('#stepy').stepy();
+    $('#step').stepy();
 
-	<form id="stepy">
+	<form id="step">
 		<fieldset title="Step 1">
 			<legend>description one</legend>
 			<!-- input fields -->
@@ -57,7 +58,7 @@ The jQuery Stepy is licensed under [The MIT License](http://www.opensource.org/l
 
 ## Public functions
 
-    $('#stepy').stepy('step', 2);  // Change the form to the second step.
+    $('#step').stepy('step', 2);  // Change the form to the second step.
 
 ## Contributors:
 
