@@ -6,7 +6,7 @@
  * 
  * Licensed under The MIT License
  * 
- * @version        1.0.0
+ * @version        1.1.0
  * @since          2010.07.03
  * @author         Washington Botelho
  * @documentation  wbotelhos.com/stepy
