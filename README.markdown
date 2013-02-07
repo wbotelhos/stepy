@@ -32,6 +32,8 @@ jQuery Stepy is a plugin based on FormToWizard that generates a customizable wiz
     titleTarget:    undefined          // Choose the place where titles will be placed.
     select:         undefined          // Callback executed when the step is shown.
     validate:       false              // Active the jQuery Validation for each step.
+    transition:     'hide'             // Use transition between steps ('hide', 'fade' or 'slide').
+    duration:       0                  // Duration of the transition between steps in ms.
 
 ## Usage with default values
 
