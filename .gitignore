@@ -1,6 +1,2 @@
 *.zip
 .DS_Store
-.project
-.settings
-annotations.txt
-test/runner.htm

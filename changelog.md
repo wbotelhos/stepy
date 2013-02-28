@@ -5,7 +5,7 @@
 + Added 'ignore' option to choose the fields to be ignored on validation:
 	- It must be blank '' to override jQuery Validation 1.9.0 default value and avoid error;
 	- I hope my fix be accepted, then this option may be used freely;
-	- But, you never can use ':hidden' as the do, because Wizards needs to validate hidden steps/fields. (; 
+	- But, you never can use ':hidden' as the do, because Wizards needs to validate hidden steps/fields. (;
 + Fixed the index number given to Stepy binded by class without id.
 
 ### 1.0.0
@@ -24,7 +24,7 @@
 
 + Fixed the focus of the first error field (reported by luckyong);
 + Avoided highlight only the first field when has multiple invalids fields on the form.
- 
+
 ### 0.5.0
 
 + Added the 'titleTarget' attribute to choose the place where titles will be placed;
@@ -70,7 +70,7 @@
 + All the code was refactored and improved.
 
 ### 0.1
- 
+
 + Added a backLabel and nextLabel parameter to specify the labels of the corresponding buttons;
 + Added click on the title and description to go to the corresponding step;
 + Added a public function 'step' that is possible choose which step to go;
@@ -87,4 +87,4 @@
 + Changed the selectors for the same current element $(this);
 + Changed the extends to a defaults developers plugins;
 + Keys were placed on single line blocks to avoid error on IE;
-+ Changed the styles name with a hifen style; 
++ Changed the styles name with a hifen style;
