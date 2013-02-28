@@ -99,8 +99,14 @@ var Helper = {
         tag  = '<' + name + ' ' + data.attributes + '>' + data.html + '</' + name + '>';
 
     return Helper._repeat(tag.replace(' >', '>'), data);
+  }, fieldset: function(options) {
+    return Helper.double(options, 'fieldset');
   }, form: function(options) {
     return Helper.double(options, 'form');
+  }, hidden: function(options) {
+    Helper._verify(options);
+
+    return Helper.input(options, 'hidden');
   }, input: function(options, type) {
     options = options || {};
 
@@ -109,8 +115,16 @@ var Helper = {
     }
 
     return Helper.single(options, 'input');
+  }, label: function(options) {
+    return Helper.double(options, 'label');
+  }, legend: function(options) {
+    return Helper.double(options, 'legend');
   }, option: function(options) {
     return Helper.double(options, 'option');
+  }, password: function(options) {
+    Helper._verify(options);
+
+    return Helper.input(options, 'password');
   }, radio: function(options) {
     Helper._verify(options);
 
@@ -122,9 +136,15 @@ var Helper = {
         tag  = '<' + name + ' ' + data.attributes + ' />';
 
     return Helper._repeat(tag.replace('  />', ' />'), data);
+  }, submit: function(options) {
+    Helper._verify(options);
+
+    return Helper.input(options, 'submit');
   }, text: function(options) {
     Helper._verify(options);
 
     return Helper.input(options, 'text');
+  }, textarea: function(options) {
+    return Helper.double(options, 'textarea');
   }
 };
