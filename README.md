@@ -25,6 +25,7 @@ backLabel    : '< Back'   // Change the back button label.
 block        : false      // Block the next step if the current is invalid.
 description  : false      // Choose if the descriptions of the titles will be showed.
 duration     : 0          // Duration of the transition between steps in ms.
+enter        : true       // Enables the enter key to change to the next step.
 errorImage   : false      // If an error occurs, a image is showed in the title of the corresponding step.
 finish       : undefined  // Callback before the finish action.
 finishButton : true       // Include the button with class called '.finish' into the last step.

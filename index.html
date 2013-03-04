@@ -18,14 +18,14 @@
 		<!-- Optionaly -->
 		<script type="text/javascript" src="js/jquery.validate.min.js"></script>
 
-		<script type="text/javascript" src="js/jquery.stepy.min.js"></script>
+		<script type="text/javascript" src="js/jquery.stepy.js"></script>
 
 		<script type="text/javascript">
 			// This code does NOT belong the plugin. See the example code at the bottom of this page.
 			var _gaq = _gaq || [];
 			_gaq.push(['_setAccount', 'UA-194992347-4']);
 			_gaq.push(['_trackPageview']);
-			
+
 			(function() {
 				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
 				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
@@ -59,7 +59,7 @@
 
 		<div id="content">
 			<div id="checkbox-default-demo" class="session-first">With default options using checkbox:</div>
-	
+
 			<form id="default">
 				<fieldset title="Step 1">
 					<legend>description one</legend>
@@ -67,13 +67,13 @@
 					<label>E-mail:</label> <input type="text" size="40" />
 					<label>Password:</label> <input type="password" size="40" />
 				</fieldset>
-	
+
 				<fieldset title="Step 2">
 					<legend>description two</legend>
 					<label>Nick Name:</label> <input type="text"size="30" />
 					<label>Bio:</label> <textarea rows="5" cols="60"></textarea>
 				</fieldset>
-	
+
 				<input type="submit" class="finish" value="Finish!" />
 			</form>
 
@@ -81,7 +81,7 @@
 				$('#step').stepy();
 			</div>
 
-			<div id="custom-demo" class="session">A custom form in a validation style:</div>		
+			<div id="custom-demo" class="session">A custom form in a validation style:</div>
 
 			<form id="custom">
 				<fieldset title="Thread 1">
@@ -115,7 +115,7 @@
 					<label>Bio:</label>
 					<textarea name="bio" rows="5" cols="60"></textarea>
 				</fieldset>
-	
+
 				<fieldset title="Thread 3">
 					<legend>description three</legend>
 
@@ -136,7 +136,7 @@
 					<label>Site:</label>
 					<input type="text" name="site" size="40" />
 				</fieldset>
-	
+
 				<input type="submit" class="finish" value="Finish!" />
 			</form><br/>
 
@@ -155,33 +155,33 @@
 				 - When the attribute 'validate' is true, you must include the jquery.validate.js.
 			</span><br/>
 
-			<div id="step-demo" class="session">With just step without form:</div>		
+			<div id="step-demo" class="session">With just step without form:</div>
 
 			<div id="step">
 				<fieldset title="Image 1">
 					<legend>description one</legend><br/>
 					<center><img src="doc/img/image-1.png" alt="" /></center>
 				</fieldset>
-	
+
 				<fieldset title="Image 2">
 					<legend>description two</legend><br/>
 					<center><img src="doc/img/image-2.png" alt="" /></center>
 				</fieldset>
-	
+
 				<fieldset title="Image 3">
 					<legend>description three</legend><br/>
 					<center><img src="doc/img/image-3.png" alt="" /></center>
 				</fieldset>
 			</div>
-	
+
 			<div class="source">
 				$('div#step').stepy({<br/>
 				&nbsp;&nbsp;finishButton: false<br/>
 				});
 			</div>
 
-			<div id="callback-demo" class="session">With transitions callback:</div>		
-	
+			<div id="callback-demo" class="session">With transitions callback:</div>
+
 			<form id="callback">
 				<fieldset title="Step 1">
 					<legend>description one</legend>
@@ -200,7 +200,7 @@
 					<label>Password:</label>
 					<input type="password" size="40" />
 				</fieldset>
-	
+
 				<fieldset title="Step 3">
 					<legend>description three</legend>
 
@@ -222,7 +222,7 @@
 
 				<input type="submit" class="finish" value="Finish!" />
 			</form>
-	
+
 			<div class="source">
 				$('#step').stepy({<br/>
 				&nbsp;&nbsp;back: function(index) {<br/>
@@ -232,7 +232,7 @@
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert('Invalid random value!');<br/>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return false;<br/>
 				&nbsp;&nbsp;&nbsp;&nbsp;}<br/><br/>
-	
+
 				&nbsp;&nbsp;&nbsp;&nbsp;alert('Going to step ' + index + '...');<br/>
 				&nbsp;&nbsp;}, select: function(index) {<br/>
 				&nbsp;&nbsp;&nbsp;&nbsp;alert('Current step ' + index + '.');<br/>
@@ -242,7 +242,7 @@
 				&nbsp;&nbsp;titleClick: true<br/>
 				});
 			</div><br/>
-	
+
 			<span class="comment">
 				 - You can do validations during the callback;<br/>
 				 - Return "false" to prevent the transition;<br/>
@@ -250,7 +250,7 @@
 				 - If the Stepy is a form and the finish element is not a submit type, then .submit() will be invoked.
 			</span><br/>
 
-			<div id="target-demo" class="session">With target for the titles and custom legend and description:</div>		
+			<div id="target-demo" class="session">With target for the titles and custom legend and description:</div>
 
 			<form id="target">
 				<fieldset title="1">
@@ -283,7 +283,7 @@
 				&nbsp;&nbsp;titleTarget:&nbsp;&nbsp;'#title-target'<br/>
 				});<br/>
 			</div><br/>
-	
+
 			<span class="comment">
 				 - You can choose any specific target;<br/>
 				 - Even if the fieldset has legend, it will not appear if legend attribute is false;<br/>
@@ -299,22 +299,22 @@
 				&nbsp;&nbsp;&nbsp;&nbsp;&lt;legend&gt;description&lt;/legend&gt;<br/>
 				&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment-html">&lt;!-- input fields --&gt;</span><br/>
 				&nbsp;&nbsp;&lt;/fieldset&gt;<br/><br/>
-	
+
 				&nbsp;&nbsp;&lt;fieldset title="Title"&gt;<br/>
 				&nbsp;&nbsp;&nbsp;&nbsp;&lt;legend&gt;description&lt;/legend&gt;<br/>
 				&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment-html">&lt;!-- input fields --&gt;</span><br/>
 				&nbsp;&nbsp;&lt;/fieldset&gt;<br/><br/>
-	
+
 				&nbsp;&nbsp;&lt;input type="submit" class="finish"/&gt;<br/>
 				&lt;/form&gt;
 			</div>
-	
+
 			<span class="comment">
 				- The fieldset's title is the main title of the step and the legend is the description of it.
 			</span>
-	
+
 			<div class="session">Default options:</div>
-	
+
 			<div class="source">
 				back:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;undefined<br/>
 				<div class="comment">Callback before the backward action.</div>
@@ -327,6 +327,9 @@
 
 				description:&nbsp;&nbsp;&nbsp;&nbsp;false<br/>
 				<div class="comment">Choose if the descriptions of the titles will be showed.</div>
+
+				enter:&nbsp;&nbsp;&nbsp;&nbsp;true<br/>
+				<div class="comment">Enables the enter key to change to the next step.</div>
 
 				errorImage:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false<br/>
 				<div class="comment">* If an error occurs, a image is showed in the title of the corresponding step.</div>
@@ -361,11 +364,11 @@
 			 	validate:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false<br/>
 				<div class="comment">* Active the jQuery Validation for each step.</div>
 			</div>
-	
+
 			<div class="description-code">*  Depends of <a href="http://bassistance.de/jquery-plugins/jquery-plugin-validation/" target="_blank">jquery.validation.js</a>.</div>
 
 			<div class="session">Public functions:</div>
-	
+
 			<div class="source">$('#step').stepy('step', 2);</div>
 			<div class="description-code">Change the form to step 2.</div>
 		</div>

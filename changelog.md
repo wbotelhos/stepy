@@ -1,6 +1,12 @@
 # jQuery Stepy - A Wizard Plugin - http://wbotelhos.com/stepy
 
-### 1.1.0
+### Next Release
+
+## News
+
++ Option `enter` was extracted to choose if the enter key will trigger the step change.
+
+## 1.1.0
 
 + Added 'ignore' option to choose the fields to be ignored on validation:
 	- It must be blank '' to override jQuery Validation 1.9.0 default value and avoid error;
@@ -8,7 +14,7 @@
 	- But, you never can use ':hidden' as the do, because Wizards needs to validate hidden steps/fields. (;
 + Fixed the index number given to Stepy binded by class without id.
 
-### 1.0.0
+## 1.0.0
 
 + Now we using the best pratice to build the plugin;
 + Now the plugin is under test with Jasmine and Jasmine jQuery;
@@ -20,12 +26,12 @@
 + Fixed validations when jQuery Validation returns undefined and blocks; (by Rafael Machado)
 + Better look of documentations using markdown. (by Almir Mendes)
 
-### 0.5.1
+## 0.5.1
 
 + Fixed the focus of the first error field (reported by luckyong);
 + Avoided highlight only the first field when has multiple invalids fields on the form.
 
-### 0.5.0
+## 0.5.0
 
 + Added the 'titleTarget' attribute to choose the place where titles will be placed;
 + Added the 'legend' attribute to choose if the legends of the steps will be showed;
@@ -42,11 +48,11 @@
 + The finish button is now required for any kind of step if that option is enabled;
 + Keeped the options as data called 'options' in the wrapper element to future usages.
 
-### 0.4.1
+## 0.4.1
 
 + Fixed: the validation highlighted only the first field. (fixed by legigor)
 
-### 0.4.0
+## 0.4.0
 
 + Now the enter key goes to next step and just validate the currrent one; (reported by hennaTheGreat)
 + Public functions now supports actions by class; (reported by hennaTheGreat)
@@ -57,19 +63,19 @@
 + Added ID to the set of titles to be possible to move the titles;
 + Added class to buttons container to simplify styling. (fixed by andreyfedoseev)
 
-### 0.3.0
+## 0.3.0
 
 + Added the 'onBack' attribute that enables action before the backward transition;
 + Added the 'onNext' attribute that enables action before the forward transition;
 
-### 0.2.0
+## 0.2.0
 
 + Added the 'block' attribute that blocks the next step if the current is invalid;
 + Added the 'errorImage' attribute that show a imagem in the title of the corresponding step if an error occur;
 + Now you can pass a optionally ID to be the target of the public function's actions;
 + All the code was refactored and improved.
 
-### 0.1
+## 0.1
 
 + Added a backLabel and nextLabel parameter to specify the labels of the corresponding buttons;
 + Added click on the title and description to go to the corresponding step;
