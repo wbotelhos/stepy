@@ -92,8 +92,8 @@ describe('Stepy', function() {
 
       it ('has the click disabled', function() {
         // given
-        var form  = $('form').stepy(),
-            steps = form.children();
+        var self  = $('form').stepy(),
+            steps = self.children();
 
         // when
         $('#stepy-titles').children('li:eq(1)').click();
@@ -126,11 +126,11 @@ describe('Stepy', function() {
       describe('fields', function() {
         it ('focused the first', function() {
           // given
-          var form  = $('form'),
-              steps = form.children('fieldset');
+          var self  = $('form'),
+              steps = self.children('fieldset');
 
           // when
-          form.stepy();
+          self.stepy();
 
           // then
           expect(steps.first().find(':input:enabled:visible:first')).toBeFocused();
@@ -140,11 +140,11 @@ describe('Stepy', function() {
       describe('first', function() {
         it ('starts actived', function() {
           // given
-          var form  = $('form'),
-              steps = form.children();
+          var self  = $('form'),
+              steps = self.children();
 
           // when
-          form.stepy();
+          self.stepy();
 
           // then
             expect(steps.eq(0)).toBeVisible();
@@ -155,11 +155,11 @@ describe('Stepy', function() {
         describe('buttons', function() {
           it ('has the next', function() {
             // given
-            var form = $('form'),
-                step = form.children('fieldset:first');
+            var self = $('form'),
+                step = self.children('fieldset:first');
 
             // when
-            form.stepy();
+            self.stepy();
 
             // then
             var buttons = step.children('.stepy-buttons');
@@ -171,11 +171,11 @@ describe('Stepy', function() {
 
           it ('has the right labels', function() {
             // given
-            var form = $('form'),
-                step = form.children('fieldset:first');
+            var self = $('form'),
+                step = self.children('fieldset:first');
 
             // when
-            form.stepy();
+            self.stepy();
 
             // then
             expect(step.find('.button-next')).toHaveHtml('Next &gt;');
@@ -184,8 +184,8 @@ describe('Stepy', function() {
           context('clicking on next', function() {
             it ('goes to second step', function() {
               // given
-              var form  = $('form').stepy(),
-                  steps = form.children();
+              var self  = $('form').stepy(),
+                  steps = self.children();
 
               // when
               steps.eq(0).find('.button-next').click();
@@ -195,6 +195,18 @@ describe('Stepy', function() {
               expect(steps.eq(1)).toBeVisible();
               expect(steps.eq(2)).toBeHidden();
             });
+
+            it ('focus the first field', function() {
+              // given
+              var self  = $('form').stepy(),
+                  steps = self.children('fieldset');
+
+              // when
+              steps.eq(0).find('.button-next').click();
+
+              // then
+              expect(steps.eq(1).find(':input:enabled:visible:first')).toBeFocused();
+            });
           });
         });
       });
@@ -203,11 +215,11 @@ describe('Stepy', function() {
         describe('buttons', function() {
           it ('has the back and next', function() {
             // given
-            var form = $('form'),
-                step = form.children('fieldset:eq(1)');
+            var self = $('form'),
+                step = self.children('fieldset:eq(1)');
 
             // when
-            form.stepy();
+            self.stepy();
 
             // then
             var buttons = step.children('.stepy-buttons');
@@ -219,11 +231,11 @@ describe('Stepy', function() {
 
           it ('has the right labels', function() {
             // given
-            var form = $('form'),
-                step = form.children('fieldset:eq(1)');
+            var self = $('form'),
+                step = self.children('fieldset:eq(1)');
 
             // when
-            form.stepy();
+            self.stepy();
 
             // then
             expect(step.find('.button-back')).toHaveHtml('&lt; Back');
@@ -233,8 +245,8 @@ describe('Stepy', function() {
           context('clicking on next', function() {
             it ('goes to third step', function() {
               // given
-              var form  = $('form').stepy(),
-                  steps = form.children();
+              var self  = $('form').stepy(),
+                  steps = self.children();
 
               // when
               steps.eq(0).find('.button-next').click();
@@ -250,17 +262,32 @@ describe('Stepy', function() {
           context('clicking on back', function() {
             it ('goes to first step', function() {
               // given
-              var form  = $('form').stepy(),
-                  steps = form.children();
+              var self  = $('form').stepy(),
+                  steps = self.children();
+
+              steps.eq(0).find('.button-next').click();
 
               // when
-              steps.eq(0).find('.button-next').click();
               steps.eq(1).find('.button-back').click();
 
               // then
               expect(steps.eq(0)).toBeVisible();
               expect(steps.eq(1)).toBeHidden();
               expect(steps.eq(2)).toBeHidden();
+            });
+
+            it ('focus the first field', function() {
+              // given
+              var self  = $('form').stepy(),
+                  steps = self.children('fieldset');
+
+              steps.eq(0).find('.button-next').click();
+
+              // when
+              steps.eq(1).find('.button-back').click();
+
+              // then
+              expect(steps.eq(0).find(':input:enabled:visible:first')).toBeFocused();
             });
           });
         });
@@ -270,11 +297,11 @@ describe('Stepy', function() {
     describe('last', function() {
       it ('has the back', function() {
         // given
-        var form = $('form'),
-            step = form.children('fieldset:last');
+        var self = $('form'),
+            step = self.children('fieldset:last');
 
         // when
-        form.stepy();
+        self.stepy();
 
         // then
         var buttons = step.children('.stepy-buttons');
@@ -286,11 +313,11 @@ describe('Stepy', function() {
 
       it ('has the right labels', function() {
         // given
-        var form = $('form'),
-            step = form.children('fieldset:last');
+        var self = $('form'),
+            step = self.children('fieldset:last');
 
         // when
-        form.stepy();
+        self.stepy();
 
         // then
         expect(step.find('.button-back')).toHaveHtml('&lt; Back');
@@ -298,11 +325,11 @@ describe('Stepy', function() {
 
       it ('has the finish button', function() {
         // given
-        var form = $('form'),
-            step = form.children('fieldset:last');
+        var self = $('form'),
+            step = self.children('fieldset:last');
 
         // when
-        form.stepy();
+        self.stepy();
 
         // then
         expect(step.find('input[type="submit"]')).toExist();
@@ -311,8 +338,8 @@ describe('Stepy', function() {
       context('clicking on back', function() {
         it ('goes to first step', function() {
           // given
-          var form  = $('form').stepy(),
-              steps = form.children();
+          var self  = $('form').stepy(),
+              steps = self.children();
 
           // when
           steps.eq(0).find('.button-next').click();
@@ -329,745 +356,703 @@ describe('Stepy', function() {
   });
 
   describe('options', function() {
+    describe('back', function() {
+      it ('is called on trigger back button', function() {
+        // given
+        var self = $('form').stepy({
+          back: function() {
+            this.data('called', true);
+          }
+        }),
+        steps     = self.children('fieldset');
+
+        steps.eq(0).find('.button-next').click();
+
+        // when
+        steps.eq(1).find('.button-back').click();
+
+        // then
+        expect(self.data('called')).toBeTruthy();
+      });
+
+      it ('receives the right index', function() {
+        // given
+        var self  = $('form').stepy({ back: function(index) { this.data('index', index); } }),
+            steps = self.children('fieldset');
+
+        steps.eq(0).find('.button-next').click();
+
+        // when
+        steps.eq(1).find('.button-back').click();
+
+        // then
+        expect(self.data('index')).toEqual(1);
+      });
+    });
+
+    describe('backLabel', function() {
+      it ('changes the back button label', function() {
+        // given
+        var self  = $('form'),
+            steps = self.children('fieldset');
+
+        // when
+        self.stepy({ backLabel: '&lt;&lt;' });
+
+        // then
+        expect(steps.eq(1).find('.button-back')).toHaveHtml('&lt;&lt;');
+        expect(steps.eq(2).find('.button-back')).toHaveHtml('<<');
+      });
+    });
+
+    describe('description', function() {
+      context('disabled', function() {
+        it ('is not created', function() {
+          // given
+          var self = $('form');
+
+          // when
+          self.stepy({ description: false });
+
+          // then
+          var menus = $('#stepy-titles').children('li');
+
+          expect(menus.eq(0)).not.toContain('span');
+          expect(menus.eq(1)).not.toContain('span');
+          expect(menus.eq(2)).not.toContain('span');
+        });
+      });
+    });
+
+    describe('enter', function() {
+      context('enabled', function() {
+        context('with valid step', function() {
+          it ('goes to the next step', function() {
+            // given
+            var self  = $('form').stepy({ enter: true, validate: false }),
+                steps = self.children('fieldset'),
+                evt   = jQuery.Event('keypress');
+
+              evt.which   = 13;
+              evt.keyCode = 13;
+
+            // when
+            steps.eq(0).children('input:visible:last').trigger(evt);
+
+            // then
+            expect(steps.eq(0)).toBeHidden();
+            expect(steps.eq(1)).toBeVisible();
+            expect(steps.eq(2)).toBeHidden();
+          });
+
+          it ('focus the first field', function() {
+            // given
+            var self  = $('form').stepy({ enter: true, validate: false }),
+                steps = self.children('fieldset')
+                evt   = jQuery.Event('keypress');
+
+            evt.which   = 13;
+            evt.keyCode = 13;
+
+            // when
+            steps.eq(0).children('input:visible:last').trigger(evt);
+
+            // then
+            expect(steps.eq(1).find(':input:enabled:visible:first')).toBeFocused();
+          });
+
+          context('with next callback', function() {
+            it ('receives the right index', function() {
+              // given
+              var self  = $('form').stepy({
+                            enter    : true,
+                            validate: false,
+                            next    : function(index) { this.data('index', index); }
+                          }),
+                  steps = self.children('fieldset'),
+                  evt   = jQuery.Event('keypress');
+
+                evt.which   = 13;
+                evt.keyCode = 13;
+
+              // when
+              steps.eq(0).children('input:visible:last').trigger(evt);
+
+              // then
+              expect(self.data('index')).toEqual(2);
+            });
+          });
+        });
+
+        context('with invalid step', function() {
+          beforeEach(function() {
+            $('form').validate({
+              rules: { 'password':  'required' }
+            });
+          });
+
+          context('with block enabled', function() {
+            it ('does not goes to the next step', function() {
+              // given
+              var self  = $('form').stepy({ enter: true, block: true, validate: true }),
+                  steps = self.children('fieldset'),
+                  evt   = jQuery.Event('keypress');
+
+                evt.which   = 13;
+                evt.keyCode = 13;
+
+              // when
+              steps.eq(0).children('input:visible:last').trigger(evt);
+
+              // then
+              expect(steps.eq(0)).toBeVisible();
+              expect(steps.eq(1)).toBeHidden();
+              expect(steps.eq(2)).toBeHidden();
+            });
+          });
+
+          context('with block disabled', function() {
+            it ('goes to the next step', function() {
+              // given
+              var self  = $('form').stepy({ enter: true, block: false, validate: true }),
+                  steps = self.children('fieldset'),
+                  evt   = jQuery.Event('keypress');
+
+                evt.which   = 13;
+                evt.keyCode = 13;
+
+              // when
+              steps.eq(0).children('input:visible:last').trigger(evt);
+
+              // then
+              expect(steps.eq(0)).toBeHidden();
+              expect(steps.eq(1)).toBeVisible();
+              expect(steps.eq(2)).toBeHidden();
+            });
+          });
+        });
+
+        context('on the last step', function() {
+          it ('submits the form', function() {
+            // given
+            var self  = $('form').stepy({ finish: function() { this.data('submited', true); } }),
+                steps = self.children('fieldset'),
+                evt   = jQuery.Event('keypress');
+
+            evt.which   = 13;
+            evt.keyCode = 13;
+
+            self.on('submit', function(evt) {
+              evt.preventDefault();
+            });
+
+            steps.eq(1).find('.button-next').click();
+
+            // when
+            steps.eq(2).children('input:visible:last').trigger(evt);
+
+            // then
+            expect(self.data('submited')).toBeTruthy();
+          });
+        });
+      });
+
+      context('disabled', function() {
+        it ('does not go to the next step', function() {
+          // given
+          var self  = $('form').stepy({ enter: false, validate: false }),
+              steps = self.children('fieldset'),
+              evt   = jQuery.Event('keypress');
+
+            evt.which   = 13;
+            evt.keyCode = 13;
+
+          // when
+          steps.eq(0).children('input:visible:last').trigger(evt);
+
+          // then
+          expect(steps.eq(0)).toBeVisible();
+          expect(steps.eq(1)).toBeHidden();
+          expect(steps.eq(2)).toBeHidden();
+        });
+      });
+    });
+
+    describe('finish', function() {
+      it ('is called on trigger finish button', function() {
+        // given
+        var self = $('form').stepy({
+          finish: function() {
+            this.data('called', true);
+          }
+        }),
+        steps     = self.children('fieldset');
+
+         self.on('submit', function(evt) {
+          evt.preventDefault();
+        });
+
+        steps.eq(1).find('.button-next').click();
+
+        // when
+        steps.eq(2).find('.finish').click();
+
+        // then
+        expect(self.data('called')).toBeTruthy();
+      });
+    });
+
     describe('finishButton', function() {
       context('disabled', function() {
         it ('is not created', function() {
           // given
-          var form = $('form'),
-              step = form.children('fieldset:last');
+          var self = $('form'),
+              step = self.children('fieldset:last');
 
           // when
-          form.stepy({ finishButton: false });
+          self.stepy({ finishButton: false });
 
           // then
           expect(step).not.toContain('input[type="submit"]');
         });
       });
+
+      context('enabled', function() {
+        it ('is created', function() {
+          // given
+          var self = $('form'),
+              step = self.children('fieldset:last');
+
+          // when
+          self.stepy({ finishButton: true });
+
+          // then
+          expect(step).toContain('input[type="submit"]');
+        });
+
+        it ('starts hidden', function() {
+          // given
+          var self = $('form'),
+              step = self.children('fieldset:last');
+
+          // when
+          self.stepy();
+
+          // then
+          expect(step.find('input.finish')).toBeHidden();
+        });
+
+        context('on the last step becomes active', function() {
+          it ('becomes visible', function() {
+            // given
+            var self  = $('form').stepy(),
+                steps = self.children('fieldset');
+
+            // when
+            steps.eq(1).find('.button-next').click();
+
+            // then
+            expect(steps.last().find('input.finish')).toBeVisible();
+          });
+        });
+      });
+    });
+
+    describe('legend', function() {
+      context('disabled', function() {
+        it ('is not displayed', function() {
+          // given
+          var self = $('form');
+
+          // when
+          self.stepy({ legend: false });
+
+          // then
+          var legends = self.find('legend');
+
+          expect(legends.eq(0)).toBeHidden();
+          expect(legends.eq(1)).toBeHidden();
+          expect(legends.eq(2)).toBeHidden();
+        });
+      });
+    });
+
+    describe('next', function() {
+      it ('is called on trigger next button', function() {
+        // given
+        var self = $('form').stepy({
+          next: function() {
+            this.data('called', true);
+          }
+        }),
+        steps     = self.children('fieldset');
+
+        // when
+        steps.eq(0).find('.button-next').click();
+
+        // then
+        expect(self.data('called')).toBeTruthy();
+      });
+
+      it ('receives the right index', function() {
+        // given
+        var self  = $('form').stepy({ next: function(index) { this.data('index', index); } }),
+            steps = self.children('fieldset');
+
+        // when
+        steps.eq(0).find('.button-next').click();
+
+        // then
+        expect(self.data('index')).toEqual(2);
+      });
+    });
+
+    describe('nextLabel', function() {
+      it ('changes the next button label', function() {
+        // given
+        var self  = $('form'),
+            steps = self.children('fieldset');
+
+        // when
+        self.stepy({ nextLabel: '&gt;&gt;' });
+
+        // then
+        expect(steps.eq(0).find('.button-next')).toHaveHtml('&gt;&gt;');
+        expect(steps.eq(1).find('.button-next')).toHaveHtml('>>');
+      });
+    });
+
+    describe('select', function() {
+      it ('is called on change the step', function() {
+        // given
+        var self = $('form').stepy({
+          select: function() {
+            this.data('called', true);
+          }
+        }),
+        steps     = self.children('fieldset');
+
+        // when
+        steps.eq(0).find('.button-next').click();
+
+        // then
+        expect(self.data('called')).toBeTruthy();
+      });
+
+      it ('receives the right index', function() {
+        // given
+        var self  = $('form').stepy({ select: function(index) { this.data('index', index); } }),
+            steps = self.children('fieldset');
+
+        // when
+        steps.eq(0).find('.button-next').click();
+
+        // then
+        expect(self.data('index')).toEqual(2);
+      });
+    });
+
+    describe('titleTarget', function() {
+      context('with target', function() {
+        beforeEach(function() {
+           this.target = Helper.append('<div id="target"></div>');
+        });
+
+        it ('receives the titles of the steps', function() {
+          // given
+          var self = $('form');
+
+          // when
+          self.stepy({ titleTarget: '#' + this.target.attr('id') });
+
+          // then
+          expect(target).toContain('#stepy-titles');
+        });
+      });
+
+      context('clicking on next title', function() {
+        context('with next callback', function() {
+          it ('receives the right index', function() {
+            // given
+            var self  = $('form').stepy({
+                          titleClick: true,
+                          next      : function(index) { this.data('index', index); }
+                        }),
+                steps = self.children('fieldset');
+
+            // when
+            $('#stepy-titles').children('li').eq(1).click();
+
+            // then
+            expect(self.data('index')).toEqual(2);
+          });
+        });
+      });
+
+      context('clicking on back title', function() {
+        context('with back callback', function() {
+          it ('receives the right index', function() {
+            // given
+            var self   = $('form').stepy({
+                          titleClick: true,
+                          back      : function(index) { this.data('index', index); }
+                        }),
+                steps  = self.children('fieldset'),
+                titles = $('#stepy-titles').children('li');
+
+            titles.eq(1).click();
+
+            // when
+            titles.eq(0).click();
+
+            // then
+            expect(self.data('index')).toEqual(1);
+          });
+        });
+      });
+
+      context('clicking on other title', function() {
+        context('with select callback', function() {
+          it ('receives the right index', function() {
+            // given
+            var self   = $('form').stepy({
+                          titleClick: true,
+                          select    : function(index) { this.data('index', index); }
+                        }),
+                steps  = self.children('fieldset'),
+                titles = $('#stepy-titles').children('li');
+
+            // when
+            titles.eq(1).click();
+
+            // then
+            expect(self.data('index')).toEqual(2);
+          });
+        });
+      });
+
+      context('with validate enabled', function() {
+        context('and block enabled', function() {
+          it ('blocks the step change', function() {
+            // given
+            var self   = $('form').stepy({ block: true, titleClick: true, validate: true }),
+                steps  = self.children('fieldset'),
+                titles = $('#stepy-titles').children('li');
+
+            self.validate({
+              errorPlacement: function(error, element) {
+                $('#stepy div.stepy-error').append(error);
+              }, rules: {
+                'password':  'required'
+              }, messages: {
+                'password':  { required: 'Password field is requerid!' }
+              }
+            });
+
+            // when
+            titles.eq(2).click();
+
+            // then
+            expect(steps.eq(0)).toBeVisible();
+            expect(steps.eq(1)).toBeHidden();
+            expect(steps.eq(2)).toBeHidden();
+          });
+        });
+
+        context('and errorImage enabled', function() {
+          it ('display the error image', function() {
+            // given
+            var self   = $('form').stepy({ errorImage: true, titleClick: true, validate: true }),
+                steps  = self.children('fieldset'),
+                titles = $('#stepy-titles').children('li');
+
+            self.validate({
+              errorPlacement: function(error, element) {
+                $('#stepy div.stepy-error').append(error);
+              }, rules: {
+                'password':  'required'
+              }, messages: {
+                'password':  { required: 'Password field is requerid!' }
+              }
+            });
+
+            // when
+            titles.eq(2).click();
+
+            // then
+            expect(titles.eq(0)).toHaveClass('error-image');
+          });
+        });
+      });
+    });
+
+    describe('validate', function() {
+      context('enabled', function() {
+        context('fails', function() {
+          it ('displays the error', function() {
+            // given
+            var self  = $('form').stepy({ validate: true }),
+                steps = self.children('fieldset');
+
+            self.validate({
+              errorPlacement: function(error, element) {
+                $('#stepy div.stepy-error').append(error);
+              }, rules: {
+                'password':  'required'
+              }, messages: {
+                'password':  { required: 'Password field is requerid!' }
+              }
+            });
+
+            // when
+            steps.eq(1).find('.button-next').click();
+
+            // then
+            expect(self.children('.stepy-error')).toContain('label.error');
+          });
+        });
+      });
+    });
+
+    describe('block', function() {
+      context('enabled', function() {
+        context('with invalid field', function() {
+          it ('blocks the step change', function() {
+            // given
+            var self  = $('form').stepy({ block: true, validate: true }),
+                steps = self.children('fieldset');
+
+            self.validate({
+              errorPlacement: function(error, element) {
+                $('#stepy div.stepy-error').append(error);
+              }, rules: {
+                'password':  'required'
+              }, messages: {
+                'password':  { required: 'Password field is requerid!' }
+              }
+            });
+
+            // when
+            steps.eq(0).find('.button-next').click();
+
+            // then
+            expect(steps.eq(0)).toBeVisible();
+            expect(steps.eq(1)).toBeHidden();
+            expect(steps.eq(2)).toBeHidden();
+          });
+
+          context('click on title', function() {
+            it ('blocks the step change', function() {
+              // given
+              var self   = $('form').stepy({ block: true, validate: true }),
+                  steps  = self.children('fieldset'),
+                  titles = $('#stepy-titles').children('li');
+
+              self.validate({
+                errorPlacement: function(error, element) {
+                  $('#stepy div.stepy-error').append(error);
+                }, rules: {
+                  'password':  'required'
+                }, messages: {
+                  'password':  { required: 'Password field is requerid!' }
+                }
+              });
+
+              // when
+              titles.eq(2).click();
+
+              // then
+              expect(steps.eq(0)).toBeVisible();
+              expect(steps.eq(1)).toBeHidden();
+              expect(steps.eq(2)).toBeHidden();
+            });
+          });
+        });
+
+        context('with valid field', function() {
+          it ('does not block the step change', function() {
+            // given
+            var self  = $('form').stepy({ block: true, validate: true }),
+              steps  = self.children('fieldset');
+
+            self.validate({
+              errorPlacement: function(error, element) {
+                $('#stepy div.stepy-error').append(error);
+              }, rules: {
+                'password':  'required'
+              }, messages: {
+                'password':  { required: 'Password field is requerid!' }
+              }
+            });
+
+            self.find('input[name="password"]').val('valid');
+
+            // when
+            steps.eq(0).find('.button-next').click();
+
+            // then
+            expect(steps.eq(0)).toBeHidden();
+            expect(steps.eq(1)).toBeVisible();
+            expect(steps.eq(2)).toBeHidden();
+          });
+        });
+      });
+    });
+
+    describe('errorImage', function() {
+      context('with invalid field', function() {
+        it ('appears on step title', function() {
+          // given
+          var self   = $('form').stepy({ errorImage: true, validate: true }),
+              steps  = self.children('fieldset'),
+              titles = $('#stepy-titles').children('li');
+
+          self.validate({
+            errorPlacement: function(error, element) {
+              $('#stepy div.stepy-error').append(error);
+            }, rules: {
+              'password':  'required'
+            }, messages: {
+              'password':  { required: 'Password field is requerid!' }
+            }
+          });
+
+          // when
+          steps.eq(0).find('.button-next').click();
+
+          // then
+          expect(titles.eq(0)).toHaveClass('error-image');
+        });
+      });
     });
   });
 
+  describe('functions', function() {
+    describe('#step', function() {
+      it ('is chainable', function() {
+        // given
+        var self = $('form').stepy();
 
+        // when
+        var ref = self.stepy('step', 2);
 
+        // then
+        expect(ref).toEqual(ref);
+      });
 
+      it ('changes the step', function() {
+        // given
+        var self  = $('form').stepy(),
+            steps = self.children('fieldset');
 
+        // when
+        self.stepy('step', 2);
 
-  // Refactoring...
-
-
-
-
-
-
-
-
-
-
-  it ('should call back callback', function() {
-    // given
-    var form  = $('form').stepy({ back: function() { this.addClass('my-class'); } }),
-      steps  = form.children(),
-      first  = steps.eq(0),
-      second  = steps.eq(1),
-      third  = steps.eq(2);
-
-    steps.eq(0).find('.button-next').click();
-
-    // when
-    steps.eq(1).find('.button-back').click();
-
-    // then
-    expect(form).toHaveClass('my-class');
-
-    expect(first).not.toBeHidden();
-      expect(second).toBeHidden();
-      expect(third).toBeHidden();
-  });
-
-  it ('should call next callback', function() {
-    // given
-    var form  = $('form').stepy({ next: function() { this.addClass('my-class'); } }),
-      steps  = form.children(),
-      first  = steps.eq(0),
-      second  = steps.eq(1),
-      third  = steps.eq(2);
-
-    // when
-    steps.eq(0).find('.button-next').click();
-
-    // then
-    expect(form).toHaveClass('my-class');
-
-    expect(first).toBeHidden();
-      expect(second).not.toBeHidden();
-      expect(third).toBeHidden();
-  });
-
-  it ('should call finish callback', function() {
-    // given
-    var form  = $('form').stepy({ finish: function() { this.addClass('my-class'); } }),
-      steps  = form.children(),
-      first  = steps.eq(0),
-      second  = steps.eq(1),
-      third  = steps.eq(2);
-
-    steps.eq(1).find('.button-next').click();
-
-    form.submit (function(evt) {
-      evt.preventDefault();
+        // then
+        expect(steps.eq(0)).toBeHidden();
+        expect(steps.eq(1)).toBeVisible();
+        expect(steps.eq(2)).toBeHidden();
+      });
     });
-
-    // when
-    steps.eq(2).find('input.finish').click();
-
-    // then
-    expect(form).toHaveClass('my-class');
-
-    expect(first).toBeHidden();
-      expect(second).toBeHidden();
-      expect(third).not.toBeHidden();
   });
-
-  it ('should have custom label on navigation buttons', function() {
-    // given
-    var form  = $('form'),
-      steps  = form.children(),
-      first  = steps.eq(0),
-      second  = steps.eq(1),
-      third  = steps.eq(2);
-
-    // when
-    form.stepy({ backLabel: '&lt;&lt;', nextLabel: '&gt;&gt;' });
-
-    // then
-    var firstNext  = first.find('.button-next'),
-      secondBack  = second.find('.button-back'),
-      secondNext  = second.find('.button-next'),
-      thirdBack  = third.find('.button-back');
-
-    expect(firstNext).toHaveHtml('>>');
-
-    expect(secondBack).toHaveHtml('&lt;&lt;');
-    expect(secondNext).toHaveHtml('&gt;&gt;');
-
-    expect(thirdBack).toHaveHtml('&lt;&lt;');
-  });
-
-  it ('should display error when exists invalid fields', function() {
-    // given
-    var form  = $('form').stepy({ validate: true }),
-      steps  = form.children(),
-      first  = steps.eq(0),
-      second  = steps.eq(1),
-      third  = steps.eq(2);
-
-    form.validate({
-      errorPlacement: function(error, element) {
-        $('#stepy div.stepy-error').append(error);
-      }, rules: {
-        'password':  'required'
-      }, messages: {
-        'password':  { required: 'Password field is requerid!' }
-      }
-    });
-
-    // when
-    first.find('.button-next').click();
-
-    // then
-    expect(form.children('.stepy-error')).toContain('label.error');
-    expect(first).toBeHidden();
-    expect(second).not.toBeHidden();
-    expect(third).toBeHidden();
-  });
-
-  it ('should block step when exists invalid fields', function() {
-    // given
-    var form  = $('form').stepy({ block: true, validate: true }),
-      steps  = form.children(),
-      first  = steps.eq(0),
-      second  = steps.eq(1),
-      third  = steps.eq(2);
-
-    form.validate({
-      errorPlacement: function(error, element) {
-        $('#stepy div.stepy-error').append(error);
-      }, rules: {
-        'password':  'required'
-      }, messages: {
-        'password':  { required: 'Password field is requerid!' }
-      }
-    });
-
-    // when
-    first.find('.button-next').click();
-
-    // then
-    expect(form.children('.stepy-error')).toContain('label.error');
-    expect(first).not.toBeHidden();
-    expect(second).toBeHidden();
-    expect(third).toBeHidden();
-  });
-
-  it ('should not block step when not exists invalid fields', function() {
-    // given
-    var form  = $('form').stepy({ block: true, validate: true }),
-      steps  = form.children(),
-      first  = steps.eq(0),
-      second  = steps.eq(1),
-      third  = steps.eq(2);
-
-    form.validate({
-      errorPlacement: function(error, element) {
-        $('#stepy div.stepy-error').append(error);
-      }, rules: {
-        'password':  'required'
-      }, messages: {
-        'password':  { required: 'Password field is requerid!' }
-      }
-    });
-
-    form.find('input[name="password"]').val('password');
-
-    // when
-    first.find('.button-next').click();
-
-    // then
-    expect(form.children('.stepy-error')).not.toContain('label.error');
-    expect(first).toBeHidden();
-    expect(second).not.toBeHidden();
-    expect(third).toBeHidden();
-  });
-
-  it ('should block step with custom icon error when exists invalid fields', function() {
-    // given
-    var form  = $('form').stepy({ block: true, errorImage: true, validate: true }),
-      steps  = form.children(),
-      first  = steps.eq(0),
-      second  = steps.eq(1),
-      third  = steps.eq(2);
-
-    form.validate({
-      errorPlacement: function(error, element) {
-        $('#stepy div.stepy-error').append(error);
-      }, rules: {
-        'password':  'required'
-      }, messages: {
-        'password':  { required: 'Password field is requerid!' }
-      }
-    });
-
-    // when
-    first.find('.button-next').click();
-
-    // then
-    expect($('#stepy-titles').children('li').eq(0)).toHaveClass('error-image');
-    expect(form.children('.stepy-error')).toContain('label.error');
-    expect(first).not.toBeHidden();
-    expect(second).toBeHidden();
-    expect(third).toBeHidden();
-  });
-
-  it ('should not display description', function() {
-    // given
-    var form = $('form');
-
-    // when
-    form.stepy({ description: false });
-
-    var menus  = $('#stepy-titles').children('li'),
-      first  = menus.eq(0),
-      second  = menus.eq(1),
-      third   = menus.eq(2);
-
-    // then
-    expect(first).not.toContain('span');
-    expect(second).not.toContain('span');
-    expect(third).not.toContain('span');
-  });
-
-  it ('should not display legend', function() {
-    // given
-    var form  = $('form'),
-      steps  = form.children(),
-      first  = steps.eq(0),
-      second  = steps.eq(1),
-      third  = steps.eq(2);
-
-    // when
-    form.stepy({ legend: false });
-
-    // then
-    expect(first.children('legend')).toBeHidden();
-    expect(second.children('legend')).toBeHidden();
-    expect(third.children('legend')).toBeHidden();
-  });
-
-  it ('should have titleClick enabled', function() {
-    // given
-    var form  = $('form').stepy({ titleClick: true }),
-      steps  = form.children(),
-      first  = steps.eq(0),
-      second  = steps.eq(1),
-      third  = steps.eq(2);
-
-    // when
-    $('#stepy-titles').children('li').eq(2).click();
-
-    // then
-    expect(first).toBeHidden();
-      expect(second).toBeHidden();
-      expect(third).not.toBeHidden();
-  });
-
-  it ('should block step when exists invalid fields using titleClick', function() {
-    // given
-    var form  = $('form').stepy({ block: true, titleClick: true, validate: true }),
-      steps  = form.children(),
-      first  = steps.eq(0),
-      second  = steps.eq(1),
-      third  = steps.eq(2);
-
-    form.validate({
-      errorPlacement: function(error, element) {
-        $('#stepy div.stepy-error').append(error);
-      }, rules: {
-        'password':  'required'
-      }, messages: {
-        'password':  { required: 'Password field is requerid!' }
-      }
-    });
-
-    // when
-    $('#stepy-titles').children('li').eq(2).click();
-
-    // then
-    expect(form.children('.stepy-error')).toContain('label.error');
-    expect(first).not.toBeHidden();
-    expect(second).toBeHidden();
-    expect(third).toBeHidden();
-  });
-
-  it ('should block step with errorImage when exists invalid fields using titleClick', function() {
-    // given
-    var form  = $('form').stepy({ block: true, errorImage: true, titleClick: true, validate: true }),
-      steps  = form.children(),
-      first  = steps.eq(0),
-      second  = steps.eq(1),
-      third  = steps.eq(2),
-      $titles = $('#stepy-titles');
-
-    form.validate({
-      errorPlacement: function(error, element) {
-        $('#stepy div.stepy-error').append(error);
-      }, rules: {
-        'password':  'required'
-      }, messages: {
-        'password':  { required: 'Password field is requerid!' }
-      }
-    });
-
-    // when
-    $titles.children('li').eq(2).click();
-
-    // then
-    expect($titles.children('li').eq(0)).toHaveClass('error-image');
-    expect(form.children('.stepy-error')).toContain('label.error');
-    expect(first).not.toBeHidden();
-    expect(second).toBeHidden();
-    expect(third).toBeHidden();
-  });
-
-  it ('should move titles to target', function() {
-    // given
-    var $target = $('<div id="target"></div>').appendTo('body');
-
-    // when
-    $('form').stepy({ titleTarget: '#target' });
-
-    var menus  = $target.children('#stepy-titles').children('li'),
-      first  = menus.eq(0),
-      second  = menus.eq(1),
-      third   = menus.eq(2);
-
-    // then
-    expect(first.children('div')).toHaveHtml('Step 1');
-    expect(second.children('div')).toHaveHtml('Step 2');
-    expect(third.children('div')).toHaveHtml('Step 3');
-
-    $target.remove();
-  });
-
-  it ('should have titleClick enabled', function() {
-    // given
-    var form  = $('form').stepy({ titleClick: true }),
-      steps  = form.children(),
-      first  = steps.eq(0),
-      second  = steps.eq(1),
-      third  = steps.eq(2);
-
-    // when
-    $('#stepy-titles').children('li').eq(2).click();
-
-    // then
-    expect(first).toBeHidden();
-      expect(second).toBeHidden();
-      expect(third).not.toBeHidden();
-  });
-
-  it ('should move titles to target and works titleClick', function() {
-    // given
-    var $target = $('<div id="target"></div>').appendTo('body');
-
-    // when
-    var form   = $('form').stepy({ titleClick: true, titleTarget: '#target' }),
-      steps  = form.children(),
-      first  = steps.eq(0),
-      second  = steps.eq(1),
-      third  = steps.eq(2);
-
-    $target.children('#stepy-titles').children('li').eq(2).click();
-
-    // then
-    expect(first).toBeHidden();
-      expect(second).toBeHidden();
-      expect(third).not.toBeHidden();
-
-    $target.remove();
-  });
-
-  it ('should be hidden the finish button', function() {
-    // given
-    var form  = $('form'),
-      steps  = form.children(),
-      third  = steps.eq(2);
-
-    // when
-    form.stepy();
-
-    // then
-    expect(third.find('input.finish')).toBeHidden();
-  });
-
-  it ('should be visible the finish button', function() {
-    // given
-    var form   = $('form').stepy(),
-      steps  = form.children(),
-      second  = steps.eq(1),
-      third  = steps.eq(2);
-
-    // when
-    second.find('.button-next').click();
-
-    // then
-    expect(third.find('input.finish')).not.toBeHidden();
-  });
-
-  it ('should forward step with enter', function() {
-    // given
-    var form     = $('form').stepy(),
-      steps    = form.children(),
-      first    = steps.eq(0),
-      second    = steps.eq(1),
-      third    = steps.eq(2),
-      $password  = form.find('input[name="password"]').val('password'),
-      evt      = jQuery.Event('keypress');
-
-      evt.which = 13;
-      evt.keyCode = 13;
-
-    // when
-    $password.trigger(evt);
-
-    // then
-    expect(first).toBeHidden();
-      expect(second).not.toBeHidden();
-      expect(third).toBeHidden();
-  });
-
-  it ('should submit on last step with enter', function() {
-    // given
-    var form   = $('form').stepy({ finish: function() { this.addClass('my-class'); } }),
-      steps  = form.children(),
-      first  = steps.eq(0);
-      second  = steps.eq(1);
-      third  = steps.eq(2),
-      $site  = form.find('input[name="site"]'),
-      evt    = jQuery.Event('keypress');
-
-    evt.which = 13;
-    evt.keyCode = 13;
-
-    form.submit (function(evt) {
-      evt.preventDefault();
-    });
-
-    second.find('.button-next').click();
-
-    // when
-    $site.trigger(evt);
-
-    // then
-    expect(first).toBeHidden();
-      expect(second).toBeHidden();
-      expect(third).not.toBeHidden();
-      expect(form).toHaveClass('my-class');
-  });
-
-  it ('should focus the first field on next step', function() {
-    // given
-    var form  = $('form').stepy(),
-      steps  = form.children(),
-      first  = steps.eq(0),
-      second  = steps.eq(1);
-
-    // when
-    first.find('.button-next').click();
-
-    // then
-    expect(second.find(':input:enabled:visible:first')).toBeFocused();
-  });
-
-  it ('should focus the first field on back step', function() {
-    // given
-    var form  = $('form').stepy(),
-      steps  = form.children(),
-      first  = steps.eq(0),
-      second  = steps.eq(1);
-
-    // when
-    first.find('.button-next').click();
-    second.find('.button-back').click();
-
-    // then
-    expect(first.find(':input:enabled:visible:first')).toBeFocused();
-  });
-
-  it ('should focus on next step with enter', function() {
-    // given
-    var form  = $('form').stepy(),
-      steps  = form.children(),
-      second  = steps.eq(1);
-      evt    = jQuery.Event('keypress');
-
-    evt.which = 13;
-    evt.keyCode = 13;
-
-    // when
-    $('input[name="email"]').trigger(evt);
-
-    // then
-    expect(second.find(':input:enabled:visible:first')).toBeFocused();
-  });
-
-  it ('should return the correct index on next callback with enter', function() {
-    // given
-    var $email  = $('input[name="email"]'),
-      evt    = jQuery.Event('keypress');
-
-    evt.which = 13;
-    evt.keyCode = 13;
-
-    $('form').stepy({ next: function(index) { $email.val(index); } });
-
-    // when
-    $email.trigger(evt);
-
-    // then
-    expect($email).toHaveValue(2);
-  });
-
-  it ('should return the correct index on next callback', function() {
-    // given
-    var $email  = $('input[name="email"]'),
-      form  = $('form').stepy({ next: function(index) { $email.val(index); } }),
-      steps  = form.children(),
-      first  = steps.eq(0);
-
-    // when
-    first.find('.button-next').click();
-
-    // then
-    expect($email).toHaveValue(2);
-  });
-
-  it ('should return the correct index on back callback', function() {
-    // given
-    var $email  = $('input[name="email"]'),
-      form  = $('form').stepy({ back: function(index) { $email.val(index); } }),
-      steps  = form.children(),
-      second  = steps.eq(1);
-
-    // when
-    second.find('.button-back').click();
-
-    // then
-    expect($email).toHaveValue(1);
-  });
-
-  it ('should return the correct index on next title callback', function() {
-    // given
-    var $email = $('input[name="email"]');
-
-    $('form').stepy({ next: function(index) { $email.val(index); }, titleClick: true });
-
-    // when
-    $('#stepy-titles').children('li').eq(1).click();
-
-    // then
-    expect($email).toHaveValue(2);
-  });
-
-  it ('should return the correct index on back title callback', function() {
-    // given
-    var $email  = $('input[name="email"]');
-
-    $('form').stepy({ back: function(index) { $email.val(index); }, titleClick: true });
-
-    var $titles = $('#stepy-titles').children('li');
-    $titles.eq(1).click();
-
-    // when
-    $titles.eq(0).click();
-
-    // then
-    expect($email).toHaveValue(1);
-  });
-
-  it ('should return the correct index on next-select title callback', function() {
-    // given
-    var $email = $('input[name="email"]');
-
-    $('form').stepy({ select: function(index) { $email.val(index); }, titleClick: true });
-
-    var $titles = $('#stepy-titles').children('li');
-
-    // when
-    $titles.eq(1).click();
-
-    // then
-    expect($email).toHaveValue(2);
-  });
-
-  it ('should return the correct index on back-select callback', function() {
-    // given
-    var $email = $('input[name="email"]');
-
-    $('form').stepy({ select: function(index) { $email.val(index); }, titleClick: true });
-
-    var $titles = $('#stepy-titles').children('li');
-    $titles.eq(1).click();
-
-    // when
-    $titles.eq(0).click();
-
-    // then
-    expect($email).toHaveValue(1);
-  });
-
-  it ('should return the correct index on next-select with invalid fields', function() {
-    // given
-    var $email  = $('input[name="email"]'),
-      form  = $('form').stepy({ block: true, select: function(index) { $email.val(index); }, validate: true }),
-      steps  = form.children(),
-      first  = steps.eq(0);
-
-    form.validate({ rules: { 'email': 'required' }, messages: { 'email': { required: '--' } } });
-
-    // when
-    first.find('.button-next').click();
-
-    // then
-    expect($email).toHaveValue(1);
-  });
-
-  it ('should return the correct index on far next-select title with invalid fields', function() {
-    // given
-    var $email  = $('input[name="email"]').val('1'),
-      form  = $('form').stepy({ block: true, select: function(index) { $email.val(index); }, validate: true }),
-      $titles = $('#stepy-titles').children('li');
-
-    form.validate({ rules: { 'email': 'required' }, messages: { 'email': { required: '--' } } });
-
-    // when
-    $titles.eq(2).click();
-
-    // then
-    expect($email).toHaveValue(1);
-  });
-
-  it ('should be chainable the function step', function() {
-    // given
-    var form    = $('form').stepy(),
-      className  = 'my-class';
-
-    // when
-    form.stepy('step', 2).addClass(className);
-
-    // then
-    expect(form).toHaveClass(className);
-  });
-
-  it ('should be chainable the function step', function() {
-    // given
-    var form    = $('form').stepy(),
-      className  = 'my-class';
-
-    // when
-    form.stepy('step', 2).addClass(className);
-
-    // then
-    expect(form).toHaveClass(className);
-  });
-
-  it ('should go to step 2 using function step', function() {
-    // given
-    var form  = $('form').stepy(),
-      steps  = form.children(),
-      first  = steps.eq(0),
-      second  = steps.eq(1),
-      third  = steps.eq(2);
-
-    // when
-    form.stepy('step', 2);
-
-    // then
-      expect(first).toBeHidden();
-      expect(second).not.toBeHidden();
-      expect(third).toBeHidden();
-  });
-
-  it ('should valid checkable field even when it is hidden (ignore overrided)', function() {
-    // given
-    var form  = $('form').stepy({ block: true, validate: true }),
-      steps  = form.children(),
-      first  = steps.eq(0),
-      second  = steps.eq(1),
-      third  = steps.eq(2);
-
-    form.validate({
-      errorPlacement: function(error, element) {
-        $('#stepy div.stepy-error').append(error);
-      }, rules: {
-        'checked':  'required'
-      }, messages: {
-        'checked':  { required: 'Checked field is requerid!' }
-      }
-    });
-
-    var $checked = $('input[name="checked"]');
-
-    // when
-    $checked.click();
-    first.find('.button-next').click();
-
-    $checked.click();
-    second.find('.button-next').click();
-
-    // then
-    expect(form.children('.stepy-error')).toContain('label.error');
-    expect(first).not.toBeHidden();
-    expect(second).toBeHidden();
-    expect(third).toBeHidden();
-  });
-
 });
