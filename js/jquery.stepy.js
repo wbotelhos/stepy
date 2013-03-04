@@ -41,8 +41,8 @@
 				this.opt = $.extend({}, $.fn.stepy.defaults, settings);
 
         var self = this,
-        		that = $(this).data('settings', self.opt),
-          	id    = that.attr('id');
+        		that = $(this),
+          	id   = that.attr('id');
 
         if (id === undefined || id == '') {
           id = 'stepy-' + $('.' + that.attr('class')).index(this);
@@ -206,6 +206,8 @@
           }
 
           $steps.first().find(':input:visible:enabled').first().select().focus();
+
+        that.data({ 'settings': this.opt, 'stepy': true });
       });
     }, createBackButton: function(index) {
       var self  = this[0],
@@ -304,8 +306,8 @@
           return this;
     }, destroy: function() {
       return $(this).each(function() {
-      	var that  = $(this),
-      			steps = $(this).children('fieldset').css('display', '');
+      	var that  = $(this).data('stepy', false),
+      			steps = that.children('fieldset').css('display', '');
 
       	that.children('.stepy-errors').remove();
         steps.last().find('.finish').appendTo(steps.last());

@@ -49,6 +49,17 @@ describe('Stepy', function() {
     expect(ref).toBe(self);
   });
 
+  it ('receives the bind indicator', function() {
+    // given
+    var self = $('form');
+
+    // when
+    self.stepy();
+
+    // then
+    expect(self.data('stepy')).toBeTruthy();
+  });
+
   describe('header', function() {
     it ('is created', function() {
       // given
@@ -1076,6 +1087,17 @@ describe('Stepy', function() {
 
         // then
         expect(steps).toContain('input.finish');
+      });
+
+      it ('removes the bind indicator', function() {
+        // given
+        var self = $('form').stepy();
+
+        // when
+        self.stepy('destroy');
+
+        // then
+        expect(self.data('stepy')).toBeFalsy();
       });
 
       context('with validate enabled', function() {
