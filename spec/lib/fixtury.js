@@ -85,7 +85,7 @@ var Helper = {
       $.error('You cannot set the "type" using an alias!');
     }
   }, append: function(html) {
-    $('.fixtury').append(html);
+    return $(html).appendTo('.fixtury');
   }, checkbox: function(options) {
     Helper._verify(options);
 
