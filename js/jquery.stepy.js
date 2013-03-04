@@ -1,34 +1,33 @@
 /*!
- * jQuery Stepy - A Wizard Plugin - http://wbotelhos.com/stepy
- * ------------------------------------------------------------------------------------
+ * jQuery Stepy - A Wizard Plugin
+ * --------------------------------------------------------------
  *
- * jQuery Stepy is a plugin based on FormToWizard that generates a customizable wizard.
+ * jQuery Stepy is a plugin that generates a customizable wizard.
  *
  * Licensed under The MIT License
  *
  * @version        1.1.0
- * @since          2010.07.03
+ * @since          2010-07-03
  * @author         Washington Botelho
  * @documentation  wbotelhos.com/stepy
- * @twitter        twitter.com/wbotelhos
  *
- * Usage with default values:
- * ------------------------------------------------------------------------------------
- * $('#step').stepy();
+ * --------------------------------------------------------------
  *
- *  <form id="step">
+ *  <form>
  *    <fieldset title="Step 1">
  *      <legend>description one</legend>
- *      <!-- input fields -->
+ *      <!-- inputs -->
  *    </fieldset>
  *
  *    <fieldset title="Step 2">
- *      <legend>description one</legend>
- *      <!-- input fields -->
+ *      <legend>description two</legend>
+ *      <!-- inputs -->
  *    </fieldset>
  *
- *    <input type="submit" class="finish" value="Finish!"/>
+ *    <input type="submit" class="finish" />
  *  </form>
+ *
+ *  $('form').stepy();
  *
  */
 
@@ -37,6 +36,8 @@
   var methods = {
     init: function(options) {
       return this.each(function() {
+				methods.destroy.call(this);
+
 
         var opt    = $.extend({}, $.fn.stepy.defaults, options),
           $this  = $(this).data('options', opt),
@@ -58,7 +59,7 @@
             if (opt.validate) {
               jQuery.validator.setDefaults({ ignore: opt.ignore });
 
-              $this.append('<div class="stepy-error"/>');
+              $this.append('<div class="stepy-errors"/>');
             }
 
             var  $steps    = $this.children('fieldset'),
@@ -73,7 +74,7 @@
               $step
               .addClass('step')
               .attr('id', id + '-step-' + index)
-              .append('<p id="' + id + '-buttons-' + index + '" class="' + id + '-buttons"/>');
+              .append('<p id="' + id + '-buttons-' + index + '" class="stepy-buttons"/>');
 
               $legend = $step.children('legend');
 
@@ -184,7 +185,7 @@
               if (key == 13) {
                 evt.preventDefault();
 
-                var $buttons = $(this).parent().children('.' + id + '-buttons');
+                var $buttons = $(this).parent().children('.stepy-buttons');
 
                 if ($buttons.length) {
                   var $next = $buttons.children('.button-next');
@@ -201,7 +202,7 @@
                 }
               }
             });
-					}
+          }
 
           $steps.first().find(':input:visible:enabled').first().select().focus();
       });
@@ -215,7 +216,7 @@
               methods.step.call($this, (index - 1) + 1);
             }
             }).appendTo($('#' + id + '-buttons-' + index));
-        }, createNextButton: function(index) {
+    }, createNextButton: function(index) {
       var $this  = this,
         id    = this.attr('id'),
         opt    = this.data('options');
@@ -299,6 +300,15 @@
       }
 
           return this;
+    }, destroy: function() {
+      return $(this).each(function() {
+      	var that  = $(this),
+      			steps = $(this).children('fieldset').css('display', '');
+
+      	that.children('.stepy-errors').remove();
+        steps.last().find('.finish').appendTo(steps.last());
+        steps.find('p.stepy-buttons').remove();
+      });
     }, validate: function(index) {
       if (!this.is('form')) {
         return true;

@@ -841,7 +841,7 @@ describe('Stepy', function() {
 
             self.validate({
               errorPlacement: function(error, element) {
-                $('#stepy div.stepy-error').append(error);
+                $('#stepy div.stepy-errors').append(error);
               }, rules: {
                 'password':  'required'
               }, messages: {
@@ -868,7 +868,7 @@ describe('Stepy', function() {
 
             self.validate({
               errorPlacement: function(error, element) {
-                $('#stepy div.stepy-error').append(error);
+                $('#stepy div.stepy-errors').append(error);
               }, rules: {
                 'password':  'required'
               }, messages: {
@@ -896,7 +896,7 @@ describe('Stepy', function() {
 
             self.validate({
               errorPlacement: function(error, element) {
-                $('#stepy div.stepy-error').append(error);
+                $('#stepy div.stepy-errors').append(error);
               }, rules: {
                 'password':  'required'
               }, messages: {
@@ -908,7 +908,7 @@ describe('Stepy', function() {
             steps.eq(1).find('.button-next').click();
 
             // then
-            expect(self.children('.stepy-error')).toContain('label.error');
+            expect(self.children('.stepy-errors')).toContain('label.error');
           });
         });
       });
@@ -924,7 +924,7 @@ describe('Stepy', function() {
 
             self.validate({
               errorPlacement: function(error, element) {
-                $('#stepy div.stepy-error').append(error);
+                $('#stepy div.stepy-errors').append(error);
               }, rules: {
                 'password':  'required'
               }, messages: {
@@ -950,7 +950,7 @@ describe('Stepy', function() {
 
               self.validate({
                 errorPlacement: function(error, element) {
-                  $('#stepy div.stepy-error').append(error);
+                  $('#stepy div.stepy-errors').append(error);
                 }, rules: {
                   'password':  'required'
                 }, messages: {
@@ -977,7 +977,7 @@ describe('Stepy', function() {
 
             self.validate({
               errorPlacement: function(error, element) {
-                $('#stepy div.stepy-error').append(error);
+                $('#stepy div.stepy-errors').append(error);
               }, rules: {
                 'password':  'required'
               }, messages: {
@@ -1009,7 +1009,7 @@ describe('Stepy', function() {
 
           self.validate({
             errorPlacement: function(error, element) {
-              $('#stepy div.stepy-error').append(error);
+              $('#stepy div.stepy-errors').append(error);
             }, rules: {
               'password':  'required'
             }, messages: {
@@ -1028,6 +1028,71 @@ describe('Stepy', function() {
   });
 
   describe('functions', function() {
+    describe('#destroy', function() {
+      it ('is chainable', function() {
+        // given
+        var self = $('form').stepy();
+
+        // when
+        var ref = self.stepy('destroy');
+
+        // then
+        expect(ref).toBe(self);
+      });
+
+      it ('shows all steps', function() {
+        // given
+        var self  = $('form').stepy(),
+            steps = self.children('fieldset');
+
+        // when
+        self.stepy('destroy');
+
+        // then
+        expect(steps.eq(0)).toBeVisible();
+        expect(steps.eq(1)).toBeVisible();
+        expect(steps.eq(2)).toBeVisible();
+      });
+
+      it ('removes the back buttons', function() {
+        // given
+        var self  = $('form').stepy(),
+            steps = self.children('fieldset');
+
+        // when
+        self.stepy('destroy');
+
+        // then
+        expect(steps).not.toContain('.button-back');
+      });
+
+      it ('puts the finish button as children of the last step', function() {
+        // given
+        var self  = $('form').stepy(),
+            steps = self.children('fieldset');
+
+        // when
+        self.stepy('destroy');
+
+        // then
+        expect(steps).toContain('input.finish');
+      });
+
+      context('with validate enabled', function() {
+        it ('removes the error container', function() {
+          // given
+          var self  = $('form').stepy({ validate: true }),
+              steps = self.children('fieldset');
+
+          // when
+          self.stepy('destroy');
+
+          // then
+          expect(self).not.toContain('.stepy-errors');
+        });
+      });
+    });
+
     describe('#step', function() {
       it ('is chainable', function() {
         // given

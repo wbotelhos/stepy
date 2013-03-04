@@ -398,7 +398,7 @@
 				// Optionaly
 				$('#custom').validate({
 					errorPlacement: function(error, element) {
-						$('#custom div.stepy-error').append(error);
+						$('#custom div.stepy-errors').append(error);
 					}, rules: {
 						'user':			{ maxlength: 1 },
 						'email':		'email',

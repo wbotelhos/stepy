@@ -4,7 +4,13 @@
 
 ## News
 
-+ Option `enter` was extracted to choose if the enter key will trigger the step change.
++ Option `enter` was extracted to choose if the enter key will trigger the step change;
++ Added function `destroy` to rollback to original object before the bind.
+
+## Changes
+
++ The container that holds the navigation buttons now has the class 'stepy-buttons';
++ The error container class was renamed to plural 'stepy-errors'.
 
 ## 1.1.0
 
