@@ -34,14 +34,15 @@
 ;(function($) {
 
   var methods = {
-    init: function(options) {
+    init: function(settings) {
       return this.each(function() {
 				methods.destroy.call(this);
 
+				this.opt = $.extend({}, $.fn.stepy.defaults, settings);
 
-        var opt    = $.extend({}, $.fn.stepy.defaults, options),
-          $this  = $(this).data('options', opt),
-          id    = $this.attr('id');
+        var self  = this,
+        		$this = $(this).data('settings', self.opt),
+          	id    = $this.attr('id');
 
         if (id === undefined || id == '') {
           id = 'stepy-' + $('.' + $this.attr('class')).index(this);
@@ -50,14 +51,14 @@
 
         var $titlesWrapper = $('<ul/>', { id: id + '-titles', 'class': 'stepy-titles' });
 
-        if (opt.titleTarget) {
-          $(opt.titleTarget).html($titlesWrapper);
+        if (self.opt.titleTarget) {
+          $(self.opt.titleTarget).html($titlesWrapper);
         } else {
           $titlesWrapper.insertBefore($this);
         }
 
-            if (opt.validate) {
-              jQuery.validator.setDefaults({ ignore: opt.ignore });
+            if (self.opt.validate) {
+              jQuery.validator.setDefaults({ ignore: self.opt.ignore });
 
               $this.append('<div class="stepy-errors"/>');
             }
@@ -78,13 +79,13 @@
 
               $legend = $step.children('legend');
 
-              if (!opt.legend) {
+              if (!self.opt.legend) {
                 $legend.hide();
               }
 
               description = '';
 
-              if (opt.description) {
+              if (self.opt.description) {
                 if ($legend.length) {
                   description = '<span>' + $legend.html() + '</span>';
                 } else {
@@ -118,18 +119,18 @@
 
             var $finish = $this.children('.finish');
 
-        if (opt.finishButton) {
+        if (self.opt.finishButton) {
               if ($finish.length) {
                 var isForm    = $this.is('form'),
                   onSubmit  = undefined;
 
-                if (opt.finish && isForm) {
+                if (self.opt.finish && isForm) {
                   onSubmit = $this.attr('onsubmit');
                   $this.attr('onsubmit', 'return false;');
                 }
 
                 $finish.click(function(evt) {
-                if (opt.finish && !methods.execute.call($this, opt.finish, $steps.length - 1)) {
+                if (self.opt.finish && !methods.execute.call($this, self.opt.finish, $steps.length - 1)) {
                    evt.preventDefault();
                 } else {
                   if (isForm) {
@@ -141,7 +142,7 @@
 
                     var isSubmit = $finish.attr('type') == 'submit';
 
-                    if (!isSubmit && (!opt.validate || methods.validate.call($this, $steps.length - 1))) {
+                    if (!isSubmit && (!self.opt.validate || methods.validate.call($this, $steps.length - 1))) {
                       $this.submit();
                     }
                   }
@@ -154,18 +155,18 @@
               }
             }
 
-            if (opt.titleClick) {
+            if (self.opt.titleClick) {
               $titles.click(function() {
                 var  array  = $titles.filter('.current-step').attr('id').split('-'), // TODO: try keep the number in an attribute.
                   current  = parseInt(array[array.length - 1], 10),
                   clicked  = $(this).index();
 
                 if (clicked > current) {
-              if (opt.next && !methods.execute.call($this, opt.next, clicked)) {
+              if (self.opt.next && !methods.execute.call($this, self.opt.next, clicked)) {
                 return false;
               }
             } else if (clicked < current) {
-              if (opt.back && !methods.execute.call($this, opt.back, clicked)) {
+              if (self.opt.back && !methods.execute.call($this, self.opt.back, clicked)) {
                 return false;
               }
             }
@@ -178,7 +179,7 @@
             $titles.css('cursor', 'default');
           }
 
-          if (opt.enter) {
+          if (self.opt.enter) {
             $steps.delegate('input[type="text"], input[type="password"]', 'keypress', function(evt) {
               var key = (evt.keyCode ? evt.keyCode : evt.which);
 
@@ -207,30 +208,32 @@
           $steps.first().find(':input:visible:enabled').first().select().focus();
       });
     }, createBackButton: function(index) {
-      var $this  = this,
-        id    = this.attr('id'),
-        opt    = this.data('options');
+      var self  = this[0],
+      		$this = this,
+        	id    = this.attr('id');
 
-          $('<a/>', { id: id + '-back-' + index, href: 'javascript:void(0);', 'class': 'button-back', html: opt.backLabel }).click(function() {
-            if (!opt.back || methods.execute.call($this, opt.back, index - 1)) {
+          $('<a/>', { id: id + '-back-' + index, href: 'javascript:void(0);', 'class': 'button-back', html: self.opt.backLabel }).click(function() {
+            if (!self.opt.back || methods.execute.call($this, self.opt.back, index - 1)) {
               methods.step.call($this, (index - 1) + 1);
             }
             }).appendTo($('#' + id + '-buttons-' + index));
     }, createNextButton: function(index) {
-      var $this  = this,
-        id    = this.attr('id'),
-        opt    = this.data('options');
+    	var self  = this[0],
+      		$this = this,
+        	id    = this.attr('id');
 
-          $('<a/>', { id: id + '-next-' + index, href: 'javascript:void(0);', 'class': 'button-next', html: opt.nextLabel }).click(function() {
-            if (!opt.next || methods.execute.call($this, opt.next, index + 1)) {
+          $('<a/>', { id: id + '-next-' + index, href: 'javascript:void(0);', 'class': 'button-next', html: self.opt.nextLabel }).click(function() {
+            if (!self.opt.next || methods.execute.call($this, self.opt.next, index + 1)) {
           methods.step.call($this, (index + 1) + 1);
             }
             }).appendTo($('#' + id + '-buttons-' + index));
-        }, execute: function(callback, index) {
+		}, execute: function(callback, index) {
           var isValid = callback.call(this, index + 1);
 
           return isValid || isValid === undefined;
-        }, step: function(index) {
+		}, step: function(index) {
+			var self = this[0];
+
           index--;
 
       var $steps = this.children('fieldset');
@@ -239,44 +242,43 @@
         index = $steps.length - 1;
       }
 
-      var opt = this.data('options'),
-          max  = index;
+      var max  = index;
 
-        if (opt.validate) {
+        if (self.opt.validate) {
           var isValid = true;
 
           for (var i = 0; i < index; i++) {
             isValid &= methods.validate.call(this, i);
 
-            if (opt.block && !isValid) {
+            if (self.opt.block && !isValid) {
               max = i;
               break;
             }
           }
         }
 
-        if (opt.transition == 'fade') {
+        if (self.opt.transition == 'fade') {
           var stepsCount = $steps.length;
 
-          $steps.fadeOut(opt.duration, function(){
+          $steps.fadeOut(self.opt.duration, function(){
             if (--stepsCount > 0) {
               return;
             }
 
-            $steps.eq(max).fadeIn(opt.duration);
+            $steps.eq(max).fadeIn(self.opt.duration);
           });
-        } else if (opt.transition == 'slide') {
+        } else if (self.opt.transition == 'slide') {
           var stepsCount = $steps.length;
 
-          $steps.slideUp(opt.duration, function(){
+          $steps.slideUp(self.opt.duration, function(){
             if (--stepsCount > 0) {
               return;
             }
 
-            $steps.eq(max).slideDown(opt.duration);
+            $steps.eq(max).slideDown(self.opt.duration);
           });
         } else {
-          $steps.hide(opt.duration).eq(max).show(opt.duration);
+          $steps.hide(self.opt.duration).eq(max).show(self.opt.duration);
         }
 
         var $titles  = $('#' + this.attr('id') + '-titles').children();
@@ -295,8 +297,8 @@
             $fields.first().select().focus();
           }
 
-          if (opt.select) {
-        opt.select.call(this, max + 1);
+          if (self.opt.select) {
+        self.opt.select.call(this, max + 1);
       }
 
           return this;
@@ -314,10 +316,10 @@
         return true;
       }
 
-      var $step    = this.children('fieldset').eq(index),
+      var self = this[0],
+      	$step    = this.children('fieldset').eq(index),
         isValid    = true,
         $title    = $('#' + this.attr('id') + '-titles').children().eq(index),
-        opt      = this.data('options'),
         $validate  = this.validate();
 
       $($step.find(':input:enabled').get().reverse()).each(function() {
@@ -330,11 +332,11 @@
         isValid &= fieldIsValid;
 
         if (isValid) {
-          if (opt.errorImage) {
+          if (self.opt.errorImage) {
             $title.removeClass('error-image');
           }
         } else {
-          if (opt.errorImage) {
+          if (self.opt.errorImage) {
             $title.addClass('error-image');
           }
 
