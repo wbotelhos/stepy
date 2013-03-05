@@ -10,7 +10,8 @@
 ## Changes
 
 + The container that holds the navigation buttons now has the class 'stepy-buttons';
-+ The error container class was renamed to plural 'stepy-errors'.
++ The error container class was renamed to plural 'stepy-errors';
++ Forms without ID will receives a genarated hash to be used as hook.
 
 ## 1.1.0
 

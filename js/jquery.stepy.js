@@ -44,12 +44,13 @@
         		that = $(this),
           	id   = that.attr('id');
 
-        if (id === undefined || id == '') {
-          id = 'stepy-' + $('.' + that.attr('class')).index(this);
+        if (id === undefined || id === '') {
+        	var id = methods._hash.call(this);
+
           that.attr('id', id);
         }
 
-        var $titlesWrapper = $('<ul/>', { id: id + '-titles', 'class': 'stepy-titles' });
+        var $titlesWrapper = $('<ul />', { id: id + '-titles', 'class': 'stepy-titles' });
 
         if (self.opt.titleTarget) {
           $(self.opt.titleTarget).html($titlesWrapper);
@@ -313,6 +314,10 @@
         steps.last().find('.finish').appendTo(steps.last());
         steps.find('p.stepy-buttons').remove();
       });
+    }, _hash: function() {
+      this.hash = 'stepy-' + Math.random().toString().substring(2)
+
+      return this.hash;
     }, validate: function(index) {
       if (!this.is('form')) {
         return true;

@@ -69,7 +69,7 @@ describe('Stepy', function() {
       self.stepy();
 
       // then
-      expect($('#stepy-titles')).toExist();
+      expect($('#' + self.attr('id') + '-titles')).toExist();
     });
 
     it ('starts with the first actived', function() {
@@ -80,7 +80,7 @@ describe('Stepy', function() {
       self.stepy();
 
       // then
-      var menus = $('#stepy-titles').children('li');
+      var menus = $('#' + self.attr('id') + '-titles').children('li');
 
       expect(menus.eq(0)).toHaveClass('current-step');
       expect(menus.eq(1)).not.toHaveClass('current-step');
@@ -90,10 +90,10 @@ describe('Stepy', function() {
     describe('titles', function() {
       it ('is created', function() {
         // given
-        $('form').stepy();
+        var self = $('form').stepy();
 
         // when
-        var menus  = $('#stepy-titles').children('li');
+        var menus  = $('#' + self.attr('id') + '-titles').children('li');
 
         // then
         expect(menus.eq(0).children('div')).toHaveHtml('Step 1');
@@ -107,7 +107,7 @@ describe('Stepy', function() {
             steps = self.children();
 
         // when
-        $('#stepy-titles').children('li:eq(1)').click();
+        $('#' + self.attr('id') + '-titles').children('li:eq(1)').click();
 
         // then
         expect(steps.eq(0)).toBeVisible();
@@ -119,10 +119,10 @@ describe('Stepy', function() {
     describe('descriptions', function() {
       it ('is created', function() {
         // given
-        $('form').stepy();
+        var self = $('form').stepy();
 
         // when
-        var menus  = $('#stepy-titles').children('li');
+        var menus = $('#' + self.attr('id') + '-titles').children('li');
 
         // then
         expect(menus.eq(0).children('span')).toHaveHtml('description 1');
@@ -426,7 +426,7 @@ describe('Stepy', function() {
           self.stepy({ description: false });
 
           // then
-          var menus = $('#stepy-titles').children('li');
+          var menus = $('#' + self.attr('id') + '-titles').children('li');
 
           expect(menus.eq(0)).not.toContain('span');
           expect(menus.eq(1)).not.toContain('span');
@@ -777,7 +777,7 @@ describe('Stepy', function() {
           self.stepy({ titleTarget: '#' + this.target.attr('id') });
 
           // then
-          expect(target).toContain('#stepy-titles');
+          expect(target).toContain('#' + self.attr('id') + '-titles');
         });
       });
 
@@ -792,7 +792,7 @@ describe('Stepy', function() {
                 steps = self.children('fieldset');
 
             // when
-            $('#stepy-titles').children('li').eq(1).click();
+            $('#' + self.attr('id') + '-titles').children('li').eq(1).click();
 
             // then
             expect(self.data('index')).toEqual(2);
@@ -809,7 +809,7 @@ describe('Stepy', function() {
                           back      : function(index) { this.data('index', index); }
                         }),
                 steps  = self.children('fieldset'),
-                titles = $('#stepy-titles').children('li');
+                titles = $('#' + self.attr('id') + '-titles').children('li');
 
             titles.eq(1).click();
 
@@ -831,7 +831,7 @@ describe('Stepy', function() {
                           select    : function(index) { this.data('index', index); }
                         }),
                 steps  = self.children('fieldset'),
-                titles = $('#stepy-titles').children('li');
+                titles = $('#' + self.attr('id') + '-titles').children('li');
 
             // when
             titles.eq(1).click();
@@ -848,7 +848,7 @@ describe('Stepy', function() {
             // given
             var self   = $('form').stepy({ block: true, titleClick: true, validate: true }),
                 steps  = self.children('fieldset'),
-                titles = $('#stepy-titles').children('li');
+                titles = $('#' + self.attr('id') + '-titles').children('li');
 
             self.validate({
               errorPlacement: function(error, element) {
@@ -875,7 +875,7 @@ describe('Stepy', function() {
             // given
             var self   = $('form').stepy({ errorImage: true, titleClick: true, validate: true }),
                 steps  = self.children('fieldset'),
-                titles = $('#stepy-titles').children('li');
+                titles = $('#' + self.attr('id') + '-titles').children('li');
 
             self.validate({
               errorPlacement: function(error, element) {
@@ -957,7 +957,7 @@ describe('Stepy', function() {
               // given
               var self   = $('form').stepy({ block: true, validate: true }),
                   steps  = self.children('fieldset'),
-                  titles = $('#stepy-titles').children('li');
+                  titles = $('#' + self.attr('id') + '-titles').children('li');
 
               self.validate({
                 errorPlacement: function(error, element) {
@@ -1016,7 +1016,7 @@ describe('Stepy', function() {
           // given
           var self   = $('form').stepy({ errorImage: true, validate: true }),
               steps  = self.children('fieldset'),
-              titles = $('#stepy-titles').children('li');
+              titles = $('#' + self.attr('id') + '-titles').children('li');
 
           self.validate({
             errorPlacement: function(error, element) {
@@ -1139,6 +1139,34 @@ describe('Stepy', function() {
         expect(steps.eq(0)).toBeHidden();
         expect(steps.eq(1)).toBeVisible();
         expect(steps.eq(2)).toBeHidden();
+      });
+    });
+  });
+
+  context('with form without id', function() {
+    beforeEach(function() { $('form').removeAttr('id'); });
+
+    describe('ID', function() {
+      it ('is generated', function() {
+        // given
+        var self = $('form');
+
+        // when
+        self.stepy();
+
+        // then
+        expect(self[0].hash).not.toBeUndefined();
+      });
+
+      it ('is used on the header', function() {
+        // given
+        var self = $('form');
+
+        // when
+        self.stepy();
+
+        // then
+        expect(self.prev('ul').attr('id')).toEqual(self[0].hash + '-titles');
       });
     });
   });
