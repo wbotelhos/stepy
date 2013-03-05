@@ -50,12 +50,12 @@
           that.attr('id', id);
         }
 
-        var $titlesWrapper = $('<ul />', { id: id + '-titles', 'class': 'stepy-titles' });
+        var header = $('<ul />', { id: id + '-titles', 'class': 'stepy-header' });
 
         if (self.opt.titleTarget) {
-          $(self.opt.titleTarget).html($titlesWrapper);
+          $(self.opt.titleTarget).html(header);
         } else {
-          $titlesWrapper.insertBefore(that);
+          header.insertBefore(that);
         }
 
             if (self.opt.validate) {
@@ -97,7 +97,7 @@
               title = $step.attr('title');
               title = (title != '') ? '<div>' + title + '</div>': '--';
 
-              $titlesWrapper.append('<li id="' + id + '-title-' + index + '">' + title + description + '</li>');
+              header.append('<li id="' + id + '-title-' + index + '">' + title + description + '</li>');
 
               if (index == 0) {
                 if ($steps.length > 1) {
@@ -114,7 +114,7 @@
               }
             });
 
-            var $titles  = $titlesWrapper.children();
+            var $titles  = header.children();
 
             $titles.first().addClass('current-step');
 
