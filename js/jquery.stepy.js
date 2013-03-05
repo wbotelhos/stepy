@@ -50,7 +50,7 @@
           that.attr('id', id);
         }
 
-        var header = $('<ul />', { id: id + '-titles', 'class': 'stepy-header' });
+        var header = $('<ul />', { id: id + 'header', 'class': 'stepy-header' });
 
         if (self.opt.titleTarget) {
           $(self.opt.titleTarget).html(header);
@@ -284,7 +284,7 @@
           $steps.hide(self.opt.duration).eq(max).show(self.opt.duration);
         }
 
-        var $titles  = $('#' + this.attr('id') + '-titles').children();
+        var $titles  = $('#' + this.attr('id') + 'header').children();
 
       $titles.removeClass('current-step').eq(max).addClass('current-step');
 
@@ -326,7 +326,7 @@
       var self = this[0],
       	$step    = this.children('fieldset').eq(index),
         isValid    = true,
-        $title    = $('#' + this.attr('id') + '-titles').children().eq(index),
+        $title    = $('#' + this.attr('id') + 'header').children().eq(index),
         $validate  = this.validate();
 
       $($step.find(':input:enabled').get().reverse()).each(function() {
