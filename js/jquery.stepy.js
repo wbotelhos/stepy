@@ -76,7 +76,7 @@
 
         var heads = self.header.children('li');
 
-            heads.first().addClass('current-step');
+        heads.first().addClass('stepy-active');
 
             var $finish = that.children('.finish');
 
@@ -118,7 +118,7 @@
 
             if (self.opt.titleClick) {
               heads.click(function() {
-                var  array  = heads.filter('.current-step').attr('id').split('-'), // TODO: try keep the number in an attribute.
+                var  array  = heads.filter('.stepy-active').attr('id').split('-'), // TODO: try keep the number in an attribute.
                   current  = parseInt(array[array.length - 1], 10),
                   clicked  = $(this).index();
 
@@ -311,7 +311,7 @@
 
         var heads  = $('#' + that.attr('id') + '-header').children();
 
-      heads.removeClass('current-step').eq(max).addClass('current-step');
+      heads.removeClass('stepy-active').eq(max).addClass('stepy-active');
 
       if (that.is('form')) {
         var $fields = undefined;

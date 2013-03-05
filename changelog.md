@@ -16,7 +16,8 @@
 + The 'stepy-{id}-titles' ID was renamed to 'stepy-{id || hash}-header';
 + The 'step' class was renamed to 'stepy-step';
 + The '{id}-titles-{index}' was renamed to '{id}-head-{index}';
-+ All callbacks now receives the variable `this` as DOM element instead jQuery.
++ All callbacks now receives the variable `this` as DOM element instead jQuery;
++ The 'current-step' class was renamed to 'stepy-active'.
 
 ## 1.1.0
 

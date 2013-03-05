@@ -82,9 +82,9 @@ describe('Stepy', function() {
       // then
       var menus = $('#' + self.attr('id') + '-header').children('li');
 
-      expect(menus.eq(0)).toHaveClass('current-step');
-      expect(menus.eq(1)).not.toHaveClass('current-step');
-      expect(menus.eq(2)).not.toHaveClass('current-step');
+      expect(menus.eq(0)).toHaveClass('stepy-active');
+      expect(menus.eq(1)).not.toHaveClass('stepy-active');
+      expect(menus.eq(2)).not.toHaveClass('stepy-active');
     });
 
     describe('titles', function() {
