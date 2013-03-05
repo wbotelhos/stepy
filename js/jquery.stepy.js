@@ -50,19 +50,15 @@
           that.attr('id', id);
         }
 
-        var header = $('<ul />', { id: id + 'header', 'class': 'stepy-header' });
+				if (self.opt.validate) {
+          jQuery.validator.setDefaults({ ignore: self.opt.ignore });
 
-        if (self.opt.titleTarget) {
-          $(self.opt.titleTarget).html(header);
-        } else {
-          header.insertBefore(that);
+          that.append('<div class="stepy-errors" />');
         }
 
-            if (self.opt.validate) {
-              jQuery.validator.setDefaults({ ignore: self.opt.ignore });
+        var header = methods._header.call(this);
 
-              that.append('<div class="stepy-errors"/>');
-            }
+
 
             var  $steps    = that.children('fieldset'),
               $step    = undefined,
@@ -318,6 +314,16 @@
       this.hash = 'stepy-' + Math.random().toString().substring(2)
 
       return this.hash;
+    }, _header: function() {
+    	var header = $('<ul />', { id: $(this).attr('id') + 'header', 'class': 'stepy-header' });
+
+      if (this.opt.titleTarget) {
+        header.appendTo(this.opt.titleTarget);
+      } else {
+        header.insertBefore(this);
+      }
+
+      return header;
     }, validate: function(index) {
       if (!this.is('form')) {
         return true;
