@@ -45,7 +45,7 @@
             id   = that.attr('id');
 
         if (id === undefined || id === '') {
-          var id = methods._hash.call(this);
+          var id = methods._hash.call(self);
 
           that.attr('id', id);
         }
@@ -56,12 +56,12 @@
           that.append('<div class="stepy-errors" />');
         }
 
-        var header = methods._header.call(this),
-            steps  = that.children('fieldset');
+        self.header = methods._header.call(self);
+        self.steps  = that.children('fieldset');
 
-        steps.each(function(index) {
+        self.steps.each(function(index) {
           var step = $(this).attr('id', id + '-step-' + index).addClass('stepy-step'),
-               head = methods._head.call(self, index);
+              head = methods._head.call(self, index);
 
           head.append(methods._title.call(self, step));
 
@@ -69,28 +69,14 @@
             head.append(methods._description.call(self, step));
           }
 
-          header.append(head);
+          self.header.append(head);
 
-          var nav = methods._navigator.call(self).appendTo(step);
-
-          if (index == 0) {
-            if (steps.length > 1) {
-              methods._createNextButton.call(self, nav, index);
-            }
-          } else {
-            methods._createBackButton.call(self, nav, index);
-
-            step.hide();
-
-            if (index < steps.length - 1) {
-              methods._createNextButton.call(self, nav, index);
-            }
-          }
+          methods._createButtons.call(self, step, index);
         });
 
-            var $titles  = header.children();
+        var heads = self.header.children('li');
 
-            $titles.first().addClass('current-step');
+            heads.first().addClass('current-step');
 
             var $finish = that.children('.finish');
 
@@ -105,7 +91,7 @@
                 }
 
                 $finish.click(function(evt) {
-                if (self.opt.finish && !methods._execute.call(that, self.opt.finish, steps.length - 1)) {
+                if (self.opt.finish && !methods._execute.call(that, self.opt.finish, self.steps.length - 1)) {
                    evt.preventDefault();
                 } else {
                   if (isForm) {
@@ -117,7 +103,7 @@
 
                     var isSubmit = $finish.attr('type') == 'submit';
 
-                    if (!isSubmit && (!self.opt.validate || methods.validate.call(that, steps.length - 1))) {
+                    if (!isSubmit && (!self.opt.validate || methods.validate.call(that, self.steps.length - 1))) {
                       that.submit();
                     }
                   }
@@ -131,8 +117,8 @@
             }
 
             if (self.opt.titleClick) {
-              $titles.click(function() {
-                var  array  = $titles.filter('.current-step').attr('id').split('-'), // TODO: try keep the number in an attribute.
+              heads.click(function() {
+                var  array  = heads.filter('.current-step').attr('id').split('-'), // TODO: try keep the number in an attribute.
                   current  = parseInt(array[array.length - 1], 10),
                   clicked  = $(this).index();
 
@@ -151,11 +137,11 @@
             }
               });
           } else {
-            $titles.css('cursor', 'default');
+            heads.css('cursor', 'default');
           }
 
           if (self.opt.enter) {
-            steps.delegate('input[type="text"], input[type="password"]', 'keypress', function(evt) {
+            self.steps.delegate('input[type="text"], input[type="password"]', 'keypress', function(evt) {
               var key = (evt.keyCode ? evt.keyCode : evt.which);
 
               if (key == 13) {
@@ -180,7 +166,7 @@
             });
           }
 
-          steps.first().find(':input:visible:enabled').first().select().focus();
+          self.steps.first().find(':input:visible:enabled').first().select().focus();
 
         that.data({ 'settings': this.opt, 'stepy': true });
       });
@@ -195,6 +181,22 @@
           methods.step.call(self, (index - 1) + 1);
         }
       }).appendTo(nav);
+    }, _createButtons: function(step, index) {
+      var nav = methods._navigator.call(this).appendTo(step);
+
+      if (index === 0) {
+        if (this.steps.length > 1) {
+          methods._createNextButton.call(this, nav, index);
+        }
+      } else {
+        step.hide();
+
+        methods._createBackButton.call(this, nav, index);
+
+        if (index < this.steps.length - 1) {
+          methods._createNextButton.call(this, nav, index);
+        }
+      }
     }, _createNextButton: function(nav, index) {
       var self       = this,
           that       = $(this),
@@ -307,9 +309,9 @@
           steps.hide(opt.duration).eq(max).show(opt.duration);
         }
 
-        var $titles  = $('#' + that.attr('id') + '-header').children();
+        var heads  = $('#' + that.attr('id') + '-header').children();
 
-      $titles.removeClass('current-step').eq(max).addClass('current-step');
+      heads.removeClass('current-step').eq(max).addClass('current-step');
 
       if (that.is('form')) {
         var $fields = undefined;
