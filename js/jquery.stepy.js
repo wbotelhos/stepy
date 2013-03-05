@@ -74,14 +74,14 @@
           methods._createButtons.call(self, step, index);
         });
 
-        var heads = self.header.children('li');
+        self.heads = self.header.children('li');
 
-        heads.first().addClass('stepy-active');
+        self.heads.first().addClass('stepy-active');
 
-            var $finish = that.children('.finish');
+        var finish = that.children('.finish');
 
         if (self.opt.finishButton) {
-              if ($finish.length) {
+              if (finish.length) {
                 var isForm    = that.is('form'),
                   onSubmit  = undefined;
 
@@ -90,7 +90,7 @@
                   that.attr('onsubmit', 'return false;');
                 }
 
-                $finish.click(function(evt) {
+                finish.click(function(evt) {
                 if (self.opt.finish && !methods._execute.call(that, self.opt.finish, self.steps.length - 1)) {
                    evt.preventDefault();
                 } else {
@@ -101,7 +101,7 @@
                       that.removeAttr('onsubmit');
                     }
 
-                    var isSubmit = $finish.attr('type') == 'submit';
+                    var isSubmit = finish.attr('type') == 'submit';
 
                     if (!isSubmit && (!self.opt.validate || methods.validate.call(that, self.steps.length - 1))) {
                       that.submit();
@@ -110,15 +110,15 @@
                 }
                 });
 
-                $finish.appendTo(that.find('p:last'));
+                finish.appendTo(that.find('p:last'));
               } else {
                 $.error(id + ': element with class name "finish" missing!');
               }
             }
 
             if (self.opt.titleClick) {
-              heads.click(function() {
-                var  array  = heads.filter('.stepy-active').attr('id').split('-'), // TODO: try keep the number in an attribute.
+              self.heads.click(function() {
+                var  array  = self.heads.filter('.stepy-active').attr('id').split('-'), // TODO: try keep the number in an attribute.
                   current  = parseInt(array[array.length - 1], 10),
                   clicked  = $(this).index();
 
@@ -137,7 +137,7 @@
             }
               });
           } else {
-            heads.css('cursor', 'default');
+            self.heads.css('cursor', 'default');
           }
 
           if (self.opt.enter) {
@@ -155,10 +155,10 @@
                   if ($next.length) {
                     $next.click();
                   } else {
-                    var $finish = $buttons.children('.finish');
+                    var finish = $buttons.children('.finish');
 
-                    if ($finish.length) {
-                      $finish.click();
+                    if (finish.length) {
+                      finish.click();
                     }
                   }
                 }
@@ -309,9 +309,7 @@
           steps.hide(opt.duration).eq(max).show(opt.duration);
         }
 
-        var heads  = $('#' + that.attr('id') + '-header').children();
-
-      heads.removeClass('stepy-active').eq(max).addClass('stepy-active');
+      that[0].heads.removeClass('stepy-active').eq(max).addClass('stepy-active');
 
       if (that.is('form')) {
         var $fields = undefined;
