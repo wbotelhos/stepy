@@ -56,40 +56,24 @@
           that.append('<div class="stepy-errors" />');
         }
 
-        var header      = methods._header.call(this),
-						steps       = that.children('fieldset'),
-						legend      = undefined,
-						description = '',
-						title       = '';
+        var header = methods._header.call(this),
+						steps  = that.children('fieldset');
 
         steps.each(function(index) {
-          var step = $(this);
+					var step = $(this).attr('id', id + '-step-' + index).addClass('stepy-step'),
+         			head = methods._head.call(self, index);
 
-          step
-          .addClass('stepy-step')
-          .attr('id', id + '-step-' + index)
-          .append('<p id="' + id + '-buttons-' + index + '" class="stepy-buttons"/>');
-
-          legend = step.children('legend');
-
-          if (!self.opt.legend) {
-            legend.hide();
-          }
-
-          description = '';
+					head.append(methods._title.call(self, step));
 
           if (self.opt.description) {
-            if (legend.length) {
-              description = '<span>' + legend.html() + '</span>';
-            } else {
-              $.error(id + ': the legend element of the step ' + (index + 1) + ' is required to set the description!');
-            }
+            head.append(methods._description.call(self, step));
           }
 
-          title = step.attr('title');
-          title = (title != '') ? '<div>' + title + '</div>': '--';
+          header.append(head);
 
-          header.append('<li id="' + id + '-title-' + index + '">' + title + description + '</li>');
+					var buttons = $('<p />', { id: id + '-buttons-' + index, 'class': 'stepy-buttons' });
+
+					step.append(buttons);
 
           if (index == 0) {
             if (steps.length > 1) {
@@ -297,6 +281,18 @@
       }
 
           return this;
+    }, _description: function(step) {
+    	var legend = step.children('legend');
+
+			if (!this.opt.legend) {
+        legend.hide();
+      }
+
+      if (legend.length) {
+        return $('<span />', { html: legend.html() });
+      }
+
+			methods._error.call(this, '<legend /> element missing!');
     }, destroy: function() {
       return $(this).each(function() {
       	var that  = $(this).data('stepy', false),
@@ -306,12 +302,18 @@
         steps.last().find('.finish').appendTo(steps.last());
         steps.find('p.stepy-buttons').remove();
       });
+    }, _error: function(message) {
+      $(this).html(message);
+
+      $.error(message);
     }, _hash: function() {
       this.hash = 'stepy-' + Math.random().toString().substring(2)
 
       return this.hash;
+    }, _head: function(index) {
+    	return $('<li />', { id: $(this).attr('id') + '-head-' + index });
     }, _header: function() {
-    	var header = $('<ul />', { id: $(this).attr('id') + 'header', 'class': 'stepy-header' });
+    	var header = $('<ul />', { id: $(this).attr('id') + '-header', 'class': 'stepy-header' });
 
       if (this.opt.titleTarget) {
         header.appendTo(this.opt.titleTarget);
@@ -320,6 +322,8 @@
       }
 
       return header;
+    }, _title: function(step) {
+    	return $('<div />', { html: step.attr('title') || '--' });
     }, validate: function(index) {
       if (!this.is('form')) {
         return true;

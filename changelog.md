@@ -14,7 +14,8 @@
 + Forms without ID will receives a genarated hash to be used as hook;
 + The 'stepy-titles' class was renamed to 'stepy-header';
 + The 'stepy-{id}-titles' ID was renamed to 'stepy-{id || hash}-header';
-+ The 'step' class was renamed to 'stepy-step'.
++ The 'step' class was renamed to 'stepy-step';
++ The '{id}-titles-{index}' was renamed to '{id}-head-{index}'.
 
 ## 1.1.0
 
