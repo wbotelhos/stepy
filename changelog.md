@@ -13,7 +13,8 @@
 + The error container class was renamed to plural 'stepy-errors';
 + Forms without ID will receives a genarated hash to be used as hook;
 + The 'stepy-titles' class was renamed to 'stepy-header';
-+ The 'stepy-{id}-titles' ID was renamed to 'stepy-{id || hash}-header'.
++ The 'stepy-{id}-titles' ID was renamed to 'stepy-{id || hash}-header';
++ The 'step' class was renamed to 'stepy-step'.
 
 ## 1.1.0
 

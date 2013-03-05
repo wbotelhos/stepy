@@ -56,59 +56,55 @@
           that.append('<div class="stepy-errors" />');
         }
 
-        var header = methods._header.call(this);
+        var header      = methods._header.call(this),
+						steps       = that.children('fieldset'),
+						legend      = undefined,
+						description = '',
+						title       = '';
 
+        steps.each(function(index) {
+          var step = $(this);
 
+          step
+          .addClass('stepy-step')
+          .attr('id', id + '-step-' + index)
+          .append('<p id="' + id + '-buttons-' + index + '" class="stepy-buttons"/>');
 
-            var  $steps    = that.children('fieldset'),
-              $step    = undefined,
-              $legend    = undefined,
-              description  = '',
-              title    = '';
+          legend = step.children('legend');
 
-            $steps.each(function(index) {
-              $step = $(this);
+          if (!self.opt.legend) {
+            legend.hide();
+          }
 
-              $step
-              .addClass('step')
-              .attr('id', id + '-step-' + index)
-              .append('<p id="' + id + '-buttons-' + index + '" class="stepy-buttons"/>');
+          description = '';
 
-              $legend = $step.children('legend');
+          if (self.opt.description) {
+            if (legend.length) {
+              description = '<span>' + legend.html() + '</span>';
+            } else {
+              $.error(id + ': the legend element of the step ' + (index + 1) + ' is required to set the description!');
+            }
+          }
 
-              if (!self.opt.legend) {
-                $legend.hide();
-              }
+          title = step.attr('title');
+          title = (title != '') ? '<div>' + title + '</div>': '--';
 
-              description = '';
+          header.append('<li id="' + id + '-title-' + index + '">' + title + description + '</li>');
 
-              if (self.opt.description) {
-                if ($legend.length) {
-                  description = '<span>' + $legend.html() + '</span>';
-                } else {
-                  $.error(id + ': the legend element of the step ' + (index + 1) + ' is required to set the description!');
-                }
-              }
+          if (index == 0) {
+            if (steps.length > 1) {
+              methods.createNextButton.call(that, index);
+            }
+          } else {
+            methods.createBackButton.call(that, index);
 
-              title = $step.attr('title');
-              title = (title != '') ? '<div>' + title + '</div>': '--';
+            step.hide();
 
-              header.append('<li id="' + id + '-title-' + index + '">' + title + description + '</li>');
-
-              if (index == 0) {
-                if ($steps.length > 1) {
-                  methods.createNextButton.call(that, index);
-                }
-              } else {
-                methods.createBackButton.call(that, index);
-
-                $step.hide();
-
-                if (index < $steps.length - 1) {
-                  methods.createNextButton.call(that, index);
-                }
-              }
-            });
+            if (index < steps.length - 1) {
+              methods.createNextButton.call(that, index);
+            }
+          }
+        });
 
             var $titles  = header.children();
 
@@ -127,7 +123,7 @@
                 }
 
                 $finish.click(function(evt) {
-                if (self.opt.finish && !methods.execute.call(that, self.opt.finish, $steps.length - 1)) {
+                if (self.opt.finish && !methods.execute.call(that, self.opt.finish, steps.length - 1)) {
                    evt.preventDefault();
                 } else {
                   if (isForm) {
@@ -139,7 +135,7 @@
 
                     var isSubmit = $finish.attr('type') == 'submit';
 
-                    if (!isSubmit && (!self.opt.validate || methods.validate.call(that, $steps.length - 1))) {
+                    if (!isSubmit && (!self.opt.validate || methods.validate.call(that, steps.length - 1))) {
                       that.submit();
                     }
                   }
@@ -177,7 +173,7 @@
           }
 
           if (self.opt.enter) {
-            $steps.delegate('input[type="text"], input[type="password"]', 'keypress', function(evt) {
+            steps.delegate('input[type="text"], input[type="password"]', 'keypress', function(evt) {
               var key = (evt.keyCode ? evt.keyCode : evt.which);
 
               if (key == 13) {
@@ -202,7 +198,7 @@
             });
           }
 
-          $steps.first().find(':input:visible:enabled').first().select().focus();
+          steps.first().find(':input:visible:enabled').first().select().focus();
 
         that.data({ 'settings': this.opt, 'stepy': true });
       });
@@ -235,10 +231,10 @@
 
           index--;
 
-      var $steps = this.children('fieldset');
+      var steps = this.children('fieldset');
 
-      if (index > $steps.length - 1) {
-        index = $steps.length - 1;
+      if (index > steps.length - 1) {
+        index = steps.length - 1;
       }
 
       var max  = index;
@@ -257,27 +253,27 @@
         }
 
         if (self.opt.transition == 'fade') {
-          var stepsCount = $steps.length;
+          var stepsCount = steps.length;
 
-          $steps.fadeOut(self.opt.duration, function(){
+          steps.fadeOut(self.opt.duration, function(){
             if (--stepsCount > 0) {
               return;
             }
 
-            $steps.eq(max).fadeIn(self.opt.duration);
+            steps.eq(max).fadeIn(self.opt.duration);
           });
         } else if (self.opt.transition == 'slide') {
-          var stepsCount = $steps.length;
+          var stepsCount = steps.length;
 
-          $steps.slideUp(self.opt.duration, function(){
+          steps.slideUp(self.opt.duration, function(){
             if (--stepsCount > 0) {
               return;
             }
 
-            $steps.eq(max).slideDown(self.opt.duration);
+            steps.eq(max).slideDown(self.opt.duration);
           });
         } else {
-          $steps.hide(self.opt.duration).eq(max).show(self.opt.duration);
+          steps.hide(self.opt.duration).eq(max).show(self.opt.duration);
         }
 
         var $titles  = $('#' + this.attr('id') + 'header').children();
@@ -288,9 +284,9 @@
         var $fields = undefined;
 
             if (max == index) {
-              $fields = $steps.eq(max).find(':input:enabled:visible');
+              $fields = steps.eq(max).find(':input:enabled:visible');
             } else {
-              $fields = $steps.eq(max).find('.error').select().focus();
+              $fields = steps.eq(max).find('.error').select().focus();
             }
 
             $fields.first().select().focus();
@@ -330,12 +326,12 @@
       }
 
       var self = this[0],
-      	$step    = this.children('fieldset').eq(index),
+      	step    = this.children('fieldset').eq(index),
         isValid    = true,
         $title    = $('#' + this.attr('id') + 'header').children().eq(index),
         $validate  = this.validate();
 
-      $($step.find(':input:enabled').get().reverse()).each(function() {
+      $(step.find(':input:enabled').get().reverse()).each(function() {
         var fieldIsValid = $validate.element($(this));
 
         if (fieldIsValid === undefined) {

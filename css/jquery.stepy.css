@@ -8,13 +8,13 @@
 }
 .button-back:hover, .button-next:hover, .finish:hover { border-color: #DFDCD6; color: #B07; }
 
-.step {
+.stepy-step {
 	border: 1px solid #DDD; clear: left; font: 10px verdana; width: 500px;
 	-khtml-border-radius: 3px; -moz-border-radius: 3px; -opera-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px;
 }
-.step label { color: #444; display: block; font: bold 10px verdana; margin: 10px 0 3px 7px; }
-.step legend { color: #4080BF; font: bold 14px verdana; padding: 0 2px 3px 2px; }
-.step input, .step textarea, .step select { border: 1px solid #AAA; font: 10px verdana; margin-left: 7px; }
+.stepy-step label { color: #444; display: block; font: bold 10px verdana; margin: 10px 0 3px 7px; }
+.stepy-step legend { color: #4080BF; font: bold 14px verdana; padding: 0 2px 3px 2px; }
+.stepy-step input, .stepy-step textarea, .stepy-step select { border: 1px solid #AAA; font: 10px verdana; margin-left: 7px; }
 
 .error-image { background: url('../img/error.png') no-repeat right top; }
 
