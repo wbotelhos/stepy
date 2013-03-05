@@ -69,7 +69,7 @@ describe('Stepy', function() {
       self.stepy();
 
       // then
-      expect($('#' + self.attr('id') + 'header')).toExist();
+      expect($('#' + self.attr('id') + '-header')).toExist();
     });
 
     it ('starts with the first actived', function() {
@@ -80,7 +80,7 @@ describe('Stepy', function() {
       self.stepy();
 
       // then
-      var menus = $('#' + self.attr('id') + 'header').children('li');
+      var menus = $('#' + self.attr('id') + '-header').children('li');
 
       expect(menus.eq(0)).toHaveClass('current-step');
       expect(menus.eq(1)).not.toHaveClass('current-step');
@@ -93,7 +93,7 @@ describe('Stepy', function() {
         var self = $('form').stepy();
 
         // when
-        var menus  = $('#' + self.attr('id') + 'header').children('li');
+        var menus  = $('#' + self.attr('id') + '-header').children('li');
 
         // then
         expect(menus.eq(0).children('div')).toHaveHtml('Step 1');
@@ -107,7 +107,7 @@ describe('Stepy', function() {
             steps = self.children();
 
         // when
-        $('#' + self.attr('id') + 'header').children('li:eq(1)').click();
+        $('#' + self.attr('id') + '-header').children('li:eq(1)').click();
 
         // then
         expect(steps.eq(0)).toBeVisible();
@@ -122,7 +122,7 @@ describe('Stepy', function() {
         var self = $('form').stepy();
 
         // when
-        var menus = $('#' + self.attr('id') + 'header').children('li');
+        var menus = $('#' + self.attr('id') + '-header').children('li');
 
         // then
         expect(menus.eq(0).children('span')).toHaveHtml('description 1');
@@ -163,8 +163,8 @@ describe('Stepy', function() {
             expect(steps.eq(2)).toBeHidden();
         });
 
-        describe('buttons', function() {
-          it ('has the next', function() {
+        describe('navigator', function() {
+          it ('has the next button', function() {
             // given
             var self = $('form'),
                 step = self.children('fieldset:first');
@@ -173,11 +173,11 @@ describe('Stepy', function() {
             self.stepy();
 
             // then
-            var buttons = step.children('.stepy-buttons');
+            var nav = step.children('.stepy-navigator');
 
-            expect(step).toContain('p.stepy-buttons');
-            expect(buttons).not.toContain('.button-back');
-            expect(buttons).toContain('.button-next');
+            expect(step).toContain('p.stepy-navigator');
+            expect(nav).not.toContain('.button-back');
+            expect(nav).toContain('.button-next');
           });
 
           it ('has the right labels', function() {
@@ -223,8 +223,8 @@ describe('Stepy', function() {
       });
 
       describe('middle', function() {
-        describe('buttons', function() {
-          it ('has the back and next', function() {
+        describe('navigator', function() {
+          it ('has the back and next button', function() {
             // given
             var self = $('form'),
                 step = self.children('fieldset:eq(1)');
@@ -233,11 +233,11 @@ describe('Stepy', function() {
             self.stepy();
 
             // then
-            var buttons = step.children('.stepy-buttons');
+            var nav = step.children('.stepy-navigator');
 
-            expect(step).toContain('.stepy-buttons');
-            expect(buttons).toContain('.button-back');
-            expect(buttons).toContain('.button-next');
+            expect(step).toContain('.stepy-navigator');
+            expect(nav).toContain('.button-back');
+            expect(nav).toContain('.button-next');
           });
 
           it ('has the right labels', function() {
@@ -315,11 +315,11 @@ describe('Stepy', function() {
         self.stepy();
 
         // then
-        var buttons = step.children('.stepy-buttons');
+        var nav = step.children('.stepy-navigator');
 
-        expect(step).toContain('.stepy-buttons');
-        expect(buttons).toContain('.button-back');
-        expect(buttons).not.toContain('.button-next');
+        expect(step).toContain('.stepy-navigator');
+        expect(nav).toContain('.button-back');
+        expect(nav).not.toContain('.button-next');
       });
 
       it ('has the right labels', function() {
@@ -372,7 +372,7 @@ describe('Stepy', function() {
         // given
         var self = $('form').stepy({
           back: function() {
-            this.data('called', true);
+            $(this).data('called', true);
           }
         }),
         steps     = self.children('fieldset');
@@ -388,7 +388,7 @@ describe('Stepy', function() {
 
       it ('receives the right index', function() {
         // given
-        var self  = $('form').stepy({ back: function(index) { this.data('index', index); } }),
+        var self  = $('form').stepy({ back: function(index) { $(this).data('index', index); } }),
             steps = self.children('fieldset');
 
         steps.eq(0).find('.button-next').click();
@@ -426,7 +426,7 @@ describe('Stepy', function() {
           self.stepy({ description: false });
 
           // then
-          var menus = $('#' + self.attr('id') + 'header').children('li');
+          var menus = $('#' + self.attr('id') + '-header').children('li');
 
           expect(menus.eq(0)).not.toContain('span');
           expect(menus.eq(1)).not.toContain('span');
@@ -478,7 +478,7 @@ describe('Stepy', function() {
               var self  = $('form').stepy({
                             enter    : true,
                             validate: false,
-                            next    : function(index) { this.data('index', index); }
+                            next    : function(index) { $(this).data('index', index); }
                           }),
                   steps = self.children('fieldset'),
                   evt   = jQuery.Event('keypress');
@@ -546,7 +546,7 @@ describe('Stepy', function() {
         context('on the last step', function() {
           it ('submits the form', function() {
             // given
-            var self  = $('form').stepy({ finish: function() { this.data('submited', true); } }),
+            var self  = $('form').stepy({ finish: function() { $(this).data('submited', true); } }),
                 steps = self.children('fieldset'),
                 evt   = jQuery.Event('keypress');
 
@@ -594,7 +594,7 @@ describe('Stepy', function() {
         // given
         var self = $('form').stepy({
           finish: function() {
-            this.data('called', true);
+            $(this).data('called', true);
           }
         }),
         steps     = self.children('fieldset');
@@ -691,12 +691,8 @@ describe('Stepy', function() {
     describe('next', function() {
       it ('is called on trigger next button', function() {
         // given
-        var self = $('form').stepy({
-          next: function() {
-            this.data('called', true);
-          }
-        }),
-        steps     = self.children('fieldset');
+        var self  = $('form').stepy({ next: function() { $(this).data('called', true); } }),
+            steps = self.children('fieldset');
 
         // when
         steps.eq(0).find('.button-next').click();
@@ -707,7 +703,7 @@ describe('Stepy', function() {
 
       it ('receives the right index', function() {
         // given
-        var self  = $('form').stepy({ next: function(index) { this.data('index', index); } }),
+        var self  = $('form').stepy({ next: function(index) { $(this).data('index', index); } }),
             steps = self.children('fieldset');
 
         // when
@@ -736,12 +732,8 @@ describe('Stepy', function() {
     describe('select', function() {
       it ('is called on change the step', function() {
         // given
-        var self = $('form').stepy({
-          select: function() {
-            this.data('called', true);
-          }
-        }),
-        steps     = self.children('fieldset');
+        var self  = $('form').stepy({ select: function() { $(this).data('called', true); } }),
+            steps = self.children('fieldset');
 
         // when
         steps.eq(0).find('.button-next').click();
@@ -752,7 +744,7 @@ describe('Stepy', function() {
 
       it ('receives the right index', function() {
         // given
-        var self  = $('form').stepy({ select: function(index) { this.data('index', index); } }),
+        var self  = $('form').stepy({ select: function(index) { $(this).data('index', index); } }),
             steps = self.children('fieldset');
 
         // when
@@ -777,7 +769,7 @@ describe('Stepy', function() {
           self.stepy({ titleTarget: '#' + this.target.attr('id') });
 
           // then
-          expect(target).toContain('#' + self.attr('id') + 'header');
+          expect(target).toContain('#' + self.attr('id') + '-header');
         });
       });
 
@@ -787,12 +779,12 @@ describe('Stepy', function() {
             // given
             var self  = $('form').stepy({
                           titleClick: true,
-                          next      : function(index) { this.data('index', index); }
+                          next      : function(index) { $(this).data('index', index); }
                         }),
                 steps = self.children('fieldset');
 
             // when
-            $('#' + self.attr('id') + 'header').children('li').eq(1).click();
+            $('#' + self.attr('id') + '-header').children('li').eq(1).click();
 
             // then
             expect(self.data('index')).toEqual(2);
@@ -806,10 +798,13 @@ describe('Stepy', function() {
             // given
             var self   = $('form').stepy({
                           titleClick: true,
-                          back      : function(index) { this.data('index', index); }
+                          back      : function(index) {
+                            console.log(index);
+                            $(this).data('index', index);
+                          }
                         }),
                 steps  = self.children('fieldset'),
-                titles = $('#' + self.attr('id') + 'header').children('li');
+                titles = $('#' + self.attr('id') + '-header').children('li');
 
             titles.eq(1).click();
 
@@ -828,10 +823,10 @@ describe('Stepy', function() {
             // given
             var self   = $('form').stepy({
                           titleClick: true,
-                          select    : function(index) { this.data('index', index); }
+                          select    : function(index) { $(this).data('index', index); }
                         }),
                 steps  = self.children('fieldset'),
-                titles = $('#' + self.attr('id') + 'header').children('li');
+                titles = $('#' + self.attr('id') + '-header').children('li');
 
             // when
             titles.eq(1).click();
@@ -848,7 +843,7 @@ describe('Stepy', function() {
             // given
             var self   = $('form').stepy({ block: true, titleClick: true, validate: true }),
                 steps  = self.children('fieldset'),
-                titles = $('#' + self.attr('id') + 'header').children('li');
+                titles = $('#' + self.attr('id') + '-header').children('li');
 
             self.validate({
               errorPlacement: function(error, element) {
@@ -875,7 +870,7 @@ describe('Stepy', function() {
             // given
             var self   = $('form').stepy({ errorImage: true, titleClick: true, validate: true }),
                 steps  = self.children('fieldset'),
-                titles = $('#' + self.attr('id') + 'header').children('li');
+                titles = $('#' + self.attr('id') + '-header').children('li');
 
             self.validate({
               errorPlacement: function(error, element) {
@@ -957,7 +952,7 @@ describe('Stepy', function() {
               // given
               var self   = $('form').stepy({ block: true, validate: true }),
                   steps  = self.children('fieldset'),
-                  titles = $('#' + self.attr('id') + 'header').children('li');
+                  titles = $('#' + self.attr('id') + '-header').children('li');
 
               self.validate({
                 errorPlacement: function(error, element) {
@@ -1016,7 +1011,7 @@ describe('Stepy', function() {
           // given
           var self   = $('form').stepy({ errorImage: true, validate: true }),
               steps  = self.children('fieldset'),
-              titles = $('#' + self.attr('id') + 'header').children('li');
+              titles = $('#' + self.attr('id') + '-header').children('li');
 
           self.validate({
             errorPlacement: function(error, element) {
@@ -1166,7 +1161,7 @@ describe('Stepy', function() {
         self.stepy();
 
         // then
-        expect(self.prev('ul').attr('id')).toEqual(self[0].hash + 'header');
+        expect(self.prev('ul').attr('id')).toEqual(self[0].hash + '-header');
       });
     });
   });
