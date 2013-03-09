@@ -66,6 +66,8 @@ $('form').stepy();
 
 ```js
 $('form').stepy('step', 2);  // Changes the form to the second step.
+
+$('form').stepy('destroy');  // Destroy the Stepy's bind and gives you the raw element.
 ```
 
 ## Contributors

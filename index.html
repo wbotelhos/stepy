@@ -1,448 +1,361 @@
 <!DOCTYPE html>
 
-<html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta http-equiv="Pragma" content="no-cache">
-		<meta http-equiv="Expires" content="-1">
-
-		<title>jQuery Stepy - A Wizard Plugin</title>
-
-		<!-- This CSS does not belong to the plugin. -->
-		<link type="text/css" rel="stylesheet" href="doc/css/stylesheet.css"/>
-
-		<link type="text/css" rel="stylesheet" href="css/jquery.stepy.css" />
-
-		<script type="text/javascript" src="js/jquery.min.js"></script>
-
-		<!-- Optionaly -->
-		<script type="text/javascript" src="js/jquery.validate.min.js"></script>
-
-		<script type="text/javascript" src="js/jquery.stepy.js"></script>
-
-		<script type="text/javascript">
-			// This code does NOT belong the plugin. See the example code at the bottom of this page.
-			var _gaq = _gaq || [];
-			_gaq.push(['_setAccount', 'UA-194992347-4']);
-			_gaq.push(['_trackPageview']);
-
-			(function() {
-				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-			})();
-		</script>
-	</head>
-	<body>
-		<div id="header">
-			<div id="title">
-				<a href="http://wbotelhos.com/stepy">jQuery Stepy - A Wizard Plugin</a>
-				<span>(current version: 1.1.0)</span>
-			</div>
-
-			<div id="menu">
-				<a href="http://github.com/downloads/wbotelhos/stepy/jquery.stepy-1.1.0.zip" target="_blank">Download</a> |
-				<a href="http://github.com/wbotelhos/stepy" target="_blank">Github</a> |
-				<a href="http://www.wbotelhos.com/stepy/changelog.markdown" target="_blank">Change Log</a> |
-				<a href="http://www.wbotelhos.com/stepy/README.markdown" target="_blank">Readme</a> |
-				<a href="http://www.wbotelhos.com/2011/03/14/jquery-stepy-a-wizard-plugin" target="_blank">Article</a> |
-				<a href="http://www.opensource.org/licenses/mit-license.php" target="_blank">License</a> |
-				<a href="http://www.wbotelhos.com/stepy/who.html" target="_blank">Who is using</a> |
-				<a href="http://www.wbotelhos.com/2011/03/14/jquery-stepy-a-wizard-plugin#comments" target="_blank" style="color: #2C8CBD;">Doubt</a> |
-				<a href="http://www.wbotelhos.com/labs" target="_blank" style="color: #000;">yLab</a>
-			</div>
-
-			<a id="coffee" href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=X8HEP2878NDEG&amp;item_name=jQuery%20Stepy" target="_blank">buy me a coffee</a>
-
-			<div class="description">jQuery <strong>Stepy</strong> is a plugin based on FormToWizard that generates a customizable wizard.</div>
-		</div>
-
-		<div id="content">
-			<div id="checkbox-default-demo" class="session-first">With default options using checkbox:</div>
-
-			<form id="default">
-				<fieldset title="Step 1">
-					<legend>description one</legend>
-					<label>User:</label> <input type="text" value="wbotelhos" size="40" disabled="disabled" /> <!-- Disabled fields are not focused.  -->
-					<label>E-mail:</label> <input type="text" size="40" />
-					<label>Password:</label> <input type="password" size="40" />
-				</fieldset>
-
-				<fieldset title="Step 2">
-					<legend>description two</legend>
-					<label>Nick Name:</label> <input type="text"size="30" />
-					<label>Bio:</label> <textarea rows="5" cols="60"></textarea>
-				</fieldset>
-
-				<input type="submit" class="finish" value="Finish!" />
-			</form>
-
-			<div class="source">
-				$('#step').stepy();
-			</div>
-
-			<div id="custom-demo" class="session">A custom form in a validation style:</div>
-
-			<form id="custom">
-				<fieldset title="Thread 1">
-					<legend>description one</legend>
-
-					<label>User:</label>
-					<!-- Hidden fields are not focused.  -->
-					<input type="hidden" name="hidden" />
-
-					<!-- Disabled fields are not validated.  -->
-					<input type="text" value="wbotelhos" size="40" name="user" disabled="disabled" />
-
-					<label>E-mail:</label>
-					<input type="text" size="40" name="email" />
-					<input type="checkbox" name="checked" /> Checked?
-
-					<label>Newsletter?</label>
-					<input type="radio" name="newsletter" /> Yep
-					<input type="radio" name="newsletter" /> Nop
-
-					<label>Password:</label>
-					<input type="password" name="password" size="40" />
-				</fieldset>
-
-				<fieldset title="Thread 2">
-					<legend>description two</legend>
-
-					<label>Nick Name:</label>
-					<input type="text" size="30" />
-
-					<label>Bio:</label>
-					<textarea name="bio" rows="5" cols="60"></textarea>
-				</fieldset>
-
-				<fieldset title="Thread 3">
-					<legend>description three</legend>
-
-					<label>Birthday:</label>
-					<select name="day">
-						<option></option>
-						<option>23</option>
-					</select>
-
-					<select>
-						<option>10</option>
-					</select>
-
-					<select>
-						<option>1984</option>
-					</select>
-
-					<label>Site:</label>
-					<input type="text" name="site" size="40" />
-				</fieldset>
-
-				<input type="submit" class="finish" value="Finish!" />
-			</form><br/>
-
-			<div class="source">
-				$('#step').stepy({<br/>
-					&nbsp;&nbsp;backLabel:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Backward',<br/>
-					&nbsp;&nbsp;block:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true,<br/>
-					&nbsp;&nbsp;errorImage:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true,<br/>
-					&nbsp;&nbsp;nextLabel:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Forward',<br/>
-					&nbsp;&nbsp;titleClick:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true,<br/>
-					&nbsp;&nbsp;validate:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true<br/>
-				});
-			</div><br/>
-
-			<span class="comment">
-				 - When the attribute 'validate' is true, you must include the jquery.validate.js.
-			</span><br/>
-
-			<div id="step-demo" class="session">With just step without form:</div>
-
-			<div id="step">
-				<fieldset title="Image 1">
-					<legend>description one</legend><br/>
-					<center><img src="doc/img/image-1.png" alt="" /></center>
-				</fieldset>
-
-				<fieldset title="Image 2">
-					<legend>description two</legend><br/>
-					<center><img src="doc/img/image-2.png" alt="" /></center>
-				</fieldset>
-
-				<fieldset title="Image 3">
-					<legend>description three</legend><br/>
-					<center><img src="doc/img/image-3.png" alt="" /></center>
-				</fieldset>
-			</div>
-
-			<div class="source">
-				$('div#step').stepy({<br/>
-				&nbsp;&nbsp;finishButton: false<br/>
-				});
-			</div>
-
-			<div id="callback-demo" class="session">With transitions callback:</div>
-
-			<form id="callback">
-				<fieldset title="Step 1">
-					<legend>description one</legend>
-					<label>Name:</label>
-					<input type="text" size="40" />
-
-					<label>E-mail:</label>
-					<input type="text" size="40" />
-				</fieldset>
-
-				<fieldset title="Step 2">
-					<legend>description two</legend>
-					<label>User:</label>
-					<input type="text"size="40" />
-
-					<label>Password:</label>
-					<input type="password" size="40" />
-				</fieldset>
-
-				<fieldset title="Step 3">
-					<legend>description three</legend>
-
-					<label>Nick Name:</label>
-					<input type="text" size="40" />
-
-					<label>Age:</label>
-					<input type="text" size="40" />
-				</fieldset>
-
-				<fieldset title="Step 4">
-					<legend>description four</legend>
-					<label>Bio:</label>
-					<input type="text"size="40" />
-
-					<label>Detail:</label>
-					<input type="password" size="40" />
-				</fieldset>
-
-				<input type="submit" class="finish" value="Finish!" />
-			</form>
-
-			<div class="source">
-				$('#step').stepy({<br/>
-				&nbsp;&nbsp;back: function(index) {<br/>
-				&nbsp;&nbsp;&nbsp;&nbsp;alert('Going to step ' + index + '...');<br/>
-				&nbsp;&nbsp;}, next: function(index) {<br/>
-				&nbsp;&nbsp;&nbsp;&nbsp;if (!isValid()) {<br/>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert('Invalid random value!');<br/>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return false;<br/>
-				&nbsp;&nbsp;&nbsp;&nbsp;}<br/><br/>
-
-				&nbsp;&nbsp;&nbsp;&nbsp;alert('Going to step ' + index + '...');<br/>
-				&nbsp;&nbsp;}, select: function(index) {<br/>
-				&nbsp;&nbsp;&nbsp;&nbsp;alert('Current step ' + index + '.');<br/>
-				&nbsp;&nbsp;}, finish: function(index) {<br/>
-				&nbsp;&nbsp;&nbsp;&nbsp;alert('Finishing on step ' + index + '...');<br/>
-				&nbsp;&nbsp;},<br/>
-				&nbsp;&nbsp;titleClick: true<br/>
-				});
-			</div><br/>
-
-			<span class="comment">
-				 - You can do validations during the callback;<br/>
-				 - Return "false" to prevent the transition;<br/>
-				 - Return "true" or nothing to continue the transition;<br/>
-				 - If the Stepy is a form and the finish element is not a submit type, then .submit() will be invoked.
-			</span><br/>
-
-			<div id="target-demo" class="session">With target for the titles and custom legend and description:</div>
-
-			<form id="target">
-				<fieldset title="1">
-					<legend>--</legend>
-					<center><img src="doc/img/image-3.png" alt="" /></center>
-				</fieldset>
-
-				<fieldset title="2">
-					<legend>--</legend>
-					<center><img src="doc/img/image-1.png" alt="" /></center>
-				</fieldset>
-
-				<fieldset title="3">
-					<legend>--</legend>
-					<center><img src="doc/img/image-2.png" alt="" /></center>
-				</fieldset>
-
-				<input type="submit" class="finish" value="Finish!" />
-			</form>
-
-			<div id="title-target"></div>
-
-			<div class="source">
-				&lt;div id="title-target"&gt;&lt;/div&gt;<br/><br/>
-
-				$('#step').stepy({<br/>
-				&nbsp;&nbsp;description:&nbsp;&nbsp;false,<br/>
-				&nbsp;&nbsp;legend:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false,<br/>
-				&nbsp;&nbsp;titleClick:&nbsp;&nbsp;&nbsp;true,<br/>
-				&nbsp;&nbsp;titleTarget:&nbsp;&nbsp;'#title-target'<br/>
-				});<br/>
-			</div><br/>
-
-			<span class="comment">
-				 - You can choose any specific target;<br/>
-				 - Even if the fieldset has legend, it will not appear if legend attribute is false;<br/>
-				 - The description depends of the legend element. Even with legend attribute setted to false;<br/>
-				 - The finish button can be any element you want, since it has the class name 'finish'.
-			</span><br/>
-
-			<div class="session">HTML structure:</div>
-
-			<div class="source">
-				&lt;form id="step"&gt;<br/>
-				&nbsp;&nbsp;&lt;fieldset title="Title"&gt;<br/>
-				&nbsp;&nbsp;&nbsp;&nbsp;&lt;legend&gt;description&lt;/legend&gt;<br/>
-				&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment-html">&lt;!-- input fields --&gt;</span><br/>
-				&nbsp;&nbsp;&lt;/fieldset&gt;<br/><br/>
-
-				&nbsp;&nbsp;&lt;fieldset title="Title"&gt;<br/>
-				&nbsp;&nbsp;&nbsp;&nbsp;&lt;legend&gt;description&lt;/legend&gt;<br/>
-				&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment-html">&lt;!-- input fields --&gt;</span><br/>
-				&nbsp;&nbsp;&lt;/fieldset&gt;<br/><br/>
-
-				&nbsp;&nbsp;&lt;input type="submit" class="finish"/&gt;<br/>
-				&lt;/form&gt;
-			</div>
-
-			<span class="comment">
-				- The fieldset's title is the main title of the step and the legend is the description of it.
-			</span>
-
-			<div class="session">Default options:</div>
-
-			<div class="source">
-				back:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;undefined<br/>
-				<div class="comment">Callback before the backward action.</div>
-
-				backLabel:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&lt; Back'<br/>
-				<div class="comment">Change the back button label.</div>
-
-				block:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false<br/>
-				<div class="comment">* Block the next step if the current is invalid.</div>
-
-				description:&nbsp;&nbsp;&nbsp;&nbsp;false<br/>
-				<div class="comment">Choose if the descriptions of the titles will be showed.</div>
-
-				enter:&nbsp;&nbsp;&nbsp;&nbsp;true<br/>
-				<div class="comment">Enables the enter key to change to the next step.</div>
-
-				errorImage:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false<br/>
-				<div class="comment">* If an error occurs, a image is showed in the title of the corresponding step.</div>
-
-				finish:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;undefined<br/>
-				<div class="comment">Callback before the finish action.</div>
-
-				finishButton:&nbsp;&nbsp;&nbsp;true<br/>
-				<div class="comment">Include the element with class name '.finish' into the last step.</div>
-
-				ignore:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;''<br/>
-				<div class="comment">Choose the fields to be ignored on validation.</div>
-
-				legend:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false<br/>
-				<div class="comment">Choose if the legends of the steps will be showed.</div>
-
-				nextLabel:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Next &gt;'
-				<div class="comment">Change the next button label.</div>
-
-				next:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;undefined<br/>
-				<div class="comment">Callback before the forward action.</div>
-
-				titleClick:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true<br/>
-				<div class="comment">Active the back and next action in the titles.</div>
-
-				titleTarget:&nbsp;&nbsp;&nbsp;&nbsp;''<br/>
-				<div class="comment">Choose the place where titles will be placed.</div>
-
-				select:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;undefined<br/>
-				<div class="comment">Callback executed when the step is shown.</div>
-
-			 	validate:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false<br/>
-				<div class="comment">* Active the jQuery Validation for each step.</div>
-			</div>
-
-			<div class="description-code">*  Depends of <a href="http://bassistance.de/jquery-plugins/jquery-plugin-validation/" target="_blank">jquery.validation.js</a>.</div>
-
-			<div class="session">Public functions:</div>
-
-			<div class="source">$('#step').stepy('step', 2);</div>
-			<div class="description-code">Change the form to step 2.</div>
-		</div>
-
-		<div id="footer">
-			<div id="copy">&copy; 2010 <a href="http://www.wbotelhos.com/" target="_blank">wbotelhos.com</a></div>
-		</div>
-
-		<script type="text/javascript">
-			$(function() {
-
-				$('#default').stepy();
-
-				$('#custom').stepy({
-					backLabel:	'Backward',
-					block:		true,
-					errorImage:	true,
-					nextLabel:	'Forward',
-					titleClick:	true,
-					validate:	true
-				});
-
-				$('div#step').stepy({
-					finishButton: false
-				});
-
-				// Optionaly
-				$('#custom').validate({
-					errorPlacement: function(error, element) {
-						$('#custom div.stepy-errors').append(error);
-					}, rules: {
-						'user':			{ maxlength: 1 },
-						'email':		'email',
-						'checked':		'required',
-						'newsletter':	'required',
-						'password':		'required',
-						'bio':			'required',
-						'day':			'required'
-					}, messages: {
-						'user':			{ maxlength: 'User field should be less than 1!' },
-						'email':		{ email: 	 'Invalid e-mail!' },
-						'checked':		{ required:  'Checked field is required!' },
-						'newsletter':	{ required:  'Newsletter field is required!' },
-						'password':		{ required:  'Password field is requerid!' },
-						'bio':			{ required:  'Bio field is required!' },
-						'day':			{ required:  'Day field is requerid!' }
-					}
-				});
-
-				$('#callback').stepy({
-					back: function(index) {
-						alert('Going to step ' + index + '...');
-					}, next: function(index) {
-						if ((Math.random() * 10) < 5) {
-							alert('Invalid random value!');
-							return false;
-						}
-
-						alert('Going to step ' + index + '...');
-					}, select: function(index) {
-						alert('Current step ' + index + '.');
-					}, finish: function(index) {
-						alert('Finishing on step ' + index + '...');
-					}, titleClick: true
-				});
-
-				$('#target').stepy({
-					description:	false,
-					legend:			false,
-					titleClick:		true,
-					titleTarget:	'#title-target'
-				});
-
-			});
-		</script>
-	</body>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width; initial-scale=1; maximum-scale=1" name="viewport">
+
+  <title>jQuery Stepy - A Wizard Plugin</title>
+
+  <meta content="Washington Botelho" name="author">
+  <meta content="jQuery Stepy - A Wizard Plugin" name="description">
+  <meta content="jquery,plugin,stepy,wizard,step" name="keywords">
+
+  <link type="text/css" rel="stylesheet" href="demo/css/application.css">
+  <link type="text/css" rel="stylesheet" href="lib/jquery.stepy.css" />
+
+  <script type="text/javascript" src="demo/js/jquery.min.js"></script>
+  <script type="text/javascript" src="demo/js/jquery.validate.min.js"></script>
+  <script type="text/javascript" src="lib/jquery.stepy.js"></script>
+
+  <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
+</head>
+<body>
+  <div id="wrapper">
+    <header role="banner">
+      <div id="logo">
+        <h1><a href="http://wbotelhos.com/stepy" title="jQuery Stepy">jQuery Stepy</a></h1>
+        <p>A Wizard Plugin</p>
+      </div>
+
+      <nav role="navigation">
+        <ul>
+          <li><a href="http://github.com/wbotelhos/stepy/archive/1.1.0.zip" title="Download" class="download"><i class="icon-download icon-large"></i>v1.1.0</a></li>
+          <li><a href="http://github.com/wbotelhos/stepy" title="Github" target="_blank"><i class="icon-github icon-large"></i>Github</a></li>
+          <li><a href="http://wbotelhos.com/labs" title="yLab" target="_blank"><i class="icon-beaker icon-large"></i>yLab</a></li>
+          <li><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=X8HEP2878NDEG&amp;item_name=jQuery%20Stepy" title="Donate" target="_blank"><i class="icon-heart-empty icon-large"></i>Donate</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div id="container">
+      <section role="main">
+        <article>
+        	<h2 id="markup">
+            <a href="#markup">Markup</a>
+          </h2>
+
+          <p>
+          	You need a form with the right markup as following.<br />
+          	Each <code>fieldset</code> will became a step.<br />
+          	The <code>title</code> of the <code>fieldset</code> will be the headers titles.<br />
+          	And the <code>legend</code> will be the header title description.<br />
+          	Inside the <code>fieldset</code> you put your stuffs.
+          </p>
+
+          <div class="highlight">
+<pre>
+<span class="nt">&lt;form&gt;</span>
+  <span class="nt">&lt;fieldset</span> <span class="na">title=</span><span class="s">"Step 1"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;legend&gt;</span>description one<span class="nt">&lt;/legend&gt;</span>
+    <span class="c">&lt;!-- inputs --&gt;</span>
+  <span class="nt">&lt;/fieldset&gt;</span>
+
+  <span class="nt">&lt;fieldset</span> <span class="na">title=</span><span class="s">"Step 2"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;legend&gt;</span>description two<span class="nt">&lt;/legend&gt;</span>
+    <span class="c">&lt;!-- inputs --&gt;</span>
+  <span class="nt">&lt;/fieldset&gt;</span>
+
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">class=</span><span class="s">"finish"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+</pre>
+					</div>
+
+          <h2 id="default">
+            <a href="#default">Default</a>
+          </h2>
+
+          <p>Using the default options.</p>
+
+					<div class="demo">
+						<form id="default-demo">
+			        <fieldset title="Login">
+			          <legend>Login information</legend>
+
+			          <input type="hidden" name="id" />
+
+			          <p>
+				          <label for="username">Username:</label>
+				          <input id="username" type="text" value="wbotelhos" disabled="disabled" />
+				        </p>
+
+				        <p>
+				          <label for="email">E-mail:</label>
+				          <input id="email" type="text" />
+				        </p>
+
+								<p>
+				          <label for="password">Password:</label>
+				          <input id="password" type="password" />
+				        </p>
+			        </fieldset>
+
+			        <fieldset title="Personal">
+			          <legend>About you</legend>
+
+			          <p>
+				          <label for="name">Name:</label>
+				          <input id="name" type="text" />
+				        </p>
+
+				        <p>
+				        	<label for="birthday">Birthday:</label>
+
+				        	<select id="birthday" name="day">
+			            	<option></option>
+			            	<option>1984</option>
+			          	</select>
+								</p>
+
+			          <p>
+				          <label for="bio">Bio:</label>
+				          <textarea id="bio" rows="5" cols="60"></textarea>
+			        	</p>
+			        </fieldset>
+
+			        <fieldset title="Professional">
+          			<legend>About your professional skills</legend>
+
+          			<p class="skills">
+				          <input id="ruby" type="checkbox" name="ruby" />
+				          <label for="ruby">Ruby</label>
+
+				          <input id="python" type="checkbox" name="python" />
+				          <label for="python">Python</label>
+
+				          <input id="java" type="checkbox" name="java" />
+				          <label for="java">Java</label>
+
+				          <input id="javascript" type="checkbox" name="javascript" />
+				          <label for="javascript">Javascript</label>
+			          </p>
+
+								<p>
+				          <label>Linkedin:</label>
+				          <input type="text" name="Linkedin" />
+				        </p>
+        			</fieldset>
+
+			        <input type="submit" class="finish" value="Finish!" />
+			      </form>
+					</div>
+
+          <div class="highlight">
+<pre>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'form'</span><span class="p">).</span><span class="nx">stepy</span><span class="p">();</span>
+</pre>
+					</div>
+
+					<h2 id="default">
+            <a href="#default">Default</a>
+          </h2>
+
+          <p>Using the default options.</p>
+
+					<div class="demo">
+
+					</div>
+
+          <div class="highlight">
+<pre>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'form'</span><span class="p">).</span><span class="nx">stepy</span><span class="p">();</span>
+</pre>
+					</div>
+
+ 					<h2 id="options">
+            <a href="#options">Options:</a>
+          </h2>
+
+					<div id="back" class="option">
+						<div>back: <span>undefined</span></div>
+						<p>Callback before the backward action.</p>
+					</div>
+
+					<div id="backLabel" class="option">
+						<div>backLabel: <span>'&lt; Back'</span></div>
+						<p>Change the back button label.</p>
+					</div>
+
+					<div id="block" class="option">
+						<div>block: <span>false</span></div>
+						<p>Block the next step if the current is invalid.</p>
+					</div>
+
+					<div id="description" class="option">
+						<div>description: <span>false</span></div>
+						<p>Choose if the descriptions of the titles will be showed.</p>
+					</div>
+
+					<div id="duration" class="option">
+						<div>duration: <span>0</span></div>
+						<p>Duration of the transition between steps in ms.</p>
+					</div>
+
+					<div id="enter" class="option">
+						<div>enter: <span>true</span></div>
+						<p>Enables the enter key to change to the next step.</p>
+					</div>
+
+					<div id="errorImage" class="option">
+						<div>errorImage: <span>false</span></div>
+						<p>If an error occurs, a image is showed in the title of the corresponding step.</p>
+					</div>
+
+					<div id="finish" class="option">
+						<div>finish: <span>undefined</span></div>
+						<p>Callback before the finish action.</p>
+					</div>
+
+					<div id="finishButton" class="option">
+						<div>finishButton: <span>true</span></div>
+						<p>Include the button with class called '.finish' into the last step.</p>
+					</div>
+
+					<div id="ignore" class="option">
+						<div>ignore: <span>''</span></div>
+						<p>Choose the fields to be ignored on validation.</p>
+					</div>
+
+					<div id="legend" class="option">
+						<div>legend: <span>false</span></div>
+						<p>Choose if the legends of the steps will be showed.</p>
+					</div>
+
+					<div id="next" class="option">
+						<div>next: <span>undefined</span></div>
+						<p>Callback before the forward action.</p>
+					</div>
+
+					<div id="nextLabel" class="option">
+						<div>nextLabel: <span>'Next >'</span></div>
+						<p>Change the next button label.</p>
+					</div>
+
+					<div id="select" class="option">
+						<div>select: <span>undefined</span></div>
+						<p>Callback executed when the step is shown.</p>
+					</div>
+
+					<div id="titleClick" class="option">
+						<div>titleClick: <span>true</span></div>
+						<p>Active the back and next action in the titles.</p>
+					</div>
+
+					<div id="titleTarget" class="option">
+						<div>titleTarget: <span>undefined</span></div>
+						<p>Choose the place where titles will be placed.</p>
+					</div>
+
+					<div id="transition" class="option">
+						<div>transition: <span>'hide'</span></div>
+						<p>Use transition between steps ('hide', 'fade' or 'slide').</p>
+					</div>
+
+					<div id="validate" class="option">
+						<div>validate: <span>false</span></div>
+						<p>Active the jQuery Validation for each step.</p>
+					</div>
+
+          <h2 id="global">
+            <a href="#global">Changing the settings globally:</a>
+          </h2>
+
+          <p>
+            You can change any option mentioning the scope <code>$.fn.stepy.defaults.</code> + <i>option_name</i>. It must be called before you bind the plugin.
+          </p>
+
+          <div class="highlight">
+<pre>
+<span class="nx">$</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">stepy</span><span class="p">.</span><span class="nx">defaults</span><span class="p">.</span><span class="nx">validate</span> <span class="o">=</span> <span class="s1">true</span><span class="p">;</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">stepy</span><span class="p">.</span><span class="nx">defaults</span><span class="p">.</span><span class="nx">titleClick</span> <span class="o">=</span> <span class="s1">true</span><span class="p">;</span>
+</pre>
+          </div>
+
+          <h2 id="functions">
+            <a href="#functions">Functions:</a>
+          </h2>
+
+          <div id="step-function" class="function">
+            <div class="highlight">
+<pre>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'form'</span><span class="p">).</span><span class="nx">stepy</span><span class="p">(</span><span class="s1">'step'</span><span class="p">);</span>
+</pre>
+            </div>
+
+	          <p>Goes to the given step.</p>
+	        </div>
+
+          <div id="destroy-function" class="function">
+						<div class="highlight">
+<pre>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'form'</span><span class="p">).</span><span class="nx">stepy</span><span class="p">(</span><span class="s1">'destroy'</span><span class="p">);</span>
+</pre>
+          	</div>
+
+	          <p>Destroy the Stepy's bind and gives you the raw element before it.</p>
+	        </div>
+
+          <h2 id="tests">
+            <a href="#tests">Tests:</a>
+          </h2>
+
+          <p>
+            This plugin is tested to work better.
+            <a href="http://wbotelhos.com/stepy/spec/run.html" target="_blank">Check it out!</a>
+          </p>
+        </article>
+      </section>
+
+      <div class="author">
+        <img title="Washington Botelho" src="http://www.gravatar.com/avatar/00c9b483d3c58a12c5f256cf2770d0b8?d=mm" alt="">
+        <div class="biography">
+          <p>
+            Ruby, Java and Python Developer in <a href="http://r7.com" title="R7.com" target="_blank">R7.com</a> Portal.<br />
+            Bachelor's in Information Systems and certified OCJA 1.0 and OCJP 6.<br />
+            Helper and learner of the open source community, and designer adventurer.<br />
+            Also has a passion for dance, skate, jiu-jitsu and Counter Strike Source. (:
+          </p>
+        </div>
+
+        <div class="social">
+          <a href="http://github.com/wbotelhos" title="http://github.com/wbotelhos" target="_blank" class="github"></a>
+          <a href="http://linkedin.com/in/wbotelhos" title="http://linkedin.com/in/wbotelhos" target="_blank" class="linkedin"></a>
+          <a href="http://twitter.com/wbotelhos" title="http://twitter.com/wbotelhos" target="_blank" class="twitter"></a>
+          <a href="http://facebook.com/wbotelhos" title="http://facebook.com/wbotelhos" target="_blank" class="facebook"></a>
+        </div>
+      </div>
+    </div>
+
+    <footer role="contentinfo">
+      &copy; 2010 <a href="http://wbotelhos.com" title="wbotelhos.com">wbotelhos.com</a>
+    </footer>
+  </div>
+
+  <script type="text/javascript">
+    $(function() {
+      $('#default-demo').stepy();
+    });
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-719499234-4']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</body>
 </html>
