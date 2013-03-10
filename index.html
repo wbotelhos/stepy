@@ -81,7 +81,7 @@
 					<div class="demo">
 						<form id="default-demo">
 			        <fieldset title="Login">
-			          <legend>Login information</legend>
+			          <legend>Access</legend>
 
 			          <input type="hidden" name="id" />
 
@@ -120,12 +120,12 @@
 
 			          <p>
 				          <label for="bio">Bio:</label>
-				          <textarea id="bio" rows="5" cols="60"></textarea>
+				          <textarea id="bio"></textarea>
 			        	</p>
 			        </fieldset>
 
 			        <fieldset title="Professional">
-          			<legend>About your professional skills</legend>
+          			<legend>Your professional informations</legend>
 
           			<p class="skills">
 				          <input id="ruby" type="checkbox" name="ruby" />
@@ -142,8 +142,8 @@
 			          </p>
 
 								<p>
-				          <label>Linkedin:</label>
-				          <input type="text" name="Linkedin" />
+				          <label for="linkedin">Linkedin:</label>
+				          <input id="linkedin" type="text" name="Linkedin" />
 				        </p>
         			</fieldset>
 
@@ -157,19 +157,181 @@
 </pre>
 					</div>
 
-					<h2 id="default">
-            <a href="#default">Default</a>
+					<h2 id="titleClick">
+            <a href="#titleClick">Title Click</a>
           </h2>
 
-          <p>Using the default options.</p>
+          <p>
+          	You can to use the header items to navigate between the steps with a click.<br />
+          	The header click is good when you have a lot of steps and want to jump a non sequential steps.
+          </p>
 
 					<div class="demo">
+						<form id="titleClick-demo">
+			        <fieldset title="Login">
+			          <legend>Access</legend>
 
+			          <input type="hidden" name="id" />
+
+			          <p>
+				          <label for="username-1">Username:</label>
+				          <input id="username-1" type="text" value="wbotelhos" disabled="disabled" />
+				        </p>
+
+				        <p>
+				          <label for="email-1">E-mail:</label>
+				          <input id="email-1" type="text" />
+				        </p>
+
+								<p>
+				          <label for="password-1">Password:</label>
+				          <input id="password-1" type="password" />
+				        </p>
+			        </fieldset>
+
+			        <fieldset title="Personal">
+			          <legend>About you</legend>
+
+			          <p>
+				          <label for="name-1">Name:</label>
+				          <input id="name-1" type="text" />
+				        </p>
+
+				        <p>
+				        	<label for="birthday-1">Birthday:</label>
+
+				        	<select id="birthday-1" name="day">
+			            	<option></option>
+			            	<option>1984</option>
+			          	</select>
+								</p>
+
+			          <p>
+				          <label for="bio-1">Bio:</label>
+				          <textarea id="bio-1"></textarea>
+			        	</p>
+			        </fieldset>
+
+			        <fieldset title="Professional">
+          			<legend>Your professional informations</legend>
+
+          			<p class="skills">
+				          <input id="ruby-1" type="checkbox" name="ruby-1" />
+				          <label for="ruby-1">Ruby</label>
+
+				          <input id="python-1" type="checkbox" name="python" />
+				          <label for="python-1">Python</label>
+
+				          <input id="java-1" type="checkbox" name="java" />
+				          <label for="java-1">Java</label>
+
+				          <input id="javascript-1" type="checkbox" name="javascript" />
+				          <label for="javascript-1">Javascript</label>
+			          </p>
+
+								<p>
+				          <label for="linkedin-1">Linkedin:</label>
+				          <input id="linkedin-1" type="text" name="Linkedin" />
+				        </p>
+        			</fieldset>
+
+			        <input type="submit" class="finish" value="Finish!" />
+			      </form>
 					</div>
 
           <div class="highlight">
 <pre>
-<span class="nx">$</span><span class="p">(</span><span class="s1">'form'</span><span class="p">).</span><span class="nx">stepy</span><span class="p">();</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'.form'</span><span class="p">).</span><span class="nx">stepy</span><span class="p">({</span> <span class="nx">titleClick</span><span class="o">:</span> <span class="kc">true</span> <span class="p">});</span>
+</pre>
+					</div>
+
+					<h2 id="backLabel-nextLabel">
+            <a href="#backLabel-nextLabel">Back Label and Next Label</a>
+          </h2>
+
+          <p>
+          	The back and next navigation buttons has a label that you can chage.
+          </p>
+
+					<div class="demo">
+						<form id="backLabel-nextLabel-demo">
+			        <fieldset title="Login">
+			          <legend>Access</legend>
+
+			          <input type="hidden" name="id" />
+
+			          <p>
+				          <label for="username-2">Username:</label>
+				          <input id="username-2" type="text" value="wbotelhos" disabled="disabled" />
+				        </p>
+
+				        <p>
+				          <label for="email-2">E-mail:</label>
+				          <input id="email-2" type="text" />
+				        </p>
+
+								<p>
+				          <label for="password-2">Password:</label>
+				          <input id="password-2" type="password" />
+				        </p>
+			        </fieldset>
+
+			        <fieldset title="Personal">
+			          <legend>About you</legend>
+
+			          <p>
+				          <label for="name-2">Name:</label>
+				          <input id="name-2" type="text" />
+				        </p>
+
+				        <p>
+				        	<label for="birthday-2">Birthday:</label>
+
+				        	<select id="birthday-2" name="day">
+			            	<option></option>
+			            	<option>1984</option>
+			          	</select>
+								</p>
+
+			          <p>
+				          <label for="bio-2">Bio:</label>
+				          <textarea id="bio-2"></textarea>
+			        	</p>
+			        </fieldset>
+
+			        <fieldset title="Professional">
+          			<legend>Your professional informations</legend>
+
+          			<p class="skills">
+				          <input id="ruby-2" type="checkbox" name="ruby-2" />
+				          <label for="ruby-2">Ruby</label>
+
+				          <input id="python-2" type="checkbox" name="python" />
+				          <label for="python-2">Python</label>
+
+				          <input id="java-2" type="checkbox" name="java" />
+				          <label for="java-2">Java</label>
+
+				          <input id="javascript-2" type="checkbox" name="javascript" />
+				          <label for="javascript-2">Javascript</label>
+			          </p>
+
+								<p>
+				          <label for="linkedin-2">Linkedin:</label>
+				          <input id="linkedin-2" type="text" name="Linkedin" />
+				        </p>
+        			</fieldset>
+
+			        <input type="submit" class="finish" value="Finish!" />
+			      </form>
+					</div>
+
+          <div class="highlight">
+<pre>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'form'</span><span class="p">).</span><span class="nx">stepy</span><span class="p">({</span>
+  <span class="nx">backLabel</span><span class="o">:</span> <span class="s1">'&lt;&lt;'</span><span class="p">,</span>
+  <span class="nx">nextLabel</span><span class="o">:</span> <span class="s1">'&gt;&gt;'</span>
+<span class="p">});</span>
 </pre>
 					</div>
 
@@ -345,6 +507,13 @@
   <script type="text/javascript">
     $(function() {
       $('#default-demo').stepy();
+
+      $('#titleClick-demo').stepy({ titleClick: true });
+
+      $('#backLabel-nextLabel-demo').stepy({
+      	backLabel: '<<',
+      	nextLabel: '>>'
+      });
     });
 
     var _gaq = _gaq || [];
