@@ -442,7 +442,7 @@ describe('Stepy', function() {
             // given
             var self  = $('form').stepy({ enter: true, validate: false }),
                 steps = self.children('fieldset'),
-                evt   = jQuery.Event('keypress');
+                evt   = $.Event('keypress');
 
               evt.which   = 13;
               evt.keyCode = 13;
@@ -460,7 +460,7 @@ describe('Stepy', function() {
             // given
             var self  = $('form').stepy({ enter: true, validate: false }),
                 steps = self.children('fieldset')
-                evt   = jQuery.Event('keypress');
+                evt   = $.Event('keypress');
 
             evt.which   = 13;
             evt.keyCode = 13;
@@ -481,7 +481,7 @@ describe('Stepy', function() {
                             next    : function(index) { $(this).data('index', index); }
                           }),
                   steps = self.children('fieldset'),
-                  evt   = jQuery.Event('keypress');
+                  evt   = $.Event('keypress');
 
                 evt.which   = 13;
                 evt.keyCode = 13;
@@ -491,6 +491,30 @@ describe('Stepy', function() {
 
               // then
               expect(self.data('index')).toEqual(2);
+            });
+          });
+
+          context('with the fields inside elements', function() {
+            beforeEach(function() {
+              $('form').children('fieldset:first').find(':input').wrap('<p />');
+            });
+
+            it ('goes to the next step', function() {
+              // given
+              var self  = $('form').stepy({ enter: true, validate: false }),
+                  steps = self.children('fieldset'),
+                  evt   = $.Event('keypress');
+
+                evt.which   = 13;
+                evt.keyCode = 13;
+
+              // when
+              steps.eq(0).find('input:visible:last').trigger(evt);
+
+              // then
+              expect(steps.eq(0)).toBeHidden();
+              expect(steps.eq(1)).toBeVisible();
+              expect(steps.eq(2)).toBeHidden();
             });
           });
         });
@@ -507,7 +531,7 @@ describe('Stepy', function() {
               // given
               var self  = $('form').stepy({ enter: true, block: true, validate: true }),
                   steps = self.children('fieldset'),
-                  evt   = jQuery.Event('keypress');
+                  evt   = $.Event('keypress');
 
                 evt.which   = 13;
                 evt.keyCode = 13;
@@ -527,7 +551,7 @@ describe('Stepy', function() {
               // given
               var self  = $('form').stepy({ enter: true, block: false, validate: true }),
                   steps = self.children('fieldset'),
-                  evt   = jQuery.Event('keypress');
+                  evt   = $.Event('keypress');
 
                 evt.which   = 13;
                 evt.keyCode = 13;
@@ -548,7 +572,7 @@ describe('Stepy', function() {
             // given
             var self  = $('form').stepy({ finish: function() { $(this).data('submited', true); } }),
                 steps = self.children('fieldset'),
-                evt   = jQuery.Event('keypress');
+                evt   = $.Event('keypress');
 
             evt.which   = 13;
             evt.keyCode = 13;
@@ -573,7 +597,7 @@ describe('Stepy', function() {
           // given
           var self  = $('form').stepy({ enter: false, validate: false }),
               steps = self.children('fieldset'),
-              evt   = jQuery.Event('keypress');
+              evt   = $.Event('keypress');
 
             evt.which   = 13;
             evt.keyCode = 13;
@@ -867,6 +891,7 @@ describe('Stepy', function() {
 
         context('and errorImage enabled', function() {
           it ('display the error image', function() {
+            clean=false
             // given
             var self   = $('form').stepy({ errorImage: true, titleClick: true, validate: true }),
                 steps  = self.children('fieldset'),
@@ -886,7 +911,7 @@ describe('Stepy', function() {
             titles.eq(2).click();
 
             // then
-            expect(titles.eq(0)).toHaveClass('error-image');
+            expect(titles.eq(0)).toHaveClass('stepy-error');
           });
         });
       });
@@ -1027,7 +1052,7 @@ describe('Stepy', function() {
           steps.eq(0).find('.button-next').click();
 
           // then
-          expect(titles.eq(0)).toHaveClass('error-image');
+          expect(titles.eq(0)).toHaveClass('stepy-error');
         });
       });
     });

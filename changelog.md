@@ -19,6 +19,10 @@
 + All callbacks now receives the variable `this` as DOM element instead jQuery;
 + The 'current-step' class was renamed to 'stepy-active'.
 
+## Fixes
+
++ Fields inside elements was not working the enter action.
+
 ## 1.1.0
 
 + Added 'ignore' option to choose the fields to be ignored on validation:
