@@ -891,7 +891,6 @@ describe('Stepy', function() {
 
         context('and errorImage enabled', function() {
           it ('display the error image', function() {
-            clean=false
             // given
             var self   = $('form').stepy({ errorImage: true, titleClick: true, validate: true }),
                 steps  = self.children('fieldset'),
