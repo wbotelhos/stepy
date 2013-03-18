@@ -32,7 +32,7 @@ describe('Stepy', function() {
         Helper.label({ html: 'Site' }),
         Helper.text({ name: 'site' })
       ]}),
-      Helper.submit({ value: 'Finish!', class: 'stepy-finish' })
+      Helper.submit()
     ]}));
   });
 
@@ -343,7 +343,7 @@ describe('Stepy', function() {
         self.stepy();
 
         // then
-        expect(step.find('input[type="submit"]')).toExist();
+        expect(step.find(':submit')).toExist();
       });
 
       context('clicking on back', function() {
@@ -634,7 +634,7 @@ describe('Stepy', function() {
         steps.eq(1).find('.button-next').click();
 
         // when
-        steps.eq(2).find('.stepy-finish').click();
+        steps.eq(2).find(':submit').click();
 
         // then
         expect(self.data('called')).toBeTruthy();
@@ -643,7 +643,7 @@ describe('Stepy', function() {
 
     describe('finishButton', function() {
       context('disabled', function() {
-        it ('is not created', function() {
+        it ('will not to move the finish button inside the last step', function() {
           // given
           var self = $('form'),
               step = self.children('fieldset:last');
@@ -657,7 +657,7 @@ describe('Stepy', function() {
       });
 
       context('enabled', function() {
-        it ('is created', function() {
+        it ('will to move the finish button inside the last step', function() {
           // given
           var self = $('form'),
               step = self.children('fieldset:last');
@@ -678,7 +678,7 @@ describe('Stepy', function() {
           self.stepy();
 
           // then
-          expect(step.find('input.stepy-finish')).toBeHidden();
+          expect(step.find(':submit')).toBeHidden();
         });
 
         context('on the last step becomes active', function() {
@@ -691,7 +691,44 @@ describe('Stepy', function() {
             steps.eq(1).find('.button-next').click();
 
             // then
-            expect(steps.last().find('input.stepy-finish')).toBeVisible();
+            expect(steps.last().find(':submit')).toBeVisible();
+          });
+        });
+
+        context('without the class stepy-finish', function() {
+          beforeEach(function() {
+            $('form').children(':submit').removeClass('stepy-finish');
+          });
+
+          context('with type submit', function() {
+            it ('will be getted', function() {
+              // given
+              var self = $('form'),
+                  step = self.children('fieldset:last');
+
+              // when
+              self.stepy({ finishButton: true });
+
+              // then
+              expect(step).toContain('input[type="submit"]');
+            });
+          });
+
+          context('without type submit', function() {
+            beforeEach(function() {
+              $('form').children(':submit').attr('type', 'image');
+            });
+
+            it ('raise exception', function() {
+              // given
+              var self = $('form');
+
+              // when
+              var lambda = function() { self.stepy(); };
+
+              // then
+              expect(lambda).toThrow(new Error('Submit button or element with class "stepy-finish" missing!'));
+            });
           });
         });
       });
@@ -1109,7 +1146,7 @@ describe('Stepy', function() {
         self.stepy('destroy');
 
         // then
-        expect(steps).toContain('input.stepy-finish');
+        expect(steps).toContain(':submit');
       });
 
       it ('removes the bind indicator', function() {
