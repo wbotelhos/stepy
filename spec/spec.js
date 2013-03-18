@@ -32,7 +32,7 @@ describe('Stepy', function() {
         Helper.label({ html: 'Site' }),
         Helper.text({ name: 'site' })
       ]}),
-      Helper.submit({ value: 'Finish!', class: 'finish' })
+      Helper.submit({ value: 'Finish!', class: 'stepy-finish' })
     ]}));
   });
 
@@ -570,7 +570,11 @@ describe('Stepy', function() {
         context('on the last step', function() {
           it ('submits the form', function() {
             // given
-            var self  = $('form').stepy({ finish: function() { $(this).data('submited', true); } }),
+            var self  = $('form').stepy({
+                          finish: function() {
+                            $(this).data('submited', true);
+                          }
+                        }),
                 steps = self.children('fieldset'),
                 evt   = $.Event('keypress');
 
@@ -630,7 +634,7 @@ describe('Stepy', function() {
         steps.eq(1).find('.button-next').click();
 
         // when
-        steps.eq(2).find('.finish').click();
+        steps.eq(2).find('.stepy-finish').click();
 
         // then
         expect(self.data('called')).toBeTruthy();
@@ -674,7 +678,7 @@ describe('Stepy', function() {
           self.stepy();
 
           // then
-          expect(step.find('input.finish')).toBeHidden();
+          expect(step.find('input.stepy-finish')).toBeHidden();
         });
 
         context('on the last step becomes active', function() {
@@ -687,7 +691,7 @@ describe('Stepy', function() {
             steps.eq(1).find('.button-next').click();
 
             // then
-            expect(steps.last().find('input.finish')).toBeVisible();
+            expect(steps.last().find('input.stepy-finish')).toBeVisible();
           });
         });
       });
@@ -1105,7 +1109,7 @@ describe('Stepy', function() {
         self.stepy('destroy');
 
         // then
-        expect(steps).toContain('input.finish');
+        expect(steps).toContain('input.stepy-finish');
       });
 
       it ('removes the bind indicator', function() {
