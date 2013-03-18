@@ -54,7 +54,7 @@ validate     : false      // Active the jQuery Validation for each step.
     <!-- inputs -->
   </fieldset>
 
-  <input type="submit" class="finish" />
+  <input type="submit" />
 </form>
 ```
 

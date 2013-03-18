@@ -18,7 +18,8 @@
 + The '{id}-titles-{index}' was renamed to '{id}-head-{index}';
 + All callbacks now receives the variable `this` as DOM element instead jQuery;
 + The 'current-step' class was renamed to 'stepy-active';
-+ The finish button now must be the class 'stepy-finish' instead just 'finish'.
++ The finish button now should to have the class 'stepy-finish' instead just 'finish';
++ If you have a submit type button, then you don't need to set the class 'stepy-finish'.
 
 ## Fixes
 
