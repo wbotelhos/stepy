@@ -6,3 +6,5 @@ ul li { font-size: inherit !important }
 .demo form .skills { margin-bottom: 25px }
 .demo form .skills label { display: inline; margin-right: 25px; vertical-align: middle }
 .demo form .skills input { height: 18px; margin-bottom: 0; width: 18px; vertical-align: middle }
+
+.demo #finishButton-demo input[type="submit"] { font-size: 1.5em; height: 45px; margin-top: 10px; width: 645px }

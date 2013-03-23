@@ -147,7 +147,7 @@
                 </p>
               </fieldset>
 
-              <input type="submit" class="stepy-finish" value="Finish!" />
+              <input type="submit" value="Finish!" />
             </form>
           </div>
 
@@ -235,7 +235,7 @@
                 </p>
               </fieldset>
 
-              <input type="submit" class="stepy-finish" value="Finish!" />
+              <input type="submit" value="Finish!" />
             </form>
           </div>
 
@@ -322,7 +322,7 @@
                 </p>
               </fieldset>
 
-              <input type="submit" class="stepy-finish" value="Finish!" />
+              <input type="submit" value="Finish!" />
             </form>
           </div>
 
@@ -414,7 +414,7 @@
                 </p>
               </fieldset>
 
-              <input type="submit" class="stepy-finish" value="Finish!" />
+              <input type="submit" value="Finish!" />
             </form>
           </div>
 
@@ -502,7 +502,7 @@
                 </p>
               </fieldset>
 
-              <input type="submit" class="stepy-finish" value="Finish!" />
+              <input type="submit" value="Finish!" />
             </form>
           </div>
 
@@ -517,7 +517,96 @@
           </h2>
 
           <p>
-            Let the Stepy to move your <code>submit</code> button or your element with class <code>stepy-finish</code> to inside the last step as a finish button.
+            Let the Stepy to move your <code>submit</code> button or your element with class <code>stepy-finish</code> to inside the last step as a finish button.<br />
+            If you want let your button inside de form and visible during all steps, just turns this option off.
+          </p>
+
+          <div class="demo">
+            <form id="finishButton-demo">
+              <fieldset title="Login">
+                <legend>Access</legend>
+
+                <input type="hidden" name="id" />
+
+                <p>
+                  <label for="username-2">Username:</label>
+                  <input id="username-2" type="text" value="wbotelhos" disabled="disabled" />
+                </p>
+
+                <p>
+                  <label for="email-2">E-mail:</label>
+                  <input id="email-2" type="text" />
+                </p>
+
+                <p>
+                  <label for="password-2">Password:</label>
+                  <input id="password-2" type="password" />
+                </p>
+              </fieldset>
+
+              <fieldset title="Personal">
+                <legend>About you</legend>
+
+                <p>
+                  <label for="name-2">Name:</label>
+                  <input id="name-2" type="text" />
+                </p>
+
+                <p>
+                  <label for="birthday-2">Birthday:</label>
+
+                  <select id="birthday-2" name="day">
+                    <option></option>
+                    <option>1984</option>
+                  </select>
+                </p>
+
+                <p>
+                  <label for="bio-2">Bio:</label>
+                  <textarea id="bio-2"></textarea>
+                </p>
+              </fieldset>
+
+              <fieldset title="Professional">
+                <legend>Your professional informations</legend>
+
+                <p class="skills">
+                  <input id="ruby-2" type="checkbox" name="ruby-2" />
+                  <label for="ruby-2">Ruby</label>
+
+                  <input id="python-2" type="checkbox" name="python" />
+                  <label for="python-2">Python</label>
+
+                  <input id="java-2" type="checkbox" name="java" />
+                  <label for="java-2">Java</label>
+
+                  <input id="javascript-2" type="checkbox" name="javascript" />
+                  <label for="javascript-2">Javascript</label>
+                </p>
+
+                <p>
+                  <label for="linkedin-2">Linkedin:</label>
+                  <input id="linkedin-2" type="text" name="Linkedin" />
+                </p>
+              </fieldset>
+
+              <input type="submit" value="Finish!" />
+            </form>
+          </div>
+
+          <div class="highlight">
+<pre>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'form'</span><span class="p">).</span><span class="nx">stepy</span><span class="p">({</span> <span class="nx">finishButton</span><span class="o">:</span> <span class="kc">false</span> <span class="p">});</span>
+</pre>
+          </div>
+
+          <h2 id="finish">
+            <a href="#finish">Finish</a>
+          </h2>
+
+          <p>
+            Callback to be called when you press the finish button. Inside it you can prevent the submit returning <code>false</code>.<br />
+            The element that will trigger can be a <code>submit</code> type element or any other button with the class <code>stepy-finish</code>.
           </p>
 
           <div class="demo">
@@ -589,16 +678,108 @@
                 </p>
               </fieldset>
 
-              <input type="submit" class="stepy-finish" value="Finish!" />
+              <input type="submit" value="Finish!" />
             </form>
           </div>
 
           <div class="highlight">
 <pre>
-<span class="nx">$</span><span class="p">(</span><span class="s1">'form'</span><span class="p">).</span><span class="nx">stepy</span><span class="p">({</span> <span class="nx">finishButton</span><span class="o">:</span> <span class="kc">true</span> <span class="p">});</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'form'</span><span class="p">).</span><span class="nx">stepy</span><span class="p">({</span>
+  <span class="nx">finish</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="s1">'Canceling...'</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">});</span>
 </pre>
           </div>
 
+          <h2 id="legend">
+            <a href="#legend">Legend</a>
+          </h2>
+
+          <p>
+            Display the <code>legend</code> element on fieldset.<br />
+            When this option is <code>false</code>, it's just hidden. The content of the <code>legend</code> element will be used to set the header description.
+          </p>
+
+          <div class="demo">
+            <form id="legend-demo">
+              <fieldset title="Login">
+                <legend>Access</legend>
+
+                <input type="hidden" name="id" />
+
+                <p>
+                  <label for="username-2">Username:</label>
+                  <input id="username-2" type="text" value="wbotelhos" disabled="disabled" />
+                </p>
+
+                <p>
+                  <label for="email-2">E-mail:</label>
+                  <input id="email-2" type="text" />
+                </p>
+
+                <p>
+                  <label for="password-2">Password:</label>
+                  <input id="password-2" type="password" />
+                </p>
+              </fieldset>
+
+              <fieldset title="Personal">
+                <legend>About you</legend>
+
+                <p>
+                  <label for="name-2">Name:</label>
+                  <input id="name-2" type="text" />
+                </p>
+
+                <p>
+                  <label for="birthday-2">Birthday:</label>
+
+                  <select id="birthday-2" name="day">
+                    <option></option>
+                    <option>1984</option>
+                  </select>
+                </p>
+
+                <p>
+                  <label for="bio-2">Bio:</label>
+                  <textarea id="bio-2"></textarea>
+                </p>
+              </fieldset>
+
+              <fieldset title="Professional">
+                <legend>Your professional informations</legend>
+
+                <p class="skills">
+                  <input id="ruby-2" type="checkbox" name="ruby-2" />
+                  <label for="ruby-2">Ruby</label>
+
+                  <input id="python-2" type="checkbox" name="python" />
+                  <label for="python-2">Python</label>
+
+                  <input id="java-2" type="checkbox" name="java" />
+                  <label for="java-2">Java</label>
+
+                  <input id="javascript-2" type="checkbox" name="javascript" />
+                  <label for="javascript-2">Javascript</label>
+                </p>
+
+                <p>
+                  <label for="linkedin-2">Linkedin:</label>
+                  <input id="linkedin-2" type="text" name="Linkedin" />
+                </p>
+              </fieldset>
+
+              <input type="submit" value="Finish!" />
+            </form>
+          </div>
+
+          <div class="highlight">
+<pre>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'form'</span><span class="p">).</span><span class="nx">stepy</span><span class="p">({</span> <span class="nx">legend</span><span class="o">:</span> <span class="kc">false</span> <span class="p">});</span>
+</pre>
+          </div>
 
 
 
@@ -779,7 +960,7 @@
 
   <script type="text/javascript">
     $(function() {
-      $('#default-demo').stepy({ finishButton: false });
+      $('#default-demo').stepy();
 
       $('#titleClick-demo').stepy({ titleClick: true });
 
@@ -790,9 +971,19 @@
 
       $('#description-demo').stepy({ description: false });
 
-      $('#enter-demo').stepy();
+      $('#enter-demo').stepy({ enter: true});
 
-      $('#finish-demo').stepy();
+      $('#finishButton-demo').stepy({ finishButton: false });
+
+      $('#finish-demo').stepy({
+        finish: function() {
+          alert('Canceling...');
+
+          return false;
+        }
+      });
+
+      $('#legend-demo').stepy({ legend: false });
     });
 
     var _gaq = _gaq || [];
