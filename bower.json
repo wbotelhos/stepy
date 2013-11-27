@@ -1,5 +1,5 @@
 {
-	"name": "webapp",
+	"name": "stepy",
 	"version": "",
 	"main": [
 		"lib/jquery.stepy.min.js",
