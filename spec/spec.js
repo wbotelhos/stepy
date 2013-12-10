@@ -1,42 +1,42 @@
 describe('Stepy', function() {
   beforeEach(function() {
-    Helper.append(Helper.form({ id: 'stepy', html: [
-      Helper.fieldset({ title: 'Step 1', html: [
-        Helper.legend({ html: 'description 1' }),
-        Helper.label({ html: 'User' }),
-        Helper.hidden({ name: 'hidden' }),
-        Helper.text({ value: 'wbotelhos', name: 'user', disabled: true }),
+    Factory.append(Factory.form({ id: 'stepy', html: [
+      Factory.fieldset({ title: 'Step 1', html: [
+        Factory.legend({ html: 'description 1' }),
+        Factory.label({ html: 'User' }),
+        Factory.hidden({ name: 'hidden' }),
+        Factory.text({ value: 'wbotelhos', name: 'user', disabled: true }),
 
-        Helper.label({ html: 'E-mail' }),
-        Helper.text({ name: 'email' }),
+        Factory.label({ html: 'E-mail' }),
+        Factory.text({ name: 'email' }),
 
-        Helper.label({ html: 'Checked?' }),
-        Helper.checkbox({ name: 'checked' }),
+        Factory.label({ html: 'Checked?' }),
+        Factory.checkbox({ name: 'checked' }),
 
-        Helper.label({ html: 'Newsletter?' }),
-        Helper.label({ html: 'Yep' }),
-        Helper.radio({ name: 'newsletter' }),
-        Helper.label({ html: 'Nop' }),
-        Helper.radio({ name: 'newsletter' }),
+        Factory.label({ html: 'Newsletter?' }),
+        Factory.label({ html: 'Yep' }),
+        Factory.radio({ name: 'newsletter' }),
+        Factory.label({ html: 'Nop' }),
+        Factory.radio({ name: 'newsletter' }),
 
-        Helper.label({ html: 'Password' }),
-        Helper.password({ name: 'password' })
-      ]}), Helper.fieldset({ title: 'Step 2', html: [
-        Helper.legend({ html: 'description 2' }),
-        Helper.label({ html: 'Bio' }),
-        Helper.textarea({ name: 'bio' })
-      ]}), Helper.fieldset({ title: 'Step 3', html: [
-        Helper.legend({ html: 'description 3' }),
-        Helper.label({ html: 'Birthday' }),
-        Helper.select({ name: 'day', html: [Helper.option(), Helper.option({ html: 23 })]}),
-        Helper.label({ html: 'Site' }),
-        Helper.text({ name: 'site' })
+        Factory.label({ html: 'Password' }),
+        Factory.password({ name: 'password' })
+      ]}), Factory.fieldset({ title: 'Step 2', html: [
+        Factory.legend({ html: 'description 2' }),
+        Factory.label({ html: 'Bio' }),
+        Factory.textarea({ name: 'bio' })
+      ]}), Factory.fieldset({ title: 'Step 3', html: [
+        Factory.legend({ html: 'description 3' }),
+        Factory.label({ html: 'Birthday' }),
+        Factory.select({ name: 'day', html: [Factory.option(), Factory.option({ html: 23 })]}),
+        Factory.label({ html: 'Site' }),
+        Factory.text({ name: 'site' })
       ]}),
-      Helper.submit()
+      Factory.submit()
     ]}));
   });
 
-  afterEach(function() { Helper.clear(); });
+  afterEach(function() { Factory.clear(); });
 
   it ('is chainable', function() {
     // given
@@ -47,6 +47,34 @@ describe('Stepy', function() {
 
     // then
     expect(ref).toBe(self);
+  });
+
+  it ('has the right values', function() {
+    // given
+    var stepy = $.fn.stepy
+
+    // when
+    var opt = stepy.defaults
+
+    // then
+    expect(opt.bacck).toBeUndefined();
+    expect(opt.backLabel).toEqual('&lt; Back');
+    expect(opt.block).toBeFalsy();
+    expect(opt.description).toBeTruthy();
+    expect(opt.duration).toBeUndefined();
+    expect(opt.enter).toBeTruthy();
+    expect(opt.errorImage).toBeFalsy();
+    expect(opt.finish).toBeUndefined();
+    expect(opt.finishButton).toBeTruthy();
+    expect(opt.ignore).toEqual('');
+    expect(opt.legend).toBeTruthy();
+    expect(opt.next).toBeUndefined();
+    expect(opt.nextLabel).toEqual('Next &gt;');
+    expect(opt.select).toBeUndefined();
+    expect(opt.titleClick).toBeFalsy();
+    expect(opt.titleTarget).toBeUndefined();
+    expect(opt.transition).toBeUndefined();
+    expect(opt.validate).toBeFalsy();
   });
 
   it ('receives the bind indicator', function() {
@@ -823,7 +851,7 @@ describe('Stepy', function() {
     describe('titleTarget', function() {
       context('with target', function() {
         beforeEach(function() {
-           this.target = Helper.append('<div id="target"></div>');
+           this.target = Factory.append('<div id="target"></div>');
         });
 
         it ('receives the titles of the steps', function() {

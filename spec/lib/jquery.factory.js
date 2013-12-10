@@ -4,7 +4,7 @@ function context(description, spec) {
   describe(description, spec);
 };
 
-var Helper = {
+var Factory = {
   init: function() {
   }, _checks: function(tag, data) {
     var type   = $(tag)[0].type,
@@ -30,12 +30,12 @@ var Helper = {
   }, _data: function(options) {
     options = options || {};
 
-    var times      = Helper._getTimes(options),
-        html       = Helper._getHtml(options),
-        checked    = Helper._getChecked(options),
-        selected   = Helper._getSelected(options),
-        opt        = Helper._normalize(options),
-        attributes = Helper._parameterize(opt);
+    var times      = Factory._getTimes(options),
+        html       = Factory._getHtml(options),
+        checked    = Factory._getChecked(options),
+        selected   = Factory._getSelected(options),
+        opt        = Factory._normalize(options),
+        attributes = Factory._parameterize(opt);
 
     return { attributes: attributes, html: html, checked: checked, selected: selected, times: times };
   }, _getChecked: function(options) {
@@ -44,7 +44,7 @@ var Helper = {
     var html    = options.html || '',
         content = '';
 
-    if (typeof html === 'object') {
+    if (html instanceof Array) {
       for (var i = 0; i < html.length; i++) {
         content += html[i];
       }
@@ -76,7 +76,7 @@ var Helper = {
     var html = '';
 
     for (var i = 0; i < data.times; i++) {
-      html += Helper._checks(tag, data).replace(/{index}/g, i + 1);
+      html += Factory._checks(tag, data).replace(/{index}/g, i + 1);
     }
 
     return html;
@@ -85,28 +85,38 @@ var Helper = {
       $.error('You cannot set the "type" using an alias!');
     }
   }, append: function(html) {
-    return $(html).appendTo('.fixtury');
+    return $(html).appendTo('.factory');
   }, checkbox: function(options) {
-    Helper._verify(options);
+    Factory._verify(options);
 
-    return Helper.input(options, 'checkbox');
-  }, clear: function() {
+    return Factory.input(options, 'checkbox');
+  }, clear: function(args) {
     if (clean) {
-      $('.fixtury').empty();
+      $('.factory').empty();
+
+      if (args instanceof Array) {
+        for (var i = 0; i < args.length; i++) {
+          $(args[i]).remove();
+        }
+      } else {
+        $(args).remove();
+      }
     }
   }, double: function(options, name) {
-    var data = Helper._data(options),
+    var data = Factory._data(options),
         tag  = '<' + name + ' ' + data.attributes + '>' + data.html + '</' + name + '>';
 
-    return Helper._repeat(tag.replace(' >', '>'), data);
+    return Factory._repeat(tag.replace(' >', '>'), data);
   }, fieldset: function(options) {
-    return Helper.double(options, 'fieldset');
+    return Factory.double(options, 'fieldset');
   }, form: function(options) {
-    return Helper.double(options, 'form');
+    return Factory.double(options, 'form');
   }, hidden: function(options) {
-    Helper._verify(options);
+    Factory._verify(options);
 
-    return Helper.input(options, 'hidden');
+    return Factory.input(options, 'hidden');
+  }, html: function(html) {
+    $('.factory').html(html);
   }, input: function(options, type) {
     options = options || {};
 
@@ -114,37 +124,37 @@ var Helper = {
       options['type'] = type;
     }
 
-    return Helper.single(options, 'input');
+    return Factory.single(options, 'input');
   }, label: function(options) {
-    return Helper.double(options, 'label');
+    return Factory.double(options, 'label');
   }, legend: function(options) {
-    return Helper.double(options, 'legend');
+    return Factory.double(options, 'legend');
   }, option: function(options) {
-    return Helper.double(options, 'option');
+    return Factory.double(options, 'option');
   }, password: function(options) {
-    Helper._verify(options);
+    Factory._verify(options);
 
-    return Helper.input(options, 'password');
+    return Factory.input(options, 'password');
   }, radio: function(options) {
-    Helper._verify(options);
+    Factory._verify(options);
 
-    return Helper.input(options, 'radio');
+    return Factory.input(options, 'radio');
   }, select: function(options) {
-    return Helper.double(options, 'select');
+    return Factory.double(options, 'select');
   }, single: function(options, name) {
-    var data = Helper._data(options),
+    var data = Factory._data(options),
         tag  = '<' + name + ' ' + data.attributes + ' />';
 
-    return Helper._repeat(tag.replace('  />', ' />'), data);
+    return Factory._repeat(tag.replace('  />', ' />'), data);
   }, submit: function(options) {
-    Helper._verify(options);
+    Factory._verify(options);
 
-    return Helper.input(options, 'submit');
+    return Factory.input(options, 'submit');
   }, text: function(options) {
-    Helper._verify(options);
+    Factory._verify(options);
 
-    return Helper.input(options, 'text');
+    return Factory.input(options, 'text');
   }, textarea: function(options) {
-    return Helper.double(options, 'textarea');
+    return Factory.double(options, 'textarea');
   }
 };
