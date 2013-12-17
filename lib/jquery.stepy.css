@@ -1,6 +1,6 @@
 @CHARSET "UTF-8";
 
-body { font-size: 10px }
+/*body { font-size: 10px }*/
 
 .stepy-header { list-style: none; padding: 0; width: 724px }
   .stepy-header li { cursor: pointer; float: left; padding: 10px }
@@ -25,6 +25,34 @@ body { font-size: 10px }
   .stepy-navigator { height: 33px; margin-top: 20px }
     .button-back { float: left }
 
+.stepy-step legend {
+	color          : #4080BF;
+	font           : bold 1.2em arial;
+	letter-spacing : .7px;
+	padding        : 0 5px 5px;
+	width          : auto;
+	margin-bottom  : 12px;
+	border-bottom  : 0;
+}
+
+.stepy-step label {
+	/*color          : #222;*/
+	display        : block;
+	/*font           : bold 1.5em arial;*/
+	letter-spacing : .7px;
+	margin         : 10px 0 3px 1px
+}
+
+.stepy-navigator {
+	height     : 33px;
+	margin-top : 20px
+}
+
+.button-back {
+	float : left
+}
+
+.finish,
     .button-next,
     .stepy-navigator input[type="submit"] { float: right }
 
@@ -37,3 +65,23 @@ body { font-size: 10px }
     .button-back:hover,
     .button-next:hover,
     .stepy-navigator input[type="submit"]:hover { border-color: #BBB; color: #B07 }
+
+.error-image {
+	background : url("../demo/img/error.png") no-repeat scroll right top transparent;
+}
+
+.error {
+	background-color : #FAF4F4;
+}
+
+label.error {
+	background   : url("../demo/img/alert.png") no-repeat scroll 0 0 transparent;
+	color        : #DE5130;
+	display      : block;
+	float        : right;
+	font         : 10px verdana;
+	height       : 13px;
+	margin       : 3px 3px 0 10px;
+	padding-left : 21px;
+	padding-top  : 2px;
+}
