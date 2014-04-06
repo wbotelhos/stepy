@@ -9,6 +9,10 @@
 
 ## Changes
 
++ Validate only last step in step(), which allows to jump to arbitrary step while validator enabled.
++ validate() code clean-up.
++ Optional second boolean argument of step() which allows to suppress validation at all.
++ Stop previous animation so multiple steps will not be visible when jumping to arbitrary step.
 + The container that holds the navigation buttons now has the class 'stepy-buttons';
 + The error container class was renamed to plural 'stepy-errors';
 + Forms without ID will receives a genarated hash to be used as hook;
