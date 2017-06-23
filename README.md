@@ -1,4 +1,4 @@
-# jQuery Stepy - A Wizard Plugin - [wbotelhos.com/stepy](http://wbotelhos.com/stepy)
+# jQuery Stepy - A Wizard Plugin
 
 [![Build Status](https://img.shields.io/travis/wbotelhos/stepy/master.svg)](https://travis-ci.org/wbotelhos/stepy "Travis CI")
 [![Dependency Status](https://david-dm.org/wbotelhos/stepy.svg)](https://david-dm.org/wbotelhos/stepy "Dependency Status")
