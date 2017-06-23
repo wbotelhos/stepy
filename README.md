@@ -1,43 +1,48 @@
 # jQuery Stepy - A Wizard Plugin - [wbotelhos.com/stepy](http://wbotelhos.com/stepy)
 
-jQuery Stepy is a plugin based on FormToWizard that generates a customizable wizard.
+[![Build Status](https://img.shields.io/travis/wbotelhos/stepy/master.svg)](https://travis-ci.org/wbotelhos/stepy "Travis CI")
+[![Dependency Status](https://david-dm.org/wbotelhos/stepy.svg)](https://david-dm.org/wbotelhos/stepy "Dependency Status")
+[![Dev Dependency Status](https://david-dm.org/wbotelhos/stepy/dev-status.svg)](https://david-dm.org/wbotelhos/stepy#info=devDependencies "Dev Dependency Status")
+[![Code Climate](https://codeclimate.com/github/wbotelhos/stepy.png)](https://codeclimate.com/github/wbotelhos/stepy)
+[![Support jQuery Raty](http://img.shields.io/gittip/wbotelhos.svg)](https://gratipay.com/~wbotelhos)
+
+jQuery Stepy is a plugin that generates a customizable wizard.
 
 ## Version
 
 ```
-@version        1.1.0
-@since          2010-07-03
-@author         Washington Botelho
-@documentation  wbotelhos.com/stepy
-@twitter        twitter.com/wbotelhos
+@version  1.1.0
+@since    2010-07-03
+@author   Washington Botelho
+@doc      wbotelhos.com/stepy
 ```
 
 ## Required Files
 
-+ jquery.stepy.min.js
++ jquery.stepy.js
 + jquery.stepy.css
 
 ## Options
 
 ```js
-back         : undefined  // Callback before the backward action.
-backLabel    : '< Back'   // Change the back button label.
-block        : false      // Block the next step if the current is invalid.
-description  : false      // Choose if the descriptions of the titles will be showed.
-duration     : 0          // Duration of the transition between steps in ms.
-enter        : true       // Enables the enter key to change to the next step.
-errorImage   : false      // If an error occurs, a image is showed in the title of the corresponding step.
-finish       : undefined  // Callback before the finish action.
-finishButton : true       // Include the button with class called '.finish' into the last step.
-ignore       : ''         // Choose the fields to be ignored on validation.
-legend       : false      // Choose if the legends of the steps will be showed.
-next         : undefined  // Callback before the forward action.
-nextLabel    : 'Next >'   // Change the next button label.
-select       : undefined  // Callback executed when the step is shown.
-titleClick   : true       // Active the back and next action in the titles.
-titleTarget  : undefined  // Choose the place where titles will be placed.
-transition   : 'hide'     // Use transition between steps ('hide', 'fade' or 'slide').
-validate     : false      // Active the jQuery Validation for each step.
+back        : undefined  // Callback before the backward action.
+backLabel   : '< Back'   // Change the back button label.
+block       : false      // Block the next step if the current is invalid.
+description : false      // Choose if the descriptions of the titles will be showed.
+duration    : 0          // Duration of the transition between steps in ms.
+enter       : true       // Enables the enter key to change to the next step.
+errorImage  : false      // If an error occurs, a image is showed in the title of the corresponding step.
+finish      : undefined  // Callback before the finish action.
+finishButton: true       // Include the button with class called '.finish' into the last step.
+ignore      : ''         // Choose the fields to be ignored on validation.
+legend      : false      // Choose if the legends of the steps will be showed.
+next        : undefined  // Callback before the forward action.
+nextLabel   : 'Next >'   // Change the next button label.
+select      : undefined  // Callback executed when the step is shown.
+titleClick  : true       // Active the back and next action in the titles.
+titleTarget : undefined  // Choose the place where titles will be placed.
+transition  : 'hide'     // Use transition between steps ('hide', 'fade' or 'slide').
+validate    : false      // Active the jQuery Validation for each step.
 ```
 
 ## Usage
@@ -72,15 +77,8 @@ $('form').stepy('destroy'); // Destroy the Stepy's bind and gives you the raw el
 
 ## Contributors
 
-+ Almir Mendes
-+ Andrey Fedoseev
-+ Igor Tamashchuk
-+ Rafael Machado
+[Check it out](http://github.com/wbotelhos/stepy/graphs/contributors)
 
-## Licence
+## Love it!
 
-The MIT License
-
-## Donate
-
-You can do it via [PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=X8HEP2878NDEG&item_name=jQuery%20Stepy). Thanks! (:
+Via [PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=X8HEP2878NDEG&item_name=stepy) or [Gratipay](https://gratipay.com/stepy). Thanks! (:
