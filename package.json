@@ -1,0 +1,52 @@
+{
+  "author": "Washington Botelho",
+
+  "bugs": {
+    "url": "https://github.com/wbotelhos/stepy/issues"
+  },
+
+  "contributors": ["Washington Botelho <wbotelhos@gmail.com> (http://wbotelhos.com)"],
+  "demos":        ["demo/index.html"],
+
+  "dependencies": {
+    "jquery": "^3.2.1"
+  },
+
+  "description": "jQuery Stepy - A Wizard Plugin",
+
+  "devDependencies": {
+    "jasmine-core":             "^2.6.1",
+    "karma-chrome-launcher":    "^2.1.1",
+    "karma-firefox-launcher":   "^1.0.1",
+    "karma-ie-launcher":        "^1.0.0",
+    "karma-jasmine":            "^1.1.0",
+    "karma-opera-launcher":     "^1.0.0",
+    "karma-phantomjs-launcher": "^1.0.4",
+    "karma-safari-launcher":    "^1.0.0",
+    "karma":                    "^1.7.0"
+  },
+
+  "directories": {
+    "lib":  "lib",
+    "test": "spec"
+  },
+
+  "engines":     { "node" : "7.10" },
+  "homepage":    "https://github.com/wbotelhos/stepy",
+  "keywords":    ["step", "step-by-step", "wizard"],
+  "license":     "MIT",
+  "main":        "lib/jquery.stepy.js",
+  "maintainers": ["Washington Botelho <wbotelhos@gmail.com> (http://wbotelhos.com)"],
+  "name":        "stepy",
+
+  "repository": {
+    "type": "git",
+    "url":  "https://github.com/wbotelhos/stepy"
+  },
+
+  "scripts": {
+    "test": "node_modules/karma/bin/karma start spec/karma.conf.js"
+  },
+
+  "version": "1.1.0"
+}
