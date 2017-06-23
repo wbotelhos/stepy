@@ -2,7 +2,7 @@
 a { color: #277DA8; text-decoration: none }
 a:hover { color: #48A5D4 }
 
-body { background: url('http://wbotelhos.com/images/background.png') #E7E7E7; font: normal 10px/1.6 'Helvetica Neue', 'Lucida Grande', Helvetica, Arial, sans-serif }
+body { background-color: #E7E7E7; font: normal 10px/1.6 'Helvetica Neue', 'Lucida Grande', Helvetica, Arial, sans-serif }
 
 footer { font-size: 1.3em; margin: 0 auto; overflow: auto; padding-bottom: 15px; padding-top: 10px; text-align: center; width: 1100px }
 
