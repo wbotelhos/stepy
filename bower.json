@@ -1,18 +1,16 @@
 {
-	"name": "stepy",
-	"version": "",
-	"main": [
-		"lib/jquery.stepy.min.js",
-		"lib/jquery.stepy.css"
-	],
-	"ignore": [
-		"demo/",
-		"demo/*",
-		"index.html",
-		"bower.json"
-	],
-	"keywords": [
-		"jquery",
-		"stepy"
-	]
+  "authors":     ["Washington Botelho <wbotelhos@gmail.com> (http://wbotelhos.com)"],
+  "description": "jQuery Stepy - A Wizard Plugin",
+
+  "dependencies": {
+    "jquery": "^3.2.1"
+  },
+
+  "homepage": "https://github.com/wbotelhos/stepy",
+  "ignore":   ["**/.*", "node_modules", "spec", "vendor"],
+  "keywords": ["step", "step-by-step", "wizard"],
+  "license":  "MIT",
+  "main":     "lib/jquery.stepy.js",
+  "name":     "stepy",
+  "version":  "1.1.0"
 }
