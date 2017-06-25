@@ -80,9 +80,9 @@ describe('body', function() {
           // then
           var nav = step.children('.stepy-navigator');
 
-          expect(step).toContain('p.stepy-navigator');
-          expect(nav).not.toContain('.button-back');
-          expect(nav).toContain('.button-next');
+          expect(step.find('p.stepy-navigator').length).toEqual(1);
+          expect(nav.find('.button-back').length).toEqual(0);
+          expect(nav.find('.button-next').length).toEqual(1);
         });
 
         it ('has the right labels', function() {
@@ -140,9 +140,9 @@ describe('body', function() {
           // then
           var nav = step.children('.stepy-navigator');
 
-          expect(step).toContain('.stepy-navigator');
-          expect(nav).toContain('.button-back');
-          expect(nav).toContain('.button-next');
+          expect(step.find('.stepy-navigator').length).toEqual(1);
+          expect(nav.find('.button-back').length).toEqual(1);
+          expect(nav.find('.button-next').length).toEqual(1);
         });
 
         it ('has the right labels', function() {
@@ -222,9 +222,9 @@ describe('body', function() {
       // then
       var nav = step.children('.stepy-navigator');
 
-      expect(step).toContain('.stepy-navigator');
-      expect(nav).toContain('.button-back');
-      expect(nav).not.toContain('.button-next');
+      expect(step.find('.stepy-navigator').length).toEqual(1);
+      expect(nav.find('.button-back').length).toEqual(1);
+      expect(nav.find('.button-next').length).toEqual(0);
     });
 
     it ('has the right labels', function() {

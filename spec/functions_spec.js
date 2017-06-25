@@ -47,7 +47,7 @@ describe('funcions', function() {
       var ref = self.stepy('destroy');
 
       // then
-      expect(ref).toBe(self);
+      expect(ref).toEqual(self);
     });
 
     it ('shows all steps', function() {
@@ -85,7 +85,7 @@ describe('funcions', function() {
       self.stepy('destroy');
 
       // then
-      expect(steps).toContain(':submit');
+      expect(steps.find(':submit').length).toEqual(1);
     });
 
     it ('removes the bind indicator', function() {

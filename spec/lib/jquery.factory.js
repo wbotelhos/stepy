@@ -85,7 +85,15 @@ var Factory = {
       $.error('You cannot set the "type" using an alias!');
     }
   }, append: function(html) {
-    return $(html).appendTo('.factory');
+    var container = $('.factory');
+
+    if (container.length === 1) {
+      return $(html).appendTo('.factory');
+    } else {
+      var el = $('<div />', { 'class': 'factory' }).appendTo('body');
+
+      return el.append(html);
+    }
   }, checkbox: function(options) {
     Factory._verify(options);
 

@@ -587,7 +587,6 @@ describe('common', function() {
             var self   = $('form').stepy({
                           titleClick: true,
                           back      : function(index) {
-                            console.log(index);
                             $(this).data('index', index);
                           }
                         }),
