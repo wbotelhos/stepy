@@ -150,9 +150,9 @@ describe('common', function() {
           // then
           var menus = $('#' + self.attr('id') + '-header').children('li');
 
-          expect(menus.eq(0)).not.toContain('span');
-          expect(menus.eq(1)).not.toContain('span');
-          expect(menus.eq(2)).not.toContain('span');
+          expect(menus.eq(0).find('span').length).toEqual(0);
+          expect(menus.eq(1).find('span').length).toEqual(0);
+          expect(menus.eq(2).find('span').length).toEqual(0);
         });
       });
     });
@@ -374,21 +374,22 @@ describe('common', function() {
           self.stepy({ finishButton: false });
 
           // then
-          expect(step).not.toContain('input[type="submit"]');
+          expect(step.find(':submit').length).toEqual(0);
         });
       });
 
       context('enabled', function() {
         it ('will to move the finish button inside the last step', function() {
           // given
-          var self = $('form'),
-              step = self.children('fieldset:last');
+          var
+            self = $('form'),
+            step = self.children('fieldset:last');
 
           // when
           self.stepy({ finishButton: true });
 
           // then
-          expect(step).toContain('input[type="submit"]');
+          expect(step.find(':submit').length).toEqual(1);
         });
 
         it ('starts hidden', function() {
@@ -432,7 +433,7 @@ describe('common', function() {
               self.stepy({ finishButton: true });
 
               // then
-              expect(step).toContain('input[type="submit"]');
+              expect(step.find(':submit').length).toEqual(1);
             });
           });
 
@@ -556,7 +557,7 @@ describe('common', function() {
           self.stepy({ titleTarget: '#' + this.target.attr('id') });
 
           // then
-          expect(target).toContain('#' + self.attr('id') + '-header');
+          expect($(target).find('#' + self.attr('id') + '-header').length).toEqual(1);
         });
       });
 
@@ -701,7 +702,7 @@ describe('common', function() {
             steps.eq(1).find('.button-next').click();
 
             // then
-            expect(self.children('.stepy-errors')).toContain('label.error');
+            expect(self.find('.stepy-errors label.error').length).toEqual(1);
           });
         });
       });
