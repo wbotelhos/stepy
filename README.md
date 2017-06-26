@@ -4,7 +4,7 @@
 [![Dependency Status](https://david-dm.org/wbotelhos/stepy.svg)](https://david-dm.org/wbotelhos/stepy "Dependency Status")
 [![Dev Dependency Status](https://david-dm.org/wbotelhos/stepy/dev-status.svg)](https://david-dm.org/wbotelhos/stepy#info=devDependencies "Dev Dependency Status")
 [![Code Climate](https://codeclimate.com/github/wbotelhos/stepy.png)](https://codeclimate.com/github/wbotelhos/stepy)
-[![Support jQuery Raty](http://img.shields.io/gittip/wbotelhos.svg)](https://gratipay.com/~wbotelhos)
+[![Support jQuery Stepy](http://img.shields.io/gittip/wbotelhos.svg)](https://gratipay.com/~wbotelhos)
 
 jQuery Stepy is a plugin that generates a customizable wizard.
 
