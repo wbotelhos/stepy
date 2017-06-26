@@ -1,4 +1,6 @@
 describe('header', function() {
+  'use strict';
+
   beforeEach(function() {
     Factory.append(Factory.form({ id: 'stepy', html: [
       Factory.fieldset({ title: 'Step 1', html: [
@@ -21,19 +23,19 @@ describe('header', function() {
 
         Factory.label({ html: 'Password' }),
         Factory.password({ name: 'password' })
-      ]}), Factory.fieldset({ title: 'Step 2', html: [
+      ] }), Factory.fieldset({ title: 'Step 2', html: [
         Factory.legend({ html: 'description 2' }),
         Factory.label({ html: 'Bio' }),
         Factory.textarea({ name: 'bio' })
-      ]}), Factory.fieldset({ title: 'Step 3', html: [
+      ] }), Factory.fieldset({ title: 'Step 3', html: [
         Factory.legend({ html: 'description 3' }),
         Factory.label({ html: 'Birthday' }),
-        Factory.select({ name: 'day', html: [Factory.option(), Factory.option({ html: 23 })]}),
+        Factory.select({ name: 'day', html: [Factory.option(), Factory.option({ html: 23 })] }),
         Factory.label({ html: 'Site' }),
         Factory.text({ name: 'site' })
-      ]}),
+      ] }),
       Factory.submit()
-    ]}));
+    ] }));
   });
 
   afterEach(function() { Factory.clear(); });
@@ -81,7 +83,7 @@ describe('header', function() {
     it ('has the click disabled', function() {
       // given
       var self  = $('form').stepy(),
-          steps = self.children();
+        steps = self.children();
 
       // when
       $('#' + self.attr('id') + '-header').children('li:eq(1)').click();

@@ -1,7 +1,9 @@
 describe('body', function() {
+  'use strict';
+
   beforeEach(function() {
-    Factory.append(Factory.form({ id: 'stepy', html: [
-      Factory.fieldset({ title: 'Step 1', html: [
+    Factory.append(Factory.form({ id:   'stepy', html: [
+      Factory.fieldset({ title: 'Step 1', html:  [
         Factory.legend({ html: 'description 1' }),
         Factory.label({ html: 'User' }),
         Factory.hidden({ name: 'hidden' }),
@@ -21,19 +23,19 @@ describe('body', function() {
 
         Factory.label({ html: 'Password' }),
         Factory.password({ name: 'password' })
-      ]}), Factory.fieldset({ title: 'Step 2', html: [
+      ] }), Factory.fieldset({ title: 'Step 2', html:  [
         Factory.legend({ html: 'description 2' }),
         Factory.label({ html: 'Bio' }),
         Factory.textarea({ name: 'bio' })
-      ]}), Factory.fieldset({ title: 'Step 3', html: [
+      ] }), Factory.fieldset({ title: 'Step 3', html:  [
         Factory.legend({ html: 'description 3' }),
         Factory.label({ html: 'Birthday' }),
-        Factory.select({ name: 'day', html: [Factory.option(), Factory.option({ html: 23 })]}),
+        Factory.select({ name: 'day', html: [Factory.option(), Factory.option({ html: 23 })] }),
         Factory.label({ html: 'Site' }),
         Factory.text({ name: 'site' })
-      ]}),
+      ] }),
       Factory.submit()
-    ]}));
+    ] }));
   });
 
   afterEach(function() { Factory.clear(); });
@@ -43,7 +45,7 @@ describe('body', function() {
       it ('focused the first', function() {
         // given
         var self  = $('form'),
-            steps = self.children('fieldset');
+          steps = self.children('fieldset');
 
         // when
         self.stepy();
@@ -57,22 +59,22 @@ describe('body', function() {
       it ('starts actived', function() {
         // given
         var self  = $('form'),
-            steps = self.children();
+          steps = self.children();
 
         // when
         self.stepy();
 
         // then
-          expect(steps.eq(0)).toBeVisible();
-          expect(steps.eq(1)).toBeHidden();
-          expect(steps.eq(2)).toBeHidden();
+        expect(steps.eq(0)).toBeVisible();
+        expect(steps.eq(1)).toBeHidden();
+        expect(steps.eq(2)).toBeHidden();
       });
 
       describe('navigator', function() {
         it ('has the next button', function() {
           // given
           var self = $('form'),
-              step = self.children('fieldset:first');
+            step = self.children('fieldset:first');
 
           // when
           self.stepy();
@@ -88,7 +90,7 @@ describe('body', function() {
         it ('has the right labels', function() {
           // given
           var self = $('form'),
-              step = self.children('fieldset:first');
+            step = self.children('fieldset:first');
 
           // when
           self.stepy();
@@ -101,7 +103,7 @@ describe('body', function() {
           it ('goes to second step', function() {
             // given
             var self  = $('form').stepy(),
-                steps = self.children();
+              steps = self.children();
 
             // when
             steps.eq(0).find('.button-next').click();
@@ -115,7 +117,7 @@ describe('body', function() {
           it ('focus the first field', function() {
             // given
             var self  = $('form').stepy(),
-                steps = self.children('fieldset');
+              steps = self.children('fieldset');
 
             // when
             steps.eq(0).find('.button-next').click();
@@ -132,7 +134,7 @@ describe('body', function() {
         it ('has the back and next button', function() {
           // given
           var self = $('form'),
-              step = self.children('fieldset:eq(1)');
+            step = self.children('fieldset:eq(1)');
 
           // when
           self.stepy();
@@ -148,7 +150,7 @@ describe('body', function() {
         it ('has the right labels', function() {
           // given
           var self = $('form'),
-              step = self.children('fieldset:eq(1)');
+            step = self.children('fieldset:eq(1)');
 
           // when
           self.stepy();
@@ -162,7 +164,7 @@ describe('body', function() {
           it ('goes to third step', function() {
             // given
             var self  = $('form').stepy(),
-                steps = self.children();
+              steps = self.children();
 
             // when
             steps.eq(0).find('.button-next').click();
@@ -179,7 +181,7 @@ describe('body', function() {
           it ('goes to first step', function() {
             // given
             var self  = $('form').stepy(),
-                steps = self.children();
+              steps = self.children();
 
             steps.eq(0).find('.button-next').click();
 
@@ -195,7 +197,7 @@ describe('body', function() {
           it ('focus the first field', function() {
             // given
             var self  = $('form').stepy(),
-                steps = self.children('fieldset');
+              steps = self.children('fieldset');
 
             steps.eq(0).find('.button-next').click();
 
@@ -214,7 +216,7 @@ describe('body', function() {
     it ('has the back', function() {
       // given
       var self = $('form'),
-          step = self.children('fieldset:last');
+        step = self.children('fieldset:last');
 
       // when
       self.stepy();
@@ -230,7 +232,7 @@ describe('body', function() {
     it ('has the right labels', function() {
       // given
       var self = $('form'),
-          step = self.children('fieldset:last');
+        step = self.children('fieldset:last');
 
       // when
       self.stepy();
@@ -242,7 +244,7 @@ describe('body', function() {
     it ('has the finish button', function() {
       // given
       var self = $('form'),
-          step = self.children('fieldset:last');
+        step = self.children('fieldset:last');
 
       // when
       self.stepy();
@@ -255,7 +257,7 @@ describe('body', function() {
       it ('goes to first step', function() {
         // given
         var self  = $('form').stepy(),
-            steps = self.children();
+          steps = self.children();
 
         // when
         steps.eq(0).find('.button-next').click();

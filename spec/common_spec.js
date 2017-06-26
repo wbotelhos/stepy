@@ -1,4 +1,6 @@
 describe('common', function() {
+  'use strict';
+
   beforeEach(function() {
     Factory.append(Factory.form({ id: 'stepy', html: [
       Factory.fieldset({ title: 'Step 1', html: [
@@ -21,19 +23,19 @@ describe('common', function() {
 
         Factory.label({ html: 'Password' }),
         Factory.password({ name: 'password' })
-      ]}), Factory.fieldset({ title: 'Step 2', html: [
+      ] }), Factory.fieldset({ title: 'Step 2', html: [
         Factory.legend({ html: 'description 2' }),
         Factory.label({ html: 'Bio' }),
         Factory.textarea({ name: 'bio' })
-      ]}), Factory.fieldset({ title: 'Step 3', html: [
+      ] }), Factory.fieldset({ title: 'Step 3', html: [
         Factory.legend({ html: 'description 3' }),
         Factory.label({ html: 'Birthday' }),
-        Factory.select({ name: 'day', html: [Factory.option(), Factory.option({ html: 23 })]}),
+        Factory.select({ name: 'day', html: [Factory.option(), Factory.option({ html: 23 })] }),
         Factory.label({ html: 'Site' }),
         Factory.text({ name: 'site' })
-      ]}),
+      ] }),
       Factory.submit()
-    ]}));
+    ] }));
   });
 
   afterEach(function() { Factory.clear(); });
@@ -93,11 +95,11 @@ describe('common', function() {
       it ('is called on trigger back button', function() {
         // given
         var self = $('form').stepy({
-          back: function() {
-            $(this).data('called', true);
-          }
-        }),
-        steps     = self.children('fieldset');
+            back: function() {
+              $(this).data('called', true);
+            }
+          }),
+          steps     = self.children('fieldset');
 
         steps.eq(0).find('.button-next').click();
 
@@ -111,7 +113,7 @@ describe('common', function() {
       it ('receives the right index', function() {
         // given
         var self  = $('form').stepy({ back: function(index) { $(this).data('index', index); } }),
-            steps = self.children('fieldset');
+          steps = self.children('fieldset');
 
         steps.eq(0).find('.button-next').click();
 
@@ -127,7 +129,7 @@ describe('common', function() {
       it ('changes the back button label', function() {
         // given
         var self  = $('form'),
-            steps = self.children('fieldset');
+          steps = self.children('fieldset');
 
         // when
         self.stepy({ backLabel: '&lt;&lt;' });
@@ -163,11 +165,11 @@ describe('common', function() {
           it ('goes to the next step', function() {
             // given
             var self  = $('form').stepy({ enter: true, validate: false }),
-                steps = self.children('fieldset'),
-                evt   = $.Event('keypress');
+              steps = self.children('fieldset'),
+              evt   = $.Event('keypress');
 
-              evt.which   = 13;
-              evt.keyCode = 13;
+            evt.which   = 13;
+            evt.keyCode = 13;
 
             // when
             steps.eq(0).children('input:visible:last').trigger(evt);
@@ -181,8 +183,8 @@ describe('common', function() {
           it ('focus the first field', function() {
             // given
             var self  = $('form').stepy({ enter: true, validate: false }),
-                steps = self.children('fieldset')
-                evt   = $.Event('keypress');
+              steps = self.children('fieldset')
+            evt   = $.Event('keypress');
 
             evt.which   = 13;
             evt.keyCode = 13;
@@ -198,15 +200,15 @@ describe('common', function() {
             it ('receives the right index', function() {
               // given
               var self  = $('form').stepy({
-                            enter    : true,
-                            validate: false,
-                            next    : function(index) { $(this).data('index', index); }
-                          }),
-                  steps = self.children('fieldset'),
-                  evt   = $.Event('keypress');
+                  enter    : true,
+                  validate: false,
+                  next    : function(index) { $(this).data('index', index); }
+                }),
+                steps = self.children('fieldset'),
+                evt   = $.Event('keypress');
 
-                evt.which   = 13;
-                evt.keyCode = 13;
+              evt.which   = 13;
+              evt.keyCode = 13;
 
               // when
               steps.eq(0).children('input:visible:last').trigger(evt);
@@ -224,11 +226,11 @@ describe('common', function() {
             it ('goes to the next step', function() {
               // given
               var self  = $('form').stepy({ enter: true, validate: false }),
-                  steps = self.children('fieldset'),
-                  evt   = $.Event('keypress');
+                steps = self.children('fieldset'),
+                evt   = $.Event('keypress');
 
-                evt.which   = 13;
-                evt.keyCode = 13;
+              evt.which   = 13;
+              evt.keyCode = 13;
 
               // when
               steps.eq(0).find('input:visible:last').trigger(evt);
@@ -252,11 +254,11 @@ describe('common', function() {
             it ('does not goes to the next step', function() {
               // given
               var self  = $('form').stepy({ enter: true, block: true, validate: true }),
-                  steps = self.children('fieldset'),
-                  evt   = $.Event('keypress');
+                steps = self.children('fieldset'),
+                evt   = $.Event('keypress');
 
-                evt.which   = 13;
-                evt.keyCode = 13;
+              evt.which   = 13;
+              evt.keyCode = 13;
 
               // when
               steps.eq(0).children('input:visible:last').trigger(evt);
@@ -272,11 +274,11 @@ describe('common', function() {
             it ('goes to the next step', function() {
               // given
               var self  = $('form').stepy({ enter: true, block: false, validate: true }),
-                  steps = self.children('fieldset'),
-                  evt   = $.Event('keypress');
+                steps = self.children('fieldset'),
+                evt   = $.Event('keypress');
 
-                evt.which   = 13;
-                evt.keyCode = 13;
+              evt.which   = 13;
+              evt.keyCode = 13;
 
               // when
               steps.eq(0).children('input:visible:last').trigger(evt);
@@ -293,12 +295,12 @@ describe('common', function() {
           it ('submits the form', function() {
             // given
             var self  = $('form').stepy({
-                          finish: function() {
-                            $(this).data('submited', true);
-                          }
-                        }),
-                steps = self.children('fieldset'),
-                evt   = $.Event('keypress');
+                finish: function() {
+                  $(this).data('submited', true);
+                }
+              }),
+              steps = self.children('fieldset'),
+              evt   = $.Event('keypress');
 
             evt.which   = 13;
             evt.keyCode = 13;
@@ -322,11 +324,11 @@ describe('common', function() {
         it ('does not go to the next step', function() {
           // given
           var self  = $('form').stepy({ enter: false, validate: false }),
-              steps = self.children('fieldset'),
-              evt   = $.Event('keypress');
+            steps = self.children('fieldset'),
+            evt   = $.Event('keypress');
 
-            evt.which   = 13;
-            evt.keyCode = 13;
+          evt.which   = 13;
+          evt.keyCode = 13;
 
           // when
           steps.eq(0).children('input:visible:last').trigger(evt);
@@ -343,13 +345,13 @@ describe('common', function() {
       it ('is called on trigger finish button', function() {
         // given
         var self = $('form').stepy({
-          finish: function() {
-            $(this).data('called', true);
-          }
-        }),
-        steps     = self.children('fieldset');
+            finish: function() {
+              $(this).data('called', true);
+            }
+          }),
+          steps     = self.children('fieldset');
 
-         self.on('submit', function(evt) {
+        self.on('submit', function(evt) {
           evt.preventDefault();
         });
 
@@ -368,7 +370,7 @@ describe('common', function() {
         it ('will not to move the finish button inside the last step', function() {
           // given
           var self = $('form'),
-              step = self.children('fieldset:last');
+            step = self.children('fieldset:last');
 
           // when
           self.stepy({ finishButton: false });
@@ -395,7 +397,7 @@ describe('common', function() {
         it ('starts hidden', function() {
           // given
           var self = $('form'),
-              step = self.children('fieldset:last');
+            step = self.children('fieldset:last');
 
           // when
           self.stepy();
@@ -408,7 +410,7 @@ describe('common', function() {
           it ('becomes visible', function() {
             // given
             var self  = $('form').stepy(),
-                steps = self.children('fieldset');
+              steps = self.children('fieldset');
 
             // when
             steps.eq(1).find('.button-next').click();
@@ -427,7 +429,7 @@ describe('common', function() {
             it ('will be getted', function() {
               // given
               var self = $('form'),
-                  step = self.children('fieldset:last');
+                step = self.children('fieldset:last');
 
               // when
               self.stepy({ finishButton: true });
@@ -480,7 +482,7 @@ describe('common', function() {
       it ('is called on trigger next button', function() {
         // given
         var self  = $('form').stepy({ next: function() { $(this).data('called', true); } }),
-            steps = self.children('fieldset');
+          steps = self.children('fieldset');
 
         // when
         steps.eq(0).find('.button-next').click();
@@ -492,7 +494,7 @@ describe('common', function() {
       it ('receives the right index', function() {
         // given
         var self  = $('form').stepy({ next: function(index) { $(this).data('index', index); } }),
-            steps = self.children('fieldset');
+          steps = self.children('fieldset');
 
         // when
         steps.eq(0).find('.button-next').click();
@@ -506,7 +508,7 @@ describe('common', function() {
       it ('changes the next button label', function() {
         // given
         var self  = $('form'),
-            steps = self.children('fieldset');
+          steps = self.children('fieldset');
 
         // when
         self.stepy({ nextLabel: '&gt;&gt;' });
@@ -521,7 +523,7 @@ describe('common', function() {
       it ('is called on change the step', function() {
         // given
         var self  = $('form').stepy({ select: function() { $(this).data('called', true); } }),
-            steps = self.children('fieldset');
+          steps = self.children('fieldset');
 
         // when
         steps.eq(0).find('.button-next').click();
@@ -533,7 +535,7 @@ describe('common', function() {
       it ('receives the right index', function() {
         // given
         var self  = $('form').stepy({ select: function(index) { $(this).data('index', index); } }),
-            steps = self.children('fieldset');
+          steps = self.children('fieldset');
 
         // when
         steps.eq(0).find('.button-next').click();
@@ -546,7 +548,7 @@ describe('common', function() {
     describe('titleTarget', function() {
       context('with target', function() {
         beforeEach(function() {
-           this.target = Factory.append('<div id="target"></div>');
+          this.target = Factory.append('<div id="target"></div>');
         });
 
         it ('receives the titles of the steps', function() {
@@ -566,10 +568,10 @@ describe('common', function() {
           it ('receives the right index', function() {
             // given
             var self  = $('form').stepy({
-                          titleClick: true,
-                          next      : function(index) { $(this).data('index', index); }
-                        }),
-                steps = self.children('fieldset');
+                titleClick: true,
+                next      : function(index) { $(this).data('index', index); }
+              }),
+              steps = self.children('fieldset');
 
             // when
             $('#' + self.attr('id') + '-header').children('li').eq(1).click();
@@ -585,13 +587,13 @@ describe('common', function() {
           it ('receives the right index', function() {
             // given
             var self   = $('form').stepy({
-                          titleClick: true,
-                          back      : function(index) {
-                            $(this).data('index', index);
-                          }
-                        }),
-                steps  = self.children('fieldset'),
-                titles = $('#' + self.attr('id') + '-header').children('li');
+                titleClick: true,
+                back      : function(index) {
+                  $(this).data('index', index);
+                }
+              }),
+              steps  = self.children('fieldset'),
+              titles = $('#' + self.attr('id') + '-header').children('li');
 
             titles.eq(1).click();
 
@@ -609,11 +611,11 @@ describe('common', function() {
           it ('receives the right index', function() {
             // given
             var self   = $('form').stepy({
-                          titleClick: true,
-                          select    : function(index) { $(this).data('index', index); }
-                        }),
-                steps  = self.children('fieldset'),
-                titles = $('#' + self.attr('id') + '-header').children('li');
+                titleClick: true,
+                select    : function(index) { $(this).data('index', index); }
+              }),
+              steps  = self.children('fieldset'),
+              titles = $('#' + self.attr('id') + '-header').children('li');
 
             // when
             titles.eq(1).click();
@@ -629,8 +631,8 @@ describe('common', function() {
           it ('blocks the step change', function() {
             // given
             var self   = $('form').stepy({ block: true, titleClick: true, validate: true }),
-                steps  = self.children('fieldset'),
-                titles = $('#' + self.attr('id') + '-header').children('li');
+              steps  = self.children('fieldset'),
+              titles = $('#' + self.attr('id') + '-header').children('li');
 
             self.validate({
               errorPlacement: function(error, element) {
@@ -656,8 +658,8 @@ describe('common', function() {
           it ('display the error image', function() {
             // given
             var self   = $('form').stepy({ errorImage: true, titleClick: true, validate: true }),
-                steps  = self.children('fieldset'),
-                titles = $('#' + self.attr('id') + '-header').children('li');
+              steps  = self.children('fieldset'),
+              titles = $('#' + self.attr('id') + '-header').children('li');
 
             self.validate({
               errorPlacement: function(error, element) {
@@ -685,7 +687,7 @@ describe('common', function() {
           it ('displays the error', function() {
             // given
             var self  = $('form').stepy({ validate: true }),
-                steps = self.children('fieldset');
+              steps = self.children('fieldset');
 
             self.validate({
               errorPlacement: function(error, element) {
@@ -713,7 +715,7 @@ describe('common', function() {
           it ('blocks the step change', function() {
             // given
             var self  = $('form').stepy({ block: true, validate: true }),
-                steps = self.children('fieldset');
+              steps = self.children('fieldset');
 
             self.validate({
               errorPlacement: function(error, element) {
@@ -738,8 +740,8 @@ describe('common', function() {
             it ('blocks the step change', function() {
               // given
               var self   = $('form').stepy({ block: true, validate: true }),
-                  steps  = self.children('fieldset'),
-                  titles = $('#' + self.attr('id') + '-header').children('li');
+                steps  = self.children('fieldset'),
+                titles = $('#' + self.attr('id') + '-header').children('li');
 
               self.validate({
                 errorPlacement: function(error, element) {
@@ -797,8 +799,8 @@ describe('common', function() {
         it ('appears on step title', function() {
           // given
           var self   = $('form').stepy({ errorImage: true, validate: true }),
-              steps  = self.children('fieldset'),
-              titles = $('#' + self.attr('id') + '-header').children('li');
+            steps  = self.children('fieldset'),
+            titles = $('#' + self.attr('id') + '-header').children('li');
 
           self.validate({
             errorPlacement: function(error, element) {
