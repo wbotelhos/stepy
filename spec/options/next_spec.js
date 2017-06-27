@@ -1,27 +1,35 @@
 describe('next', function() {
   'use strict';
 
-  it ('is called on trigger next button', function() {
-    // given
-    var self  = $('form').stepy({ next: function() { $(this).data('called', true); } }),
-      steps = self.children('fieldset');
+  preloadFixtures('default.html');
 
-    // when
-    steps.eq(0).find('.button-next').click();
-
-    // then
-    expect(self.data('called')).toBeTruthy();
+  beforeEach(function() {
+    appendLoadFixtures('default.html');
   });
 
-  it ('receives the right index', function() {
+  it ('is called on trigger next button', function() {
     // given
-    var self  = $('form').stepy({ next: function(index) { $(this).data('index', index); } }),
+    var
+      self  = $('form').stepy({ next: function() { $(this).data('called', true); } }),
       steps = self.children('fieldset');
 
     // when
     steps.eq(0).find('.button-next').click();
 
     // then
-    expect(self.data('index')).toEqual(2);
+    expect(self.data('data-called')).toBeTruthy();
+  });
+
+  it ('receives the step index', function() {
+    // given
+    var
+      self  = $('form').stepy({ next: function(index) { $(this).data('index', index); } }),
+      steps = self.children('fieldset');
+
+    // when
+    steps.eq(0).find('.button-next').click();
+
+    // then
+    expect(self.data('data-index')).toEqual(2);
   });
 });
