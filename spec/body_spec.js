@@ -40,11 +40,12 @@ describe('body', function() {
 
   afterEach(function() { Factory.clear(); });
 
-  describe('steps', function() {
+  describe('step', function() {
     describe('fields', function() {
       it ('focused the first', function() {
         // given
-        var self  = $('form'),
+        var
+          self  = $('form'),
           steps = self.children('fieldset');
 
         // when
@@ -58,7 +59,8 @@ describe('body', function() {
     describe('first', function() {
       it ('starts actived', function() {
         // given
-        var self  = $('form'),
+        var
+          self  = $('form'),
           steps = self.children();
 
         // when
@@ -73,7 +75,8 @@ describe('body', function() {
       describe('navigator', function() {
         it ('has the next button', function() {
           // given
-          var self = $('form'),
+          var
+            self = $('form'),
             step = self.children('fieldset:first');
 
           // when
@@ -89,7 +92,8 @@ describe('body', function() {
 
         it ('has the right labels', function() {
           // given
-          var self = $('form'),
+          var
+            self = $('form'),
             step = self.children('fieldset:first');
 
           // when
@@ -102,7 +106,8 @@ describe('body', function() {
         context('clicking on next', function() {
           it ('goes to second step', function() {
             // given
-            var self  = $('form').stepy(),
+            var
+              self  = $('form').stepy(),
               steps = self.children();
 
             // when
@@ -116,7 +121,8 @@ describe('body', function() {
 
           it ('focus the first field', function() {
             // given
-            var self  = $('form').stepy(),
+            var
+              self  = $('form').stepy(),
               steps = self.children('fieldset');
 
             // when
@@ -133,7 +139,8 @@ describe('body', function() {
       describe('navigator', function() {
         it ('has the back and next button', function() {
           // given
-          var self = $('form'),
+          var
+            self = $('form'),
             step = self.children('fieldset:eq(1)');
 
           // when
@@ -149,7 +156,8 @@ describe('body', function() {
 
         it ('has the right labels', function() {
           // given
-          var self = $('form'),
+          var
+            self = $('form'),
             step = self.children('fieldset:eq(1)');
 
           // when
@@ -163,7 +171,8 @@ describe('body', function() {
         context('clicking on next', function() {
           it ('goes to third step', function() {
             // given
-            var self  = $('form').stepy(),
+            var
+              self  = $('form').stepy(),
               steps = self.children();
 
             // when
@@ -180,7 +189,8 @@ describe('body', function() {
         context('clicking on back', function() {
           it ('goes to first step', function() {
             // given
-            var self  = $('form').stepy(),
+            var
+              self  = $('form').stepy(),
               steps = self.children();
 
             steps.eq(0).find('.button-next').click();
@@ -196,7 +206,8 @@ describe('body', function() {
 
           it ('focus the first field', function() {
             // given
-            var self  = $('form').stepy(),
+            var
+              self  = $('form').stepy(),
               steps = self.children('fieldset');
 
             steps.eq(0).find('.button-next').click();
@@ -215,7 +226,8 @@ describe('body', function() {
   describe('last', function() {
     it ('has the back', function() {
       // given
-      var self = $('form'),
+      var
+        self = $('form'),
         step = self.children('fieldset:last');
 
       // when
@@ -231,7 +243,8 @@ describe('body', function() {
 
     it ('has the right labels', function() {
       // given
-      var self = $('form'),
+      var
+        self = $('form'),
         step = self.children('fieldset:last');
 
       // when
@@ -243,7 +256,8 @@ describe('body', function() {
 
     it ('has the finish button', function() {
       // given
-      var self = $('form'),
+      var
+        self = $('form'),
         step = self.children('fieldset:last');
 
       // when
@@ -256,7 +270,8 @@ describe('body', function() {
     context('clicking on back', function() {
       it ('goes to first step', function() {
         // given
-        var self  = $('form').stepy(),
+        var
+          self  = $('form').stepy(),
           steps = self.children();
 
         // when
