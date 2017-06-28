@@ -28,6 +28,6 @@ module.exports = function(config) {
 
     preprocessors: {
       '**/*.html': ['html2js']
-    },
+    }
   });
 };
