@@ -1,10 +1,12 @@
 # jQuery Stepy - A Wizard Plugin
 
+### 1.2.0
 
 #### News
 
 + Option `enter` was extracted to choose if the enter key will trigger the step change;
-+ Added function `destroy` to rollback to original object before the bind.
++ Added function `destroy` to rollback to original object before the bind;
++ Option `back`, `select` and `next` now receives `stepTotal` indicating the total of steps.
 
 #### Changes
 
