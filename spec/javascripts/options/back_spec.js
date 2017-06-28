@@ -5,36 +5,24 @@ describe('back', function() {
     fixture.load('default.html');
   });
 
-  it ('is called on trigger back button', function() {
+  it ('receives the right arguments on back button is clicked', function() {
     // given
-    var
-      self = $('form').stepy({
-        back: function() {
-          $(this).data('called', true);
-        }
-      }),
-      steps = self.children('fieldset');
+    var self = $('form').stepy({
+      back: function(index, totalSteps) {
+        $(this).data({
+          index:      index,
+          totalSteps: totalSteps
+        });
+      }
+    });
 
-    steps.eq(0).find('.button-next').click();
+    self.find('fieldset:eq(0) .button-next').trigger('click');
 
     // when
-    steps.eq(1).find('.button-back').click();
-
-    // then
-    expect(self.data('called')).toBeTruthy();
-  });
-
-  it ('receives the right index', function() {
-    // given
-    var self  = $('form').stepy({ back: function(index) { $(this).data('index', index); } }),
-      steps = self.children('fieldset');
-
-    steps.eq(0).find('.button-next').click();
-
-    // when
-    steps.eq(1).find('.button-back').click();
+    self.find('fieldset:eq(1) .button-back').trigger('click');
 
     // then
     expect(self.data('index')).toEqual(1);
+    expect(self.data('totalSteps')).toEqual(3);
   });
 });

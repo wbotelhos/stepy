@@ -5,27 +5,22 @@ describe('select', function() {
     fixture.load('default.html');
   });
 
-  it ('is called on change the step', function() {
+  it ('receives the right arguments on current step is rendered', function() {
     // given
-    var self  = $('form').stepy({ select: function() { $(this).data('called', true); } }),
-      steps = self.children('fieldset');
+    var self = $('form').stepy({
+      select: function(index, totalSteps) {
+        $(this).data({
+          index:      index,
+          totalSteps: totalSteps
+        });
+      }
+    });
 
     // when
-    steps.eq(0).find('.button-next').click();
-
-    // then
-    expect(self.data('called')).toBeTruthy();
-  });
-
-  it ('receives the right index', function() {
-    // given
-    var self  = $('form').stepy({ select: function(index) { $(this).data('index', index); } }),
-      steps = self.children('fieldset');
-
-    // when
-    steps.eq(0).find('.button-next').click();
+    self.find('fieldset:eq(0) .button-next').trigger('click');
 
     // then
     expect(self.data('index')).toEqual(2);
+    expect(self.data('totalSteps')).toEqual(3);
   });
 });
