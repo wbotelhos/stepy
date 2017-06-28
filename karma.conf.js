@@ -12,16 +12,16 @@ module.exports = function(config) {
     singleRun:  true,
 
     files: [
-      'vendor/jquery.min.js',
-      'vendor/jquery.validate.min.js',
+      'node_modules/jquery/dist/jquery.min.js',
+      'node_modules/jasmine-jquery/lib/jasmine-jquery.js',
+      'node_modules/jquery-validation/dist/jquery.validate.min.js',
 
-      'lib/*.css',
-      'lib/*.js',
+      'spec/spec_helper.js',
 
       'spec/fixtures/*.html',
 
-      'spec/lib/jasmine-jquery.js',
-      'spec/spec_helper.js',
+      'lib/*.css',
+      'lib/*.js',
 
       'spec/javascripts/**/*.js'
     ],
