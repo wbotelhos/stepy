@@ -1,10 +1,8 @@
 describe('next', function() {
   'use strict';
 
-  preloadFixtures('default.html');
-
   beforeEach(function() {
-    appendLoadFixtures('default.html');
+    fixture.load('default.html');
   });
 
   it ('is called on trigger next button', function() {
@@ -17,7 +15,7 @@ describe('next', function() {
     steps.eq(0).find('.button-next').click();
 
     // then
-    expect(self.data('data-called')).toBeTruthy();
+    expect(self.data('called')).toBeTruthy();
   });
 
   it ('receives the step index', function() {
@@ -30,6 +28,6 @@ describe('next', function() {
     steps.eq(0).find('.button-next').click();
 
     // then
-    expect(self.data('data-index')).toEqual(2);
+    expect(self.data('index')).toEqual(2);
   });
 });
