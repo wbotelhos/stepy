@@ -865,8 +865,8 @@
           <div class="highlight">
 <pre>
 <span class="nx">$</span><span class="p">(</span><span class="s1">'form'</span><span class="p">).</span><span class="nx">stepy</span><span class="p">({</span>
-  <span class="nx">next</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">alert</span><span class="p">(</span><span class="s1">'Going to step: '</span> <span class="o">+</span> <span class="nx">index</span><span class="p">);</span>
+  <span class="nx">next</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">totalSteps</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="s1">'Going to step: '</span> <span class="o">+</span> <span class="nx">index</span> <span class="o">+</span> <span class="s1">' with total of steps: '</span> <span class="o">+</span> <span class="nx">totalSteps</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">});</span>
 </pre>
@@ -957,8 +957,8 @@
           <div class="highlight">
 <pre>
 <span class="nx">$</span><span class="p">(</span><span class="s1">'form'</span><span class="p">).</span><span class="nx">stepy</span><span class="p">({</span>
-  <span class="nx">back</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">alert</span><span class="p">(</span><span class="s1">'Returning to step: '</span> <span class="o">+</span> <span class="nx">index</span><span class="p">);</span>
+  <span class="nx">back</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">totalSteps</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="s1">'Returning to step: '</span> <span class="o">+</span> <span class="nx">index</span> <span class="o">+</span> <span class="s1">' with total of steps: '</span> <span class="o">+</span> <span class="nx">totalSteps</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">});</span>
 </pre>
@@ -1049,8 +1049,8 @@
           <div class="highlight">
 <pre>
 <span class="nx">$</span><span class="p">(</span><span class="s1">'form'</span><span class="p">).</span><span class="nx">stepy</span><span class="p">({</span>
-  <span class="nx">select</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">alert</span><span class="p">(</span><span class="s1">'Rendered step: '</span> <span class="o">+</span> <span class="nx">index</span><span class="p">);</span>
+  <span class="nx">select</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">totalSteps</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="s1">'Rendered step: '</span> <span class="o">+</span> <span class="nx">index</span> <span class="o">+</span> <span class="s1">' with total of steps: '</span> <span class="o">+</span> <span class="nx">totalSteps</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">});</span>
 </pre>
@@ -1440,20 +1440,20 @@
       $('#legend-demo').stepy({ legend: false });
 
       $('#next-demo').stepy({
-        next: function(index) {
-          alert('Going to step: ' + index);
+        next: function(index, totalSteps) {
+          alert('Going to step: ' + index + ' with total of steps: ' + totalSteps);
         }
       });
 
       $('#back-demo').stepy({
-        back: function(index) {
-          alert('Returning to step: ' + index);
+        back: function(index, totalSteps) {
+          alert('Returning to step: ' + index + ' with total of steps: ' + totalSteps);
         }
       });
 
       $('#select-demo').stepy({
-        select: function(index) {
-          alert('Rendered step: ' + index);
+        select: function(index, totalSteps) {
+          alert('Rendered step: ' + index + ' with total of steps: ' + totalSteps);
         }
       });
 
