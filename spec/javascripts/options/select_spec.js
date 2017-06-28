@@ -17,7 +17,7 @@ describe('select', function() {
     });
 
     // when
-    self.find('fieldset:eq(0) .button-next').trigger('click');
+    self.find('fieldset:eq(0) .stepy-next').trigger('click');
 
     // then
     expect(self.data('index')).toEqual(2);

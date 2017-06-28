@@ -24,7 +24,7 @@ describe('errorImage', function() {
       });
 
       // when
-      steps.eq(0).find('.button-next').click();
+      steps.eq(0).find('.stepy-next').click();
 
       // then
       expect(titles.eq(0)).toHaveClass('stepy-error');

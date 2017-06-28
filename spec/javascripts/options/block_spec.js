@@ -23,7 +23,7 @@ describe('validate', function() {
         });
 
         // when
-        steps.eq(1).find('.button-next').click();
+        steps.eq(1).find('.stepy-next').click();
 
         // then
         expect(self.find('.stepy-errors label.error').length).toEqual(1);

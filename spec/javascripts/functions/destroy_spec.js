@@ -41,7 +41,7 @@ describe('funcions', function() {
     self.stepy('destroy');
 
     // then
-    expect(steps).not.toContain('.button-back');
+    expect(steps).not.toContain('.stepy-back');
   });
 
   it ('puts the finish button as children of the last step', function() {

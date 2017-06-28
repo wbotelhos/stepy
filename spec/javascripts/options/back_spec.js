@@ -16,10 +16,10 @@ describe('back', function() {
       }
     });
 
-    self.find('fieldset:eq(0) .button-next').trigger('click');
+    self.find('fieldset:eq(0) .stepy-next').trigger('click');
 
     // when
-    self.find('fieldset:eq(1) .button-back').trigger('click');
+    self.find('fieldset:eq(1) .stepy-back').trigger('click');
 
     // then
     expect(self.data('index')).toEqual(1);

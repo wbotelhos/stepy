@@ -14,7 +14,7 @@ describe('nextLabel', function() {
     self.stepy({ nextLabel: '&gt;&gt;' });
 
     // then
-    expect(steps.eq(0).find('.button-next')).toHaveHtml('&gt;&gt;');
-    expect(steps.eq(1).find('.button-next')).toHaveHtml('>>');
+    expect(steps.eq(0).find('.stepy-next')).toHaveHtml('&gt;&gt;');
+    expect(steps.eq(1).find('.stepy-next')).toHaveHtml('>>');
   });
 });

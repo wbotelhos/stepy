@@ -18,8 +18,8 @@ describe('last_step', function() {
     var nav = step.children('.stepy-navigator');
 
     expect(step.find('.stepy-navigator').length).toEqual(1);
-    expect(nav.find('.button-back').length).toEqual(1);
-    expect(nav.find('.button-next').length).toEqual(0);
+    expect(nav.find('.stepy-back').length).toEqual(1);
+    expect(nav.find('.stepy-next').length).toEqual(0);
   });
 
   it ('has the right labels', function() {
@@ -32,7 +32,7 @@ describe('last_step', function() {
     self.stepy();
 
     // then
-    expect(step.find('.button-back')).toHaveHtml('&lt; Back');
+    expect(step.find('.stepy-back')).toHaveHtml('&lt; Back');
   });
 
   it ('has the finish button', function() {
@@ -56,9 +56,9 @@ describe('last_step', function() {
         steps = self.children();
 
       // when
-      steps.eq(0).find('.button-next').click();
-      steps.eq(1).find('.button-next').click();
-      steps.eq(2).find('.button-back').click();
+      steps.eq(0).find('.stepy-next').click();
+      steps.eq(1).find('.stepy-next').click();
+      steps.eq(2).find('.stepy-back').click();
 
       // then
       expect(steps.eq(0)).toBeHidden();

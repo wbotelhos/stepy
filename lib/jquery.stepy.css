@@ -23,17 +23,17 @@ body { font-size: 10px }
   .stepy-step textarea { height: 100px }
 
   .stepy-navigator { height: 33px; margin-top: 20px }
-    .button-back { float: left }
+    .stepy-back { float: left }
 
-    .button-next,
+    .stepy-next,
     .stepy-navigator input[type="submit"] { float: right }
 
-    .button-back,
-    .button-next,
+    .stepy-back,
+    .stepy-next,
     .stepy-navigator input[type="submit"] { border: 1px solid #CCC; color: #7F0055; cursor: pointer; font: 1.2em verdana; padding: 7px 15px 8px; text-decoration: none; -khtml-border-radius: 3px; -moz-border-radius: 3px; -opera-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px }
 
     .stepy-navigator input[type="submit"] { background-color: transparent; border-color: #CCC; margin-bottom: 0; padding: 7px 15px 24px; width: 90px }
 
-    .button-back:hover,
-    .button-next:hover,
+    .stepy-back:hover,
+    .stepy-next:hover,
     .stepy-navigator input[type="submit"]:hover { border-color: #BBB; color: #B07 }

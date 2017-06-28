@@ -18,7 +18,7 @@ describe('finish', function() {
       evt.preventDefault();
     });
 
-    steps.eq(1).find('.button-next').click();
+    steps.eq(1).find('.stepy-next').click();
 
     // when
     steps.eq(2).find(':submit').click();

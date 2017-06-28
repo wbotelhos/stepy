@@ -52,7 +52,7 @@ describe('finishButton', function() {
           steps = self.children('fieldset');
 
         // when
-        steps.eq(1).find('.button-next').click();
+        steps.eq(1).find('.stepy-next').click();
 
         // then
         expect(steps.last().find(':submit')).toBeVisible();

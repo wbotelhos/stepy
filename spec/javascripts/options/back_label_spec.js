@@ -15,7 +15,7 @@ describe('backLabel', function() {
     // then
     var steps = self.children('fieldset')
 
-    expect(steps.eq(1).find('.button-back').text()).toEqual('come back');
-    expect(steps.eq(2).find('.button-back').text()).toEqual('come back');
+    expect(steps.eq(1).find('.stepy-back').text()).toEqual('come back');
+    expect(steps.eq(2).find('.stepy-back').text()).toEqual('come back');
   });
 });

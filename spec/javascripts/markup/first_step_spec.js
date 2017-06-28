@@ -34,8 +34,8 @@ describe('first_step', function() {
       var nav = step.children('.stepy-navigator');
 
       expect(step.find('p.stepy-navigator').length).toEqual(1);
-      expect(nav.find('.button-back').length).toEqual(0);
-      expect(nav.find('.button-next').length).toEqual(1);
+      expect(nav.find('.stepy-back').length).toEqual(0);
+      expect(nav.find('.stepy-next').length).toEqual(1);
     });
 
     it ('has the right labels', function() {
@@ -48,7 +48,7 @@ describe('first_step', function() {
       self.stepy();
 
       // then
-      expect(step.find('.button-next')).toHaveHtml('Next &gt;');
+      expect(step.find('.stepy-next')).toHaveHtml('Next &gt;');
     });
 
     context('clicking on next', function() {
@@ -59,7 +59,7 @@ describe('first_step', function() {
           steps = self.children();
 
         // when
-        steps.eq(0).find('.button-next').click();
+        steps.eq(0).find('.stepy-next').click();
 
         // then
         expect(steps.eq(0)).toBeHidden();
@@ -74,7 +74,7 @@ describe('first_step', function() {
           steps = self.children('fieldset');
 
         // when
-        steps.eq(0).find('.button-next').click();
+        steps.eq(0).find('.stepy-next').click();
 
         // then
         expect(steps.eq(1).find(':input:enabled:visible:first')).toBeFocused();
