@@ -4,7 +4,7 @@ module.exports = function(config) {
   config.set({
     autoWatch:  true,
     debug:      true,
-    browsers:   ['Firefox'],
+    browsers:   ['Chrome', 'Firefox'],
     frameworks: ['jasmine', 'fixture'],
     logLevel:   config.LOG_ERROR,
     port:       9876,
