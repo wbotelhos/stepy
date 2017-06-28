@@ -16,7 +16,7 @@ ul { margin-left: 0; padding-left: 22px }
 ul li { font-size: 1.3em }
 
 /* pygments */
-blockquote { background: url('http://wbotelhos.com/images/quote.gif') no-repeat; border-radius: 4px; margin-left: 0; padding-left: 22px }
+blockquote { border-radius: 4px; margin-left: 0; padding-left: 22px }
 blockquote p { font-size: 1.3em !important; padding-left: 10px; padding-top: 5px }
 code { background-color: #F8F8F8; border: 1px solid #EAEAEA; border-radius: 3px; margin: 0 2px; padding: 1px 5px; white-space: nowrap }
 pre { background-color: #F8F8F8; border: 1px solid #EAEAEA; border-radius: 3px; color: #393939; font-family: menlo, monospace, serif; font-size: 1.3em; padding: 10px 10px; text-shadow: none }
@@ -63,7 +63,7 @@ header nav li a.download:hover { background-color: #E3D070 }
 .author .social { display: inline-block; width: 2%; vertical-align: middle }
 .author .social a { background-color: #EEE; background-repeat: no-repeat; border-radius: 3px; display: block; height: 16px; margin-bottom: 5px; width: 16px }
 .author .social a:last-child { margin-bottom: 0 }
-.author .social a.facebook { background-image: url('http://wbotelhos.com/images/facebook.png') }
-.author .social a.github { background-image: url('http://wbotelhos.com/images/github.png') }
-.author .social a.linkedin { background-image: url('http://wbotelhos.com/images/linkedin.png') }
-.author .social a.twitter { background-image: url('http://wbotelhos.com/images/twitter.png') }
+.author .social a.facebook { background-color: #eee }
+.author .social a.github { background-color: #eee }
+.author .social a.linkedin { background-color: #eee }
+.author .social a.twitter { background-color: #eee }
