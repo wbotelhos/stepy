@@ -1,17 +1,17 @@
-@CHARSET "UTF-8";
+@charset "utf-8";
 
 body { font-size: 10px }
 
 .stepy-header { list-style: none; padding: 0; width: 724px }
   .stepy-header li { cursor: pointer; float: left; padding: 10px }
     .stepy-header li.stepy-error { background: url('../demo/img/error.png') no-repeat right top }
-    .stepy-header li div { color: #CCC; font: bold 2.8em verdana; text-shadow: 1px 1px #F8F8F8 }
+    .stepy-header li div { color: #ccc; font: bold 2.8em verdana; text-shadow: 1px 1px #f8f8f8 }
     .stepy-header li.stepy-active div { color: #369; cursor: auto }
-    .stepy-header li span { color: #CCC; font: 1.4em verdana }
-    .stepy-header li.stepy-active span { color: #BBB }
+    .stepy-header li span { color: #ccc; font: 1.4em verdana }
+    .stepy-header li.stepy-active span { color: #bbb }
 
-.stepy-step { border: 1px solid #BBB; clear: left; padding: 15px 20px; width: 600px; -khtml-border-radius: 3px; -moz-border-radius: 3px; -opera-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px }
-  .stepy-step legend { color: #4080BF; font: bold 1.8em arial; letter-spacing: .7px; padding: 0 2px 3px }
+.stepy-step { border: 1px solid #bbb; clear: left; padding: 15px 20px; width: 600px; -khtml-border-radius: 3px; -moz-border-radius: 3px; -opera-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px }
+  .stepy-step legend { color: #4080bf; font: bold 1.8em arial; letter-spacing: .7px; padding: 0 2px 3px }
   .stepy-step label { color: #222; display: block; font: bold 1.5em arial; letter-spacing: .7px; margin: 10px 0 3px 1px }
 
   .stepy-step input,
@@ -30,10 +30,10 @@ body { font-size: 10px }
 
     .stepy-back,
     .stepy-next,
-    .stepy-navigator input[type="submit"] { border: 1px solid #CCC; color: #7F0055; cursor: pointer; font: 1.2em verdana; padding: 7px 15px 8px; text-decoration: none; -khtml-border-radius: 3px; -moz-border-radius: 3px; -opera-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px }
+    .stepy-navigator input[type="submit"] { border: 1px solid #ccc; color: #7f0055; cursor: pointer; font: 1.2em verdana; padding: 7px 15px 8px; text-decoration: none; -khtml-border-radius: 3px; -moz-border-radius: 3px; -opera-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px }
 
-    .stepy-navigator input[type="submit"] { background-color: transparent; border-color: #CCC; margin-bottom: 0; padding: 7px 15px 24px; width: 90px }
+    .stepy-navigator input[type="submit"] { background-color: transparent; border-color: #ccc; margin-bottom: 0; padding: 7px 15px 24px; width: 90px }
 
     .stepy-back:hover,
     .stepy-next:hover,
-    .stepy-navigator input[type="submit"]:hover { border-color: #BBB; color: #B07 }
+    .stepy-navigator input[type="submit"]:hover { border-color: #bbb; color: #b07 }
