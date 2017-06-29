@@ -33,6 +33,7 @@ describe('common', function() {
     expect(opt.errorImage).toBeFalsy();
     expect(opt.finish).toBeUndefined();
     expect(opt.finishButton).toBeUndefined();
+    expect(opt.header).toBeTruthy();
     expect(opt.ignore).toEqual('');
     expect(opt.legend).toBeTruthy();
     expect(opt.next).toBeUndefined();
