@@ -35,19 +35,6 @@ describe('last_step', function() {
     expect(step.find('.stepy-back')).toHaveHtml('&lt; Back');
   });
 
-  it ('has the finish button', function() {
-    // given
-    var
-      self = $('form'),
-      step = self.children('fieldset:last');
-
-    // when
-    self.stepy();
-
-    // then
-    expect(step.find(':submit')).toExist();
-  });
-
   context('clicking on back', function() {
     it ('goes to first step', function() {
       // given

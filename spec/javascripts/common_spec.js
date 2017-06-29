@@ -32,7 +32,7 @@ describe('common', function() {
     expect(opt.enter).toBeTruthy();
     expect(opt.errorImage).toBeFalsy();
     expect(opt.finish).toBeUndefined();
-    expect(opt.finishButton).toBeTruthy();
+    expect(opt.finishButton).toBeUndefined();
     expect(opt.ignore).toEqual('');
     expect(opt.legend).toBeTruthy();
     expect(opt.next).toBeUndefined();

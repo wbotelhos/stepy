@@ -44,19 +44,6 @@ describe('funcions', function() {
     expect(steps).not.toContain('.stepy-back');
   });
 
-  it ('puts the finish button as children of the last step', function() {
-    // given
-    var
-      self  = $('form').stepy(),
-      steps = self.children('fieldset');
-
-    // when
-    self.stepy('destroy');
-
-    // then
-    expect(steps.find(':submit').length).toEqual(1);
-  });
-
   it ('removes the bind indicator', function() {
     // given
     var self = $('form').stepy();

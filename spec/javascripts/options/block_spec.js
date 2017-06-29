@@ -9,7 +9,8 @@ describe('validate', function() {
     context('fails', function() {
       it ('displays the error', function() {
         // given
-        var self  = $('form').stepy({ validate: true }),
+        var
+          self  = $('form').stepy({ validate: true }),
           steps = self.children('fieldset');
 
         self.validate({

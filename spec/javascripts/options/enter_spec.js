@@ -2,7 +2,7 @@ describe('enter', function() {
   'use strict';
 
   beforeEach(function() {
-    fixture.load('default.html');
+    fixture.load('form_with_submit_button.html');
   });
 
   context('enabled', function() {
@@ -146,7 +146,7 @@ describe('enter', function() {
       it ('submits the form', function() {
         // given
         var
-          self  = $('form').stepy({
+          self = $('form').stepy({
             finish: function() {
               $(this).data('submited', true);
             }
