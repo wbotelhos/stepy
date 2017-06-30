@@ -1,5 +1,15 @@
 # jQuery Stepy - A Wizard Plugin
 
+### Next Release
+
+#### Changes
+
+- Class `button-back` was renamed to `stepy-back`;
+- Class `button-next` was renamed to `stepy-next`;
+- The finish button now is mandatory to have class `stepy-finish`;
+- The finish button is no more moved from its original place;
+- Added option `header` to choose if header will be created or not.
+
 ### 1.2.0
 
 #### News
