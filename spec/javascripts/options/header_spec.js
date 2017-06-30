@@ -6,7 +6,7 @@ describe('header', function() {
   });
 
   context('when true', function() {
-    it ('creates the header', function() {
+    xit ('creates the header', function() {
       // given
       var self = $('form');
 
@@ -19,7 +19,7 @@ describe('header', function() {
   });
 
   context('when false', function() {
-    it ('creates the header', function() {
+    it ('does not creates the header', function() {
       // given
       var self = $('form');
 
@@ -28,6 +28,26 @@ describe('header', function() {
 
       // then
       expect($('.stepy-header').length).toEqual(0);
+    });
+
+    it ('keeps all the things working', function() {
+      // given
+      var self = $('form').stepy({
+        header: false,
+        finish: function() {
+           $(this).data('called', true);
+
+           return false;
+         }
+      });
+
+      // when
+      self.find('fieldset:eq(0) .stepy-next').trigger('click');
+      self.find('fieldset:eq(1) .stepy-next').trigger('click');
+      self.find('.stepy-finish').trigger('click');
+
+      // then
+      expect(self.data('called')).toBeTruthy();
     });
   });
 });

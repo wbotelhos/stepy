@@ -16,12 +16,9 @@ describe('finish', function() {
         finish: function() {
           $(this).data('called', true);
         }
-      }),
-      steps = self.children('fieldset');
-
-    self.on('submit', function(evt) {
-      evt.preventDefault();
-    });
+      }).on('submit', function(evt) {
+        evt.preventDefault();
+      });
 
     self.find('fieldset:eq(0)').find('.stepy-next').trigger('click');
     self.find('fieldset:eq(1)').find('.stepy-next').trigger('click');
