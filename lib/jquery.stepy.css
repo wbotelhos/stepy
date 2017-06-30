@@ -27,13 +27,29 @@
 
   .stepy-step textarea { height: 100px }
 
-  .stepy-navigator { height: 33px; margin-top: 20px }
-    .stepy-back { float: left }
+.stepy-back {
+  float: left
+}
 
-    .stepy-next { float: right }
+.stepy-back, .stepy-next {
+  -khtml-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -opera-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  color: #7f0055;
+  cursor: pointer;
+  font: 1.2em verdana;
+  padding: 7px 15px 8px;
+  text-decoration: none;
+}
 
-    .stepy-back,
-    .stepy-next { border: 1px solid #ccc; color: #7f0055; cursor: pointer; font: 1.2em verdana; padding: 7px 15px 8px; text-decoration: none; -khtml-border-radius: 3px; -moz-border-radius: 3px; -opera-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px }
+.stepy-back:hover, .stepy-next:hover {
+  border-color: #bbb;
+  color: #b07;
+}
 
-    .stepy-back:hover,
-    .stepy-next:hover { border-color: #bbb; color: #b07 }
+.stepy-next {
+  float: right
+}

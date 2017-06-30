@@ -5,80 +5,38 @@ describe('first_step', function() {
     fixture.load('default.html');
   });
 
-  it ('starts actived', function() {
+  it ('starts activated', function() {
     // given
-    var
-      self  = $('form'),
-      steps = self.children();
+    var self = $('form');
 
     // when
     self.stepy();
 
     // then
-    expect(steps.eq(0)).toBeVisible();
-    expect(steps.eq(1)).toBeHidden();
-    expect(steps.eq(2)).toBeHidden();
+    expect(self.find('fieldset:eq(0)')).toBeVisible();
+    expect(self.find('fieldset:eq(1)')).toBeHidden();
+    expect(self.find('fieldset:eq(2)')).toBeHidden();
   });
 
-  describe('navigator', function() {
-    it ('has the next button', function() {
-      // given
-      var
-        self = $('form'),
-        step = self.children('fieldset:first');
+  it ('hides the back button', function() {
+    // given
+    var self = $('form');
 
-      // when
-      self.stepy();
+    // when
+    self.stepy();
 
-      // then
-      var nav = step.children('.stepy-navigator');
+    // then
+    expect(self.find('fieldset:eq(0) .stepy-back').length).toEqual(0);
+  });
 
-      expect(step.find('p.stepy-navigator').length).toEqual(1);
-      expect(nav.find('.stepy-back').length).toEqual(0);
-      expect(nav.find('.stepy-next').length).toEqual(1);
-    });
+  it ('has the next button', function() {
+    // given
+    var self = $('form');
 
-    it ('has the right labels', function() {
-      // given
-      var
-        self = $('form'),
-        step = self.children('fieldset:first');
+    // when
+    self.stepy();
 
-      // when
-      self.stepy();
-
-      // then
-      expect(step.find('.stepy-next')).toHaveHtml('Next &gt;');
-    });
-
-    context('clicking on next', function() {
-      it ('goes to second step', function() {
-        // given
-        var
-          self  = $('form').stepy(),
-          steps = self.children();
-
-        // when
-        steps.eq(0).find('.stepy-next').click();
-
-        // then
-        expect(steps.eq(0)).toBeHidden();
-        expect(steps.eq(1)).toBeVisible();
-        expect(steps.eq(2)).toBeHidden();
-      });
-
-      it ('focus the first field', function() {
-        // given
-        var
-          self  = $('form').stepy(),
-          steps = self.children('fieldset');
-
-        // when
-        steps.eq(0).find('.stepy-next').click();
-
-        // then
-        expect(steps.eq(1).find(':input:enabled:visible:first')).toBeFocused();
-      });
-    });
+    // then
+    expect(self.find('fieldset:eq(0) .stepy-next').length).toEqual(1);
   });
 });

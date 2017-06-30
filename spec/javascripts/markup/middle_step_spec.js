@@ -5,86 +5,44 @@ describe('middle_step', function() {
     fixture.load('default.html');
   });
 
-  it ('has the back and next button', function() {
+  it ('show right', function() {
     // given
-    var
-      self = $('form'),
-      step = self.children('fieldset:eq(1)');
+    var self = $('form');
 
     // when
     self.stepy();
 
-    // then
-    var nav = step.children('.stepy-navigator');
+    self.find('fieldset:eq(0) .stepy-next').trigger('click');
 
-    expect(step.find('.stepy-navigator').length).toEqual(1);
-    expect(nav.find('.stepy-back').length).toEqual(1);
-    expect(nav.find('.stepy-next').length).toEqual(1);
+    // then
+    expect(self.find('fieldset:eq(0)')).toBeHidden();
+    expect(self.find('fieldset:eq(1)')).toBeVisible();
+    expect(self.find('fieldset:eq(2)')).toBeHidden();
   });
 
-  it ('has the right labels', function() {
+  it ('shows back button', function() {
     // given
-    var
-      self = $('form'),
-      step = self.children('fieldset:eq(1)');
+    var self = $('form');
 
     // when
     self.stepy();
 
+    self.find('fieldset:eq(0) .stepy-next').trigger('click');
+
     // then
-    expect(step.find('.stepy-back')).toHaveHtml('&lt; Back');
-    expect(step.find('.stepy-next')).toHaveHtml('Next &gt;');
+    expect(self.find('fieldset:eq(1) .stepy-back').length).toEqual(1);
   });
 
-  context('clicking on next', function() {
-    it ('goes to third step', function() {
-      // given
-      var
-        self  = $('form').stepy(),
-        steps = self.children();
+  it ('shows next button', function() {
+    // given
+    var self = $('form');
 
-      // when
-      steps.eq(0).find('.stepy-next').click();
-      steps.eq(1).find('.stepy-next').click();
+    // when
+    self.stepy();
 
-      // then
-      expect(steps.eq(0)).toBeHidden();
-      expect(steps.eq(1)).toBeHidden();
-      expect(steps.eq(2)).toBeVisible();
-    });
-  });
+    self.find('fieldset:eq(0) .stepy-next').trigger('click');
 
-  context('clicking on back', function() {
-    it ('goes to first step', function() {
-      // given
-      var
-        self  = $('form').stepy(),
-        steps = self.children();
-
-      steps.eq(0).find('.stepy-next').click();
-
-      // when
-      steps.eq(1).find('.stepy-back').click();
-
-      // then
-      expect(steps.eq(0)).toBeVisible();
-      expect(steps.eq(1)).toBeHidden();
-      expect(steps.eq(2)).toBeHidden();
-    });
-
-    it ('focus the first field', function() {
-      // given
-      var
-        self  = $('form').stepy(),
-        steps = self.children('fieldset');
-
-      steps.eq(0).find('.stepy-next').click();
-
-      // when
-      steps.eq(1).find('.stepy-back').click();
-
-      // then
-      expect(steps.eq(0).find(':input:enabled:visible:first')).toBeFocused();
-    });
+    // then
+    expect(self.find('fieldset:eq(1) .stepy-next').length).toEqual(1);
   });
 });

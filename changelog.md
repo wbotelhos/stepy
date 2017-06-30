@@ -2,13 +2,17 @@
 
 ### Next Release
 
+### News
+
+- Added option `header` to choose if header will be created or not.
+
 #### Changes
 
 - Class `button-back` was renamed to `stepy-back`;
 - Class `button-next` was renamed to `stepy-next`;
 - The finish button now is mandatory to have class `stepy-finish`;
 - The finish button is no more moved from its original place;
-- Added option `header` to choose if header will be created or not.
+- The `stepy-navigator` is no more created. Buttons is appended on step.
 
 ### 1.2.0
 

@@ -16,7 +16,7 @@ describe('header', function() {
     expect($('#' + self.attr('id') + '-header')).toExist();
   });
 
-  it ('starts with the first actived', function() {
+  it ('starts with the first activated', function() {
     // given
     var self = $('form');
 
