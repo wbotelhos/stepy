@@ -6,7 +6,7 @@ describe('header', function() {
   });
 
   context('when true', function() {
-    xit ('creates the header', function() {
+    it ('creates the header', function() {
       // given
       var self = $('form');
 
