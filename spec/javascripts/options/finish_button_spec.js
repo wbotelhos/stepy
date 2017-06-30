@@ -5,10 +5,6 @@ describe('finishButton', function() {
     fixture.load('default.html');
   });
 
-  afterEach(function() {
-    $('#fixture_container').empty();
-  });
-
   it ('starts hidden', function() {
     // given
     var self = $('form');

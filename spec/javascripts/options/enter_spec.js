@@ -149,6 +149,8 @@ describe('enter', function() {
           self = $('form').stepy({
             finish: function() {
               $(this).data('submited', true);
+
+              return false;
             }
           }),
           steps = self.children('fieldset'),

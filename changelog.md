@@ -12,7 +12,8 @@
 - Class `button-next` was renamed to `stepy-next`;
 - The finish button now is mandatory to have class `stepy-finish`;
 - The finish button is no more moved from its original place;
-- The `stepy-navigator` is no more created. Buttons is appended on step.
+- The `stepy-navigator` is no more created. Buttons is appended on step;
+- The `backLabel` and `nextLabel` were dropped, since button now is by you.
 
 ### 1.2.0
 

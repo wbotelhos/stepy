@@ -1,7 +1,5 @@
-@CHARSET 'UTF-8';
-
-@IMPORT url('normalize.css');
-@IMPORT url('common.css');
-@IMPORT url('pygments.css');
-@IMPORT url('font-awesome.css');
-@IMPORT url('demo.css');
+@import url('normalize.css');
+@import url('common.css');
+@import url('pygments.css');
+@import url('font-awesome.css');
+@import url('demo.css');

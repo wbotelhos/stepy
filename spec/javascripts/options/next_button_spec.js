@@ -1,22 +1,47 @@
 describe('nextButton', function() {
   'use strict';
 
-  context ('when has button with default class', function() {
-    beforeEach(function() {
-      fixture.load('back_and_next_buttons_with_default_class.html');
-    });
+  beforeEach(function() {
+    fixture.load('back_and_next_buttons_inside_step.html');
+  });
 
-    it ('that button is binded and does not creates a new one', function() {
+  context('on first step', function() {
+    it ('shows', function() {
+      // given
+      var self = $('form');
+
+      // when
+      self.stepy();
+
+      // then
+      expect(self.find('.stepy-next')).toBeVisible();
+    });
+  });
+
+  context('on second step', function() {
+    it ('shows', function() {
       // given
       var self = $('form').stepy();
-
-      expect(self.find('fieldset:eq(0) .stepy-next').length).toEqual(1);
 
       // when
       self.find('fieldset:eq(0) .stepy-next').trigger('click');
 
       // then
-      expect(self.find('fieldset:eq(1)')).toBeVisible();
+      expect(self.find('fieldset:eq(1) .stepy-next')).toBeVisible();
+    });
+  });
+
+  context('on last step', function() {
+    it ('hides', function() {
+      // given
+      var self = $('form').stepy();
+
+      // when
+      self.find('fieldset:eq(0) .stepy-next').trigger('click');
+      self.find('fieldset:eq(1) .stepy-next').trigger('click');
+
+      // then
+      expect(self.find('fieldset:eq(0) .stepy-next')).toBeHidden();
     });
   });
 });

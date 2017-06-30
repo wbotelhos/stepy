@@ -25,7 +25,6 @@ describe('common', function() {
 
     // then
     expect(opt.bacck).toBeUndefined();
-    expect(opt.backLabel).toEqual('&lt; Back');
     expect(opt.block).toBeFalsy();
     expect(opt.description).toBeTruthy();
     expect(opt.duration).toBeUndefined();
@@ -37,7 +36,6 @@ describe('common', function() {
     expect(opt.ignore).toEqual('');
     expect(opt.legend).toBeTruthy();
     expect(opt.next).toBeUndefined();
-    expect(opt.nextLabel).toEqual('Next &gt;');
     expect(opt.select).toBeUndefined();
     expect(opt.titleClick).toBeFalsy();
     expect(opt.titleTarget).toBeUndefined();

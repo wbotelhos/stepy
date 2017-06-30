@@ -2,48 +2,46 @@ describe('backButton', function() {
   'use strict';
 
   beforeEach(function() {
-    fixture.load('default.html');
+    fixture.load('back_and_next_buttons_inside_step.html');
   });
 
-  afterEach(function() {
-    $('#fixture_container').empty();
-  });
+  context('on first step', function() {
+    it ('hides', function() {
+      // given
+      var self = $('form');
 
-  it ('starts hidden', function() {
-    // given
-    var self = $('form');
+      // when
+      self.stepy();
 
-    // when
-    self.stepy();
-
-    // then
-    expect(self.find('.stepy-finish')).toBeHidden();
+      // then
+      expect(self.find('.stepy-back')).toBeHidden();
+    });
   });
 
   context('on second step', function() {
-    it ('keeps hidden', function() {
+    it ('shows', function() {
       // given
       var self = $('form').stepy();
 
       // when
-      self.find('fieldset:eq(0)').find('.stepy-next').trigger('click');
+      self.find('fieldset:eq(0) .stepy-next').trigger('click');
 
       // then
-      expect(self.find('.stepy-finish')).toBeHidden();
+      expect(self.find('fieldset:eq(1) .stepy-back')).toBeVisible();
     });
   });
 
   context('on last step', function() {
-    it ('becomes visible', function() {
+    it ('shows', function() {
       // given
       var self = $('form').stepy();
 
       // when
-      self.find('fieldset:eq(0)').find('.stepy-next').trigger('click');
-      self.find('fieldset:eq(1)').find('.stepy-next').trigger('click');
+      self.find('fieldset:eq(0) .stepy-next').trigger('click');
+      self.find('fieldset:eq(1) .stepy-next').trigger('click');
 
       // then
-      expect(self.find('.stepy-finish')).toBeVisible();
+      expect(self.find('fieldset:eq(2) .stepy-back')).toBeVisible();
     });
   });
 });

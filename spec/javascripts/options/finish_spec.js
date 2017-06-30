@@ -5,16 +5,14 @@ describe('finish', function() {
     fixture.load('form_with_submit_button.html');
   });
 
-  afterEach(function() {
-    $('#fixture_container').empty();
-  });
-
   it ('is called on trigger finish button', function() {
     // given
     var
       self = $('form').stepy({
         finish: function() {
           $(this).data('called', true);
+
+          return false;
         }
       }).on('submit', function(evt) {
         evt.preventDefault();
