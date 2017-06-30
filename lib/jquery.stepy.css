@@ -1,6 +1,11 @@
-@charset "utf-8";
-
-body { font-size: 10px }
+.stepy-finish {
+  background-color: transparent;
+  border-radius: 3px !important;
+  border: 1px solid #ccc !important;
+  float: right;
+  height: 33px !important;
+  width: 80px !important;
+}
 
 .stepy-header { list-style: none; padding: 0; width: 724px }
   .stepy-header li { cursor: pointer; float: left; padding: 10px }
@@ -25,15 +30,10 @@ body { font-size: 10px }
   .stepy-navigator { height: 33px; margin-top: 20px }
     .stepy-back { float: left }
 
-    .stepy-next,
-    .stepy-navigator input[type="submit"] { float: right }
+    .stepy-next { float: right }
 
     .stepy-back,
-    .stepy-next,
-    .stepy-navigator input[type="submit"] { border: 1px solid #ccc; color: #7f0055; cursor: pointer; font: 1.2em verdana; padding: 7px 15px 8px; text-decoration: none; -khtml-border-radius: 3px; -moz-border-radius: 3px; -opera-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px }
-
-    .stepy-navigator input[type="submit"] { background-color: transparent; border-color: #ccc; margin-bottom: 0; padding: 7px 15px 24px; width: 90px }
+    .stepy-next { border: 1px solid #ccc; color: #7f0055; cursor: pointer; font: 1.2em verdana; padding: 7px 15px 8px; text-decoration: none; -khtml-border-radius: 3px; -moz-border-radius: 3px; -opera-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px }
 
     .stepy-back:hover,
-    .stepy-next:hover,
-    .stepy-navigator input[type="submit"]:hover { border-color: #bbb; color: #b07 }
+    .stepy-next:hover { border-color: #bbb; color: #b07 }
