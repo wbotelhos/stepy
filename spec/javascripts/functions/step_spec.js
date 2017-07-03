@@ -10,7 +10,7 @@ describe('funcions', function() {
     var self = $('form').stepy();
 
     // when
-    var ref = self.stepy('step', 2);
+    var ref = self.stepy('step', 1);
 
     // then
     expect(ref).toEqual(ref);
@@ -23,7 +23,7 @@ describe('funcions', function() {
       steps = self.children('fieldset');
 
     // when
-    self.stepy('step', 2);
+    self.stepy('step', 1);
 
     // then
     expect(steps.eq(0)).toBeHidden();

@@ -18,7 +18,7 @@ describe('titleTarget', function() {
       self.stepy({ titleTarget: '#' + this.target.attr('id') });
 
       // then
-      expect($(target).find('#' + self.attr('id') + '-header').length).toEqual(1);
+      expect($(target).find('#' + self[0].id + '-header').length).toEqual(1);
     });
   });
 
@@ -26,14 +26,15 @@ describe('titleTarget', function() {
     context('with next callback', function() {
       it ('receives the right index', function() {
         // given
-        var self  = $('form').stepy({
+        var
+          self = $('form').stepy({
             titleClick: true,
             next      : function(index) { $(this).data('index', index); }
           }),
           steps = self.children('fieldset');
 
         // when
-        $('#' + self.attr('id') + '-header').children('li').eq(1).click();
+        $('#' + self[0].id + '-header').children('li').eq(1).trigger('click');
 
         // then
         expect(self.data('index')).toEqual(2);
@@ -45,19 +46,18 @@ describe('titleTarget', function() {
     context('with back callback', function() {
       it ('receives the right index', function() {
         // given
-        var self   = $('form').stepy({
+        var
+          self = $('form').stepy({
             titleClick: true,
-            back      : function(index) {
-              $(this).data('index', index);
-            }
+            back      : function(index) { $(this).data('index', index); }
           }),
           steps  = self.children('fieldset'),
-          titles = $('#' + self.attr('id') + '-header').children('li');
+          titles = $('#' + self[0].id + '-header').children('li');
 
-        titles.eq(1).click();
+        titles.eq(1).trigger('click');
 
         // when
-        titles.eq(0).click();
+        titles.eq(0).trigger('click');
 
         // then
         expect(self.data('index')).toEqual(1);
@@ -69,15 +69,14 @@ describe('titleTarget', function() {
     context('with select callback', function() {
       it ('receives the right index', function() {
         // given
-        var self   = $('form').stepy({
+        var
+          self = $('form').stepy({
             titleClick: true,
             select    : function(index) { $(this).data('index', index); }
-          }),
-          steps  = self.children('fieldset'),
-          titles = $('#' + self.attr('id') + '-header').children('li');
+          });
 
         // when
-        titles.eq(1).click();
+        $('#' + self[0].id + '-header').children('li:eq(1)').trigger('click');
 
         // then
         expect(self.data('index')).toEqual(2);
@@ -89,9 +88,10 @@ describe('titleTarget', function() {
     context('and block enabled', function() {
       it ('blocks the step change', function() {
         // given
-        var self   = $('form').stepy({ block: true, titleClick: true, validate: true }),
+        var
+          self   = $('form').stepy({ block: true, titleClick: true, validate: true }),
           steps  = self.children('fieldset'),
-          titles = $('#' + self.attr('id') + '-header').children('li');
+          titles = $('#' + self[0].id + '-header').children('li');
 
         self.validate({
           errorPlacement: function(error, element) {
@@ -104,7 +104,7 @@ describe('titleTarget', function() {
         });
 
         // when
-        titles.eq(2).click();
+        titles.eq(2).trigger('click');
 
         // then
         expect(steps.eq(0)).toBeVisible();
@@ -118,7 +118,7 @@ describe('titleTarget', function() {
         // given
         var self   = $('form').stepy({ errorImage: true, titleClick: true, validate: true }),
           steps  = self.children('fieldset'),
-          titles = $('#' + self.attr('id') + '-header').children('li');
+          titles = $('#' + self[0].id + '-header').children('li');
 
         self.validate({
           errorPlacement: function(error, element) {
@@ -131,7 +131,7 @@ describe('titleTarget', function() {
         });
 
         // when
-        titles.eq(2).click();
+        titles.eq(2).trigger('click');
 
         // then
         expect(titles.eq(0)).toHaveClass('stepy-error');
