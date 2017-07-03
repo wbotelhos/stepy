@@ -12,10 +12,7 @@ describe('enter', function() {
         var
           self  = $('form').stepy({ enter: true, validate: false }),
           steps = self.children('fieldset'),
-          evt   = $.Event('keypress');
-
-        evt.which   = 13;
-        evt.keyCode = 13;
+          evt   = $.Event('keypress', { which: 13, keyCode: 13 });
 
         // when
         steps.eq(0).children('input:visible:last').trigger(evt);
@@ -31,10 +28,7 @@ describe('enter', function() {
         var
           self  = $('form').stepy({ enter: true, validate: false }),
           steps = self.children('fieldset'),
-          evt   = $.Event('keypress');
-
-        evt.which   = 13;
-        evt.keyCode = 13;
+          evt   = $.Event('keypress', { which: 13, keyCode: 13 });
 
         // when
         steps.eq(0).children('input:visible:last').trigger(evt);
@@ -53,16 +47,13 @@ describe('enter', function() {
               next:     function(index) { $(this).data('step', index); }
             }),
             steps = self.children('fieldset'),
-            evt   = $.Event('keypress');
-
-          evt.which   = 13;
-          evt.keyCode = 13;
+            evt   = $.Event('keypress', { which: 13, keyCode: 13 });
 
           // when
           steps.eq(0).children('input:visible:last').trigger(evt);
 
           // then
-          expect(self.data('step')).toEqual(2);
+          expect(self.data('step')).toEqual(1);
         });
       });
 
@@ -76,10 +67,7 @@ describe('enter', function() {
           var
             self  = $('form').stepy({ enter: true, validate: false }),
             steps = self.children('fieldset'),
-            evt   = $.Event('keypress');
-
-          evt.which   = 13;
-          evt.keyCode = 13;
+            evt   = $.Event('keypress', { which: 13, keyCode: 13 });
 
           // when
           steps.eq(0).find('input:visible:last').trigger(evt);
@@ -94,9 +82,7 @@ describe('enter', function() {
 
     context('with invalid step', function() {
       beforeEach(function() {
-        $('form').validate({
-          rules: { 'password':  'required' }
-        });
+        $('form').validate({ rules: { 'password': 'required' } });
       });
 
       context('with block enabled', function() {
@@ -105,10 +91,7 @@ describe('enter', function() {
           var
             self  = $('form').stepy({ enter: true, block: true, validate: true }),
             steps = self.children('fieldset'),
-            evt   = $.Event('keypress');
-
-          evt.which   = 13;
-          evt.keyCode = 13;
+            evt   = $.Event('keypress', { which: 13, keyCode: 13 });
 
           // when
           steps.eq(0).children('input:visible:last').trigger(evt);
@@ -126,10 +109,7 @@ describe('enter', function() {
           var
             self  = $('form').stepy({ enter: true, block: false, validate: true }),
             steps = self.children('fieldset'),
-            evt   = $.Event('keypress');
-
-          evt.which   = 13;
-          evt.keyCode = 13;
+            evt   = $.Event('keypress', { which: 13, keyCode: 13 });
 
           // when
           steps.eq(0).children('input:visible:last').trigger(evt);
@@ -147,7 +127,7 @@ describe('enter', function() {
         // given
         var self = $('form').stepy({
           finish: function() {
-            $(this).data('submited', 1);
+            $(this).data('submited', 'ok');
 
             return false;
           }
@@ -161,7 +141,7 @@ describe('enter', function() {
           .trigger($.Event('keypress', { which: 13, keyCode: 13 }));
 
         // then
-        expect(self.data('submited')).toEqual(1);
+        expect(self.data('submited')).toEqual('ok');
       });
     });
   });
@@ -172,7 +152,7 @@ describe('enter', function() {
       var
         self  = $('form').stepy({ enter: false, validate: false }),
         steps = self.children('fieldset'),
-        evt   = $.Event('keypress', { which: 13, keyCode: 13 })
+        evt   = $.Event('keypress', { which: 13, keyCode: 13 });
 
       // when
       steps.eq(0).children('input:visible:last').trigger(evt);
