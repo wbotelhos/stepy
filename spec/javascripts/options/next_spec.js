@@ -9,10 +9,7 @@ describe('next', function() {
     // given
     var self = $('form').stepy({
       next: function(index, totalSteps) {
-        $(this).data({
-          index:      index,
-          totalSteps: totalSteps
-        });
+        $(this).data({ step: index, totalSteps: totalSteps });
       }
     });
 
@@ -20,7 +17,7 @@ describe('next', function() {
     self.find('fieldset:eq(0) .stepy-next').trigger('click');
 
     // then
-    expect(self.data('index')).toEqual(2);
+    expect(self.data('step')).toEqual(1);
     expect(self.data('totalSteps')).toEqual(3);
   });
 });

@@ -27,15 +27,15 @@ describe('titleTarget', function() {
       it ('receives the right index', function() {
         // given
         var self = $('form').stepy({
-          titleClick: true,
-          next      : function(index) { $(this).data('index', index); }
+          next:       function(index) { $(this).data('step', index); },
+          titleClick: true
         });
 
         // when
-        $('#' + self[0].id + '-header').children('li').eq(1).trigger('click');
+        $('#' + self[0].id + '-header li:eq(1)').trigger('click');
 
         // then
-        expect(self.data('index')).toEqual(2);
+        expect(self.data('step')).toEqual(1);
       });
     });
   });
@@ -46,8 +46,8 @@ describe('titleTarget', function() {
         // given
         var
           self = $('form').stepy({
-            titleClick: true,
-            back      : function(index) { $(this).data('index', index); }
+            back:       function(index) { $(this).data('step', index); },
+            titleClick: true
           }),
           titles = $('#' + self[0].id + '-header').children('li');
 
@@ -57,7 +57,7 @@ describe('titleTarget', function() {
         titles.eq(0).trigger('click');
 
         // then
-        expect(self.data('index')).toEqual(1);
+        expect(self.data('step')).toEqual(0);
       });
     });
   });
@@ -69,14 +69,14 @@ describe('titleTarget', function() {
         var
           self = $('form').stepy({
             titleClick: true,
-            select    : function(index) { $(this).data('index', index); }
+            select    : function(index) { $(this).data('step', index); }
           });
 
         // when
-        $('#' + self[0].id + '-header').children('li:eq(1)').trigger('click');
+        $('#' + self[0].id + '-header li:eq(1)').trigger('click');
 
         // then
-        expect(self.data('index')).toEqual(2);
+        expect(self.data('step')).toEqual(2);
       });
     });
   });
