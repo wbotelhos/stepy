@@ -48,9 +48,9 @@ describe('enter', function() {
           // given
           var
             self  = $('form').stepy({
-              enter    : true,
+              enter:    true,
               validate: false,
-              next    : function(index) { $(this).data('index', index); }
+              next:     function(index) { $(this).data('step', index); }
             }),
             steps = self.children('fieldset'),
             evt   = $.Event('keypress');
@@ -62,7 +62,7 @@ describe('enter', function() {
           steps.eq(0).children('input:visible:last').trigger(evt);
 
           // then
-          expect(self.data('index')).toEqual(2);
+          expect(self.data('step')).toEqual(2);
         });
       });
 
@@ -143,33 +143,25 @@ describe('enter', function() {
     });
 
     context('on the last step', function() {
-      it ('submits the form', function() {
+      xit ('submits the form', function() {
         // given
-        var
-          self = $('form').stepy({
-            finish: function() {
-              $(this).data('submited', true);
+        var self = $('form').stepy({
+          finish: function() {
+            $(this).data('submited', 1);
 
-              return false;
-            }
-          }),
-          steps = self.children('fieldset'),
-          evt   = $.Event('keypress');
-
-        evt.which   = 13;
-        evt.keyCode = 13;
-
-        self.on('submit', function(evt) {
+            return false;
+          }
+        }).on('submit', function(evt) {
           evt.preventDefault();
-        });
-
-        steps.eq(1).find('.stepy-next').click();
+        }).stepy('step', 2);
 
         // when
-        steps.eq(2).children('input:visible:last').trigger(evt);
+        self
+          .children('fieldset:eq(2) input:visible:last')
+          .trigger($.Event('keypress', { which: 13, keyCode: 13 }));
 
         // then
-        expect(self.data('submited')).toBeTruthy();
+        expect(self.data('submited')).toEqual(1);
       });
     });
   });
@@ -180,10 +172,7 @@ describe('enter', function() {
       var
         self  = $('form').stepy({ enter: false, validate: false }),
         steps = self.children('fieldset'),
-        evt   = $.Event('keypress');
-
-      evt.which   = 13;
-      evt.keyCode = 13;
+        evt   = $.Event('keypress', { which: 13, keyCode: 13 })
 
       // when
       steps.eq(0).children('input:visible:last').trigger(evt);
