@@ -7,10 +7,10 @@ describe('on_click_back_button', function() {
 
   it ('goes to previous step', function() {
     // given
-    var self = $('form').stepy().stepy('step', 2);
+    var self = $('form').stepy().stepy('step', 1);
 
     // when
-    self.find('fieldset:eq(1) .stepy-back').click();
+    self.find('fieldset:eq(1) .stepy-back').trigger('click');
 
     // then
     expect(self.find('fieldset:eq(0)')).toBeVisible();
@@ -20,10 +20,10 @@ describe('on_click_back_button', function() {
 
   it ('focus the first field', function() {
     // given
-    var self = $('form').stepy().stepy('step', 2);
+    var self = $('form').stepy().stepy('step', 1);
 
     // when
-    self.find('fieldset:eq(1) .stepy-back').click();
+    self.find('fieldset:eq(1) .stepy-back').trigger('click');
 
     // then
     expect(self.find('fieldset:eq(0) :input:enabled:visible:first')).toBeFocused();
