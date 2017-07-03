@@ -15,7 +15,7 @@ jQuery Stepy is a plugin that generates a customizable wizard.
 back:        undefined  // Callback before the backward action.
 block:       false      // Block the next step if the current is invalid.
 description: false      // Choose if the descriptions of the titles will be showed.
-duration:    0          // Duration of the transition between steps in ms.
+duration:    300        // Duration of the transition between steps in ms.
 enter:       true       // Enables the enter key to change to the next step.
 errorImage:  false      // If an error occurs, a image is showed in the title of the corresponding step.
 finish:      undefined  // Callback before the finish action.
