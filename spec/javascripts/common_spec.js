@@ -27,7 +27,7 @@ describe('common', function() {
     expect(opt.bacck).toBeUndefined();
     expect(opt.block).toBeFalsy();
     expect(opt.description).toBeTruthy();
-    expect(opt.duration).toBeUndefined();
+    expect(opt.duration).toEqual(0);
     expect(opt.enter).toBeTruthy();
     expect(opt.errorImage).toBeFalsy();
     expect(opt.finish).toBeUndefined();
