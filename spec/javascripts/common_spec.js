@@ -55,7 +55,9 @@ describe('common', function() {
   });
 
   context('when form has no id', function() {
-    beforeEach(function() { $('form').removeAttr('id'); });
+    beforeEach(function() {
+      $('form').removeAttr('id');
+    });
 
     it ('is generates a random one', function() {
       // given
@@ -65,7 +67,7 @@ describe('common', function() {
       self.stepy();
 
       // then
-      expect(self[0].hash).not.toBeUndefined();
+      expect(self[0].id).not.toBeUndefined();
     });
 
     it ('is used on the header', function() {
@@ -76,7 +78,7 @@ describe('common', function() {
       self.stepy();
 
       // then
-      expect(self.prev('ul').attr('id')).toEqual(self[0].hash + '-header');
+      expect(self.prev('ul').attr('id')).toEqual(self[0].id + '-header');
     });
   });
 });
