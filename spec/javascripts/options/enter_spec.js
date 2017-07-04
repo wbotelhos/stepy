@@ -11,11 +11,11 @@ describe('enter', function() {
         // given
         var
           self  = $('form').stepy({ enter: true, validate: false }),
-          steps = self.children('fieldset'),
+          steps = self.find('fieldset'),
           evt   = $.Event('keypress', { which: 13, keyCode: 13 });
 
         // when
-        steps.eq(0).children('input:visible:last').trigger(evt);
+        steps.eq(0).find('input:visible:last').trigger(evt);
 
         // then
         expect(steps.eq(0)).toBeHidden();
@@ -27,11 +27,11 @@ describe('enter', function() {
         // given
         var
           self  = $('form').stepy({ enter: true, validate: false }),
-          steps = self.children('fieldset'),
+          steps = self.find('fieldset'),
           evt   = $.Event('keypress', { which: 13, keyCode: 13 });
 
         // when
-        steps.eq(0).children('input:visible:last').trigger(evt);
+        steps.eq(0).find('input:visible:last').trigger(evt);
 
         // then
         expect(steps.eq(1).find(':input:enabled:visible:first')).toBeFocused();
@@ -46,11 +46,11 @@ describe('enter', function() {
               validate: false,
               next:     function(index) { $(this).data('step', index); }
             }),
-            steps = self.children('fieldset'),
+            steps = self.find('fieldset'),
             evt   = $.Event('keypress', { which: 13, keyCode: 13 });
 
           // when
-          steps.eq(0).children('input:visible:last').trigger(evt);
+          steps.eq(0).find('input:visible:last').trigger(evt);
 
           // then
           expect(self.data('step')).toEqual(1);
@@ -59,14 +59,14 @@ describe('enter', function() {
 
       context('with the fields inside elements', function() {
         beforeEach(function() {
-          $('form').children('fieldset:first').find(':input').wrap('<p />');
+          $('form').find('fieldset:first').find(':input').wrap('<p />');
         });
 
         it ('goes to the next step', function() {
           // given
           var
             self  = $('form').stepy({ enter: true, validate: false }),
-            steps = self.children('fieldset'),
+            steps = self.find('fieldset'),
             evt   = $.Event('keypress', { which: 13, keyCode: 13 });
 
           // when
@@ -90,11 +90,11 @@ describe('enter', function() {
           // given
           var
             self  = $('form').stepy({ enter: true, block: true, validate: true }),
-            steps = self.children('fieldset'),
+            steps = self.find('fieldset'),
             evt   = $.Event('keypress', { which: 13, keyCode: 13 });
 
           // when
-          steps.eq(0).children('input:visible:last').trigger(evt);
+          steps.eq(0).find('input:visible:last').trigger(evt);
 
           // then
           expect(steps.eq(0)).toBeVisible();
@@ -108,11 +108,11 @@ describe('enter', function() {
           // given
           var
             self  = $('form').stepy({ enter: true, block: false, validate: true }),
-            steps = self.children('fieldset'),
+            steps = self.find('fieldset'),
             evt   = $.Event('keypress', { which: 13, keyCode: 13 });
 
           // when
-          steps.eq(0).children('input:visible:last').trigger(evt);
+          steps.eq(0).find('input:visible:last').trigger(evt);
 
           // then
           expect(steps.eq(0)).toBeHidden();
@@ -123,7 +123,7 @@ describe('enter', function() {
     });
 
     context('on the last step', function() {
-      xit ('submits the form', function() {
+      it ('submits the form', function() {
         // given
         var self = $('form').stepy({
           finish: function() {
@@ -137,7 +137,7 @@ describe('enter', function() {
 
         // when
         self
-          .children('fieldset:eq(2) input:visible:last')
+          .find('fieldset:eq(2) input:visible:last')
           .trigger($.Event('keypress', { which: 13, keyCode: 13 }));
 
         // then
@@ -151,11 +151,11 @@ describe('enter', function() {
       // given
       var
         self  = $('form').stepy({ enter: false, validate: false }),
-        steps = self.children('fieldset'),
+        steps = self.find('fieldset'),
         evt   = $.Event('keypress', { which: 13, keyCode: 13 });
 
       // when
-      steps.eq(0).children('input:visible:last').trigger(evt);
+      steps.eq(0).find('input:visible:last').trigger(evt);
 
       // then
       expect(steps.eq(0)).toBeVisible();
