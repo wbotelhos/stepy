@@ -78,7 +78,7 @@ describe('common', function() {
       self.stepy();
 
       // then
-      expect(self.prev('ul').attr('id')).toEqual(self[0].id + '-header');
+      expect(self.prev('ul').attr('id')).toEqual(self[0].getAttribute('id') + '-header');
     });
   });
 });
