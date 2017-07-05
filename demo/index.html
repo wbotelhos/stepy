@@ -53,32 +53,28 @@
 
 <div class="highlight">
 <pre>
-<span class="p">&lt;</span><span class="nt">form</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">fieldset</span> <span class="na">title</span><span class="o">=</span><span class="s">"Step 1"</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">form</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">fieldset</span> <span class="na">title</span><span class="o">=</span><span class="s">"Step 1"</span> <span class="na">class</span><span class="o">=</span><span class="s">"stepy-step"</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">legend</span><span class="p">&gt;</span>description one<span class="p">&lt;/</span><span class="nt">legend</span><span class="p">&gt;</span>
 
     <span class="c">&lt;!-- inputs --&gt;</span>
-
-    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">"stepy-next"</span><span class="p">&gt;</span>next<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
   <span class="p">&lt;/</span><span class="nt">fieldset</span><span class="p">&gt;</span>
 
-  <span class="p">&lt;</span><span class="nt">fieldset</span> <span class="na">title</span><span class="o">=</span><span class="s">"Step 2"</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">fieldset</span> <span class="na">title</span><span class="o">=</span><span class="s">"Step 2"</span> <span class="na">class</span><span class="o">=</span><span class="s">"stepy-step"</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">legend</span><span class="p">&gt;</span>description two<span class="p">&lt;/</span><span class="nt">legend</span><span class="p">&gt;</span>
 
     <span class="c">&lt;!-- inputs --&gt;</span>
-
-    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">"stepy-back"</span><span class="p">&gt;</span>back<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">"stepy-next"</span><span class="p">&gt;</span>next<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
   <span class="p">&lt;/</span><span class="nt">fieldset</span><span class="p">&gt;</span>
 
-  <span class="p">&lt;</span><span class="nt">fieldset</span> <span class="na">title</span><span class="o">=</span><span class="s">"Step 3"</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">fieldset</span> <span class="na">title</span><span class="o">=</span><span class="s">"Step 3"</span> <span class="na">class</span><span class="o">=</span><span class="s">"stepy-step"</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">legend</span><span class="p">&gt;</span>description three<span class="p">&lt;/</span><span class="nt">legend</span><span class="p">&gt;</span>
 
     <span class="c">&lt;!-- inputs --&gt;</span>
-
-    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">"stepy-back"</span><span class="p">&gt;</span>back<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">"submit"</span> <span class="na">class</span><span class="o">=</span><span class="s">"stepy-finish"</span> <span class="p">/&gt;</span>
   <span class="p">&lt;/</span><span class="nt">fieldset</span><span class="p">&gt;</span>
+
+  <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">"stepy-back"</span><span class="p">&gt;</span>back<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">"stepy-next"</span><span class="p">&gt;</span>next<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">"submit"</span> <span class="na">class</span><span class="o">=</span><span class="s">"stepy-finish"</span> <span class="p">/&gt;</span>
 <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
 </pre>
 </div>
@@ -93,7 +89,7 @@
 
 <div class="demo">
   <form id="default-demo">
-    <fieldset title="Login">
+    <fieldset title="Login" class="stepy-step">
       <legend>Access</legend>
 
       <input type="hidden" name="id" />
@@ -117,7 +113,7 @@
       <a href="#" class="stepy-next">next</a>
     </fieldset>
 
-    <fieldset title="Personal">
+    <fieldset title="Personal" class="stepy-step">
       <legend>About you</legend>
 
       <p>
@@ -143,7 +139,7 @@
       <a href="#" class="stepy-next">next</a>
     </fieldset>
 
-    <fieldset title="Professional">
+    <fieldset title="Professional" class="stepy-step">
       <legend>Your professional informations</legend>
 
       <p class="skills">
@@ -192,7 +188,7 @@
 
 <div class="demo">
   <form id="titleClick-demo">
-    <fieldset title="Login">
+    <fieldset title="Login" class="stepy-step">
       <legend>Access</legend>
 
       <input type="hidden" name="id" />
@@ -216,7 +212,7 @@
       <a href="#" class="stepy-next">next</a>
     </fieldset>
 
-    <fieldset title="Personal">
+    <fieldset title="Personal" class="stepy-step">
       <legend>About you</legend>
 
       <p>
@@ -242,7 +238,7 @@
       <a href="#" class="stepy-next">next</a>
     </fieldset>
 
-    <fieldset title="Professional">
+    <fieldset title="Professional" class="stepy-step">
       <legend>Your professional informations</legend>
 
       <p class="skills">
@@ -292,7 +288,7 @@
 
 <div class="demo">
   <form id="description-demo">
-    <fieldset title="Login">
+    <fieldset title="Login" class="stepy-step">
       <legend>Access</legend>
 
       <input type="hidden" name="id" />
@@ -316,7 +312,7 @@
       <a href="#" class="stepy-next">next</a>
     </fieldset>
 
-    <fieldset title="Personal">
+    <fieldset title="Personal" class="stepy-step">
       <legend>About you</legend>
 
       <p>
@@ -342,7 +338,7 @@
       <a href="#" class="stepy-next">next</a>
     </fieldset>
 
-    <fieldset title="Professional">
+    <fieldset title="Professional" class="stepy-step">
       <legend>Your professional informations</legend>
 
       <p class="skills">
@@ -391,7 +387,7 @@
 
 <div class="demo">
   <form id="enter-demo">
-    <fieldset title="Login">
+    <fieldset title="Login" class="stepy-step">
       <legend>Access</legend>
 
       <input type="hidden" name="id" />
@@ -415,7 +411,7 @@
       <a href="#" class="stepy-next">next</a>
     </fieldset>
 
-    <fieldset title="Personal">
+    <fieldset title="Personal" class="stepy-step">
       <legend>About you</legend>
 
       <p>
@@ -441,7 +437,7 @@
       <a href="#" class="stepy-next">next</a>
     </fieldset>
 
-    <fieldset title="Professional">
+    <fieldset title="Professional" class="stepy-step">
       <legend>Your professional informations</legend>
 
       <p class="skills">
@@ -490,7 +486,7 @@
 
 <div class="demo">
   <form id="finishButton-demo">
-    <fieldset title="Login">
+    <fieldset title="Login" class="stepy-step">
       <legend>Access</legend>
 
       <input type="hidden" name="id" />
@@ -514,7 +510,7 @@
       <a href="#" class="stepy-next">next</a>
     </fieldset>
 
-    <fieldset title="Personal">
+    <fieldset title="Personal" class="stepy-step">
       <legend>About you</legend>
 
       <p>
@@ -540,7 +536,7 @@
       <a href="#" class="stepy-next">next</a>
     </fieldset>
 
-    <fieldset title="Professional">
+    <fieldset title="Professional" class="stepy-step">
       <legend>Your professional informations</legend>
 
       <p class="skills">
@@ -589,7 +585,7 @@
 
 <div class="demo">
   <form id="finish-demo">
-    <fieldset title="Login">
+    <fieldset title="Login" class="stepy-step">
       <legend>Access</legend>
 
       <input type="hidden" name="id" />
@@ -613,7 +609,7 @@
       <a href="#" class="stepy-next">next</a>
     </fieldset>
 
-    <fieldset title="Personal">
+    <fieldset title="Personal" class="stepy-step">
       <legend>About you</legend>
 
       <p>
@@ -639,7 +635,7 @@
       <a href="#" class="stepy-next">next</a>
     </fieldset>
 
-    <fieldset title="Professional">
+    <fieldset title="Professional" class="stepy-step">
       <legend>Your professional informations</legend>
 
       <p class="skills">
@@ -693,7 +689,7 @@
 
 <div class="demo">
   <form id="legend-demo">
-    <fieldset title="Login">
+    <fieldset title="Login" class="stepy-step">
       <legend>Access</legend>
 
       <input type="hidden" name="id" />
@@ -717,7 +713,7 @@
       <a href="#" class="stepy-next">next</a>
     </fieldset>
 
-    <fieldset title="Personal">
+    <fieldset title="Personal" class="stepy-step">
       <legend>About you</legend>
 
       <p>
@@ -743,7 +739,7 @@
       <a href="#" class="stepy-next">next</a>
     </fieldset>
 
-    <fieldset title="Professional">
+    <fieldset title="Professional" class="stepy-step">
       <legend>Your professional informations</legend>
 
       <p class="skills">
@@ -792,7 +788,7 @@
 
 <div class="demo">
   <form id="next-demo">
-    <fieldset title="Login">
+    <fieldset title="Login" class="stepy-step">
       <legend>Access</legend>
 
       <input type="hidden" name="id" />
@@ -816,7 +812,7 @@
       <a href="#" class="stepy-next">next</a>
     </fieldset>
 
-    <fieldset title="Personal">
+    <fieldset title="Personal" class="stepy-step">
       <legend>About you</legend>
 
       <p>
@@ -842,7 +838,7 @@
       <a href="#" class="stepy-next">next</a>
     </fieldset>
 
-    <fieldset title="Professional">
+    <fieldset title="Professional" class="stepy-step">
       <legend>Your professional informations</legend>
 
       <p class="skills">
@@ -894,7 +890,7 @@
 
 <div class="demo">
   <form id="back-demo">
-    <fieldset title="Login">
+    <fieldset title="Login" class="stepy-step">
       <legend>Access</legend>
 
       <input type="hidden" name="id" />
@@ -918,7 +914,7 @@
       <a href="#" class="stepy-next">next</a>
     </fieldset>
 
-    <fieldset title="Personal">
+    <fieldset title="Personal" class="stepy-step">
       <legend>About you</legend>
 
       <p>
@@ -944,7 +940,7 @@
       <a href="#" class="stepy-next">next</a>
     </fieldset>
 
-    <fieldset title="Professional">
+    <fieldset title="Professional" class="stepy-step">
       <legend>Your professional informations</legend>
 
       <p class="skills">
@@ -997,7 +993,7 @@
 
 <div class="demo">
   <form id="select-demo">
-    <fieldset title="Login">
+    <fieldset title="Login" class="stepy-step">
       <legend>Access</legend>
 
       <input type="hidden" name="id" />
@@ -1021,7 +1017,7 @@
       <a href="#" class="stepy-next">next</a>
     </fieldset>
 
-    <fieldset title="Personal">
+    <fieldset title="Personal" class="stepy-step">
       <legend>About you</legend>
 
       <p>
@@ -1047,7 +1043,7 @@
       <a href="#" class="stepy-next">next</a>
     </fieldset>
 
-    <fieldset title="Professional">
+    <fieldset title="Professional" class="stepy-step">
       <legend>Your professional informations</legend>
 
       <p class="skills">
@@ -1099,7 +1095,7 @@
 
 <div class="demo">
   <form id="titleTarget-demo">
-    <fieldset title="Login">
+    <fieldset title="Login" class="stepy-step">
       <legend>Access</legend>
 
       <input type="hidden" name="id" />
@@ -1123,7 +1119,7 @@
       <a href="#" class="stepy-next">next</a>
     </fieldset>
 
-    <fieldset title="Personal">
+    <fieldset title="Personal" class="stepy-step">
       <legend>About you</legend>
 
       <p>
@@ -1149,7 +1145,7 @@
       <a href="#" class="stepy-next">next</a>
     </fieldset>
 
-    <fieldset title="Professional">
+    <fieldset title="Professional" class="stepy-step">
       <legend>Your professional informations</legend>
 
       <p class="skills">
@@ -1200,7 +1196,7 @@
 
 <div class="demo">
   <form id="transition-duration-demo">
-    <fieldset title="Login">
+    <fieldset title="Login" class="stepy-step">
       <legend>Access</legend>
 
       <input type="hidden" name="id" />
@@ -1224,7 +1220,7 @@
       <a href="#" class="stepy-next">next</a>
     </fieldset>
 
-    <fieldset title="Personal">
+    <fieldset title="Personal" class="stepy-step">
       <legend>About you</legend>
 
       <p>
@@ -1250,7 +1246,7 @@
       <a href="#" class="stepy-next">next</a>
     </fieldset>
 
-    <fieldset title="Professional">
+    <fieldset title="Professional" class="stepy-step">
       <legend>Your professional informations</legend>
 
       <p class="skills">
@@ -1391,7 +1387,7 @@ The class to find the back button inside each step.<br />
 
 <div class="demo">
   <form id="backButton-demo">
-  <fieldset title="Login">
+  <fieldset title="Login" class="stepy-step">
     <legend>Access</legend>
 
     <p>
@@ -1413,7 +1409,7 @@ The class to find the back button inside each step.<br />
     <a href="#" class="stepy-next">next</a>
   </fieldset>
 
-  <fieldset title="Personal">
+  <fieldset title="Personal" class="stepy-step">
     <legend>About you</legend>
 
     <p>
@@ -1439,7 +1435,7 @@ The class to find the back button inside each step.<br />
     <a href="#" class="stepy-next">next</a>
   </fieldset>
 
-  <fieldset title="Professional">
+  <fieldset title="Professional" class="stepy-step">
     <legend>Your professional informations</legend>
 
     <p class="skills">
@@ -1487,7 +1483,7 @@ The class to find the back button inside each step.<br />
 
 <div class="demo">
   <form id="nextButton-demo">
-  <fieldset title="Login">
+  <fieldset title="Login" class="stepy-step">
     <legend>Access</legend>
 
     <p>
@@ -1509,7 +1505,7 @@ The class to find the back button inside each step.<br />
     <a href="#" class="stepy-next">next</a>
   </fieldset>
 
-  <fieldset title="Personal">
+  <fieldset title="Personal" class="stepy-step">
     <legend>About you</legend>
 
     <p>
@@ -1535,7 +1531,7 @@ The class to find the back button inside each step.<br />
     <a href="#" class="stepy-next">next</a>
   </fieldset>
 
-  <fieldset title="Professional">
+  <fieldset title="Professional" class="stepy-step">
     <legend>Your professional informations</legend>
 
     <p class="skills">
@@ -1562,6 +1558,96 @@ The class to find the back button inside each step.<br />
 
     <input type="submit" value="Finish!" class="stepy-finish" />
   </fieldset>
+</form>
+</div>
+
+<div class="highlight">
+<pre>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'form'</span><span class="p">).</span><span class="nx">stepy</span><span class="p">({</span> <span class="nx">nextButton</span><span class="o">:</span> <span class="s1">'.stepy-next'</span> <span class="p">});</span>
+</pre>
+</div>
+
+<!-- option: globalButtons -->
+
+<h2 id="globalButtons">
+  <a href="#globalButtons">Global Buttons</a>
+</h2>
+
+<p>
+  If you wish, you can use global buttons to control the steps, just put it where you want.<br />
+</p>
+
+<div class="demo">
+  <form id="globalButtons-demo">
+  <fieldset title="Login" class="stepy-step">
+    <legend>Access</legend>
+
+    <p>
+      <label for="username-2">Username:</label>
+      <input id="username-2" type="text" value="wbotelhos" disabled="disabled" />
+    </p>
+
+    <p>
+      <label for="email-2">E-mail:</label>
+      <input id="email-2" type="text" />
+    </p>
+
+    <p>
+      <label for="password-2">Password:</label>
+      <input id="password-2" type="password" />
+    </p>
+  </fieldset>
+
+  <fieldset title="Personal" class="stepy-step">
+    <legend>About you</legend>
+
+    <p>
+      <label for="name-2">Name:</label>
+      <input id="name-2" type="text" />
+    </p>
+
+    <p>
+      <label for="birthday-2">Birthday:</label>
+
+      <select id="birthday-2" name="day">
+        <option></option>
+        <option>1984</option>
+      </select>
+    </p>
+
+    <p>
+      <label for="bio-2">Bio:</label>
+      <textarea id="bio-2"></textarea>
+    </p>
+  </fieldset>
+
+  <fieldset title="Professional" class="stepy-step">
+    <legend>Your professional informations</legend>
+
+    <p class="skills">
+      <input id="ruby-2" type="checkbox" name="ruby-2" />
+      <label for="ruby-2">Ruby</label>
+
+      <input id="python-2" type="checkbox" name="python" />
+      <label for="python-2">Python</label>
+
+      <input id="java-2" type="checkbox" name="java" />
+      <label for="java-2">Java</label>
+
+      <input id="javascript-2" type="checkbox" name="javascript" />
+      <label for="javascript-2">Javascript</label>
+    </p>
+
+    <p>
+      <label for="linkedin-2">Linkedin:</label>
+      <input id="linkedin-2" type="text" name="Linkedin" />
+    </p>
+  </fieldset>
+
+  <a href="#" class="stepy-back">back</a>
+  <a href="#" class="stepy-next">next</a>
+
+  <input type="submit" value="Finish!" class="stepy-finish" />
 </form>
 </div>
 
@@ -1778,6 +1864,8 @@ The class to find the back button inside each step.<br />
 
     $('#backButton-demo').stepy({ backButton: '.stepy-back' });
     $('#nextButton-demo').stepy({ nextButton: '.stepy-next' });
+
+    $('#globalButtons-demo').stepy();
   });
 </script>
 </body>
