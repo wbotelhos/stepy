@@ -45,29 +45,29 @@
 
 <p>
   You need a form with the right markup as following.<br />
-  Each <code>fieldset</code> will became a step.<br />
-  The <code>title</code> of the <code>fieldset</code> will be the headers titles.<br />
-  And the <code>legend</code> will be the header title description.<br />
-  Inside the <code>fieldset</code> you put your stuffs.
+  Each <code>.stepy-step</code> will became a step.<br />
+  The <code>title</code> of the <code>.stepy-step</code> will be the headers titles.<br />
+  And the <code>.stepy-legend</code> will be the header title description.<br />
+  Inside the <code>.stepy-step</code> you put your stuffs.
 </p>
 
 <div class="highlight">
 <pre>
-  <span class="p">&lt;</span><span class="nt">form</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">form</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">fieldset</span> <span class="na">title</span><span class="o">=</span><span class="s">"Step 1"</span> <span class="na">class</span><span class="o">=</span><span class="s">"stepy-step"</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">legend</span><span class="p">&gt;</span>description one<span class="p">&lt;/</span><span class="nt">legend</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">legend</span> <span class="na">class</span><span class="o">=</span><span class="s">"stepy-legend"</span><span class="p">&gt;</span>legend one<span class="p">&lt;/</span><span class="nt">legend</span><span class="p">&gt;</span>
 
     <span class="c">&lt;!-- inputs --&gt;</span>
   <span class="p">&lt;/</span><span class="nt">fieldset</span><span class="p">&gt;</span>
 
   <span class="p">&lt;</span><span class="nt">fieldset</span> <span class="na">title</span><span class="o">=</span><span class="s">"Step 2"</span> <span class="na">class</span><span class="o">=</span><span class="s">"stepy-step"</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">legend</span><span class="p">&gt;</span>description two<span class="p">&lt;/</span><span class="nt">legend</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">legend</span> <span class="na">class</span><span class="o">=</span><span class="s">"stepy-legend"</span><span class="p">&gt;</span>legend two<span class="p">&lt;/</span><span class="nt">legend</span><span class="p">&gt;</span>
 
     <span class="c">&lt;!-- inputs --&gt;</span>
   <span class="p">&lt;/</span><span class="nt">fieldset</span><span class="p">&gt;</span>
 
   <span class="p">&lt;</span><span class="nt">fieldset</span> <span class="na">title</span><span class="o">=</span><span class="s">"Step 3"</span> <span class="na">class</span><span class="o">=</span><span class="s">"stepy-step"</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">legend</span><span class="p">&gt;</span>description three<span class="p">&lt;/</span><span class="nt">legend</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">legend</span> <span class="na">class</span><span class="o">=</span><span class="s">"stepy-legend"</span><span class="p">&gt;</span>legend three<span class="p">&lt;/</span><span class="nt">legend</span><span class="p">&gt;</span>
 
     <span class="c">&lt;!-- inputs --&gt;</span>
   <span class="p">&lt;/</span><span class="nt">fieldset</span><span class="p">&gt;</span>
@@ -90,7 +90,7 @@
 <div class="demo">
   <form id="default-demo">
     <fieldset title="Login" class="stepy-step">
-      <legend>Access</legend>
+      <legend class="stepy-legend">Access</legend>
 
       <input type="hidden" name="id" />
 
@@ -114,7 +114,7 @@
     </fieldset>
 
     <fieldset title="Personal" class="stepy-step">
-      <legend>About you</legend>
+      <legend class="stepy-legend">About you</legend>
 
       <p>
         <label for="name">Name:</label>
@@ -140,7 +140,7 @@
     </fieldset>
 
     <fieldset title="Professional" class="stepy-step">
-      <legend>Your professional informations</legend>
+      <legend class="stepy-legend">Your professional informations</legend>
 
       <p class="skills">
         <input id="ruby" type="checkbox" name="ruby" />
@@ -189,7 +189,7 @@
 <div class="demo">
   <form id="titleClick-demo">
     <fieldset title="Login" class="stepy-step">
-      <legend>Access</legend>
+      <legend class="stepy-legend">Access</legend>
 
       <input type="hidden" name="id" />
 
@@ -213,7 +213,7 @@
     </fieldset>
 
     <fieldset title="Personal" class="stepy-step">
-      <legend>About you</legend>
+      <legend class="stepy-legend">About you</legend>
 
       <p>
         <label for="name-1">Name:</label>
@@ -239,7 +239,7 @@
     </fieldset>
 
     <fieldset title="Professional" class="stepy-step">
-      <legend>Your professional informations</legend>
+      <legend class="stepy-legend">Your professional informations</legend>
 
       <p class="skills">
         <input id="ruby-1" type="checkbox" name="ruby-1" />
@@ -281,15 +281,15 @@
 </h2>
 
 <p>
-  Each step receives your description that is the <code>legend</code> element of the <code>fieldset</code>.<br />
+  Each step receives your description that is the <code>.stepy-legend</code> element of the <code>.stepy-step</code>.<br />
   That element is used on header to describe the step, but you can disabled it.<br />
-  Disable the description does not hide the original <code>legend</code> element. If you want to hide just the <code>legend</code> element, use CSS for it.
+  Disable the description does not hide the original <code>.stepy-legend</code> element. If you want to hide just the <code>.stepy-legend</code> element, use CSS for it.
 </p>
 
 <div class="demo">
   <form id="description-demo">
     <fieldset title="Login" class="stepy-step">
-      <legend>Access</legend>
+      <legend class="stepy-legend">Access</legend>
 
       <input type="hidden" name="id" />
 
@@ -313,7 +313,7 @@
     </fieldset>
 
     <fieldset title="Personal" class="stepy-step">
-      <legend>About you</legend>
+      <legend class="stepy-legend">About you</legend>
 
       <p>
         <label for="name-2">Name:</label>
@@ -339,7 +339,7 @@
     </fieldset>
 
     <fieldset title="Professional" class="stepy-step">
-      <legend>Your professional informations</legend>
+      <legend class="stepy-legend">Your professional informations</legend>
 
       <p class="skills">
         <input id="ruby-2" type="checkbox" name="ruby-2" />
@@ -388,7 +388,7 @@
 <div class="demo">
   <form id="enter-demo">
     <fieldset title="Login" class="stepy-step">
-      <legend>Access</legend>
+      <legend class="stepy-legend">Access</legend>
 
       <input type="hidden" name="id" />
 
@@ -412,7 +412,7 @@
     </fieldset>
 
     <fieldset title="Personal" class="stepy-step">
-      <legend>About you</legend>
+      <legend class="stepy-legend">About you</legend>
 
       <p>
         <label for="name-2">Name:</label>
@@ -438,7 +438,7 @@
     </fieldset>
 
     <fieldset title="Professional" class="stepy-step">
-      <legend>Your professional informations</legend>
+      <legend class="stepy-legend">Your professional informations</legend>
 
       <p class="skills">
         <input id="ruby-2" type="checkbox" name="ruby-2" />
@@ -480,14 +480,13 @@
 </h2>
 
 <p>
-  Let the Stepy to move your <code>submit</code> button or your element with class <code>stepy-finish</code> to inside the last step as a finish button.<br />
-  If you want let your button inside de form and visible during all steps, just turns this option off.
+  The selector of you finish button.
 </p>
 
 <div class="demo">
   <form id="finishButton-demo">
     <fieldset title="Login" class="stepy-step">
-      <legend>Access</legend>
+      <legend class="stepy-legend">Access</legend>
 
       <input type="hidden" name="id" />
 
@@ -511,7 +510,7 @@
     </fieldset>
 
     <fieldset title="Personal" class="stepy-step">
-      <legend>About you</legend>
+      <legend class="stepy-legend">About you</legend>
 
       <p>
         <label for="name-2">Name:</label>
@@ -537,7 +536,7 @@
     </fieldset>
 
     <fieldset title="Professional" class="stepy-step">
-      <legend>Your professional informations</legend>
+      <legend class="stepy-legend">Your professional informations</legend>
 
       <p class="skills">
         <input id="ruby-2" type="checkbox" name="ruby-2" />
@@ -586,7 +585,7 @@
 <div class="demo">
   <form id="finish-demo">
     <fieldset title="Login" class="stepy-step">
-      <legend>Access</legend>
+      <legend class="stepy-legend">Access</legend>
 
       <input type="hidden" name="id" />
 
@@ -610,7 +609,7 @@
     </fieldset>
 
     <fieldset title="Personal" class="stepy-step">
-      <legend>About you</legend>
+      <legend class="stepy-legend">About you</legend>
 
       <p>
         <label for="name-2">Name:</label>
@@ -636,7 +635,7 @@
     </fieldset>
 
     <fieldset title="Professional" class="stepy-step">
-      <legend>Your professional informations</legend>
+      <legend class="stepy-legend">Your professional informations</legend>
 
       <p class="skills">
         <input id="ruby-2" type="checkbox" name="ruby-2" />
@@ -683,14 +682,14 @@
 </h2>
 
 <p>
-  Display the <code>legend</code> element on fieldset.<br />
-  When this option is <code>false</code>, it's just hidden. The content of the <code>legend</code> element will be used to set the header description.
+  Display the <code>.stepy-legend</code> element on fieldset.<br />
+  When this option is <code>false</code>, it's just hidden. The content of the <code>.stepy-legend</code> element will be used to set the header description.
 </p>
 
 <div class="demo">
   <form id="legend-demo">
     <fieldset title="Login" class="stepy-step">
-      <legend>Access</legend>
+      <legend class="stepy-legend">Access</legend>
 
       <input type="hidden" name="id" />
 
@@ -714,7 +713,7 @@
     </fieldset>
 
     <fieldset title="Personal" class="stepy-step">
-      <legend>About you</legend>
+      <legend class="stepy-legend">About you</legend>
 
       <p>
         <label for="name-2">Name:</label>
@@ -740,7 +739,7 @@
     </fieldset>
 
     <fieldset title="Professional" class="stepy-step">
-      <legend>Your professional informations</legend>
+      <legend class="stepy-legend">Your professional informations</legend>
 
       <p class="skills">
         <input id="ruby-2" type="checkbox" name="ruby-2" />
@@ -789,7 +788,7 @@
 <div class="demo">
   <form id="next-demo">
     <fieldset title="Login" class="stepy-step">
-      <legend>Access</legend>
+      <legend class="stepy-legend">Access</legend>
 
       <input type="hidden" name="id" />
 
@@ -813,7 +812,7 @@
     </fieldset>
 
     <fieldset title="Personal" class="stepy-step">
-      <legend>About you</legend>
+      <legend class="stepy-legend">About you</legend>
 
       <p>
         <label for="name-2">Name:</label>
@@ -839,7 +838,7 @@
     </fieldset>
 
     <fieldset title="Professional" class="stepy-step">
-      <legend>Your professional informations</legend>
+      <legend class="stepy-legend">Your professional informations</legend>
 
       <p class="skills">
         <input id="ruby-2" type="checkbox" name="ruby-2" />
@@ -891,7 +890,7 @@
 <div class="demo">
   <form id="back-demo">
     <fieldset title="Login" class="stepy-step">
-      <legend>Access</legend>
+      <legend class="stepy-legend">Access</legend>
 
       <input type="hidden" name="id" />
 
@@ -915,7 +914,7 @@
     </fieldset>
 
     <fieldset title="Personal" class="stepy-step">
-      <legend>About you</legend>
+      <legend class="stepy-legend">About you</legend>
 
       <p>
         <label for="name-2">Name:</label>
@@ -941,7 +940,7 @@
     </fieldset>
 
     <fieldset title="Professional" class="stepy-step">
-      <legend>Your professional informations</legend>
+      <legend class="stepy-legend">Your professional informations</legend>
 
       <p class="skills">
         <input id="ruby-2" type="checkbox" name="ruby-2" />
@@ -994,7 +993,7 @@
 <div class="demo">
   <form id="select-demo">
     <fieldset title="Login" class="stepy-step">
-      <legend>Access</legend>
+      <legend class="stepy-legend">Access</legend>
 
       <input type="hidden" name="id" />
 
@@ -1018,7 +1017,7 @@
     </fieldset>
 
     <fieldset title="Personal" class="stepy-step">
-      <legend>About you</legend>
+      <legend class="stepy-legend">About you</legend>
 
       <p>
         <label for="name-2">Name:</label>
@@ -1044,7 +1043,7 @@
     </fieldset>
 
     <fieldset title="Professional" class="stepy-step">
-      <legend>Your professional informations</legend>
+      <legend class="stepy-legend">Your professional informations</legend>
 
       <p class="skills">
         <input id="ruby-2" type="checkbox" name="ruby-2" />
@@ -1096,7 +1095,7 @@
 <div class="demo">
   <form id="titleTarget-demo">
     <fieldset title="Login" class="stepy-step">
-      <legend>Access</legend>
+      <legend class="stepy-legend">Access</legend>
 
       <input type="hidden" name="id" />
 
@@ -1120,7 +1119,7 @@
     </fieldset>
 
     <fieldset title="Personal" class="stepy-step">
-      <legend>About you</legend>
+      <legend class="stepy-legend">About you</legend>
 
       <p>
         <label for="name-2">Name:</label>
@@ -1146,7 +1145,7 @@
     </fieldset>
 
     <fieldset title="Professional" class="stepy-step">
-      <legend>Your professional informations</legend>
+      <legend class="stepy-legend">Your professional informations</legend>
 
       <p class="skills">
         <input id="ruby-2" type="checkbox" name="ruby-2" />
@@ -1197,7 +1196,7 @@
 <div class="demo">
   <form id="transition-duration-demo">
     <fieldset title="Login" class="stepy-step">
-      <legend>Access</legend>
+      <legend class="stepy-legend">Access</legend>
 
       <input type="hidden" name="id" />
 
@@ -1221,7 +1220,7 @@
     </fieldset>
 
     <fieldset title="Personal" class="stepy-step">
-      <legend>About you</legend>
+      <legend class="stepy-legend">About you</legend>
 
       <p>
         <label for="name-2">Name:</label>
@@ -1247,7 +1246,7 @@
     </fieldset>
 
     <fieldset title="Professional" class="stepy-step">
-      <legend>Your professional informations</legend>
+      <legend class="stepy-legend">Your professional informations</legend>
 
       <p class="skills">
         <input id="ruby-2" type="checkbox" name="ruby-2" />
@@ -1388,7 +1387,7 @@ The class to find the back button inside each step.<br />
 <div class="demo">
   <form id="backButton-demo">
   <fieldset title="Login" class="stepy-step">
-    <legend>Access</legend>
+    <legend class="stepy-legend">Access</legend>
 
     <p>
       <label for="username-2">Username:</label>
@@ -1410,7 +1409,7 @@ The class to find the back button inside each step.<br />
   </fieldset>
 
   <fieldset title="Personal" class="stepy-step">
-    <legend>About you</legend>
+    <legend class="stepy-legend">About you</legend>
 
     <p>
       <label for="name-2">Name:</label>
@@ -1436,7 +1435,7 @@ The class to find the back button inside each step.<br />
   </fieldset>
 
   <fieldset title="Professional" class="stepy-step">
-    <legend>Your professional informations</legend>
+    <legend class="stepy-legend">Your professional informations</legend>
 
     <p class="skills">
       <input id="ruby-2" type="checkbox" name="ruby-2" />
@@ -1484,7 +1483,7 @@ The class to find the back button inside each step.<br />
 <div class="demo">
   <form id="nextButton-demo">
   <fieldset title="Login" class="stepy-step">
-    <legend>Access</legend>
+    <legend class="stepy-legend">Access</legend>
 
     <p>
       <label for="username-2">Username:</label>
@@ -1506,7 +1505,7 @@ The class to find the back button inside each step.<br />
   </fieldset>
 
   <fieldset title="Personal" class="stepy-step">
-    <legend>About you</legend>
+    <legend class="stepy-legend">About you</legend>
 
     <p>
       <label for="name-2">Name:</label>
@@ -1532,7 +1531,7 @@ The class to find the back button inside each step.<br />
   </fieldset>
 
   <fieldset title="Professional" class="stepy-step">
-    <legend>Your professional informations</legend>
+    <legend class="stepy-legend">Your professional informations</legend>
 
     <p class="skills">
       <input id="ruby-2" type="checkbox" name="ruby-2" />
@@ -1580,7 +1579,7 @@ The class to find the back button inside each step.<br />
 <div class="demo">
   <form id="globalButtons-demo">
   <fieldset title="Login" class="stepy-step">
-    <legend>Access</legend>
+    <legend class="stepy-legend">Access</legend>
 
     <p>
       <label for="username-2">Username:</label>
@@ -1599,7 +1598,7 @@ The class to find the back button inside each step.<br />
   </fieldset>
 
   <fieldset title="Personal" class="stepy-step">
-    <legend>About you</legend>
+    <legend class="stepy-legend">About you</legend>
 
     <p>
       <label for="name-2">Name:</label>
@@ -1622,7 +1621,7 @@ The class to find the back button inside each step.<br />
   </fieldset>
 
   <fieldset title="Professional" class="stepy-step">
-    <legend>Your professional informations</legend>
+    <legend class="stepy-legend">Your professional informations</legend>
 
     <p class="skills">
       <input id="ruby-2" type="checkbox" name="ruby-2" />

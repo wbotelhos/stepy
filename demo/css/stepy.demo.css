@@ -1,12 +1,3 @@
-.stepy-finish {
-  background-color: transparent;
-  border-radius: 3px !important;
-  border: 1px solid #ccc !important;
-  float: right;
-  height: 33px !important;
-  width: 80px !important;
-}
-
 .stepy-header { list-style: none; padding: 0; width: 724px }
   .stepy-header li { cursor: pointer; float: left; padding: 10px }
     .stepy-header li.stepy-error { background: url('../demo/img/error.png') no-repeat right top }
@@ -16,7 +7,6 @@
     .stepy-header li.stepy-active span { color: #bbb }
 
 .stepy-step { border: 1px solid #bbb; clear: left; padding: 15px 20px; width: 600px; -khtml-border-radius: 3px; -moz-border-radius: 3px; -opera-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px }
-  .stepy-step legend { color: #4080bf; font: bold 1.8em arial; letter-spacing: .7px; padding: 0 2px 3px }
   .stepy-step label { color: #222; display: block; font: bold 1.5em arial; letter-spacing: .7px; margin: 10px 0 3px 1px }
 
   .stepy-step input,
@@ -48,6 +38,22 @@
 .stepy-back:hover, .stepy-next:hover {
   border-color: #bbb;
   color: #b07;
+}
+
+.stepy-finish {
+  background-color: transparent;
+  border-radius: 3px !important;
+  border: 1px solid #ccc !important;
+  float: right;
+  height: 33px !important;
+  width: 80px !important;
+}
+
+.stepy-legend {
+  color: #4080bf;
+  font: bold 1.8em arial;
+  letter-spacing: .7px;
+  padding: 0 2px 3px
 }
 
 .stepy-next {
