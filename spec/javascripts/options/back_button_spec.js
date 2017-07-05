@@ -16,6 +16,17 @@ describe('backButton', function() {
       // then
       expect(self.find('.stepy-back')).toBeHidden();
     });
+
+    it ('starts with index zero', function() {
+      // given
+      var self = $('form');
+
+      // when
+      self.stepy();
+
+      // then
+      expect(self.data('index')).toEqual(0);
+    });
   });
 
   context('on second step', function() {
@@ -28,6 +39,17 @@ describe('backButton', function() {
 
       // then
       expect(self.find('fieldset:eq(1) .stepy-back')).toBeVisible();
+    });
+
+    it ('starts with index one', function() {
+      // given
+      var self = $('form').stepy();
+
+      // when
+      self.find('fieldset:eq(0) .stepy-next').trigger('click');
+
+      // then
+      expect(self.data('index')).toEqual(1);
     });
   });
 
@@ -42,6 +64,18 @@ describe('backButton', function() {
 
       // then
       expect(self.find('fieldset:eq(2) .stepy-back')).toBeVisible();
+    });
+
+    it ('starts with index two', function() {
+      // given
+      var self = $('form').stepy();
+
+      // when
+      self.find('fieldset:eq(0) .stepy-next').trigger('click');
+      self.find('fieldset:eq(1) .stepy-next').trigger('click');
+
+      // then
+      expect(self.data('index')).toEqual(2);
     });
   });
 });
