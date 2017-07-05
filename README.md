@@ -35,22 +35,21 @@ validate:    false      // Active the jQuery Validation for each step.
 
 ```html
 <form>
-  <fieldset title="Step 1">
-    <legend>description one</legend>
+  <fieldset title="Step 1" class="stepy-step">
+    <legend class="stepy-legend">description one</legend>
 
     <!-- inputs -->
-
-    <a class="stepy-next">next</a>
   </fieldset>
 
-  <fieldset title="Step 2">
-    <legend>description two</legend>
+  <fieldset title="Step 2" class="stepy-step">
+    <legend class="stepy-legend">description two</legend>
 
     <!-- inputs -->
-
-    <a class="stepy-back">back</a>
-    <input type="submit" class="stepy-finish" />
   </fieldset>
+
+  <a class="stepy-back">back</a>
+  <a class="stepy-next">next</a>
+  <input type="submit" class="stepy-finish" />
 </form>
 ```
 
