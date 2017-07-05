@@ -25,17 +25,20 @@ describe('common', function() {
 
     // then
     expect(opt.bacck).toBeUndefined();
+    expect(opt.backButton).toEqual('.stepy-back');
     expect(opt.block).toBeFalsy();
     expect(opt.description).toBeTruthy();
     expect(opt.duration).toEqual(0);
     expect(opt.enter).toBeTruthy();
     expect(opt.errorImage).toBeFalsy();
     expect(opt.finish).toBeUndefined();
-    expect(opt.finishButton).toBeUndefined();
+    expect(opt.finishButton).toEqual('.stepy-finish');
     expect(opt.header).toBeTruthy();
     expect(opt.ignore).toEqual('');
     expect(opt.legend).toBeTruthy();
+    expect(opt.legendClass).toEqual('.stepy-finish');
     expect(opt.next).toBeUndefined();
+    expect(opt.nextButton).toEqual('.stepy-next');
     expect(opt.select).toBeUndefined();
     expect(opt.titleClick).toBeFalsy();
     expect(opt.titleTarget).toBeUndefined();

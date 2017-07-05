@@ -10,7 +10,7 @@ describe('titles', function() {
     var self = $('form').stepy();
 
     // when
-    var menus  = $('#' + self.attr('id') + '-header').children('li');
+    var menus  = $('#' + self.attr('id') + '-header li');
 
     // then
     expect(menus.eq(0).children('div')).toHaveHtml('Step 1');
@@ -20,11 +20,12 @@ describe('titles', function() {
 
   it ('has the click disabled', function() {
     // given
-    var self  = $('form').stepy(),
+    var
+      self  = $('form').stepy(),
       steps = self.children();
 
     // when
-    $('#' + self.attr('id') + '-header').children('li:eq(1)').click();
+    $('#' + self.attr('id') + '-header li:eq(1)').trigger('click');
 
     // then
     expect(steps.eq(0)).toBeVisible();
