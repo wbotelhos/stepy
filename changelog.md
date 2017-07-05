@@ -4,19 +4,24 @@
 
 ### News
 
-- Added option `header` to choose if header will be created or not.
+- Added option `backButton` to find the back button;
+- Added option `finishButton` to find the finish button;
+- Added option `header` to choose if header will be created or not;
+- Added option `legendClass` to choose the legend class name;
+- Added option `nextButton` to find the next button.
+- Added option `stepClass` to choose the step class name;
 
 #### Changes
 
 - Class `button-back` was renamed to `stepy-back`;
 - Class `button-next` was renamed to `stepy-next`;
-- The finish button now is mandatory to have class `stepy-finish`;
+- The finish button now is mandatory to a class;
 - The finish button is no more moved from its original place;
 - The `stepy-navigator` is no more created. Buttons is appended on step;
 - The `backLabel` and `nextLabel` were dropped, since button now is by you;
-- The `backButton` and `nextButton` now can be located any where inside the wrapper;
-- The `slide` `transition` now is between left and right and was improved;
-- The `fieldset` element is no more required, use the class `stepy-step`;
+- The `backButton` and `nextButton` now can be located anywhere inside the wrapper;
+- The `slide` `transition` now is moved between left and right and was improved;
+- The `fieldset` element is no more required, use the class from `stepClass`;
 - The `legend` element is no more required, use the class `stepy-legend`.
 
 ### 1.2.0
