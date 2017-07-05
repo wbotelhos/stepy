@@ -35,10 +35,10 @@ describe('header', function() {
       var self = $('form').stepy({
         header: false,
         finish: function() {
-           $(this).data('called', true);
+          $(this).data('called', true);
 
-           return false;
-         }
+          return false;
+        }
       });
 
       // when
