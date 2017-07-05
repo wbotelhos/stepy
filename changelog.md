@@ -13,7 +13,11 @@
 - The finish button now is mandatory to have class `stepy-finish`;
 - The finish button is no more moved from its original place;
 - The `stepy-navigator` is no more created. Buttons is appended on step;
-- The `backLabel` and `nextLabel` were dropped, since button now is by you.
+- The `backLabel` and `nextLabel` were dropped, since button now is by you;
+- The `backButton` and `nextButton` now can be located any where inside the wrapper;
+- The `slide` `transition` now is between left and right and was improved;
+- The `fieldset` element is no more required, use the class `stepy-step`;
+- The `legend` element is no more required, use the class `stepy-legend`.
 
 ### 1.2.0
 
