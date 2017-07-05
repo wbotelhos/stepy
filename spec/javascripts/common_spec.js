@@ -36,10 +36,11 @@ describe('common', function() {
     expect(opt.header).toBeTruthy();
     expect(opt.ignore).toEqual('');
     expect(opt.legend).toBeTruthy();
-    expect(opt.legendClass).toEqual('.stepy-finish');
+    expect(opt.legendClass).toEqual('stepy-legend');
     expect(opt.next).toBeUndefined();
     expect(opt.nextButton).toEqual('.stepy-next');
     expect(opt.select).toBeUndefined();
+    expect(opt.stepClass).toEqual('stepy-step');
     expect(opt.titleClick).toBeFalsy();
     expect(opt.titleTarget).toBeUndefined();
     expect(opt.transition).toBeUndefined();
