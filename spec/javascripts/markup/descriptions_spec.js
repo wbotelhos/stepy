@@ -10,11 +10,11 @@ describe('descriptions', function() {
     var self = $('form').stepy();
 
     // when
-    var menus = $('#' + self.attr('id') + '-header').children('li');
+    var lis = $('.stepy-header li');
 
     // then
-    expect(menus.eq(0).children('span')).toHaveHtml('description 1');
-    expect(menus.eq(1).children('span')).toHaveHtml('description 2');
-    expect(menus.eq(2).children('span')).toHaveHtml('description 3');
+    expect(lis.eq(0).find('span').text()).toEqual('legend 1');
+    expect(lis.eq(1).find('span').text()).toEqual('legend 2');
+    expect(lis.eq(2).find('span').text()).toEqual('legend 3');
   });
 });

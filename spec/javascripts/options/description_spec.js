@@ -14,11 +14,11 @@ describe('description', function() {
       self.stepy({ description: false });
 
       // then
-      var menus = $('#' + self.attr('id') + '-header').children('li');
+      var lis = $('.stepy-header li');
 
-      expect(menus.eq(0).find('span').length).toEqual(0);
-      expect(menus.eq(1).find('span').length).toEqual(0);
-      expect(menus.eq(2).find('span').length).toEqual(0);
+      expect(lis.eq(0).find('span').length).toEqual(0);
+      expect(lis.eq(1).find('span').length).toEqual(0);
+      expect(lis.eq(2).find('span').length).toEqual(0);
     });
   });
 });
