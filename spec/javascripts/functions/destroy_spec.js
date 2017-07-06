@@ -16,26 +16,26 @@ describe('funcions', function() {
     expect(ref).toEqual(self);
   });
 
-  it ('shows all steps', function() {
+  it ('removes all active step', function() {
     // given
     var
       self  = $('form').stepy(),
-      steps = self.children('fieldset');
+      steps = self.find('.stepy-step');
 
     // when
     self.stepy('destroy');
 
     // then
-    expect(steps.eq(0)).toBeVisible();
-    expect(steps.eq(1)).toBeVisible();
-    expect(steps.eq(2)).toBeVisible();
+    expect(steps.eq(0)).not.toHaveClass('stepy-active');
+    expect(steps.eq(1)).not.toHaveClass('stepy-active');
+    expect(steps.eq(2)).not.toHaveClass('stepy-active');
   });
 
   it ('removes the back buttons', function() {
     // given
     var
       self  = $('form').stepy(),
-      steps = self.children('fieldset');
+      steps = self.find('.stepy-step');
 
     // when
     self.stepy('destroy');
@@ -60,7 +60,7 @@ describe('funcions', function() {
       // given
       var
         self  = $('form').stepy({ validate: true }),
-        steps = self.children('fieldset');
+        steps = self.find('.stepy-step');
 
       // when
       self.stepy('destroy');

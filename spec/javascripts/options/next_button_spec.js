@@ -14,7 +14,7 @@ describe('nextButton', function() {
       self.stepy();
 
       // then
-      expect(self.find('.stepy-next')).toBeVisible();
+      expect(self.find('.stepy-next')).toHaveClass('stepy-active');
     });
 
     it ('starts with index one', function() {
@@ -38,7 +38,7 @@ describe('nextButton', function() {
       self.find('fieldset:eq(0) .stepy-next').trigger('click');
 
       // then
-      expect(self.find('fieldset:eq(1) .stepy-next')).toBeVisible();
+      expect(self.find('fieldset:eq(1) .stepy-next')).toHaveClass('stepy-active');
     });
 
     it ('starts with index two', function() {
@@ -63,7 +63,7 @@ describe('nextButton', function() {
       self.find('fieldset:eq(1) .stepy-next').trigger('click');
 
       // then
-      expect(self.find('fieldset:eq(0) .stepy-next')).toBeHidden();
+      expect(self.find('fieldset:eq(0) .stepy-next')).not.toHaveClass('stepy-active');
     });
 
     it ('starts with index two', function() {

@@ -14,7 +14,7 @@ describe('backButton', function() {
       self.stepy();
 
       // then
-      expect(self.find('.stepy-back')).toBeHidden();
+      expect(self.find('.stepy-back')).not.toHaveClass('stepy-active');
     });
 
     it ('starts with index zero', function() {
@@ -38,7 +38,7 @@ describe('backButton', function() {
       self.find('fieldset:eq(0) .stepy-next').trigger('click');
 
       // then
-      expect(self.find('fieldset:eq(1) .stepy-back')).toBeVisible();
+      expect(self.find('fieldset:eq(1) .stepy-back')).toHaveClass('stepy-active');
     });
 
     it ('starts with index one', function() {
@@ -63,7 +63,7 @@ describe('backButton', function() {
       self.find('fieldset:eq(1) .stepy-next').trigger('click');
 
       // then
-      expect(self.find('fieldset:eq(2) .stepy-back')).toBeVisible();
+      expect(self.find('fieldset:eq(2) .stepy-back')).toHaveClass('stepy-active');
     });
 
     it ('starts with index two', function() {

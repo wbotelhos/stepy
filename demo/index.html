@@ -1296,76 +1296,76 @@ If you don't want a header, you can just change <code>header</code> to <code>fal
 
 <div class="demo">
   <form id="header-demo">
-  <fieldset>
-    <p>
-      <label for="username-2">Username:</label>
-      <input id="username-2" type="text" value="wbotelhos" disabled="disabled" />
-    </p>
+    <fieldset title="Login" class="stepy-step">
+      <legend class="stepy-legend">Access</legend>
 
-    <p>
-      <label for="email-2">E-mail:</label>
-      <input id="email-2" type="text" />
-    </p>
+      <p>
+        <label for="username-2">Username:</label>
+        <input id="username-2" type="text" value="wbotelhos" disabled="disabled" />
+      </p>
 
-    <p>
-      <label for="password-2">Password:</label>
-      <input id="password-2" type="password" />
-    </p>
+      <p>
+        <label for="email-2">E-mail:</label>
+        <input id="email-2" type="text" />
+      </p>
 
-    <a href="#" class="stepy-back">back</a>
-    <a href="#" class="stepy-next">next</a>
-  </fieldset>
+      <p>
+        <label for="password-2">Password:</label>
+        <input id="password-2" type="password" />
+      </p>
+    </fieldset>
 
-  <fieldset>
-    <p>
-      <label for="name-2">Name:</label>
-      <input id="name-2" type="text" />
-    </p>
+    <fieldset title="Personal" class="stepy-step">
+      <legend class="stepy-legend">About you</legend>
 
-    <p>
-      <label for="birthday-2">Birthday:</label>
+      <p>
+        <label for="name-2">Name:</label>
+        <input id="name-2" type="text" />
+      </p>
 
-      <select id="birthday-2" name="day">
-        <option></option>
-        <option>1984</option>
-      </select>
-    </p>
+      <p>
+        <label for="birthday-2">Birthday:</label>
 
-    <p>
-      <label for="bio-2">Bio:</label>
-      <textarea id="bio-2"></textarea>
-    </p>
+        <select id="birthday-2" name="day">
+          <option></option>
+          <option>1984</option>
+        </select>
+      </p>
 
-    <a href="#" class="stepy-back">back</a>
-    <a href="#" class="stepy-next">next</a>
-  </fieldset>
+      <p>
+        <label for="bio-2">Bio:</label>
+        <textarea id="bio-2"></textarea>
+      </p>
+    </fieldset>
 
-  <fieldset>
-    <p class="skills">
-      <input id="ruby-2" type="checkbox" name="ruby-2" />
-      <label for="ruby-2">Ruby</label>
+    <fieldset title="Professional" class="stepy-step">
+      <legend class="stepy-legend">Your professional informations</legend>
 
-      <input id="python-2" type="checkbox" name="python" />
-      <label for="python-2">Python</label>
+      <p class="skills">
+        <input id="ruby-2" type="checkbox" name="ruby-2" />
+        <label for="ruby-2">Ruby</label>
 
-      <input id="java-2" type="checkbox" name="java" />
-      <label for="java-2">Java</label>
+        <input id="python-2" type="checkbox" name="python" />
+        <label for="python-2">Python</label>
 
-      <input id="javascript-2" type="checkbox" name="javascript" />
-      <label for="javascript-2">Javascript</label>
-    </p>
+        <input id="java-2" type="checkbox" name="java" />
+        <label for="java-2">Java</label>
 
-    <p>
-      <label for="linkedin-2">Linkedin:</label>
-      <input id="linkedin-2" type="text" name="Linkedin" />
-    </p>
+        <input id="javascript-2" type="checkbox" name="javascript" />
+        <label for="javascript-2">Javascript</label>
+      </p>
+
+      <p>
+        <label for="linkedin-2">Linkedin:</label>
+        <input id="linkedin-2" type="text" name="Linkedin" />
+      </p>
+    </fieldset>
 
     <a href="#" class="stepy-back">back</a>
     <a href="#" class="stepy-next">next</a>
 
     <input type="submit" value="Finish!" class="stepy-finish" />
-  </fieldset>
-</form>
+  </form>
 </div>
 
 <div class="highlight">
@@ -1577,7 +1577,7 @@ The class to find the back button inside each step.<br />
 </p>
 
 <div class="demo">
-  <form id="globalButtons-demo">
+<form id="globalButtons-demo">
   <fieldset title="Login" class="stepy-step">
     <legend class="stepy-legend">Access</legend>
 
@@ -1822,7 +1822,7 @@ The class to find the back button inside each step.<br />
 
     $('#enter-demo').stepy({ enter: true});
 
-    $('#finishButton-demo').stepy({ finishButton: false });
+    $('#finishButton-demo').stepy({ finishButton: '.stepy-finish' });
 
     $('#finish-demo').stepy({
       finish: function() {

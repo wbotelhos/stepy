@@ -13,7 +13,7 @@ describe('finishButton', function() {
     self.stepy();
 
     // then
-    expect(self.find('.stepy-finish')).toBeHidden();
+    expect(self.find('.stepy-finish')).not.toHaveClass('stepy-active');
   });
 
   context('on second step', function() {
@@ -22,10 +22,10 @@ describe('finishButton', function() {
       var self = $('form').stepy();
 
       // when
-      self.find('fieldset:eq(0)').find('.stepy-next').trigger('click');
+      self.find('fieldset:eq(0) .stepy-next').trigger('click');
 
       // then
-      expect(self.find('.stepy-finish')).toBeHidden();
+      expect(self.find('.stepy-finish')).not.toHaveClass('stepy-active');
     });
   });
 
@@ -35,11 +35,11 @@ describe('finishButton', function() {
       var self = $('form').stepy();
 
       // when
-      self.find('fieldset:eq(0)').find('.stepy-next').trigger('click');
-      self.find('fieldset:eq(1)').find('.stepy-next').trigger('click');
+      self.find('fieldset:eq(0) .stepy-next').trigger('click');
+      self.find('fieldset:eq(1) .stepy-next').trigger('click');
 
       // then
-      expect(self.find('.stepy-finish')).toBeVisible();
+      expect(self.find('.stepy-finish')).toHaveClass('stepy-active');
     });
   });
 });
