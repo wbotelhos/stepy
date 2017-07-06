@@ -17,7 +17,7 @@ describe('select', function() {
     self.find('fieldset:eq(0) .stepy-next').trigger('click');
 
     // then
-    expect(self.data('step')).toEqual(2);
+    expect(self.data('step')).toEqual(1);
     expect(self.data('totalSteps')).toEqual(3);
   });
 });

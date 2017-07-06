@@ -76,7 +76,7 @@ describe('titleTarget', function() {
         $('#' + self[0].id + '-header li:eq(1)').trigger('click');
 
         // then
-        expect(self.data('step')).toEqual(2);
+        expect(self.data('step')).toEqual(1);
       });
     });
   });
