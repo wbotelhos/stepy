@@ -1,0 +1,15 @@
+.stepy-step {
+  display: none;
+}
+
+.stepy-step.stepy-active {
+  display: block;
+}
+
+.stepy-back, .stepy-next, .stepy-finish {
+  visibility: hidden;
+}
+
+.stepy-back.stepy-active, .stepy-next.stepy-active, .stepy-finish.stepy-active {
+  visibility: visible;
+}
