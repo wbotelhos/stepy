@@ -22,7 +22,9 @@
 - The `backButton` and `nextButton` now can be located anywhere inside the wrapper;
 - The `slide` `transition` now is moved between left and right and was improved;
 - The `fieldset` element is no more required, use the class from `stepClass`;
-- The `legend` element is no more required, use the class `stepy-legend`.
+- The `legend` element is no more required, use the class `stepy-legend`;
+- The jQuery Validation dependency was dropped;
+- The `validate` option now is a callback where you can validate each field of each step.
 
 ### 1.2.0
 

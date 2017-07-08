@@ -28,7 +28,7 @@ select:      undefined  // Callback executed when the step is shown.
 titleClick:  true       // Active the back and next action in the titles.
 titleTarget: undefined  // Choose the place where titles will be placed.
 transition:  'hide'     // Use transition between steps ('hide', 'fade' or 'slide').
-validate:    false      // Active the jQuery Validation for each step.
+validate:    undefined  // Callback to each field of each step.
 ```
 
 ## Usage

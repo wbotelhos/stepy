@@ -10,24 +10,18 @@ describe('validate', function() {
       it ('displays the error', function() {
         // given
         var
-          self  = $('form').stepy({ validate: true }),
+          self = $('form').stepy({
+            validate: function(field) {
+              return self.validaty('validate', $(field)).data('valid');
+            }
+          }).validaty(),
           steps = self.children('fieldset');
-
-        self.validate({
-          errorPlacement: function(error, element) {
-            $('#stepy div.stepy-errors').append(error);
-          }, rules: {
-            'password':  'required'
-          }, messages: {
-            'password':  { required: 'Password field is requerid!' }
-          }
-        });
 
         // when
         steps.eq(1).find('.stepy-next').click();
 
         // then
-        expect(self.find('.stepy-errors label.error').length).toEqual(1);
+        expect(self.find('.validaty-balloon').length).toEqual(1);
       });
     });
   });

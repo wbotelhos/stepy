@@ -14,8 +14,6 @@ module.exports = function(config) {
     files: [
       'node_modules/jquery/dist/jquery.min.js',
       'node_modules/jasmine-jquery/lib/jasmine-jquery.js',
-      'node_modules/jquery-validation/dist/jquery.validate.min.js',
-      'node_modules/jquery-validation/dist/jquery.validate.min.js',
       'node_modules/validaty/lib/jquery.validaty.js',
       'node_modules/validaty/lib/jquery.validaty.validators.js',
 

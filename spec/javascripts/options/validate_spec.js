@@ -5,28 +5,21 @@ describe('validate', function() {
     fixture.load('default.html');
   });
 
-  context('when enabled', function() {
+  context('when validation is given', function() {
     context('and fails', function() {
       it ('displays error', function() {
         // given
-        var self  = $('form').stepy({ validate: true }),
-          steps = self.children('fieldset');
-
-        self.validate({
-          errorPlacement: function(error, element) {
-            $('#stepy div.stepy-errors').append(error);
-          }, rules: {
-            'password':  'required'
-          }, messages: {
-            'password':  { required: 'Password field is requerid!' }
+        var self = $('form').stepy({
+          validate: function(field) {
+            return self.validaty('validate', $(field)).data('valid');
           }
-        });
+        }).validaty();
 
         // when
-        steps.eq(1).find('.stepy-next').click();
+        self.find('.stepy-step:eq(0) .stepy-next').trigger('click');
 
         // then
-        expect(self.find('.stepy-errors label.error').length).toEqual(1);
+        expect(self.find('.validaty-balloon').length).toEqual(1);
       });
     });
   });

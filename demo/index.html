@@ -1748,6 +1748,96 @@ The class to find the back button inside each step.<br />
 </pre>
 </div>
 
+<!-- option: validate -->
+
+<h2 id="block">
+  <a href="#block">block</a>
+</h2>
+
+<p>
+  This options blocks the navigation to next step if the current is invalid.
+</p>
+
+<div class="demo">
+<form id="block-demo">
+  <fieldset title="Login" class="stepy-step">
+    <legend class="stepy-legend">Access</legend>
+
+    <p>
+      <label for="username-2">Username:</label>
+      <input id="username-2" type="text" data-validaty="required" />
+    </p>
+
+    <p>
+      <label for="email-2">E-mail:</label>
+      <input id="email-2" type="text" />
+    </p>
+
+    <p>
+      <label for="password-2">Password:</label>
+      <input id="password-2" type="password" />
+    </p>
+  </fieldset>
+
+  <fieldset title="Personal" class="stepy-step">
+    <legend class="stepy-legend">About you</legend>
+
+    <p>
+      <label for="name-2">Name:</label>
+      <input id="name-2" type="text" data-validaty="required" />
+    </p>
+
+    <p>
+      <label for="birthday-2">Birthday:</label>
+
+      <select id="birthday-2" name="day">
+        <option></option>
+        <option>1984</option>
+      </select>
+    </p>
+
+    <p>
+      <label for="bio-2">Bio:</label>
+      <textarea id="bio-2"></textarea>
+    </p>
+  </fieldset>
+
+  <fieldset title="Professional" class="stepy-step">
+    <legend class="stepy-legend">Your professional informations</legend>
+
+    <p class="skills">
+      <input id="ruby-2" type="checkbox" name="ruby-2" />
+      <label for="ruby-2">Ruby</label>
+
+      <input id="python-2" type="checkbox" name="python" />
+      <label for="python-2">Python</label>
+
+      <input id="java-2" type="checkbox" name="java" />
+      <label for="java-2">Java</label>
+
+      <input id="javascript-2" type="checkbox" name="javascript" />
+      <label for="javascript-2">Javascript</label>
+    </p>
+
+    <p>
+      <label for="linkedin-2">Linkedin:</label>
+      <input id="linkedin-2" type="text" name="Linkedin" />
+    </p>
+  </fieldset>
+
+  <a href="#" class="stepy-back">back</a>
+  <a href="#" class="stepy-next">next</a>
+
+  <input type="submit" value="Finish!" class="stepy-finish" />
+</form>
+</div>
+
+<div class="highlight">
+<pre>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'form'</span><span class="p">).</span><span class="nx">stepy</span><span class="p">({</span> <span class="nx">nextButton</span><span class="o">:</span> <span class="s1">'.stepy-next'</span> <span class="p">});</span>
+</pre>
+</div>
+
 <!-- section: options -->
 
 <h2 id="options">
@@ -1836,7 +1926,7 @@ The class to find the back button inside each step.<br />
 
 <div id="validate" class="option">
   <div>validate: <span>false</span></div>
-  <p>Active the jQuery Validation for each step.</p>
+  <p>Callback to each field of each step.</p>
 </div>
 
 <h2 id="global">
@@ -1960,7 +2050,14 @@ The class to find the back button inside each step.<br />
 
     var validateForm = $('#validate-demo').stepy({
       validate: function(field) {
-        return validateForm.validaty('validate', $(field));
+        return validateForm.validaty('validate', $(field)).data('valid');
+      }
+    }).validaty();
+
+    var blockForm = $('#block-demo').stepy({
+      block: true,
+      validate: function(field) {
+        return blockForm.validaty('validate', $(field)).data('valid');
       }
     }).validaty();
   });

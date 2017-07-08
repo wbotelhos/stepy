@@ -10,8 +10,8 @@ describe('enter', function() {
       it ('goes to the next step', function() {
         // given
         var
-          self  = $('form').stepy({ enter: true, validate: false }),
-          steps = self.find('fieldset'),
+          self  = $('form').stepy({ enter: true }),
+          steps = self.find('.stepy-step'),
           evt   = $.Event('keypress', { which: 13, keyCode: 13 });
 
         // when
@@ -26,8 +26,8 @@ describe('enter', function() {
       it ('focus the first field', function() {
         // given
         var
-          self  = $('form').stepy({ enter: true, validate: false }),
-          steps = self.find('fieldset'),
+          self  = $('form').stepy({ enter: true }),
+          steps = self.find('.stepy-step'),
           evt   = $.Event('keypress', { which: 13, keyCode: 13 });
 
         // when
@@ -46,7 +46,7 @@ describe('enter', function() {
               validate: false,
               next:     function(index) { $(this).data('step', index); }
             }),
-            steps = self.find('fieldset'),
+            steps = self.find('.stepy-step'),
             evt   = $.Event('keypress', { which: 13, keyCode: 13 });
 
           // when
@@ -65,8 +65,8 @@ describe('enter', function() {
         it ('goes to the next step', function() {
           // given
           var
-            self  = $('form').stepy({ enter: true, validate: false }),
-            steps = self.find('fieldset'),
+            self  = $('form').stepy({ enter: true }),
+            steps = self.find('.stepy-step'),
             evt   = $.Event('keypress', { which: 13, keyCode: 13 });
 
           // when
@@ -81,20 +81,25 @@ describe('enter', function() {
     });
 
     context('with invalid step', function() {
-      beforeEach(function() {
-        $('form').validate({ rules: { 'password': 'required' } });
-      });
-
       context('with block enabled', function() {
         it ('does not goes to the next step', function() {
           // given
           var
-            self  = $('form').stepy({ enter: true, block: true, validate: true }),
-            steps = self.find('fieldset'),
-            evt   = $.Event('keypress', { which: 13, keyCode: 13 });
+            self = $('form').stepy({
+              enter: true,
+              block: true,
+
+              validate: function(field) {
+                return self.validaty('validate', $(field)).data('valid');
+              }
+            }).validaty(),
+            steps = self.find('.stepy-step');
 
           // when
-          steps.eq(0).find('input:visible:last').trigger(evt);
+          steps
+            .eq(0)
+            .find('input:visible:last')
+            .trigger($.Event('keypress', { which: 13, keyCode: 13 }));
 
           // then
           expect(steps.eq(0)).toBeVisible();
@@ -107,8 +112,15 @@ describe('enter', function() {
         it ('goes to the next step', function() {
           // given
           var
-            self  = $('form').stepy({ enter: true, block: false, validate: true }),
-            steps = self.find('fieldset'),
+          self = $('form').stepy({
+            enter: true,
+            block: false,
+
+            validate: function(field) {
+              return self.validaty('validate', $(field)).data('valid');
+            }
+          }).validaty(),
+            steps = self.find('.stepy-step'),
             evt   = $.Event('keypress', { which: 13, keyCode: 13 });
 
           // when
@@ -150,8 +162,8 @@ describe('enter', function() {
     it ('does not go to the next step', function() {
       // given
       var
-        self  = $('form').stepy({ enter: false, validate: false }),
-        steps = self.find('fieldset'),
+        self  = $('form').stepy({ enter: false }),
+        steps = self.find('.stepy-step'),
         evt   = $.Event('keypress', { which: 13, keyCode: 13 });
 
       // when

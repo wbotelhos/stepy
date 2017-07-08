@@ -44,7 +44,7 @@ describe('common', function() {
     expect(opt.titleClick).toBeFalsy();
     expect(opt.titleTarget).toBeUndefined();
     expect(opt.transition).toBeUndefined();
-    expect(opt.validate).toBeFalsy();
+    expect(opt.validate).toBeUndefined();
   });
 
   it ('receives the bind indicator', function() {

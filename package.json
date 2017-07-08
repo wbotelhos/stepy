@@ -16,7 +16,6 @@
   "devDependencies": {
     "jasmine-core": "^2.6.1",
     "jasmine-jquery": "^2.1.1",
-    "jquery-validation": "^1.16.0",
     "karma": "^1.7.0",
     "karma-chrome-launcher": "^2.1.1",
     "karma-firefox-launcher": "^1.0.1",
@@ -27,7 +26,7 @@
     "karma-opera-launcher": "^1.0.0",
     "karma-phantomjs-launcher": "^1.0.4",
     "karma-safari-launcher": "^1.0.0",
-    "validaty": "^0.5.1"
+    "validaty": "^0.5.2"
   },
   "directories": {
     "lib": "lib",

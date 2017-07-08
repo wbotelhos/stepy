@@ -86,18 +86,15 @@ describe('titleTarget', function() {
       it ('blocks the step change', function() {
         // given
         var
-          self  = $('form').stepy({ block: true, titleClick: true, validate: true }),
-          steps = self.children('fieldset');
+          self = $('form').stepy({
+            block: true,
+            titleClick: true,
 
-        self.validate({
-          errorPlacement: function(error, element) {
-            $('#stepy div.stepy-errors').append(error);
-          }, rules: {
-            'password':  'required'
-          }, messages: {
-            'password':  { required: 'Password field is requerid!' }
-          }
-        });
+            validate: function(field) {
+              return self.validaty('validate', $(field)).data('valid');
+            }
+          }).validaty(),
+          steps = self.children('fieldset');
 
         // when
         $('#' + self[0].id + '-header').children('li').eq(2).trigger('click');
@@ -113,18 +110,15 @@ describe('titleTarget', function() {
       it ('display the error image', function() {
         // given
         var
-          self   = $('form').stepy({ errorImage: true, titleClick: true, validate: true }),
-          titles = $('#' + self[0].id + '-header').children('li');
+          self = $('form').stepy({
+            errorImage: true,
+            titleClick: true,
 
-        self.validate({
-          errorPlacement: function(error, element) {
-            $('#stepy div.stepy-errors').append(error);
-          }, rules: {
-            'password':  'required'
-          }, messages: {
-            'password':  { required: 'Password field is requerid!' }
-          }
-        });
+            validate: function(field) {
+              return self.validaty('validate', $(field)).data('valid');
+            }
+          }).validaty(),
+          titles = $('#' + self[0].id + '-header').children('li');
 
         // when
         titles.eq(2).trigger('click');
