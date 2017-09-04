@@ -51,18 +51,22 @@ input[type="submit"].stepy-finish {
   width: 80px !important;
 }
 
+.stepy-finish,
+.stepy-back,
+.stepy-next {
+  display: none;
+}
+
+.stepy-active {
+  display: inline-block;
+}
+
 .stepy-finish:hover,
 .stepy-back:hover,
 .stepy-next:hover {
   color: #fff;
   box-shadow: 1px 1px 4px 0px rgba(0,0,0,.3);
   transition: box-shadow ease-in-out .2s, background-color ease-in-out .2s;
-}
-
-.demo form:after {
-  content: ' ';
-  clear: both;
-  display: block;
 }
 
 .stepy-legend {
