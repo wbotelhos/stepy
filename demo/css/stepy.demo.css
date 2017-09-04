@@ -1,4 +1,5 @@
-.stepy-header { list-style: none; padding: 0; width: 724px }
+.stepy-header { list-style: none; padding: 0; width: 100% }
+  .stepy-header:after { content: ' '; display: block; clear: both }
   .stepy-header li { cursor: pointer; float: left; padding: 10px }
     .stepy-header li.stepy-error { background: url('../demo/img/error.png') no-repeat right top }
     .stepy-header li div { color: #ccc; font: bold 2.8em verdana; text-shadow: 1px 1px #f8f8f8 }
@@ -6,12 +7,13 @@
     .stepy-header li span { color: #ccc; font: 1.4em verdana }
     .stepy-header li.stepy-active span { color: #bbb }
 
-.stepy-step { border: 1px solid #bbb; clear: left; padding: 15px 20px; width: 600px; -khtml-border-radius: 3px; -moz-border-radius: 3px; -opera-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px }
+.stepy-step { background-color: #f1f0f0; border: 1px solid #bbb; clear: left; padding: 15px 30px; -khtml-border-radius: 3px; -moz-border-radius: 3px; -opera-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; margin-bottom: 20px;  }
+
   .stepy-step label { color: #222; display: block; font: bold 1.5em arial; letter-spacing: .7px; margin: 10px 0 3px 1px }
 
   .stepy-step input,
   .stepy-step textarea,
-  .stepy-step select { border: 1px solid #999; border-radius: 5px; color: #333; font-size: 1.4em; height: 27px; margin-bottom: 12px; padding: 3px; width: 90% }
+  .stepy-step select { border: 1px solid #999; border-radius: 5px; color: #333; font-size: 1.4em; height: 27px; margin-bottom: 12px; padding: 3px; width: 100% }
 
   .stepy-step select { height: 34px; padding-top: 5px }
 
@@ -26,27 +28,41 @@
   -moz-border-radius: 3px;
   -opera-border-radius: 3px;
   -webkit-border-radius: 3px;
+  background-color: #369;
   border-radius: 3px;
-  border: 1px solid #ccc;
-  color: #7f0055;
+  border: 1px solid #405b75;
+  color: #fff;
   cursor: pointer;
   font: 1.2em verdana;
   padding: 7px 15px 8px;
   text-decoration: none;
+  transition: box-shadow ease-in-out .2s, background-color ease-in-out .2s;
 }
 
-.stepy-back:hover, .stepy-next:hover {
-  border-color: #bbb;
-  color: #b07;
-}
-
-.stepy-finish {
-  background-color: transparent;
+input[type="submit"].stepy-finish {
+  background-color: #369;
   border-radius: 3px !important;
-  border: 1px solid #ccc !important;
+  border: 1px solid #405b75 !important;
+  color: #fff;
+  cursor: pointer;
   float: right;
+  font: 1.2em verdana;
   height: 33px !important;
   width: 80px !important;
+}
+
+.stepy-finish:hover,
+.stepy-back:hover,
+.stepy-next:hover {
+  color: #fff;
+  box-shadow: 1px 1px 4px 0px rgba(0,0,0,.3);
+  transition: box-shadow ease-in-out .2s, background-color ease-in-out .2s;
+}
+
+.demo form:after {
+  content: ' ';
+  clear: both;
+  display: block;
 }
 
 .stepy-legend {
@@ -58,4 +74,9 @@
 
 .stepy-next {
   float: right
+}
+
+.highlight .demo-title {
+  font-size: 13px;
+  padding-top: 20px;
 }

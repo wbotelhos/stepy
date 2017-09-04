@@ -22,38 +22,41 @@
   <script src="js/jquery.stepy.js"></script>
 </head>
 <body>
-<div id="wrapper">
-<header role="banner">
-  <div id="logo">
-    <h1><a href="http://wbotelhos.com/stepy" title="jQuery Stepy">jQuery Stepy</a></h1>
-    <p>A Wizard Plugin</p>
-  </div>
+  <div id="wrapper">
+    <header role="banner">
+      <div id="logo">
+        <h1><a href="http://wbotelhos.com/stepy" title="jQuery Stepy">jQuery Stepy</a></h1>
+        <p>A Wizard Plugin</p>
+      </div>
 
-  <nav role="navigation">
-    <ul>
-      <li><a href="http://github.com/wbotelhos/stepy/archive/1.2.0.zip" title="Download" class="download"><i class="icon-download icon-large"></i>v1.2.0</a></li>
-      <li><a href="http://github.com/wbotelhos/stepy" title="Github" target="_blank"><i class="icon-github icon-large"></i>Github</a></li>
-      <li><a href="http://wbotelhos.com/labs" title="yLab" target="_blank"><i class="icon-beaker icon-large"></i>yLab</a></li>
-      <li><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=X8HEP2878NDEG&amp;item_name=jQuery%20Stepy" title="Donate" target="_blank"><i class="icon-heart-empty icon-large"></i>Donate</a></li>
-    </ul>
-  </nav>
-</header>
+      <nav role="navigation">
+        <ul>
+          <li><a href="http://github.com/wbotelhos/stepy/archive/1.2.0.zip" title="Download" class="download"><i class="icon-download icon-large"></i>v1.2.0</a></li>
+          <li><a href="http://github.com/wbotelhos/stepy" title="Github" target="_blank"><i class="icon-github icon-large"></i>Github</a></li>
+          <li><a href="http://wbotelhos.com/labs" title="yLab" target="_blank"><i class="icon-beaker icon-large"></i>yLab</a></li>
+          <li><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=X8HEP2878NDEG&amp;item_name=jQuery%20Stepy" title="Donate" target="_blank"><i class="icon-heart-empty icon-large"></i>Donate</a></li>
+        </ul>
+      </nav>
+    </header>
 
-<!-- markup -->
+    <!-- markup -->
 
-<h2 id="markup">
-  <a href="#markup">Markup</a>
-</h2>
+    <h2 id="markup">
+      <a href="#markup">Markup</a>
+    </h2>
 
-<p>
-  You need a form with the right markup as following.<br />
-  Each <code>.stepy-step</code> will became a step.<br />
-  The <code>title</code> of the <code>.stepy-step</code> will be the headers titles.<br />
-  And the <code>.stepy-legend</code> will be the header title description.<br />
-  Inside the <code>.stepy-step</code> you put your stuffs.
-</p>
+    <p>
+      You need a form with the right markup as following.<br />
+      Each <code>.stepy-step</code> will became a step.<br />
+      The <code>title</code> of the <code>.stepy-step</code> will be the headers titles.<br />
+      And the <code>.stepy-legend</code> will be the header title description.<br />
+      Inside the <code>.stepy-step</code> you put your stuffs.
+    </p>
 
-<div class="highlight">
+    <div class="highlight">
+      <div class="demo-title">
+        <strong>Sample:</strong>
+      </div>
 <pre>
 <span class="p">&lt;</span><span class="nt">form</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">fieldset</span> <span class="na">title</span><span class="o">=</span><span class="s">"Step 1"</span> <span class="na">class</span><span class="o">=</span><span class="s">"stepy-step"</span><span class="p">&gt;</span>
@@ -79,99 +82,102 @@
   <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">"submit"</span> <span class="na">class</span><span class="o">=</span><span class="s">"stepy-finish"</span> <span class="p">/&gt;</span>
 <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
 </pre>
-</div>
+  </div>
 
-<!-- default -->
+  <!-- default -->
 
-<h2 id="default">
-  <a href="#default">Default</a>
-</h2>
+  <h2 id="default">
+    <a href="#default">Default</a>
+  </h2>
 
-<p>Using the default options.</p>
+  <p>Using the default options.</p>
 
-<div class="demo">
-  <form id="default-demo">
-    <fieldset title="Login" class="stepy-step">
-      <legend class="stepy-legend">Access</legend>
+  <div class="demo">
+    <form id="default-demo">
+      <fieldset title="Login" class="stepy-step">
+        <legend class="stepy-legend">Access</legend>
 
-      <input type="hidden" name="id" />
+        <input type="hidden" name="id" />
 
-      <p>
-        <label for="username">Username:</label>
-        <input id="username" type="text" value="wbotelhos" disabled="disabled" />
-      </p>
+        <p>
+          <label for="username">Username:</label>
+          <input id="username" type="text" value="wbotelhos" disabled="disabled" />
+        </p>
 
-      <p>
-        <label for="email">E-mail:</label>
-        <input id="email" type="text" />
-      </p>
+        <p>
+          <label for="email">E-mail:</label>
+          <input id="email" type="text" />
+        </p>
 
-      <p>
-        <label for="password">Password:</label>
-        <input id="password" type="password" />
-      </p>
+        <p>
+          <label for="password">Password:</label>
+          <input id="password" type="password" />
+        </p>
 
-      <a href="#" class="stepy-back">back</a>
-      <a href="#" class="stepy-next">next</a>
-    </fieldset>
+        <a href="#" class="stepy-back">back</a>
+        <a href="#" class="stepy-next">next</a>
+      </fieldset>
 
-    <fieldset title="Personal" class="stepy-step">
-      <legend class="stepy-legend">About you</legend>
+      <fieldset title="Personal" class="stepy-step">
+        <legend class="stepy-legend">About you</legend>
 
-      <p>
-        <label for="name">Name:</label>
-        <input id="name" type="text" />
-      </p>
+        <p>
+          <label for="name">Name:</label>
+          <input id="name" type="text" />
+        </p>
 
-      <p>
-        <label for="birthday">Birthday:</label>
+        <p>
+          <label for="birthday">Birthday:</label>
 
-        <select id="birthday" name="day">
-          <option></option>
-          <option>1984</option>
-        </select>
-      </p>
+          <select id="birthday" name="day">
+            <option></option>
+            <option>1984</option>
+          </select>
+        </p>
 
-      <p>
-        <label for="bio">Bio:</label>
-        <textarea id="bio"></textarea>
-      </p>
+        <p>
+          <label for="bio">Bio:</label>
+          <textarea id="bio"></textarea>
+        </p>
 
-      <a href="#" class="stepy-back">back</a>
-      <a href="#" class="stepy-next">next</a>
-    </fieldset>
+        <a href="#" class="stepy-back">back</a>
+        <a href="#" class="stepy-next">next</a>
+      </fieldset>
 
-    <fieldset title="Professional" class="stepy-step">
-      <legend class="stepy-legend">Your professional informations</legend>
+      <fieldset title="Professional" class="stepy-step">
+        <legend class="stepy-legend">Your professional informations</legend>
 
-      <p class="skills">
-        <input id="ruby" type="checkbox" name="ruby" />
-        <label for="ruby">Ruby</label>
+        <p class="skills">
+          <input id="ruby" type="checkbox" name="ruby" />
+          <label for="ruby">Ruby</label>
 
-        <input id="python" type="checkbox" name="python" />
-        <label for="python">Python</label>
+          <input id="python" type="checkbox" name="python" />
+          <label for="python">Python</label>
 
-        <input id="java" type="checkbox" name="java" />
-        <label for="java">Java</label>
+          <input id="java" type="checkbox" name="java" />
+          <label for="java">Java</label>
 
-        <input id="javascript" type="checkbox" name="javascript" />
-        <label for="javascript">Javascript</label>
-      </p>
+          <input id="javascript" type="checkbox" name="javascript" />
+          <label for="javascript">Javascript</label>
+        </p>
 
-      <p>
-        <label for="linkedin">Linkedin:</label>
-        <input id="linkedin" type="text" name="Linkedin" />
-      </p>
+        <p>
+          <label for="linkedin">Linkedin:</label>
+          <input id="linkedin" type="text" name="Linkedin" />
+        </p>
 
-      <a href="#" class="stepy-back">back</a>
-      <a href="#" class="stepy-next">next</a>
+        <a href="#" class="stepy-back">back</a>
+        <a href="#" class="stepy-next">next</a>
 
-      <input type="submit" value="Finish!" class="stepy-finish" />
-    </fieldset>
-  </form>
-</div>
+        <input type="submit" value="Finish!" class="stepy-finish" />
+      </fieldset>
+    </form>
+  </div>
 
-<div class="highlight">
+  <div class="highlight">
+    <div class="demo-title">
+      <strong>Sample:</strong>
+    </div>
 <pre>
 <span class="nx">$</span><span class="p">(</span><span class="s1">'form'</span><span class="p">).</span><span class="nx">stepy</span><span class="p">();</span>
 </pre>
@@ -271,6 +277,9 @@
 </div>
 
 <div class="highlight">
+  <div class="demo-title">
+    <strong>Sample:</strong>
+  </div>
 <pre>
 <span class="nx">$</span><span class="p">(</span><span class="s1">'.form'</span><span class="p">).</span><span class="nx">stepy</span><span class="p">({</span> <span class="nx">titleClick</span><span class="o">:</span> <span class="kc">true</span> <span class="p">});</span>
 </pre>
@@ -371,6 +380,9 @@
 </div>
 
 <div class="highlight">
+  <div class="demo-title">
+    <strong>Sample:</strong>
+  </div>
 <pre>
 <span class="nx">$</span><span class="p">(</span><span class="s1">'form'</span><span class="p">).</span><span class="nx">stepy</span><span class="p">({</span> <span class="nx">description</span><span class="o">:</span> <span class="kc">false</span> <span class="p">});</span>
 </pre>
@@ -470,6 +482,9 @@
 </div>
 
 <div class="highlight">
+  <div class="demo-title">
+    <strong>Sample:</strong>
+  </div>
 <pre>
 <span class="nx">$</span><span class="p">(</span><span class="s1">'form'</span><span class="p">).</span><span class="nx">stepy</span><span class="p">({</span> <span class="nx">enter</span><span class="o">:</span> <span class="kc">true</span> <span class="p">});</span>
 </pre>
@@ -568,6 +583,9 @@
 </div>
 
 <div class="highlight">
+  <div class="demo-title">
+    <strong>Sample:</strong>
+  </div>
 <pre>
 <span class="nx">$</span><span class="p">(</span><span class="s1">'form'</span><span class="p">).</span><span class="nx">stepy</span><span class="p">({</span> <span class="nx">finishButton</span><span class="o">:</span> <span class="kc">false</span> <span class="p">});</span>
 </pre>
@@ -667,6 +685,9 @@
 </div>
 
 <div class="highlight">
+  <div class="demo-title">
+    <strong>Sample:</strong>
+  </div>
 <pre>
 <span class="nx">$</span><span class="p">(</span><span class="s1">'form'</span><span class="p">).</span><span class="nx">stepy</span><span class="p">({</span>
 <span class="nx">finish</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -771,6 +792,9 @@
 </div>
 
 <div class="highlight">
+  <div class="demo-title">
+    <strong>Sample:</strong>
+  </div>
 <pre>
 <span class="nx">$</span><span class="p">(</span><span class="s1">'form'</span><span class="p">).</span><span class="nx">stepy</span><span class="p">({</span> <span class="nx">legend</span><span class="o">:</span> <span class="kc">false</span> <span class="p">});</span>
 </pre>
@@ -870,6 +894,9 @@
 </div>
 
 <div class="highlight">
+  <div class="demo-title">
+    <strong>Sample:</strong>
+  </div>
 <pre>
 <span class="nx">$</span><span class="p">(</span><span class="s1">'form'</span><span class="p">).</span><span class="nx">stepy</span><span class="p">({</span>
 <span class="nx">next</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">totalSteps</span><span class="p">)</span> <span class="p">{</span>
@@ -972,6 +999,9 @@
 </div>
 
 <div class="highlight">
+  <div class="demo-title">
+    <strong>Sample:</strong>
+  </div>
 <pre>
 <span class="nx">$</span><span class="p">(</span><span class="s1">'form'</span><span class="p">).</span><span class="nx">stepy</span><span class="p">({</span>
 <span class="nx">back</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">totalSteps</span><span class="p">)</span> <span class="p">{</span>
@@ -1075,6 +1105,9 @@
 </div>
 
 <div class="highlight">
+  <div class="demo-title">
+    <strong>Sample:</strong>
+  </div>
 <pre>
 <span class="nx">$</span><span class="p">(</span><span class="s1">'form'</span><span class="p">).</span><span class="nx">stepy</span><span class="p">({</span>
 <span class="nx">select</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">totalSteps</span><span class="p">)</span> <span class="p">{</span>
@@ -1179,8 +1212,11 @@
 </div>
 
 <div class="highlight">
+  <div class="demo-title">
+    <strong>Sample:</strong>
+  </div>
 <pre>
-<span class="nx">$</span><span class="p">(</span><span class="s1">'form'</span><span class="p">).</span><span class="nx">stepy</span><span class="p">({</span> <span class="nx">titleClick</span><span class="o">:</span>  <span class="kc">true</span> <span class="p">});</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'form'</span><span class="p">).</span><span class="nx">stepy</span><span class="p">({</span> <span class="nx">titleTarget</span><span class="o">:</span>  <span class="kc">'#target'</span> <span class="p">});</span>
 </pre>
 </div>
 
@@ -1278,6 +1314,9 @@
 </div>
 
 <div class="highlight">
+  <div class="demo-title">
+    <strong>Sample:</strong>
+  </div>
 <pre>
 <span class="nx">$</span><span class="p">(</span><span class="s1">'form'</span><span class="p">).</span><span class="nx">stepy</span><span class="p">({</span>
 <span class="nx">duration</span>  <span class="o">:</span> <span class="mi">400</span><span class="p">,</span>
@@ -1293,7 +1332,7 @@
 </h2>
 
 <p>
-If you don't want a header, you can just change <code>header</code> to <code>false</code> and it won't be created.<br />
+  If you don't want a header, you can just change <code>header</code> to <code>false</code> and it won't be created.<br />
 </p>
 
 <div class="demo">
@@ -1371,6 +1410,9 @@ If you don't want a header, you can just change <code>header</code> to <code>fal
 </div>
 
 <div class="highlight">
+  <div class="demo-title">
+    <strong>Sample:</strong>
+  </div>
 <pre>
 <span class="nx">$</span><span class="p">(</span><span class="s1">'form'</span><span class="p">).</span><span class="nx">stepy</span><span class="p">({</span> <span class="nx">header</span><span class="o">:</span> <span class="kc">false</span> <span class="p">});</span>
 </pre>
@@ -1383,90 +1425,93 @@ If you don't want a header, you can just change <code>header</code> to <code>fal
 </h2>
 
 <p>
-The class to find the back button inside each step.<br />
+  The class to find the back button inside each step.<br />
 </p>
 
 <div class="demo">
   <form id="backButton-demo">
-  <fieldset title="Login" class="stepy-step">
-    <legend class="stepy-legend">Access</legend>
+    <fieldset title="Login" class="stepy-step">
+      <legend class="stepy-legend">Access</legend>
 
-    <p>
-      <label for="username-2">Username:</label>
-      <input id="username-2" type="text" value="wbotelhos" disabled="disabled" />
-    </p>
+      <p>
+        <label for="username-2">Username:</label>
+        <input id="username-2" type="text" value="wbotelhos" disabled="disabled" />
+      </p>
 
-    <p>
-      <label for="email-2">E-mail:</label>
-      <input id="email-2" type="text" />
-    </p>
+      <p>
+        <label for="email-2">E-mail:</label>
+        <input id="email-2" type="text" />
+      </p>
 
-    <p>
-      <label for="password-2">Password:</label>
-      <input id="password-2" type="password" />
-    </p>
+      <p>
+        <label for="password-2">Password:</label>
+        <input id="password-2" type="password" />
+      </p>
 
-    <a href="#" class="stepy-back">back</a>
-    <a href="#" class="stepy-next">next</a>
-  </fieldset>
+      <a href="#" class="stepy-back">back</a>
+      <a href="#" class="stepy-next">next</a>
+    </fieldset>
 
-  <fieldset title="Personal" class="stepy-step">
-    <legend class="stepy-legend">About you</legend>
+    <fieldset title="Personal" class="stepy-step">
+      <legend class="stepy-legend">About you</legend>
 
-    <p>
-      <label for="name-2">Name:</label>
-      <input id="name-2" type="text" />
-    </p>
+      <p>
+        <label for="name-2">Name:</label>
+        <input id="name-2" type="text" />
+      </p>
 
-    <p>
-      <label for="birthday-2">Birthday:</label>
+      <p>
+        <label for="birthday-2">Birthday:</label>
 
-      <select id="birthday-2" name="day">
-        <option></option>
-        <option>1984</option>
-      </select>
-    </p>
+        <select id="birthday-2" name="day">
+          <option></option>
+          <option>1984</option>
+        </select>
+      </p>
 
-    <p>
-      <label for="bio-2">Bio:</label>
-      <textarea id="bio-2"></textarea>
-    </p>
+      <p>
+        <label for="bio-2">Bio:</label>
+        <textarea id="bio-2"></textarea>
+      </p>
 
-    <a href="#" class="stepy-back">back</a>
-    <a href="#" class="stepy-next">next</a>
-  </fieldset>
+      <a href="#" class="stepy-back">back</a>
+      <a href="#" class="stepy-next">next</a>
+    </fieldset>
 
-  <fieldset title="Professional" class="stepy-step">
-    <legend class="stepy-legend">Your professional informations</legend>
+    <fieldset title="Professional" class="stepy-step">
+      <legend class="stepy-legend">Your professional informations</legend>
 
-    <p class="skills">
-      <input id="ruby-2" type="checkbox" name="ruby-2" />
-      <label for="ruby-2">Ruby</label>
+      <p class="skills">
+        <input id="ruby-2" type="checkbox" name="ruby-2" />
+        <label for="ruby-2">Ruby</label>
 
-      <input id="python-2" type="checkbox" name="python" />
-      <label for="python-2">Python</label>
+        <input id="python-2" type="checkbox" name="python" />
+        <label for="python-2">Python</label>
 
-      <input id="java-2" type="checkbox" name="java" />
-      <label for="java-2">Java</label>
+        <input id="java-2" type="checkbox" name="java" />
+        <label for="java-2">Java</label>
 
-      <input id="javascript-2" type="checkbox" name="javascript" />
-      <label for="javascript-2">Javascript</label>
-    </p>
+        <input id="javascript-2" type="checkbox" name="javascript" />
+        <label for="javascript-2">Javascript</label>
+      </p>
 
-    <p>
-      <label for="linkedin-2">Linkedin:</label>
-      <input id="linkedin-2" type="text" name="Linkedin" />
-    </p>
+      <p>
+        <label for="linkedin-2">Linkedin:</label>
+        <input id="linkedin-2" type="text" name="Linkedin" />
+      </p>
 
-    <a href="#" class="stepy-back">back</a>
-    <a href="#" class="stepy-next">next</a>
+      <a href="#" class="stepy-back">back</a>
+      <a href="#" class="stepy-next">next</a>
 
-    <input type="submit" value="Finish!" class="stepy-finish" />
-  </fieldset>
-</form>
+      <input type="submit" value="Finish!" class="stepy-finish" />
+    </fieldset>
+  </form>
 </div>
 
 <div class="highlight">
+  <div class="demo-title">
+    <strong>Sample:</strong>
+  </div>
 <pre>
 <span class="nx">$</span><span class="p">(</span><span class="s1">'form'</span><span class="p">).</span><span class="nx">stepy</span><span class="p">({</span> <span class="nx">backButton</span><span class="o">:</span> <span class="s1">'.stepy-back'</span> <span class="p">});</span>
 </pre>
@@ -1484,85 +1529,88 @@ The class to find the back button inside each step.<br />
 
 <div class="demo">
   <form id="nextButton-demo">
-  <fieldset title="Login" class="stepy-step">
-    <legend class="stepy-legend">Access</legend>
+    <fieldset title="Login" class="stepy-step">
+      <legend class="stepy-legend">Access</legend>
 
-    <p>
-      <label for="username-2">Username:</label>
-      <input id="username-2" type="text" value="wbotelhos" disabled="disabled" />
-    </p>
+      <p>
+        <label for="username-2">Username:</label>
+        <input id="username-2" type="text" value="wbotelhos" disabled="disabled" />
+      </p>
 
-    <p>
-      <label for="email-2">E-mail:</label>
-      <input id="email-2" type="text" />
-    </p>
+      <p>
+        <label for="email-2">E-mail:</label>
+        <input id="email-2" type="text" />
+      </p>
 
-    <p>
-      <label for="password-2">Password:</label>
-      <input id="password-2" type="password" />
-    </p>
+      <p>
+        <label for="password-2">Password:</label>
+        <input id="password-2" type="password" />
+      </p>
 
-    <a href="#" class="stepy-back">back</a>
-    <a href="#" class="stepy-next">next</a>
-  </fieldset>
+      <a href="#" class="stepy-back">back</a>
+      <a href="#" class="stepy-next">next</a>
+    </fieldset>
 
-  <fieldset title="Personal" class="stepy-step">
-    <legend class="stepy-legend">About you</legend>
+    <fieldset title="Personal" class="stepy-step">
+      <legend class="stepy-legend">About you</legend>
 
-    <p>
-      <label for="name-2">Name:</label>
-      <input id="name-2" type="text" />
-    </p>
+      <p>
+        <label for="name-2">Name:</label>
+        <input id="name-2" type="text" />
+      </p>
 
-    <p>
-      <label for="birthday-2">Birthday:</label>
+      <p>
+        <label for="birthday-2">Birthday:</label>
 
-      <select id="birthday-2" name="day">
-        <option></option>
-        <option>1984</option>
-      </select>
-    </p>
+        <select id="birthday-2" name="day">
+          <option></option>
+          <option>1984</option>
+        </select>
+      </p>
 
-    <p>
-      <label for="bio-2">Bio:</label>
-      <textarea id="bio-2"></textarea>
-    </p>
+      <p>
+        <label for="bio-2">Bio:</label>
+        <textarea id="bio-2"></textarea>
+      </p>
 
-    <a href="#" class="stepy-back">back</a>
-    <a href="#" class="stepy-next">next</a>
-  </fieldset>
+      <a href="#" class="stepy-back">back</a>
+      <a href="#" class="stepy-next">next</a>
+    </fieldset>
 
-  <fieldset title="Professional" class="stepy-step">
-    <legend class="stepy-legend">Your professional informations</legend>
+    <fieldset title="Professional" class="stepy-step">
+      <legend class="stepy-legend">Your professional informations</legend>
 
-    <p class="skills">
-      <input id="ruby-2" type="checkbox" name="ruby-2" />
-      <label for="ruby-2">Ruby</label>
+      <p class="skills">
+        <input id="ruby-2" type="checkbox" name="ruby-2" />
+        <label for="ruby-2">Ruby</label>
 
-      <input id="python-2" type="checkbox" name="python" />
-      <label for="python-2">Python</label>
+        <input id="python-2" type="checkbox" name="python" />
+        <label for="python-2">Python</label>
 
-      <input id="java-2" type="checkbox" name="java" />
-      <label for="java-2">Java</label>
+        <input id="java-2" type="checkbox" name="java" />
+        <label for="java-2">Java</label>
 
-      <input id="javascript-2" type="checkbox" name="javascript" />
-      <label for="javascript-2">Javascript</label>
-    </p>
+        <input id="javascript-2" type="checkbox" name="javascript" />
+        <label for="javascript-2">Javascript</label>
+      </p>
 
-    <p>
-      <label for="linkedin-2">Linkedin:</label>
-      <input id="linkedin-2" type="text" name="Linkedin" />
-    </p>
+      <p>
+        <label for="linkedin-2">Linkedin:</label>
+        <input id="linkedin-2" type="text" name="Linkedin" />
+      </p>
 
-    <a href="#" class="stepy-back">back</a>
-    <a href="#" class="stepy-next">next</a>
+      <a href="#" class="stepy-back">back</a>
+      <a href="#" class="stepy-next">next</a>
 
-    <input type="submit" value="Finish!" class="stepy-finish" />
-  </fieldset>
-</form>
+      <input type="submit" value="Finish!" class="stepy-finish" />
+    </fieldset>
+  </form>
 </div>
 
 <div class="highlight">
+  <div class="demo-title">
+    <strong>Sample:</strong>
+  </div>
 <pre>
 <span class="nx">$</span><span class="p">(</span><span class="s1">'form'</span><span class="p">).</span><span class="nx">stepy</span><span class="p">({</span> <span class="nx">nextButton</span><span class="o">:</span> <span class="s1">'.stepy-next'</span> <span class="p">});</span>
 </pre>
@@ -1579,80 +1627,83 @@ The class to find the back button inside each step.<br />
 </p>
 
 <div class="demo">
-<form id="globalButtons-demo">
-  <fieldset title="Login" class="stepy-step">
-    <legend class="stepy-legend">Access</legend>
+  <form id="globalButtons-demo">
+    <fieldset title="Login" class="stepy-step">
+      <legend class="stepy-legend">Access</legend>
 
-    <p>
-      <label for="username-2">Username:</label>
-      <input id="username-2" type="text" value="wbotelhos" disabled="disabled" />
-    </p>
+      <p>
+        <label for="username-2">Username:</label>
+        <input id="username-2" type="text" value="wbotelhos" disabled="disabled" />
+      </p>
 
-    <p>
-      <label for="email-2">E-mail:</label>
-      <input id="email-2" type="text" />
-    </p>
+      <p>
+        <label for="email-2">E-mail:</label>
+        <input id="email-2" type="text" />
+      </p>
 
-    <p>
-      <label for="password-2">Password:</label>
-      <input id="password-2" type="password" />
-    </p>
-  </fieldset>
+      <p>
+        <label for="password-2">Password:</label>
+        <input id="password-2" type="password" />
+      </p>
+    </fieldset>
 
-  <fieldset title="Personal" class="stepy-step">
-    <legend class="stepy-legend">About you</legend>
+    <fieldset title="Personal" class="stepy-step">
+      <legend class="stepy-legend">About you</legend>
 
-    <p>
-      <label for="name-2">Name:</label>
-      <input id="name-2" type="text" />
-    </p>
+      <p>
+        <label for="name-2">Name:</label>
+        <input id="name-2" type="text" />
+      </p>
 
-    <p>
-      <label for="birthday-2">Birthday:</label>
+      <p>
+        <label for="birthday-2">Birthday:</label>
 
-      <select id="birthday-2" name="day">
-        <option></option>
-        <option>1984</option>
-      </select>
-    </p>
+        <select id="birthday-2" name="day">
+          <option></option>
+          <option>1984</option>
+        </select>
+      </p>
 
-    <p>
-      <label for="bio-2">Bio:</label>
-      <textarea id="bio-2"></textarea>
-    </p>
-  </fieldset>
+      <p>
+        <label for="bio-2">Bio:</label>
+        <textarea id="bio-2"></textarea>
+      </p>
+    </fieldset>
 
-  <fieldset title="Professional" class="stepy-step">
-    <legend class="stepy-legend">Your professional informations</legend>
+    <fieldset title="Professional" class="stepy-step">
+      <legend class="stepy-legend">Your professional informations</legend>
 
-    <p class="skills">
-      <input id="ruby-2" type="checkbox" name="ruby-2" />
-      <label for="ruby-2">Ruby</label>
+      <p class="skills">
+        <input id="ruby-2" type="checkbox" name="ruby-2" />
+        <label for="ruby-2">Ruby</label>
 
-      <input id="python-2" type="checkbox" name="python" />
-      <label for="python-2">Python</label>
+        <input id="python-2" type="checkbox" name="python" />
+        <label for="python-2">Python</label>
 
-      <input id="java-2" type="checkbox" name="java" />
-      <label for="java-2">Java</label>
+        <input id="java-2" type="checkbox" name="java" />
+        <label for="java-2">Java</label>
 
-      <input id="javascript-2" type="checkbox" name="javascript" />
-      <label for="javascript-2">Javascript</label>
-    </p>
+        <input id="javascript-2" type="checkbox" name="javascript" />
+        <label for="javascript-2">Javascript</label>
+      </p>
 
-    <p>
-      <label for="linkedin-2">Linkedin:</label>
-      <input id="linkedin-2" type="text" name="Linkedin" />
-    </p>
-  </fieldset>
+      <p>
+        <label for="linkedin-2">Linkedin:</label>
+        <input id="linkedin-2" type="text" name="Linkedin" />
+      </p>
+    </fieldset>
 
-  <a href="#" class="stepy-back">back</a>
-  <a href="#" class="stepy-next">next</a>
+    <a href="#" class="stepy-back">back</a>
+    <a href="#" class="stepy-next">next</a>
 
-  <input type="submit" value="Finish!" class="stepy-finish" />
-</form>
+    <input type="submit" value="Finish!" class="stepy-finish" />
+  </form>
 </div>
 
 <div class="highlight">
+  <div class="demo-title">
+    <strong>Sample:</strong>
+  </div>
 <pre>
 <span class="nx">$</span><span class="p">(</span><span class="s1">'form'</span><span class="p">).</span><span class="nx">stepy</span><span class="p">({</span> <span class="nx">nextButton</span><span class="o">:</span> <span class="s1">'.stepy-next'</span> <span class="p">});</span>
 </pre>
@@ -1669,80 +1720,83 @@ The class to find the back button inside each step.<br />
 </p>
 
 <div class="demo">
-<form id="validate-demo">
-  <fieldset title="Login" class="stepy-step">
-    <legend class="stepy-legend">Access</legend>
+  <form id="validate-demo">
+    <fieldset title="Login" class="stepy-step">
+      <legend class="stepy-legend">Access</legend>
 
-    <p>
-      <label for="username-2">Username:</label>
-      <input id="username-2" type="text" data-validaty="required" />
-    </p>
+      <p>
+        <label for="username-2">Username:</label>
+        <input id="username-2" type="text" data-validaty="required" />
+      </p>
 
-    <p>
-      <label for="email-2">E-mail:</label>
-      <input id="email-2" type="text" />
-    </p>
+      <p>
+        <label for="email-2">E-mail:</label>
+        <input id="email-2" type="text" />
+      </p>
 
-    <p>
-      <label for="password-2">Password:</label>
-      <input id="password-2" type="password" />
-    </p>
-  </fieldset>
+      <p>
+        <label for="password-2">Password:</label>
+        <input id="password-2" type="password" />
+      </p>
+    </fieldset>
 
-  <fieldset title="Personal" class="stepy-step">
-    <legend class="stepy-legend">About you</legend>
+    <fieldset title="Personal" class="stepy-step">
+      <legend class="stepy-legend">About you</legend>
 
-    <p>
-      <label for="name-2">Name:</label>
-      <input id="name-2" type="text" data-validaty="required" />
-    </p>
+      <p>
+        <label for="name-2">Name:</label>
+        <input id="name-2" type="text" data-validaty="required" />
+      </p>
 
-    <p>
-      <label for="birthday-2">Birthday:</label>
+      <p>
+        <label for="birthday-2">Birthday:</label>
 
-      <select id="birthday-2" name="day">
-        <option></option>
-        <option>1984</option>
-      </select>
-    </p>
+        <select id="birthday-2" name="day">
+          <option></option>
+          <option>1984</option>
+        </select>
+      </p>
 
-    <p>
-      <label for="bio-2">Bio:</label>
-      <textarea id="bio-2"></textarea>
-    </p>
-  </fieldset>
+      <p>
+        <label for="bio-2">Bio:</label>
+        <textarea id="bio-2"></textarea>
+      </p>
+    </fieldset>
 
-  <fieldset title="Professional" class="stepy-step">
-    <legend class="stepy-legend">Your professional informations</legend>
+    <fieldset title="Professional" class="stepy-step">
+      <legend class="stepy-legend">Your professional informations</legend>
 
-    <p class="skills">
-      <input id="ruby-2" type="checkbox" name="ruby-2" />
-      <label for="ruby-2">Ruby</label>
+      <p class="skills">
+        <input id="ruby-2" type="checkbox" name="ruby-2" />
+        <label for="ruby-2">Ruby</label>
 
-      <input id="python-2" type="checkbox" name="python" />
-      <label for="python-2">Python</label>
+        <input id="python-2" type="checkbox" name="python" />
+        <label for="python-2">Python</label>
 
-      <input id="java-2" type="checkbox" name="java" />
-      <label for="java-2">Java</label>
+        <input id="java-2" type="checkbox" name="java" />
+        <label for="java-2">Java</label>
 
-      <input id="javascript-2" type="checkbox" name="javascript" />
-      <label for="javascript-2">Javascript</label>
-    </p>
+        <input id="javascript-2" type="checkbox" name="javascript" />
+        <label for="javascript-2">Javascript</label>
+      </p>
 
-    <p>
-      <label for="linkedin-2">Linkedin:</label>
-      <input id="linkedin-2" type="text" name="Linkedin" />
-    </p>
-  </fieldset>
+      <p>
+        <label for="linkedin-2">Linkedin:</label>
+        <input id="linkedin-2" type="text" name="Linkedin" />
+      </p>
+    </fieldset>
 
-  <a href="#" class="stepy-back">back</a>
-  <a href="#" class="stepy-next">next</a>
+    <a href="#" class="stepy-back">back</a>
+    <a href="#" class="stepy-next">next</a>
 
-  <input type="submit" value="Finish!" class="stepy-finish" />
-</form>
+    <input type="submit" value="Finish!" class="stepy-finish" />
+  </form>
 </div>
 
 <div class="highlight">
+  <div class="demo-title">
+    <strong>Sample:</strong>
+  </div>
 <pre>
 <span class="nx">$</span><span class="p">(</span><span class="s1">'form'</span><span class="p">).</span><span class="nx">stepy</span><span class="p">({</span> <span class="nx">nextButton</span><span class="o">:</span> <span class="s1">'.stepy-next'</span> <span class="p">});</span>
 </pre>
@@ -1759,80 +1813,83 @@ The class to find the back button inside each step.<br />
 </p>
 
 <div class="demo">
-<form id="block-demo">
-  <fieldset title="Login" class="stepy-step">
-    <legend class="stepy-legend">Access</legend>
+  <form id="block-demo">
+    <fieldset title="Login" class="stepy-step">
+      <legend class="stepy-legend">Access</legend>
 
-    <p>
-      <label for="username-2">Username:</label>
-      <input id="username-2" type="text" data-validaty="required" />
-    </p>
+      <p>
+        <label for="username-2">Username:</label>
+        <input id="username-2" type="text" data-validaty="required" />
+      </p>
 
-    <p>
-      <label for="email-2">E-mail:</label>
-      <input id="email-2" type="text" />
-    </p>
+      <p>
+        <label for="email-2">E-mail:</label>
+        <input id="email-2" type="text" />
+      </p>
 
-    <p>
-      <label for="password-2">Password:</label>
-      <input id="password-2" type="password" />
-    </p>
-  </fieldset>
+      <p>
+        <label for="password-2">Password:</label>
+        <input id="password-2" type="password" />
+      </p>
+    </fieldset>
 
-  <fieldset title="Personal" class="stepy-step">
-    <legend class="stepy-legend">About you</legend>
+    <fieldset title="Personal" class="stepy-step">
+      <legend class="stepy-legend">About you</legend>
 
-    <p>
-      <label for="name-2">Name:</label>
-      <input id="name-2" type="text" data-validaty="required" />
-    </p>
+      <p>
+        <label for="name-2">Name:</label>
+        <input id="name-2" type="text" data-validaty="required" />
+      </p>
 
-    <p>
-      <label for="birthday-2">Birthday:</label>
+      <p>
+        <label for="birthday-2">Birthday:</label>
 
-      <select id="birthday-2" name="day">
-        <option></option>
-        <option>1984</option>
-      </select>
-    </p>
+        <select id="birthday-2" name="day">
+          <option></option>
+          <option>1984</option>
+        </select>
+      </p>
 
-    <p>
-      <label for="bio-2">Bio:</label>
-      <textarea id="bio-2"></textarea>
-    </p>
-  </fieldset>
+      <p>
+        <label for="bio-2">Bio:</label>
+        <textarea id="bio-2"></textarea>
+      </p>
+    </fieldset>
 
-  <fieldset title="Professional" class="stepy-step">
-    <legend class="stepy-legend">Your professional informations</legend>
+    <fieldset title="Professional" class="stepy-step">
+      <legend class="stepy-legend">Your professional informations</legend>
 
-    <p class="skills">
-      <input id="ruby-2" type="checkbox" name="ruby-2" />
-      <label for="ruby-2">Ruby</label>
+      <p class="skills">
+        <input id="ruby-2" type="checkbox" name="ruby-2" />
+        <label for="ruby-2">Ruby</label>
 
-      <input id="python-2" type="checkbox" name="python" />
-      <label for="python-2">Python</label>
+        <input id="python-2" type="checkbox" name="python" />
+        <label for="python-2">Python</label>
 
-      <input id="java-2" type="checkbox" name="java" />
-      <label for="java-2">Java</label>
+        <input id="java-2" type="checkbox" name="java" />
+        <label for="java-2">Java</label>
 
-      <input id="javascript-2" type="checkbox" name="javascript" />
-      <label for="javascript-2">Javascript</label>
-    </p>
+        <input id="javascript-2" type="checkbox" name="javascript" />
+        <label for="javascript-2">Javascript</label>
+      </p>
 
-    <p>
-      <label for="linkedin-2">Linkedin:</label>
-      <input id="linkedin-2" type="text" name="Linkedin" />
-    </p>
-  </fieldset>
+      <p>
+        <label for="linkedin-2">Linkedin:</label>
+        <input id="linkedin-2" type="text" name="Linkedin" />
+      </p>
+    </fieldset>
 
-  <a href="#" class="stepy-back">back</a>
-  <a href="#" class="stepy-next">next</a>
+    <a href="#" class="stepy-back">back</a>
+    <a href="#" class="stepy-next">next</a>
 
-  <input type="submit" value="Finish!" class="stepy-finish" />
-</form>
+    <input type="submit" value="Finish!" class="stepy-finish" />
+  </form>
 </div>
 
 <div class="highlight">
+  <div class="demo-title">
+    <strong>Sample:</strong>
+  </div>
 <pre>
 <span class="nx">$</span><span class="p">(</span><span class="s1">'form'</span><span class="p">).</span><span class="nx">stepy</span><span class="p">({</span> <span class="nx">nextButton</span><span class="o">:</span> <span class="s1">'.stepy-next'</span> <span class="p">});</span>
 </pre>
@@ -1841,7 +1898,7 @@ The class to find the back button inside each step.<br />
 <!-- section: options -->
 
 <h2 id="options">
-   <a href="#options">Options:</a>
+  <a href="#options">Options:</a>
 </h2>
 
 <div id="back" class="option">
@@ -1938,6 +1995,9 @@ The class to find the back button inside each step.<br />
 </p>
 
 <div class="highlight">
+  <div class="demo-title">
+    <strong>Sample:</strong>
+  </div>
 <pre>
 <span class="nx">$</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">stepy</span><span class="p">.</span><span class="nx">defaults</span><span class="p">.</span><span class="nx">validate</span> <span class="o">=</span> <span class="s1">true</span><span class="p">;</span>
 <span class="nx">$</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">stepy</span><span class="p">.</span><span class="nx">defaults</span><span class="p">.</span><span class="nx">titleClick</span> <span class="o">=</span> <span class="s1">true</span><span class="p">;</span>
@@ -1951,23 +2011,29 @@ The class to find the back button inside each step.<br />
 </h2>
 
 <div id="step-function" class="function">
-<div class="highlight">
+  <div class="highlight">
+    <div class="demo-title">
+      <strong>Sample:</strong>
+    </div>
 <pre>
 <span class="nx">$</span><span class="p">(</span><span class="s1">'form'</span><span class="p">).</span><span class="nx">stepy</span><span class="p">(</span><span class="s1">'step'</span><span class="p">);</span>
 </pre>
 </div>
 
-  <p>Goes to the given step.</p>
+<p>Goes to the given step.</p>
 </div>
 
 <div id="destroy-function" class="function">
-<div class="highlight">
+  <div class="highlight">
+    <div class="demo-title">
+      <strong>Sample:</strong>
+    </div>
 <pre>
 <span class="nx">$</span><span class="p">(</span><span class="s1">'form'</span><span class="p">).</span><span class="nx">stepy</span><span class="p">(</span><span class="s1">'destroy'</span><span class="p">);</span>
 </pre>
 </div>
 
-  <p>Destroy the Stepy's bind and gives you the raw element before it.</p>
+<p>Destroy the Stepy's bind and gives you the raw element before it.</p>
 </div>
 
 <div class="author">
