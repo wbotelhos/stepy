@@ -111,8 +111,7 @@ describe('enter', function() {
       context('with block disabled', function() {
         it ('goes to the next step', function() {
           // given
-          var
-          self = $('form').stepy({
+          var self = $('form').stepy({
             enter: true,
             block: false,
 
