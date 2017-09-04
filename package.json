@@ -54,7 +54,9 @@
     "url": "https://github.com/wbotelhos/stepy"
   },
   "scripts": {
-    "test": "node_modules/karma/bin/karma start karma.conf.js"
+    "test": "node_modules/karma/bin/karma start karma.conf.js",
+    "build-dev": "./bin/copy-dependencies",
+    "start": "npm run build-dev && http-server -p 8000 demo/"
   },
   "version": "1.2.0"
 }
