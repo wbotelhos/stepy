@@ -1,10 +1,10 @@
 # JS
-cp ./node_modules/jquery/dist/jquery.min.js ./demo/js/
-cp ./node_modules/jquery-validation/dist/jquery.validate.min.js ./demo/js/
+cp ./node_modules/jquery/dist/jquery.min.js ./demo/js
+cp ./node_modules/jquery-validation/dist/jquery.validate.min.js ./demo/js
 cp ./node_modules/validaty/lib/jquery.validaty.js ./demo/js
 cp ./node_modules/validaty/lib/jquery.validaty.validators.js ./demo/js
-cp ./lib/jquery.stepy.js ./demo/js/
+cp ./lib/jquery.stepy.js ./demo/js
 
 # CSS
-cp ./lib/jquery.stepy.css ./demo/css/
-cp ./node_modules/validaty/lib/jquery.validaty.css ./demo/css/
+cp ./lib/jquery.stepy.css ./demo/css
+cp ./node_modules/validaty/lib/jquery.validaty.css ./demo/css
