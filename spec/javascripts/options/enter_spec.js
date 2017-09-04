@@ -109,7 +109,7 @@ describe('enter', function() {
       });
 
       context('with block disabled', function() {
-        it ('goes to the next step', function() {
+        it ('does not goes to the next step', function() {
           // given
           var
           self = $('form').stepy({
@@ -127,8 +127,33 @@ describe('enter', function() {
           steps.eq(0).find('input:visible:last').trigger(evt);
 
           // then
-          expect(steps.eq(0)).toBeHidden();
-          expect(steps.eq(1)).toBeVisible();
+          expect(steps.eq(0)).toBeVisible();
+          expect(steps.eq(1)).toBeHidden();
+          expect(steps.eq(2)).toBeHidden();
+        });
+      });
+
+      context('with transition enabled', function() {
+        it ('does not goes to the next step', function() {
+          // given
+          var
+          self = $('form').stepy({
+            enter: true,
+            transition: 'fade',
+
+            validate: function(field) {
+              return self.validaty('validate', $(field)).data('valid');
+            }
+          }).validaty(),
+            steps = self.find('.stepy-step'),
+            evt   = $.Event('keypress', { which: 13, keyCode: 13 });
+
+          // when
+          steps.eq(0).find('input:visible:last').trigger(evt);
+
+          // then
+          expect(steps.eq(0)).toBeVisible();
+          expect(steps.eq(1)).toBeHidden();
           expect(steps.eq(2)).toBeHidden();
         });
       });
