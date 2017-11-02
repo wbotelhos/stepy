@@ -19,7 +19,7 @@ duration:    0          // Duration of the transition between steps in ms.
 enter:       true       // Enables the enter key to change to the next step.
 errorImage:  false      // If an error occurs, a image is showed in the title of the corresponding step.
 finish:      undefined  // Callback before the finish action.
-finishButto: true       // Include the button with class called '.finish' into the last step.
+finishButton: true       // Include the button with class called '.finish' into the last step.
 header:      true       // Creates a header with title and description.
 ignore:      ''         // Choose the fields to be ignored on validation.
 legend:      false      // Choose if the legends of the steps will be showed.
