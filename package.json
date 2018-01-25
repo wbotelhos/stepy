@@ -10,7 +10,7 @@
     "demo/index.html"
   ],
   "dependencies": {
-    "jquery": "^3.2.1"
+    "jquery": "^3.3.1"
   },
   "description": "jQuery Stepy - A Wizard Plugin",
   "devDependencies": {
@@ -33,7 +33,7 @@
     "test": "spec"
   },
   "engines": {
-    "node": "7.10"
+    "node": "^9"
   },
   "homepage": "https://github.com/wbotelhos/stepy",
   "keywords": [
