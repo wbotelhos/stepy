@@ -5,7 +5,7 @@
 [![Dependency](https://david-dm.org/wbotelhos/stepy.svg)](https://david-dm.org/wbotelhos/stepy)
 [![Dev Dependency](https://david-dm.org/wbotelhos/stepy/dev-status.svg)](https://david-dm.org/wbotelhos/stepy#info=devDependencies)
 [![Code Climate](https://codeclimate.com/github/wbotelhos/stepy.png)](https://codeclimate.com/github/wbotelhos/stepy)
-[![Support](http://img.shields.io/gittip/wbotelhos.svg)](https://gratipay.com/~wbotelhos)
+[![Support](https://img.shields.io/badge/donate-%3C3-brightgreen.svg)](https://liberapay.com/wbotelhos)
 
 jQuery Stepy is a plugin that generates a customizable wizard.
 
@@ -71,4 +71,4 @@ $('form').stepy('destroy'); // Destroy the Stepy's bind and gives you the raw el
 
 ## Love it!
 
-Via [PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=X8HEP2878NDEG&item_name=stepy) or [Gratipay](https://gratipay.com/stepy). Thanks! (:
+Via [PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=X8HEP2878NDEG&item_name=stepy) or [Support](https://liberapay.com/wbotelhos). Thanks! (:
