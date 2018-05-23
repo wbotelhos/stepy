@@ -4,9 +4,9 @@ a:hover { color: #48A5D4 }
 
 body { background-color: #E7E7E7; font: normal 10px/1.6 'Helvetica Neue', 'Lucida Grande', Helvetica, Arial, sans-serif }
 
-footer { font-size: 1.3em; margin: 0 auto; overflow: auto; padding-bottom: 15px; padding-top: 10px; text-align: center; width: 1100px }
+footer { font-size: 1.3em; margin: 0 auto; overflow: auto; padding-bottom: 15px; padding-top: 10px; text-align: center; width: 100% }
 
-h2 { border-bottom: 1px solid #DEDEDE; clear: right; color: #444; font-size: 2.6em; letter-spacing: .5px; line-height: 1.3em; padding-bottom: 3px }
+h2 { background-color: #dedede; border-left: 5px solid; clear: right; color: #444; font-size: 2.6em; letter-spacing: .5px; line-height: 1; margin: 40px 0 0; padding: 20px 0 20px 10px }
 h2 a { color: #444 }
 
 h3 { color: #777; font-size: 1.8em; letter-spacing: .4px; margin-bottom: 0 }
@@ -34,7 +34,9 @@ pre { background-color: #F8F8F8; border: 1px solid #EAEAEA; border-radius: 3px; 
 
 .function p { color: #444; font-size: 1.2em; letter-spacing: .4px; margin-left: 3px; margin-top: -8px; text-align: left }
 
-.demo { margin-bottom: 10px }
+.demo { max-width: 700px; margin: 0 auto 20px auto }
+.demo:after,
+.demo form:after { content: ' '; clear: both; display: block }
 
 .highlight { clear: both }
 
